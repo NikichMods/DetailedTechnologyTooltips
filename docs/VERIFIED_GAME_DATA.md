@@ -130,6 +130,37 @@ The audit identified **113/342 (33.0%)** visible Craft unlocks that currently re
 
 This supports the product need independently of subjective wording quality.
 
+
+## Work / Perk runtime enrichment evidence
+
+Accepted read-only runtime audit on Graveyard Keeper 1.407:
+
+- 15 authored-visible Work unlocks; 2 have no authored description;
+- 38 authored-visible Perk unlocks; 11 have no authored description.
+
+Sparse Work entries:
+- `t_diamond` resolves to a gated diamond source dropping `faceted_diamond`;
+- `t_marble` resolves to gated marble sources dropping `marble`.
+
+Sparse gathering-style Perks with direct current-data consumers:
+- `p_t_gold_ore`: gold nuggets in iron processing and iron mining;
+- `p_t_silver_ore`: silver nuggets in iron processing and iron mining;
+- `p_t_lifestone`: limestone/lifestone from coal mining;
+- `p_t_sulfur`: sulfur from coal mining;
+- `p_t_beeswax`: beeswax from bee-house / bee-tree harvest sources;
+- `p_t_bee`: bees from bee-house / bee-tree harvest sources;
+- `p_t_butterfly`: butterflies from flowers during daytime;
+- `p_t_moth`: moths from flowers during nighttime;
+- `p_t_maggot`: maggots from the native `peat_from_waste` craft.
+
+Two sparse Perks are intentionally excluded:
+- `p_t_old_books`: exact native consumer is unresolved;
+- `p_t_pyrite`: runtime data is internally inconsistent — Perk `output_res` writes `p_t_pirit=1` while the coal-drop expression reads `Ppar("p_t_pyrite")`. The presentation mod must not claim that this Technology enables pyrite drops and must not fix the gameplay data.
+
+Product implication: preserve authored Work/Perk descriptions; add a short action/source explanation only for the explicitly proved sparse IDs above. Do not expose exact chance percentages, future uses, guessed locations, hidden `@` unlocks, or the two unresolved/mismatched cases.
+
+Canonical shared evidence: `NikichMods/GraveyardKeeperResearch/docs/TECH_TREE_INFORMATION_RESEARCH.md`, runtime diagnostic source `64a3751a67e3a1950c2ccfb9970e7991fb304daf`.
+
 ## Preserved invariants
 
 Unless separately approved and evidenced, the mod must not change:
