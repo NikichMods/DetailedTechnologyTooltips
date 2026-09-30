@@ -373,3 +373,50 @@ Remaining blocker found by review of the Japanese screenshot:
 
 The handed 1.0.1 bytes remain immutable. The correction moves to 1.0.2.
 
+## 1.0.2 — final CJK typography release candidate
+
+### Candidate identity
+
+- Version: `1.0.2`
+- Development branch: `dev/1.0.2`
+- Exact build source: `9653174c320f0d7139d9e49a2a041527e5530bd2`
+- GitHub Actions run: `36784735410`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 11 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.0.2-9653174c320f0d7139d9e49a2a041527e5530bd2`
+- Artifact ID: `11129376780`
+- Artifact ZIP digest: `sha256:106db57299a5da14132d3cc17966b206be29babfc8d72b3190b9ba7038199e0a`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.0.2.dll`
+- DLL SHA-256: `986a41e660db7d816ee896a6c624f009063274ad93eb4bb1d212f3dd712f8f5f`
+- DLL size: 40,960 bytes
+- Binary/plugin metadata: `1.0.2`
+- Assembly informational version: `1.0.2+9653174c320f0d7139d9e49a2a041527e5530bd2`
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- extracted DLL hash matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded plugin identity/version and `DTT_READY version=1.0.2` marker match this record.
+
+### Delta from rejected 1.0.1
+
+No gameplay/data semantics changed.
+
+The only player-facing behavior change is the CJK list separator formatting:
+- Japanese/Simplified-Chinese DTT separators retain their native visible punctuation;
+- an invisible zero-width break opportunity is appended after the separator, allowing NGUI to wrap after the punctuation instead of placing it at the start of the next line;
+- Latin/Korean spacing and the accepted quantity-token repair are unchanged.
+
+### Runtime acceptance state
+
+Status: **PENDING**.
+
+Required focused evidence:
+1. Japanese representative list: no wrapped line begins with `、`.
+2. Simplified-Chinese sanity check: no visible Western spacing is introduced and `(xN)` remains intact.
+3. Support log contains `DTT_READY version=1.0.2` and no DTT failure/disable marker.
+
+Everything else remains covered by accepted prior runtime evidence.
+
