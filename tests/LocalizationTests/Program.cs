@@ -52,10 +52,17 @@ internal static class Program
             return 1;
         }
 
-        if (Localization.FormatListSeparator("ja", "、") != "、"
-            || Localization.FormatListSeparator("zh_cn", "，") != "，")
+        if (Localization.FormatListSeparator("ja", "、") != "、\u200B"
+            || Localization.FormatListSeparator("zh_cn", "，") != "，\u200B")
         {
-            Console.Error.WriteLine("CJK list punctuation preservation failed.");
+            Console.Error.WriteLine("CJK separator break-opportunity formatting failed.");
+            return 1;
+        }
+
+        if (Localization.FormatListSeparator("de", ",").IndexOf('\u200B') >= 0
+            || Localization.FormatListSeparator("ko", ",").IndexOf('\u200B') >= 0)
+        {
+            Console.Error.WriteLine("Zero-width CJK break opportunity leaked into non-CJK formatting.");
             return 1;
         }
 
