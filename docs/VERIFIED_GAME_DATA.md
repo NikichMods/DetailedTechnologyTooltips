@@ -11,6 +11,7 @@ Primary shared research:
 - `NikichMods/GraveyardKeeperResearch/docs/CRAFTING_INVENTORY_AND_TRADING.md`
 - `NikichMods/GraveyardKeeperResearch/docs/UI_INPUT_TIME_AND_ENVIRONMENT.md`
 - `NikichMods/GraveyardKeeperResearch/docs/GAME_INTERNALS.md`
+- `NikichMods/GraveyardKeeperResearch/docs/FARMING_AND_FERTILIZER.md`
 
 Pinned static host source used by the shared research:
 - `Kupie/GYK_DECOMP@6abf79199d92482af1c7573870dd9a20ec2270b9`
@@ -213,3 +214,18 @@ Release implication:
 
 The reusable host fact is also recorded in `NikichMods/GraveyardKeeperResearch/docs/UI_INPUT_TIME_AND_ENVIRONMENT.md`.
 
+
+## Fertilizer semantic-explanation research
+
+The exact Graveyard Keeper 1.407 fertilizer mechanics are now closed in shared research; see `NikichMods/GraveyardKeeperResearch/docs/FARMING_AND_FERTILIZER.md`.
+
+Product-relevant conclusions:
+
+- manual plots store independent `grow_qual` and `grow_time` axes, and those fertilizer effects reset after the crop cycle;
+- peat writes both axes at tier 1; Quality I/II write only `grow_qual=2/3`; Boost I/II write only `grow_time=2/3`;
+- manual Boost reduces the native growth duration by 40% / 60% for Boost I / II and does not alter the inspected harvest-drop formulas;
+- manual Quality increases yield; for bronze/silver quality crops, Quality I guarantees one next-tier crop plus one next-tier seed, while Quality II guarantees two of each; gold-quality crops retain the bonus at gold quality rather than degrading;
+- fertilizer writes replace the same axis rather than stacking, so applying peat after a stronger fertilizer can downgrade that axis;
+- zombie farms/vineyards and Game of Crone refugee garden beds are a different mechanic: Quality fertilizer is consumed in 12-unit permanent station upgrades that change `lvl`, unlock higher-quality automatic recipes and improve station speed; they do not perform manual next-tier seed conversion.
+
+The community/product problem is therefore mechanically supported, but **no additional DTT fertilizer tooltip behavior is approved yet**. Placement, scope, wording and whether the information belongs in the Technology tree remain product decisions. Until those decisions are made and a production evidence gate is opened, the released 1.0.2 behavior remains unchanged.
