@@ -42,12 +42,17 @@ namespace DetailedTechnologyTooltips
         private static PropertyInfo _gameBalanceMeProperty;
         private static MethodInfo _getCraftById;
         private static MethodInfo _getObjectCraftById;
+        private static MethodInfo _getItemDefinitionById;
+        private static MethodInfo _getItemsOfBaseName;
 
         private static FieldInfo _needsField;
         private static FieldInfo _craftInField;
         private static FieldInfo _builderIdsField;
 
+        private static FieldInfo _itemIdField;
+        private static FieldInfo _itemValueField;
         private static MethodInfo _itemGetItemName;
+        private static MethodInfo _itemDefinitionGetItemName;
         private static MethodInfo _itemDefinitionGetItemDetails;
         private static FieldInfo _itemDetailsCraftsInField;
 
@@ -57,6 +62,7 @@ namespace DetailedTechnologyTooltips
         private static ConstructorInfo _textDataCtor;
         private static object _tinyDescriptionStyle;
         private static object _leftAlignment;
+        private static object _centerAlignment;
 
         internal static void Bind()
         {
@@ -131,17 +137,33 @@ namespace DetailedTechnologyTooltips
             _getCraftById = genericGetData.MakeGenericMethod(craftDefinitionType);
             _getObjectCraftById =
                 genericGetData.MakeGenericMethod(objectCraftDefinitionType);
+            _getItemDefinitionById =
+                genericGetData.MakeGenericMethod(itemDefinitionType);
+            _getItemsOfBaseName = RequireMethod(
+                gameBalanceType,
+                "GetItemsOfBaseName",
+                AllInstance,
+                new[] { typeof(string) });
 
             _needsField = RequireField(craftDefinitionType, "needs");
             _craftInField = RequireField(craftDefinitionType, "craft_in");
             _builderIdsField =
                 RequireField(objectCraftDefinitionType, "builder_ids");
 
+            _itemIdField = RequireField(_itemType, "id");
+            _itemValueField = RequireField(_itemType, "value");
+
             _itemGetItemName = RequireMethod(
                 _itemType,
                 "GetItemName",
                 AllInstance,
                 Type.EmptyTypes);
+
+            _itemDefinitionGetItemName = RequireMethod(
+                itemDefinitionType,
+                "GetItemName",
+                AllInstance,
+                new[] { typeof(bool) });
 
             _itemDefinitionGetItemDetails = RequireMethod(
                 itemDefinitionType,
@@ -199,6 +221,8 @@ namespace DetailedTechnologyTooltips
                 Enum.Parse(textStyleType, "TinyDescription", false);
             _leftAlignment =
                 Enum.Parse(alignmentType, "Left", false);
+            _centerAlignment =
+                Enum.Parse(alignmentType, "Center", false);
         }
 
         internal static TechTooltipContext TryCreateContext(object techUnlock)
@@ -288,10 +312,10 @@ namespace DetailedTechnologyTooltips
                 return;
 
             if (!string.IsNullOrEmpty(context.IngredientsRow))
-                AddTinyLeftText(tooltip, context.IngredientsRow);
+                AddTinyCenteredText(tooltip, context.IngredientsRow);
 
             if (!string.IsNullOrEmpty(context.LocationRow))
-                AddTinyLeftText(tooltip, context.LocationRow);
+                AddTinyCenteredText(tooltip, context.LocationRow);
         }
 
         private static string BuildIngredientsRow(object craft)
@@ -384,10 +408,13 @@ namespace DetailedTechnologyTooltips
                         ? "Теперь может получаться при переработке отходов в торф."
                         : "Can now be produced when processing waste into peat.";
 
+                case "p_t_pyrite":
+                    return russian
+                        ? "Примечание: не реализовано в текущей версии игры."
+                        : "Note: not implemented in the current game version.";
+
                 // Intentionally excluded:
                 // p_t_old_books — no proved consumer in the accepted audit.
-                // p_t_pyrite — current 1.407 data writes p_t_pirit but the
-                // coal-drop expression consumes p_t_pyrite.
                 default:
                     return null;
             }
@@ -406,16 +433,7 @@ namespace DetailedTechnologyTooltips
                 if (item == null || !_itemType.IsInstanceOfType(item))
                     return null;
 
-                string name;
-                try
-                {
-                    name = _itemGetItemName.Invoke(item, null) as string;
-                }
-                catch
-                {
-                    return null;
-                }
-
+                var name = ResolveNeedDisplayName(item);
                 if (string.IsNullOrEmpty(name))
                     return null;
 
@@ -423,6 +441,66 @@ namespace DetailedTechnologyTooltips
             }
 
             return string.Join(GetListSeparator(), names);
+        }
+
+        private static string ResolveNeedDisplayName(object item)
+        {
+            try
+            {
+                var direct = _itemGetItemName.Invoke(item, null) as string;
+                if (!string.IsNullOrEmpty(direct))
+                    return direct;
+            }
+            catch
+            {
+                // Vanilla Craft UI has a base-name fallback for group /
+                // multi-quality ingredients whose base ID has no ItemDefinition.
+            }
+
+            var id = _itemIdField.GetValue(item) as string;
+            if (string.IsNullOrEmpty(id))
+                return null;
+
+            var balance = _gameBalanceMeProperty.GetValue(null, null);
+            if (balance == null)
+                return null;
+
+            var variants =
+                _getItemsOfBaseName.Invoke(balance, new object[] { id }) as IList;
+            if (variants == null || variants.Count == 0)
+                return null;
+
+            object definition = null;
+            for (var i = 0; i < variants.Count; i++)
+            {
+                var variantId = variants[i] as string;
+                if (string.IsNullOrEmpty(variantId))
+                    continue;
+
+                definition =
+                    _getItemDefinitionById.Invoke(
+                        balance,
+                        new object[] { variantId });
+
+                if (definition != null)
+                    break;
+            }
+
+            if (definition == null)
+                return null;
+
+            var name =
+                _itemDefinitionGetItemName.Invoke(
+                    definition,
+                    new object[] { true }) as string;
+            if (string.IsNullOrEmpty(name))
+                return null;
+
+            var value = Convert.ToInt32(_itemValueField.GetValue(item));
+            if (value > 1)
+                name += string.Format(" (x{0:0})", value);
+
+            return name;
         }
 
         private static string FormatLocalizedIds(IList ids)
@@ -535,11 +613,24 @@ namespace DetailedTechnologyTooltips
 
         private static void AddTinyLeftText(object tooltip, string text)
         {
+            AddTinyText(tooltip, text, _leftAlignment);
+        }
+
+        private static void AddTinyCenteredText(object tooltip, string text)
+        {
+            AddTinyText(tooltip, text, _centerAlignment);
+        }
+
+        private static void AddTinyText(
+            object tooltip,
+            string text,
+            object alignment)
+        {
             if (string.IsNullOrEmpty(text))
                 return;
 
             var data = _textDataCtor.Invoke(
-                new[] { (object)text, _tinyDescriptionStyle, _leftAlignment, -1 });
+                new[] { (object)text, _tinyDescriptionStyle, alignment, -1 });
 
             _tooltipAddData.Invoke(tooltip, new[] { data });
         }
