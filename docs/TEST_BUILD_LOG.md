@@ -226,3 +226,24 @@ Only new 0.1.2 properties need testing:
 
 Already accepted in 0.1.1 and not necessary to repeat: general RU/EN wording, list separators, ordinary exact station mapping, blueprint builder mapping, sparse proved Work/Perk explanations, and general viewport top/bottom clamping.
 
+### Runtime acceptance — 2026-09-30
+
+Status: **ACCEPTED** for the exact 0.1.2 candidate built from `5aaa3d4affb83d362146536f6f2056e490f3b8b3`.
+
+User acceptance evidence:
+- Carved Wood now shows its grouped/multi-quality requirement instead of dropping the `Нужно:` row;
+- Notes and Book now show their complete requirement rows;
+- generated Craft detail rows are visually centered naturally in the long combined gamepad tooltip;
+- Pyrite shows the accepted current-version implementation-status note;
+- no new clipping/viewport regression was observed in the checked Technology tooltips.
+
+Support-log evidence from the accepted run:
+- Graveyard Keeper 1.407, BepInEx 5.4.23.5, Windows 64-bit;
+- DTT 0.1.2 loaded successfully and bound the Technology tooltip contract against Assembly-CSharp MVID `6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+- no DTT runtime-enrichment disable, viewport-safety disable, or DTT initialization failure appeared during the session;
+- PrayerClarity: Rebalanced 0.2.52 loaded and remained active in the same run.
+
+The unrelated Unity/resource/sprite/idle-point errors present in the shared game log are outside DTT ownership and did not coincide with a DTT failure signal.
+
+0.1.2 is now the accepted behavior baseline. Its numbered bytes remain frozen. Any further production behavior change requires a new version.
+
