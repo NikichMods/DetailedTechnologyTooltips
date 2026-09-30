@@ -43,6 +43,56 @@ internal static class Program
             return 1;
         }
 
+        if (Localization.FormatListSeparator("de", ",") != ", "
+            || Localization.FormatListSeparator("it", ",") != ", "
+            || Localization.FormatListSeparator("ko", ",") != ", "
+            || Localization.FormatListSeparator("en", ", ") != ", ")
+        {
+            Console.Error.WriteLine("Latin/Korean list spacing normalization failed.");
+            return 1;
+        }
+
+        if (Localization.FormatListSeparator("ja", "、") != "、"
+            || Localization.FormatListSeparator("zh_cn", "，") != "，")
+        {
+            Console.Error.WriteLine("CJK list punctuation preservation failed.");
+            return 1;
+        }
+
+        var rawQuantity =
+            "原料：一块磨光的石头 (x4)，简单的铁件 (x4)";
+        var processedQuantity =
+            "原料：一块磨光的石头 (x4\n)，简单的铁件 (x4)";
+        var repairedQuantity =
+            TextFormatting.RepairBrokenQuantityTokens(
+                rawQuantity,
+                processedQuantity);
+        if (repairedQuantity !=
+            "原料：一块磨光的石头\n(x4)，简单的铁件 (x4)")
+        {
+            Console.Error.WriteLine("Broken quantity-token repair failed.");
+            return 1;
+        }
+
+        var secondBroken =
+            TextFormatting.RepairBrokenQuantityTokens(
+                rawQuantity,
+                "原料：一块磨光的石头 (x4)，简单的铁件 (x4\n)");
+        if (secondBroken !=
+            "原料：一块磨光的石头 (x4)，简单的铁件\n(x4)")
+        {
+            Console.Error.WriteLine("Repeated quantity-token ordinal mapping failed.");
+            return 1;
+        }
+
+        if (TextFormatting.RepairBrokenQuantityTokens(
+                rawQuantity,
+                rawQuantity) != rawQuantity)
+        {
+            Console.Error.WriteLine("Intact quantity text must remain unchanged.");
+            return 1;
+        }
+
         Console.WriteLine(
             "Localization completeness OK: "
             + Localization.SupportedLanguages.Length
