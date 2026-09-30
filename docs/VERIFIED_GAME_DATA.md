@@ -229,3 +229,20 @@ Product-relevant conclusions:
 - zombie farms/vineyards and Game of Crone refugee garden beds are a different mechanic: Quality fertilizer is consumed in 12-unit permanent station upgrades that change `lvl`, unlock higher-quality automatic recipes and improve station speed; they do not perform manual next-tier seed conversion.
 
 The community/product problem is therefore mechanically supported, but **no additional DTT fertilizer tooltip behavior is approved yet**. Placement, scope, wording and whether the information belongs in the Technology tree remain product decisions. Until those decisions are made and a production evidence gate is opened, the released 1.0.2 behavior remains unchanged.
+
+
+## Special semantic candidates discovered during farming UX review
+
+Representative real-game Technology screenshots and current 1.407 data expose two additional information-quality cases.
+
+### Grape / hops growth unlocks
+
+`Grape farming` visibly unlocks `garden_grapes_growing` and `garden_hop_growing`. These are internal automatic growth crafts, while the actual player actions are separate planting recipes on `vineyard_grapes_stick` that consume four corresponding seeds and chain into those growth crafts.
+
+Product implication: the current generic `Create: Grapes / Hops` presentation is semantically weak. A growth-oriented label, and potentially the planting requirements/location derived through the native `craft_after_finish` relationship, is a candidate DTT correction. No production behavior is approved yet.
+
+### Super mushroom Work unlock
+
+`The master gathering -> t_mushroom2` already has an authored flavor description, but the accepted audit proves its concrete current action is gating the `mushroom_2` source, which drops `shr_agaric` ("Красный гриб" in the inspected Russian runtime).
+
+Product implication: this is evidence that an authored Work description can still omit the practical meaning of the unlock. Augmenting authored Work descriptions would broaden the current DTT policy beyond sparse-only Work enrichment and therefore requires its own product decision/evidence gate. Future-use information such as study/alchemy should not be added merely because it is discoverable in the data.
