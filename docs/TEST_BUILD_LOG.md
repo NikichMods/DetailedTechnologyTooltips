@@ -310,3 +310,49 @@ Additional product-scope candidates raised during this test:
 
 The 1.0.0 bytes remain immutable because they were handed to the user. Any corrected candidate must use a new version.
 
+## 1.0.1 — corrected release candidate
+
+### Candidate identity
+
+- Version: `1.0.1`
+- Development branch: `dev/1.0.1`
+- Exact build source: `cedabaf0de8d2fc323b9a747020d163fe9a2af1d`
+- GitHub Actions run: `36774008316`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 11 DTT keys — PASS**, including Latin/Korean spacing, CJK separator preservation and deterministic quantity-token repair cases.
+- CI artifact: `DetailedTechnologyTooltips-1.0.1-cedabaf0de8d2fc323b9a747020d163fe9a2af1d`
+- Artifact ID: `11125070491`
+- Artifact ZIP digest: `sha256:286c4f3e28306755772d54f2ac23645e8d5831f20790a34151eac3aa4567ab1b`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.0.1.dll`
+- DLL SHA-256: `5d7db4770ebc5caa7c696c01ca8da7ae73b7a713e4bf7986624530410368772f`
+- DLL size: 40,960 bytes
+- Binary/plugin metadata: `1.0.1`
+- Assembly informational version: `1.0.1+cedabaf0de8d2fc323b9a747020d163fe9a2af1d`
+
+The exact CI ZIP was downloaded and extracted before handoff. The extracted DLL hash matches `BUILD_IDENTITY.txt`; the DLL is a non-empty Windows PE32 Mono/.NET assembly and its embedded plugin identity/version match this record.
+
+### Delta from rejected 1.0.0
+
+- normalizes DTT list spacing for Latin/Korean locales while preserving Japanese/Simplified-Chinese punctuation behavior;
+- repairs only DTT-owned requirement rows when native NGUI proves an `(xN)` token was split internally;
+- adds the verified Better Save Soul Remote Control explanation in all 11 current languages;
+- updates release documentation and version-independent exact-artifact publishing plumbing.
+
+Fertilizer/seed-quality explanation remains intentionally deferred behind a separate evidence gate and is not part of this candidate.
+
+### Runtime acceptance state
+
+Status: **PENDING**.
+
+Focused 1.0.1 test only:
+1. Italian/German/Korean: ordinary comma-separated DTT lists have readable spacing.
+2. Japanese/Simplified Chinese: natural CJK punctuation remains, with no injected Western space.
+3. Revisit the previously failing long Simplified-Chinese requirements tooltip and confirm no line break occurs inside `(xN)`.
+4. Remote Control: verify the new explanation in Russian plus one non-Russian locale.
+5. Confirm no conspicuous clipping, missing glyphs or fallback-English text.
+6. Return the full `BepInEx\\LogOutput.log`; expected startup marker is `DTT_READY version=1.0.1`, with no `DTT_INIT_FAILED`, `DTT_RUNTIME_DISABLED`, `DTT_VIEWPORT_DISABLED` or `DTT_WRAP_REPAIR_DISABLED`.
+
+All 0.1.2-accepted mechanics remain reusable evidence and do not need exhaustive repetition.
+
