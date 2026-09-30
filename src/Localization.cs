@@ -19,6 +19,7 @@ namespace DetailedTechnologyTooltips
         internal const string Moth = "moth";
         internal const string Maggot = "maggot";
         internal const string PyriteNote = "pyrite_note";
+        internal const string RemoteControl = "remote_control";
 
         internal static readonly string[] SupportedLanguages =
         {
@@ -46,7 +47,8 @@ namespace DetailedTechnologyTooltips
             Butterfly,
             Moth,
             Maggot,
-            PyriteNote
+            PyriteNote,
+            RemoteControl
         };
 
         private static readonly Dictionary<string, Dictionary<string, string>> Text =
@@ -65,7 +67,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Can now appear while gathering flowers during the day." },
                         { Moth, "Can now appear while gathering flowers at night." },
                         { Maggot, "Can now be produced when processing waste into peat." },
-                        { PyriteNote, "Note: not implemented in the current game version." }
+                        { PyriteNote, "Note: not implemented in the current game version." },
+                        { RemoteControl, "Use the map to remotely control available workstations. Remote actions in an area require a Soul Receiver." }
                     }
                 },
                 {
@@ -81,7 +84,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Kann jetzt beim Sammeln von Blumen am Tag gefunden werden." },
                         { Moth, "Kann jetzt beim Sammeln von Blumen in der Nacht gefunden werden." },
                         { Maggot, "Kann jetzt bei der Verarbeitung von Abfällen zu Torf entstehen." },
-                        { PyriteNote, "Hinweis: in der aktuellen Spielversion nicht implementiert." }
+                        { PyriteNote, "Hinweis: in der aktuellen Spielversion nicht implementiert." },
+                        { RemoteControl, "Auf der Karte kannst du verfügbare Arbeitsstationen fernsteuern. Für Fernaktionen in einem Gebiet wird ein Seelenempfänger benötigt." }
                     }
                 },
                 {
@@ -97,7 +101,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Peut désormais être obtenu en cueillant des fleurs pendant la journée." },
                         { Moth, "Peut désormais être obtenu en cueillant des fleurs pendant la nuit." },
                         { Maggot, "Peut désormais être produit lors de la transformation des déchets en tourbe." },
-                        { PyriteNote, "Remarque : non implémenté dans la version actuelle du jeu." }
+                        { PyriteNote, "Remarque : non implémenté dans la version actuelle du jeu." },
+                        { RemoteControl, "La carte permet de contrôler à distance les postes de travail disponibles. Les actions à distance dans une zone nécessitent un récepteur d’âmes." }
                     }
                 },
                 {
@@ -113,7 +118,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Agora pode aparecer ao coletar flores durante o dia." },
                         { Moth, "Agora pode aparecer ao coletar flores durante a noite." },
                         { Maggot, "Agora pode ser produzido ao processar resíduos em turfa." },
-                        { PyriteNote, "Observação: não implementado na versão atual do jogo." }
+                        { PyriteNote, "Observação: não implementado na versão atual do jogo." },
+                        { RemoteControl, "O mapa permite controlar estações de trabalho disponíveis à distância. Ações remotas em uma área exigem um receptor de almas." }
                     }
                 },
                 {
@@ -129,7 +135,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Ahora puede aparecer al recolectar flores durante el día." },
                         { Moth, "Ahora puede aparecer al recolectar flores durante la noche." },
                         { Maggot, "Ahora puede producirse al procesar residuos para convertirlos en turba." },
-                        { PyriteNote, "Nota: no está implementado en la versión actual del juego." }
+                        { PyriteNote, "Nota: no está implementado en la versión actual del juego." },
+                        { RemoteControl, "El mapa permite controlar a distancia los puestos de trabajo disponibles. Las acciones remotas en una zona requieren un receptor de almas." }
                     }
                 },
                 {
@@ -145,7 +152,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Теперь может попадаться при сборе цветов днём." },
                         { Moth, "Теперь может попадаться при сборе цветов ночью." },
                         { Maggot, "Теперь может получаться при переработке отходов в торф." },
-                        { PyriteNote, "Примечание: не реализовано в текущей версии игры." }
+                        { PyriteNote, "Примечание: не реализовано в текущей версии игры." },
+                        { RemoteControl, "На карте можно удалённо управлять доступными рабочими местами. Для действий в зоне нужен душеприёмник." }
                     }
                 },
                 {
@@ -161,7 +169,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Ora può comparire durante la raccolta di fiori di giorno." },
                         { Moth, "Ora può comparire durante la raccolta di fiori di notte." },
                         { Maggot, "Ora può essere prodotto trasformando i rifiuti in torba." },
-                        { PyriteNote, "Nota: non implementato nella versione attuale del gioco." }
+                        { PyriteNote, "Nota: non implementato nella versione attuale del gioco." },
+                        { RemoteControl, "La mappa permette di controllare a distanza le postazioni di lavoro disponibili. Le azioni remote in un’area richiedono un ricevitore di anime." }
                     }
                 },
                 {
@@ -177,7 +186,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "Może teraz pojawić się podczas zbierania kwiatów w dzień." },
                         { Moth, "Może teraz pojawić się podczas zbierania kwiatów w nocy." },
                         { Maggot, "Może teraz powstawać podczas przetwarzania odpadów na torf." },
-                        { PyriteNote, "Uwaga: nie zaimplementowano w obecnej wersji gry." }
+                        { PyriteNote, "Uwaga: nie zaimplementowano w obecnej wersji gry." },
+                        { RemoteControl, "Z mapy można zdalnie sterować dostępnymi stanowiskami pracy. Zdalne działania w danym obszarze wymagają odbiornika dusz." }
                     }
                 },
                 {
@@ -193,7 +203,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "昼間に花を採取すると入手できるようになります。" },
                         { Moth, "夜間に花を採取すると入手できるようになります。" },
                         { Maggot, "廃棄物を泥炭に加工する際に生成されるようになります。" },
-                        { PyriteNote, "注：現在のゲームバージョンでは実装されていません。" }
+                        { PyriteNote, "注：現在のゲームバージョンでは実装されていません。" },
+                        { RemoteControl, "マップから利用可能な作業設備を遠隔操作できます。エリア内で遠隔操作するには魂の受信機が必要です。" }
                     }
                 },
                 {
@@ -209,7 +220,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "现在可在白天采花时获得。" },
                         { Moth, "现在可在夜间采花时获得。" },
                         { Maggot, "现在可在将废料加工成泥炭时获得。" },
-                        { PyriteNote, "注意：当前游戏版本中尚未实现。" }
+                        { PyriteNote, "注意：当前游戏版本中尚未实现。" },
+                        { RemoteControl, "可从地图远程控制可用的工作站。要在某区域执行远程操作，需要灵魂接收器。" }
                     }
                 },
                 {
@@ -225,7 +237,8 @@ namespace DetailedTechnologyTooltips
                         { Butterfly, "이제 낮에 꽃을 채집할 때 얻을 수 있습니다." },
                         { Moth, "이제 밤에 꽃을 채집할 때 얻을 수 있습니다." },
                         { Maggot, "이제 폐기물을 이탄으로 가공할 때 생성될 수 있습니다." },
-                        { PyriteNote, "참고: 현재 게임 버전에서는 구현되어 있지 않습니다." }
+                        { PyriteNote, "참고: 현재 게임 버전에서는 구현되어 있지 않습니다." },
+                        { RemoteControl, "지도에서 이용 가능한 작업대를 원격으로 제어할 수 있습니다. 지역에서 원격 작업을 하려면 영혼 수신기가 필요합니다." }
                     }
                 }
             };
@@ -245,6 +258,25 @@ namespace DetailedTechnologyTooltips
             }
 
             return value;
+        }
+
+        internal static string FormatListSeparator(
+            string language,
+            string nativeSeparator)
+        {
+            var normalized = NormalizeLanguage(language);
+
+            if (normalized == "ja" || normalized == "zh_cn")
+            {
+                return string.IsNullOrEmpty(nativeSeparator)
+                    ? ", "
+                    : nativeSeparator;
+            }
+
+            if (string.IsNullOrWhiteSpace(nativeSeparator))
+                return ", ";
+
+            return nativeSeparator.TrimEnd() + " ";
         }
 
         internal static string NormalizeLanguage(string language)
