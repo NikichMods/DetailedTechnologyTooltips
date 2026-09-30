@@ -291,3 +291,22 @@ Already accepted and not required to repeat exhaustively: exact recipe/blueprint
 
 The 1.0.0 numbered candidate is immutable after handoff. Stable publication remains blocked until explicit user acceptance.
 
+### Runtime result — 2026-09-30
+
+Status: **REJECTED** as a stable release candidate.
+
+The exact handed 1.0.0 binary from source `d7dc125498871360c6a7674bb9a316ce5ee746d7` started cleanly in Graveyard Keeper 1.407:
+- `DTT_READY version=1.0.0` was present against host MVID `6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+- no `DTT_INIT_FAILED`, `DTT_RUNTIME_DISABLED` or `DTT_VIEWPORT_DISABLED` event appeared in the submitted session;
+- the session exercised all 11 current game languages.
+
+User-visible blockers:
+1. DTT-generated lists inherit the game's localized comma token literally. In several non-English/Russian locales this produces no spacing after an ordinary comma (confirmed visually in Italian, German and Korean). Japanese / Simplified Chinese punctuation must retain CJK spacing conventions rather than receiving a blanket Western space.
+2. In Simplified Chinese the native NGUI wrapping path can split an `(xN)` quantity cluster and orphan the closing parenthesis on the next visual line.
+
+Additional product-scope candidates raised during this test:
+- the Better Save Soul `fake_global_craft` / Remote Control visible unlock is structurally sparse and does not explain that remote workstation control is accessed from the map and depends on a Soul Receiver in the target area;
+- Quality-fertilizer technologies may warrant a concise semantic note explaining seed/crop quality improvement, but exact native ownership/effects require additional evidence before production.
+
+The 1.0.0 bytes remain immutable because they were handed to the user. Any corrected candidate must use a new version.
+
