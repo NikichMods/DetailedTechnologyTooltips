@@ -186,3 +186,17 @@ Before production C# is added for tooltip enrichment, explicitly choose the leas
 - **READY** or **BLOCKED**.
 
 The next unknown is primarily product/UI composition and real-game density, not whether the native data exists.
+
+## Multi-quality/group requirement presentation
+
+Pinned Graveyard Keeper 1.407 host inspection proves that an authored Craft requirement can carry a base/group item ID that has no direct `ItemDefinition`.
+
+The native Craft UI handles this without a manual mapping:
+
+- `BaseItemCellGUI.DrawItem` first tries the exact `ItemDefinition`;
+- when that lookup fails, it calls `GameBalance.GetItemsOfBaseName(item_id)`;
+- it uses the first returned concrete variant's `ItemDefinition` as the representative display identity;
+- `BaseItemCellGUI.DrawIngredients` separately treats multi-quality requirements as a group rather than requiring one particular quality.
+
+Therefore Technology requirements should not interpret a missing direct `ItemDefinition` as “no requirements”. The least-complex presentation fallback is to reuse the same native base-name resolution family, keep the authored quantity from `CraftDefinition.needs`, and fail closed only if no concrete native variant resolves.
+
