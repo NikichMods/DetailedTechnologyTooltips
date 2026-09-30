@@ -1,41 +1,91 @@
 # Detailed Technology Tooltips
 
-A vanilla-friendly informational QoL mod for **Graveyard Keeper 1.407**.
+A vanilla-friendly informational QoL mod for **Graveyard Keeper 1.407** using **BepInEx 5**.
+
+Detailed Technology Tooltips makes visible Technology-tree unlocks explain what they need and where they belong without changing progression, recipes, builds, saves, or hidden content.
 
 ## Status
 
-**Pre-release / project bootstrap.** No public binary has been released yet.
+**1.0.0 release candidate.**
 
-The project is based on a completed static audit of Graveyard Keeper's Technology, recipe, and blueprint data. Production tooltip composition and the first runtime candidate are the next development step.
+The accepted gameplay/UI baseline is 0.1.2. Version 1.0.0 keeps that behavior and completes localization for every language exposed by Graveyard Keeper 1.407.
 
-## Goal
+No public release has been published yet.
 
-Make Technology-tree unlock tooltips answer the practical questions that matter before spending technology points.
+## What it does
 
-Planned initial scope:
-- blueprint unlocks: show native build requirements and the owning build desk/menu;
-- ordinary recipe unlocks: show native ingredient requirements and the exact crafting station(s);
-- preserve useful vanilla title/description content;
-- use the game's own data and localization instead of a hand-maintained wiki table.
+For visible Technology unlocks:
 
-## Non-goals
+- **ordinary recipes** show their native requirements and the exact crafting station(s) owned by that unlocked recipe;
+- **blueprints/build unlocks** show their native build requirements and the owning build menu / build desk;
+- useful existing vanilla descriptions are preserved;
+- sparse Work/Perk unlocks receive a short explanation only where the current 1.407 data path has been specifically verified;
+- Pyrite is marked as not implemented in the current game version rather than implying that the broken vanilla unlock produces drops;
+- authored hidden `@` unlocks remain hidden.
 
-Detailed Technology Tooltips is informational only. It is not intended to change:
-- technology costs or progression;
-- unlock state;
-- recipes or build mechanics;
+The mod uses native game data for item quantities, item names, crafting stations and build-desk names. It does not maintain a separate recipe/location database.
+
+## Languages
+
+Detailed Technology Tooltips supports all languages exposed by the current Graveyard Keeper 1.407 PC language selector:
+
+- English
+- German
+- French
+- Brazilian Portuguese
+- Spanish
+- Russian
+- Italian
+- Polish
+- Japanese
+- Simplified Chinese
+- Korean
+
+Native item/station names continue to come directly from Graveyard Keeper's active localization. DTT translates only its own added labels and explanatory text.
+
+## Installation
+
+1. Install BepInEx 5 for Graveyard Keeper.
+2. Copy `DetailedTechnologyTooltips.dll` into `Graveyard Keeper\BepInEx\plugins`.
+3. Start the game.
+
+When updating, replace the existing `DetailedTechnologyTooltips.dll`. Do not keep multiple versioned copies beside it.
+
+The mod has no configuration options.
+
+## Compatibility
+
+Tested on **Graveyard Keeper 1.407 (Steam, Windows)** with all DLC installed.
+
+Other game versions, storefront builds, operating systems and DLC configurations are currently untested rather than known incompatible.
+
+The accepted runtime was also exercised alongside a large mod set including PrayerClarity: Rebalanced; no Detailed Technology Tooltips collision was observed in the tested Technology tooltip paths.
+
+## Scope and non-goals
+
+Detailed Technology Tooltips is informational only. It does not modify:
+
+- technology prices, availability or unlock state;
+- recipes, build definitions or crafting/build mechanics;
 - save data;
 - story/DLC gating;
-- hidden/invisible unlock visibility.
+- authored invisible unlocks;
+- unrelated tooltip surfaces.
 
-It also does not aim to build a recursive "you also need technology X" dependency graph in the initial version.
+It deliberately does not construct a recursive dependency graph or guess hidden prerequisites/locations from fields such as `sub_zone_id`.
 
-## Runtime / research
+## Development / evidence
 
-Target: Graveyard Keeper 1.407 on Windows PC with BepInEx 5.
+Canonical project evidence is kept in:
 
-Cross-project host/runtime research is maintained in `NikichMods/GraveyardKeeperResearch`. Project-specific accepted facts and product implications are recorded in `docs/VERIFIED_GAME_DATA.md`.
+- `docs/VERIFIED_GAME_DATA.md`
+- `docs/TEST_BUILD_LOG.md`
+- current candidate/release documents under `docs/`
+
+Reusable Graveyard Keeper host/runtime research is maintained in `NikichMods/GraveyardKeeperResearch`.
 
 ## License
 
 Original project software source is licensed under the Mozilla Public License 2.0. See `LICENSE` and `LICENSING.md`.
+
+Graveyard Keeper binaries, assets, localization and decompiled game material are not part of this repository and remain under their respective rights.
