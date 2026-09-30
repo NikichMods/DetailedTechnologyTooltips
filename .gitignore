@@ -1,0 +1,24 @@
+# Build output
+bin/
+obj/
+artifacts/
+artifact/
+
+# IDE
+.vs/
+.idea/
+*.user
+*.suo
+
+# Local game / proprietary references
+lib/
+GameReferences/
+Managed/
+
+# Test / research output
+*.log
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
