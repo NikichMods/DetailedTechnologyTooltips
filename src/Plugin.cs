@@ -58,21 +58,20 @@ namespace DetailedTechnologyTooltips
                 catch (Exception ex)
                 {
                     Log.LogWarning(
-                        "Technology viewport safety unavailable; native placement preserved: "
+                        "DTT_VIEWPORT_FALLBACK action=native-placement reason="
                         + ex.GetType().Name + ": " + ex.Message);
                 }
 
                 Log.LogInfo(
-                    PluginName + " " + PluginVersion
-                    + " loaded; Technology tooltip contract bound; "
-                    + "Assembly-CSharp MVID="
-                    + GameApi.HostModuleVersionId + ".");
+                    "DTT_READY version=" + PluginVersion
+                    + " contract=technology-tooltip"
+                    + " host_mvid=" + GameApi.HostModuleVersionId + ".");
             }
             catch (Exception ex)
             {
                 RuntimeDisabled = true;
                 Log.LogError(
-                    PluginName + " failed to initialize; vanilla behavior preserved: "
+                    "DTT_INIT_FAILED fallback=vanilla reason="
                     + ex.GetType().Name + ": " + ex.Message);
             }
         }
@@ -133,8 +132,8 @@ namespace DetailedTechnologyTooltips
 
             _runtimeFailureLogged = true;
             Log.LogError(
-                PluginName + " disabled tooltip enrichment after "
-                + stage + " failure; subsequent tooltips stay vanilla: "
+                "DTT_RUNTIME_DISABLED stage=" + stage
+                + " fallback=vanilla reason="
                 + ex.GetType().Name + ": " + ex.Message);
         }
     }
@@ -457,8 +456,8 @@ namespace DetailedTechnologyTooltips
 
             _runtimeFailed = true;
             _log?.LogError(
-                "Detailed Technology Tooltips viewport safety disabled after "
-                + stage + " failure; native placement preserved: "
+                "DTT_VIEWPORT_DISABLED stage=" + stage
+                + " fallback=native-placement reason="
                 + ex.GetType().Name + ": " + ex.Message);
         }
 
