@@ -199,6 +199,7 @@ namespace DetailedTechnologyTooltips
         {
             if (Plugin.RuntimeDisabled
                 || _currentContext == null
+                || string.IsNullOrEmpty(_currentContext.LocationRow)
                 || full_detail
                 || __instance == null
                 || __result == null)
@@ -213,8 +214,8 @@ namespace DetailedTechnologyTooltips
                 {
                     // In GK 1.407 ItemDefinition.GetTooltipData appends the
                     // aggregate crafting-location row last. Remove that single
-                    // row only while TechUnlock.GetTooltip is consuming the
-                    // item tooltip; the exact recipe location is appended later.
+                    // row only when an exact Technology-owned replacement has
+                    // already been composed successfully.
                     __result.RemoveAt(__result.Count - 1);
                 }
             }
@@ -228,6 +229,7 @@ namespace DetailedTechnologyTooltips
         {
             if (Plugin.RuntimeDisabled
                 || _currentContext == null
+                || string.IsNullOrEmpty(_currentContext.LocationRow)
                 || __result == null)
             {
                 return;
@@ -236,8 +238,8 @@ namespace DetailedTechnologyTooltips
             try
             {
                 // The special sermon branch calls this helper directly.
-                // Suppress only inside Technology tooltip composition so the
-                // exact CraftDefinition.craft_in row can replace it.
+                // Clear it only when an exact Technology-owned replacement is
+                // ready; otherwise the vanilla aggregate row remains intact.
                 __result.Clear();
             }
             catch (Exception ex)
