@@ -16,6 +16,7 @@ namespace DetailedTechnologyTooltips
         public bool IsBlueprint;
         public string IngredientsRow;
         public string LocationRow;
+        public string CraftDescriptionRow;
         public string SparseDescriptionRow;
     }
 
@@ -280,7 +281,8 @@ namespace DetailedTechnologyTooltips
                 Craft = craft,
                 IsBlueprint = isBlueprint,
                 IngredientsRow = BuildIngredientsRow(craft),
-                LocationRow = BuildLocationRow(craft, isBlueprint)
+                LocationRow = BuildLocationRow(craft, isBlueprint),
+                CraftDescriptionRow = BuildSparseCraftDescription(id)
             };
         }
 
@@ -311,11 +313,14 @@ namespace DetailedTechnologyTooltips
             if (context.Craft == null)
                 return;
 
+            if (!string.IsNullOrEmpty(context.CraftDescriptionRow))
+                AddTinyCenteredText(tooltip, context.CraftDescriptionRow, false);
+
             if (!string.IsNullOrEmpty(context.IngredientsRow))
-                AddTinyCenteredText(tooltip, context.IngredientsRow);
+                AddTinyCenteredText(tooltip, context.IngredientsRow, true);
 
             if (!string.IsNullOrEmpty(context.LocationRow))
-                AddTinyCenteredText(tooltip, context.LocationRow);
+                AddTinyCenteredText(tooltip, context.LocationRow, false);
         }
 
         private static string BuildIngredientsRow(object craft)
@@ -347,6 +352,16 @@ namespace DetailedTechnologyTooltips
                 return null;
 
             return prefix + locations;
+        }
+
+        private static string BuildSparseCraftDescription(string id)
+        {
+            if (!string.Equals(id, "fake_global_craft", StringComparison.Ordinal))
+                return null;
+
+            return Localization.Get(
+                Localization.RemoteControl,
+                GetCurrentLanguage());
         }
 
         private static string BuildSparseUnlockDescription(
@@ -552,12 +567,9 @@ namespace DetailedTechnologyTooltips
 
         private static string GetListSeparator()
         {
-            var language = GetCurrentLanguage();
-            if (IsLanguage(language, "ru") || IsLanguage(language, "en"))
-                return ", ";
-
-            var localized = Localize(",");
-            return string.IsNullOrEmpty(localized) ? ", " : localized;
+            return Localization.FormatListSeparator(
+                GetCurrentLanguage(),
+                Localize(","));
         }
 
         private static string GetCurrentLanguage()
@@ -602,24 +614,35 @@ namespace DetailedTechnologyTooltips
 
         private static void AddTinyLeftText(object tooltip, string text)
         {
-            AddTinyText(tooltip, text, _leftAlignment);
+            AddTinyText(tooltip, text, _leftAlignment, false);
         }
 
-        private static void AddTinyCenteredText(object tooltip, string text)
+        private static void AddTinyCenteredText(
+            object tooltip,
+            string text,
+            bool protectQuantityTokens)
         {
-            AddTinyText(tooltip, text, _centerAlignment);
+            AddTinyText(
+                tooltip,
+                text,
+                _centerAlignment,
+                protectQuantityTokens);
         }
 
         private static void AddTinyText(
             object tooltip,
             string text,
-            object alignment)
+            object alignment,
+            bool protectQuantityTokens)
         {
             if (string.IsNullOrEmpty(text))
                 return;
 
             var data = _textDataCtor.Invoke(
                 new[] { (object)text, _tinyDescriptionStyle, alignment, -1 });
+
+            if (protectQuantityTokens)
+                TechnologyTextWrapRepair.Mark(data);
 
             _tooltipAddData.Invoke(tooltip, new[] { data });
         }
