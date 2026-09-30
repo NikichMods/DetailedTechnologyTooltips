@@ -9,5 +9,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="..\..\src\Localization.cs" Link="Localization.cs" />
+    <Compile Include="..\..\src\TextFormatting.cs" Link="TextFormatting.cs" />
   </ItemGroup>
 </Project>
