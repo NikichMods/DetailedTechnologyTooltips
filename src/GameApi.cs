@@ -350,74 +350,63 @@ namespace DetailedTechnologyTooltips
             bool isWork)
         {
             var language = GetCurrentLanguage();
-            var russian = IsLanguage(language, "ru");
-            var english = IsLanguage(language, "en");
-
-            if (!russian && !english)
-                return null;
+            string key = null;
 
             if (isWork)
             {
                 switch (id)
                 {
                     case "t_diamond":
-                        return russian
-                            ? "Теперь можно добывать алмазы."
-                            : "Diamonds can now be mined.";
+                        key = Localization.Diamonds;
+                        break;
                     case "t_marble":
-                        return russian
-                            ? "Теперь можно добывать мрамор."
-                            : "Marble can now be quarried.";
-                    default:
-                        return null;
+                        key = Localization.Marble;
+                        break;
+                }
+            }
+            else
+            {
+                switch (id)
+                {
+                    case "p_t_gold_ore":
+                    case "p_t_silver_ore":
+                        key = Localization.IronOreBonus;
+                        break;
+
+                    case "p_t_lifestone":
+                    case "p_t_sulfur":
+                        key = Localization.CoalBonus;
+                        break;
+
+                    case "p_t_beeswax":
+                    case "p_t_bee":
+                        key = Localization.HoneyBonus;
+                        break;
+
+                    case "p_t_butterfly":
+                        key = Localization.Butterfly;
+                        break;
+
+                    case "p_t_moth":
+                        key = Localization.Moth;
+                        break;
+
+                    case "p_t_maggot":
+                        key = Localization.Maggot;
+                        break;
+
+                    case "p_t_pyrite":
+                        key = Localization.PyriteNote;
+                        break;
+
+                    // Intentionally excluded:
+                    // p_t_old_books — no proved consumer in the accepted audit.
                 }
             }
 
-            switch (id)
-            {
-                case "p_t_gold_ore":
-                case "p_t_silver_ore":
-                    return russian
-                        ? "Теперь может попадаться при добыче и переработке железной руды."
-                        : "Can now appear while mining or processing iron ore.";
-
-                case "p_t_lifestone":
-                case "p_t_sulfur":
-                    return russian
-                        ? "Теперь может попадаться при добыче угля."
-                        : "Can now appear while mining coal.";
-
-                case "p_t_beeswax":
-                case "p_t_bee":
-                    return russian
-                        ? "Теперь может попадаться при сборе мёда."
-                        : "Can now appear while collecting honey.";
-
-                case "p_t_butterfly":
-                    return russian
-                        ? "Теперь может попадаться при сборе цветов днём."
-                        : "Can now appear while gathering flowers during the day.";
-
-                case "p_t_moth":
-                    return russian
-                        ? "Теперь может попадаться при сборе цветов ночью."
-                        : "Can now appear while gathering flowers at night.";
-
-                case "p_t_maggot":
-                    return russian
-                        ? "Теперь может получаться при переработке отходов в торф."
-                        : "Can now be produced when processing waste into peat.";
-
-                case "p_t_pyrite":
-                    return russian
-                        ? "Примечание: не реализовано в текущей версии игры."
-                        : "Note: not implemented in the current game version.";
-
-                // Intentionally excluded:
-                // p_t_old_books — no proved consumer in the accepted audit.
-                default:
-                    return null;
-            }
+            return string.IsNullOrEmpty(key)
+                ? null
+                : Localization.Get(key, language);
         }
 
         private static string FormatNeeds(IList items)
@@ -552,13 +541,9 @@ namespace DetailedTechnologyTooltips
 
         private static string GetBuildMenuPrefix()
         {
-            var language = GetCurrentLanguage();
-            if (IsLanguage(language, "ru"))
-                return "Строительство: ";
-            if (IsLanguage(language, "en"))
-                return "Build menu: ";
-
-            return LocalizeRequired("crafted_at") + " ";
+            return Localization.Get(
+                Localization.BuildMenu,
+                GetCurrentLanguage());
         }
 
         private static string GetListSeparator()
