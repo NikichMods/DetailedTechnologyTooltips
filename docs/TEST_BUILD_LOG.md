@@ -253,21 +253,23 @@ The unrelated Unity/resource/sprite/idle-point errors present in the shared game
 
 - Version: `1.0.0`
 - Development branch: `dev/1.0.0`
-- Exact build source: `5c2e13e3be57ee37fa9b89c020e6cbb413543527`
-- GitHub Actions run: `36766118963`
+- Exact build source: `d7dc125498871360c6a7674bb9a316ce5ee746d7`
+- GitHub Actions run: `36766500791`
 - CI result: **SUCCESS**
 - Release build: **0 warnings / 0 errors**
 - Localization validation: **11 languages x 10 DTT keys — PASS**
-- CI artifact: `DetailedTechnologyTooltips-1.0.0-5c2e13e3be57ee37fa9b89c020e6cbb413543527`
-- Artifact ID: `11121086456`
+- CI artifact: `DetailedTechnologyTooltips-1.0.0-d7dc125498871360c6a7674bb9a316ce5ee746d7`
+- Artifact ID: `11121525665`
 - Installed DLL basename: `DetailedTechnologyTooltips.dll`
 - Numbered handoff filename: `DetailedTechnologyTooltips-1.0.0.dll`
-- DLL SHA-256: `78be3a14e306b53be59ae8bbec7d6909c476d6228e0d35fedf55ce31ac88d75d`
+- DLL SHA-256: `07928700aaded36f61f7172dc59fcd3b50a18ae874cb4c1cd6b871fcdd566853`
 - DLL size: 34,816 bytes
 - Binary/plugin metadata: `1.0.0`
-- Assembly informational version: `1.0.0+5c2e13e3be57ee37fa9b89c020e6cbb413543527`
+- Assembly informational version: `1.0.0+d7dc125498871360c6a7674bb9a316ce5ee746d7`
 
 The extracted CI DLL hash matches the recorded build identity and the binary is a valid non-empty Windows Mono/.NET assembly.
+
+The earlier internal 1.0.0 CI artifact from source `5c2e13e3be57ee37fa9b89c020e6cbb413543527` was superseded before user handoff after the pre-release audit tightened unknown-locale fail-closed behavior. It was never handed to the user and is not an acceptance candidate.
 
 ### Delta from accepted 0.1.2
 
