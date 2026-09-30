@@ -14,8 +14,8 @@ Stable publication is blocked until the exact 1.0.2 candidate is runtime-accepte
 - [x] README, changelog and release notes updated for 1.0.2.
 - [x] Final 1.0.2 candidate CI succeeds with zero build warnings/errors and all localization/formatting tests.
 - [x] Exact source SHA, run, artifact and DLL SHA recorded.
-- [ ] Exact 1.0.2 DLL handed to the user.
-- [ ] Real-game 1.0.2 CJK smoke test accepted.
+- [x] Exact 1.0.2 DLL handed to the user.
+- [x] Real-game 1.0.2 CJK smoke test accepted.
 
 ## Required runtime acceptance
 
@@ -27,10 +27,10 @@ Only the last CJK typography property needs focused testing:
 
 Everything else is already accepted evidence and should not be repeated.
 
-## Stable promotion — BLOCKED until runtime acceptance
+## Stable promotion — READY after runtime acceptance
 
 After explicit user acceptance:
-- [ ] record the exact accepted 1.0.2 identity;
+- [x] record the exact accepted 1.0.2 identity;
 - [ ] create accepted-release metadata for that exact artifact;
 - [ ] promote accepted source/docs to `main`;
 - [ ] publish GitHub Release `v1.0.2` from the exact accepted CI artifact;
