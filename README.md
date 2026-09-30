@@ -6,9 +6,9 @@ Detailed Technology Tooltips makes visible Technology-tree unlocks explain what 
 
 ## Status
 
-**1.0.1 release candidate.**
+**1.0.2 release candidate.**
 
-The accepted gameplay/UI baseline is 0.1.2. Version 1.0.1 carries that behavior forward, completes localization for every language exposed by Graveyard Keeper 1.407, fixes locale-specific list formatting/wrapping found during 1.0.0 testing, and explains the otherwise opaque Better Save Soul Remote Control unlock.
+The accepted gameplay/UI baseline is 0.1.2. Version 1.0.2 carries that behavior forward, completes localization for every language exposed by Graveyard Keeper 1.407, fixes locale-specific list formatting/wrapping found during 1.0.0–1.0.1 testing, and explains the otherwise opaque Better Save Soul Remote Control unlock.
 
 No public release has been published yet.
 
@@ -20,7 +20,8 @@ For visible Technology unlocks:
 - **blueprints/build unlocks** show their native build requirements and the owning build menu / build desk;
 - useful existing vanilla descriptions are preserved;
 - sparse Work/Perk unlocks receive a short explanation only where the current 1.407 data path has been specifically verified;
-- Pyrite is marked as not implemented in the current game version rather than implying that the broken vanilla unlock produces drops;\n- Better Save Soul's Remote Control unlock explains that the feature is accessed from the map and that remote actions require a Soul Receiver in the target area;
+- Pyrite is marked as not implemented in the current game version rather than implying that the broken vanilla unlock produces drops;
+- Better Save Soul's Remote Control unlock explains that the feature is accessed from the map and that remote actions require a Soul Receiver in the target area;
 - authored hidden `@` unlocks remain hidden.
 
 The mod uses native game data for item quantities, item names, crafting stations and build-desk names. It does not maintain a separate recipe/location database.
