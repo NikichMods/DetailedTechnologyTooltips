@@ -1,6 +1,6 @@
 # Release Checklist — 1.0.2
 
-Stable publication is blocked until the exact 1.0.2 candidate is runtime-accepted.
+The exact 1.0.2 candidate was runtime-accepted and published as the first stable release.
 
 ## Release-candidate preparation
 
@@ -27,12 +27,12 @@ Only the last CJK typography property needs focused testing:
 
 Everything else is already accepted evidence and should not be repeated.
 
-## Stable promotion — READY after runtime acceptance
+## Stable promotion — COMPLETE
 
 After explicit user acceptance:
 - [x] record the exact accepted 1.0.2 identity;
-- [ ] create accepted-release metadata for that exact artifact;
-- [ ] promote accepted source/docs to `main`;
-- [ ] publish GitHub Release `v1.0.2` from the exact accepted CI artifact;
-- [ ] verify release asset filename/hash;
+- [x] create accepted-release metadata for that exact artifact;
+- [x] promote accepted source/docs to `main`;
+- [x] publish GitHub Release `v1.0.2` from the exact accepted CI artifact;
+- [x] verify release asset filename/hash;
 - [ ] complete Nexus publication/support setup separately.

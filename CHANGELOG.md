@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.2 — Unreleased
+## 1.0.2 — 2026-10-01
 
-First stable release candidate.
+First stable release.
 
 - Enriches visible Technology recipe unlocks with native requirements and the exact crafting station(s) for that unlocked recipe.
 - Enriches visible Technology blueprint/build unlocks with native build requirements and the owning build menu.

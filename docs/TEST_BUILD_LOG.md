@@ -441,3 +441,20 @@ Support-log evidence:
 
 The exact 1.0.2 production bytes are now the accepted stable-release artifact. No further production-source mutation is permitted under version 1.0.2.
 
+
+## Stable promotion — 1.0.2 — 2026-10-01
+
+Status: **PUBLISHED**.
+
+- Accepted production source: `9653174c320f0d7139d9e49a2a041527e5530bd2`.
+- Accepted CI run: `36784735410`.
+- Accepted CI artifact: `DetailedTechnologyTooltips-1.0.2-9653174c320f0d7139d9e49a2a041527e5530bd2` (artifact ID `11129376780`).
+- Accepted DLL SHA-256: `986a41e660db7d816ee896a6c624f009063274ad93eb4bb1d212f3dd712f8f5f`.
+- Stable-promotion metadata/main commit: `b3b6265924530c744cd7a06513d925944ee64b2f`.
+- Publish workflow run: `36786460026` — **SUCCESS**.
+- Post-promotion main build run: `36786460044` — **SUCCESS**.
+- GitHub Release: `v1.0.2` (release ID `400486378`), target `9653174c320f0d7139d9e49a2a041527e5530bd2`.
+- Stable asset: `DetailedTechnologyTooltips.dll`, 40,960 bytes.
+- Published asset digest: `sha256:986a41e660db7d816ee896a6c624f009063274ad93eb4bb1d212f3dd712f8f5f`.
+
+The published stable asset digest exactly matches the runtime-accepted 1.0.2 DLL. No production-source mutation occurred after the accepted source; the intervening commits contain acceptance documentation and release metadata only.

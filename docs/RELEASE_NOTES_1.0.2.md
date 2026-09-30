@@ -1,6 +1,6 @@
 # Detailed Technology Tooltips 1.0.2
 
-First stable release candidate.
+First stable release.
 
 Detailed Technology Tooltips adds practical detail directly to visible Technology-tree unlock tooltips in Graveyard Keeper:
 
