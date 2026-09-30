@@ -16,6 +16,7 @@ namespace DetailedTechnologyTooltips
         public bool IsBlueprint;
         public string IngredientsRow;
         public string LocationRow;
+        public string SparseDescriptionRow;
     }
 
     internal static class GameApi
@@ -35,6 +36,8 @@ namespace DetailedTechnologyTooltips
         private static FieldInfo _techUnlockTypeField;
         private static FieldInfo _techUnlockIdField;
         private static object _craftUnlockEnumValue;
+        private static object _workUnlockEnumValue;
+        private static object _perkUnlockEnumValue;
 
         private static PropertyInfo _gameBalanceMeProperty;
         private static MethodInfo _getCraftById;
@@ -49,6 +52,7 @@ namespace DetailedTechnologyTooltips
         private static FieldInfo _itemDetailsCraftsInField;
 
         private static MethodInfo _gjlLString;
+        private static MethodInfo _getCurrentLanguage;
         private static MethodInfo _tooltipAddData;
         private static ConstructorInfo _textDataCtor;
         private static object _tinyDescriptionStyle;
@@ -64,6 +68,7 @@ namespace DetailedTechnologyTooltips
             var objectCraftDefinitionType = RequireType("ObjectCraftDefinition");
             var gameBalanceType = RequireType("GameBalance");
             var gameBalanceBaseType = RequireType("GameBalanceBase");
+            var gameSettingsType = RequireType("GameSettings");
             var bubbleWidgetDataType = RequireType("BubbleWidgetData");
             var bubbleWidgetTextDataType = RequireType("BubbleWidgetTextData");
             var textStyleType = RequireType("UITextStyles+TextStyle");
@@ -95,6 +100,14 @@ namespace DetailedTechnologyTooltips
             _craftUnlockEnumValue = Enum.Parse(
                 _techUnlockTypeField.FieldType,
                 "Craft",
+                false);
+            _workUnlockEnumValue = Enum.Parse(
+                _techUnlockTypeField.FieldType,
+                "Work",
+                false);
+            _perkUnlockEnumValue = Enum.Parse(
+                _techUnlockTypeField.FieldType,
+                "Perk",
                 false);
 
             _gameBalanceMeProperty = gameBalanceType.GetProperty("me", AllStatic);
@@ -153,6 +166,12 @@ namespace DetailedTechnologyTooltips
                 AllStatic,
                 new[] { typeof(string) });
 
+            _getCurrentLanguage = RequireMethod(
+                gameSettingsType,
+                "GetCurrentLanguage",
+                AllStatic,
+                Type.EmptyTypes);
+
             _tooltipAddData = RequireMethod(
                 tooltipType,
                 "AddData",
@@ -188,13 +207,34 @@ namespace DetailedTechnologyTooltips
                 return null;
 
             var unlockType = _techUnlockTypeField.GetValue(techUnlock);
-            if (!Equals(unlockType, _craftUnlockEnumValue))
-                return null;
-
             var id = _techUnlockIdField.GetValue(techUnlock) as string;
             if (string.IsNullOrEmpty(id))
                 return null;
 
+            if (Equals(unlockType, _craftUnlockEnumValue))
+                return TryCreateCraftContext(id);
+
+            if (Equals(unlockType, _workUnlockEnumValue)
+                || Equals(unlockType, _perkUnlockEnumValue))
+            {
+                var sparseDescription = BuildSparseUnlockDescription(
+                    id,
+                    Equals(unlockType, _workUnlockEnumValue));
+
+                if (string.IsNullOrEmpty(sparseDescription))
+                    return null;
+
+                return new TechTooltipContext
+                {
+                    SparseDescriptionRow = sparseDescription
+                };
+            }
+
+            return null;
+        }
+
+        private static TechTooltipContext TryCreateCraftContext(string id)
+        {
             var balance = _gameBalanceMeProperty.GetValue(null, null);
             if (balance == null)
                 return null;
@@ -238,7 +278,13 @@ namespace DetailedTechnologyTooltips
             object tooltip,
             TechTooltipContext context)
         {
-            if (tooltip == null || context == null || context.Craft == null)
+            if (tooltip == null || context == null)
+                return;
+
+            if (!string.IsNullOrEmpty(context.SparseDescriptionRow))
+                AddTinyLeftText(tooltip, context.SparseDescriptionRow);
+
+            if (context.Craft == null)
                 return;
 
             if (!string.IsNullOrEmpty(context.IngredientsRow))
@@ -256,10 +302,7 @@ namespace DetailedTechnologyTooltips
             if (string.IsNullOrEmpty(ingredients))
                 return null;
 
-            return LocalizeRequired("ingredients")
-                + LocalizeRequired(":")
-                + " "
-                + ingredients;
+            return GetRequirementsPrefix() + ingredients;
         }
 
         private static string BuildLocationRow(
@@ -274,7 +317,80 @@ namespace DetailedTechnologyTooltips
             if (string.IsNullOrEmpty(locations))
                 return null;
 
-            return LocalizeRequired("crafted_at") + " " + locations;
+            return (isBlueprint ? GetBuildMenuPrefix() : GetCraftedAtPrefix())
+                + locations;
+        }
+
+        private static string BuildSparseUnlockDescription(
+            string id,
+            bool isWork)
+        {
+            var language = GetCurrentLanguage();
+            var russian = IsLanguage(language, "ru");
+            var english = IsLanguage(language, "en");
+
+            if (!russian && !english)
+                return null;
+
+            if (isWork)
+            {
+                switch (id)
+                {
+                    case "t_diamond":
+                        return russian
+                            ? "Теперь можно добывать алмазы."
+                            : "Diamonds can now be mined.";
+                    case "t_marble":
+                        return russian
+                            ? "Теперь можно добывать мрамор."
+                            : "Marble can now be quarried.";
+                    default:
+                        return null;
+                }
+            }
+
+            switch (id)
+            {
+                case "p_t_gold_ore":
+                case "p_t_silver_ore":
+                    return russian
+                        ? "Теперь может попадаться при добыче и переработке железной руды."
+                        : "Can now appear while mining or processing iron ore.";
+
+                case "p_t_lifestone":
+                case "p_t_sulfur":
+                    return russian
+                        ? "Теперь может попадаться при добыче угля."
+                        : "Can now appear while mining coal.";
+
+                case "p_t_beeswax":
+                case "p_t_bee":
+                    return russian
+                        ? "Теперь может попадаться при сборе мёда."
+                        : "Can now appear while collecting honey.";
+
+                case "p_t_butterfly":
+                    return russian
+                        ? "Теперь может попадаться при сборе цветов днём."
+                        : "Can now appear while gathering flowers during the day.";
+
+                case "p_t_moth":
+                    return russian
+                        ? "Теперь может попадаться при сборе цветов ночью."
+                        : "Can now appear while gathering flowers at night.";
+
+                case "p_t_maggot":
+                    return russian
+                        ? "Теперь может получаться при переработке отходов в торф."
+                        : "Can now be produced when processing waste into peat.";
+
+                // Intentionally excluded:
+                // p_t_old_books — no proved consumer in the accepted audit.
+                // p_t_pyrite — current 1.407 data writes p_t_pirit but the
+                // coal-drop expression consumes p_t_pyrite.
+                default:
+                    return null;
+            }
         }
 
         private static string FormatNeeds(IList items)
@@ -306,7 +422,7 @@ namespace DetailedTechnologyTooltips
                 names[i] = name;
             }
 
-            return string.Join(GetCommaSeparator(), names);
+            return string.Join(GetListSeparator(), names);
         }
 
         private static string FormatLocalizedIds(IList ids)
@@ -329,13 +445,77 @@ namespace DetailedTechnologyTooltips
                 names[i] = localized;
             }
 
-            return string.Join(GetCommaSeparator(), names);
+            return string.Join(GetListSeparator(), names);
         }
 
-        private static string GetCommaSeparator()
+        private static string GetRequirementsPrefix()
         {
+            var language = GetCurrentLanguage();
+            if (IsLanguage(language, "ru"))
+                return "Нужно: ";
+            if (IsLanguage(language, "en"))
+                return "Requires: ";
+
+            return LocalizeRequired("ingredients")
+                + LocalizeRequired(":")
+                + " ";
+        }
+
+        private static string GetCraftedAtPrefix()
+        {
+            var language = GetCurrentLanguage();
+            if (IsLanguage(language, "ru"))
+                return "Изготовление: ";
+            if (IsLanguage(language, "en"))
+                return "Crafted at: ";
+
+            return LocalizeRequired("crafted_at") + " ";
+        }
+
+        private static string GetBuildMenuPrefix()
+        {
+            var language = GetCurrentLanguage();
+            if (IsLanguage(language, "ru"))
+                return "Строительство: ";
+            if (IsLanguage(language, "en"))
+                return "Build menu: ";
+
+            return LocalizeRequired("crafted_at") + " ";
+        }
+
+        private static string GetListSeparator()
+        {
+            var language = GetCurrentLanguage();
+            if (IsLanguage(language, "ru") || IsLanguage(language, "en"))
+                return ", ";
+
             var localized = Localize(",");
             return string.IsNullOrEmpty(localized) ? ", " : localized;
+        }
+
+        private static string GetCurrentLanguage()
+        {
+            try
+            {
+                var language = _getCurrentLanguage.Invoke(null, null) as string;
+                return string.IsNullOrEmpty(language)
+                    ? string.Empty
+                    : language.Trim().ToLowerInvariant();
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        private static bool IsLanguage(string current, string expected)
+        {
+            if (string.IsNullOrEmpty(current))
+                return false;
+
+            return string.Equals(current, expected, StringComparison.Ordinal)
+                || current.StartsWith(expected + "_", StringComparison.Ordinal)
+                || current.StartsWith(expected + "-", StringComparison.Ordinal);
         }
 
         private static string LocalizeRequired(string key)
