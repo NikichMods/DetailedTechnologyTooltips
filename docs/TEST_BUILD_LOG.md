@@ -2,7 +2,7 @@
 
 Canonical record of numbered Detailed Technology Tooltips candidates and their runtime acceptance state.
 
-## 0.1.0 — awaiting installed-runtime acceptance
+## 0.1.0 — runtime mechanism confirmed; UX iteration required
 
 ### Candidate identity
 
@@ -59,7 +59,27 @@ Downloaded artifact was extracted and verified before handoff:
 - computed DLL SHA-256 matched `BUILD_IDENTITY.txt`;
 - plugin/version identity strings matched `Detailed Technology Tooltips` / `0.1.0`.
 
-### Runtime acceptance matrix — PENDING
+### Runtime result — 2026-09-30
+
+User tested the exact 0.1.0 candidate in Graveyard Keeper 1.407 with Russian localization at 2560x1440.
+
+Confirmed:
+- ordinary recipe enrichment works and `ingot_metal` shows the exact Furnace location rather than the broader item aggregate;
+- blueprint requirements and native builder/menu localization render correctly;
+- mouse and gamepad consume the enriched child information;
+- useful vanilla description content remains present;
+- the supplied log contains the normal Detailed Technology Tooltips startup/binding line and no plugin runtime-disable/error line.
+
+New UX findings:
+- long combined gamepad Technology tooltips can extend below the viewport even at 2560x1440;
+- native `ingredients` wording is semantically awkward for construction/tool materials in Russian;
+- native `crafted_at` wording is awkward for blueprints such as `Yard`;
+- native comma localization currently produces visually dense no-space lists in Russian;
+- vanilla Work/Perk gathering unlocks such as Precious Metals / Related Ore remain sparse because 0.1.0 intentionally leaves Work/Perk untouched.
+
+Status: the data-owner/mechanism hypothesis is **CONFIRMED**. Candidate 0.1.0 is not the final UX baseline and is not promoted to main.
+
+### Original runtime acceptance matrix
 
 Minimum representative real-game check in Graveyard Keeper 1.407:
 
@@ -86,4 +106,4 @@ Minimum representative real-game check in Graveyard Keeper 1.407:
 5. **Log**
    - Confirm one normal startup line for Detailed Technology Tooltips and no runtime-disable/error line.
 
-Status remains **PENDING** until exact candidate `0.1.0` is tested in the installed game and explicitly accepted.
+Original matrix is retained as the pre-test plan. The 2026-09-30 result above supersedes its pending status.
