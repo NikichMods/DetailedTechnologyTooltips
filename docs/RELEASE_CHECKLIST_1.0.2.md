@@ -12,8 +12,8 @@ Stable publication is blocked until the exact 1.0.2 candidate is runtime-accepte
 - [x] Japanese line-start separator defect isolated to DTT CJK list composition.
 - [x] CJK separator now carries an invisible post-separator break opportunity without visible Western spacing.
 - [x] README, changelog and release notes updated for 1.0.2.
-- [ ] Final 1.0.2 candidate CI succeeds with zero build warnings/errors and all localization/formatting tests.
-- [ ] Exact source SHA, run, artifact and DLL SHA recorded.
+- [x] Final 1.0.2 candidate CI succeeds with zero build warnings/errors and all localization/formatting tests.
+- [x] Exact source SHA, run, artifact and DLL SHA recorded.
 - [ ] Exact 1.0.2 DLL handed to the user.
 - [ ] Real-game 1.0.2 CJK smoke test accepted.
 
