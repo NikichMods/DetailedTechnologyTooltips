@@ -17,15 +17,15 @@ The exact 1.0.2 candidate was runtime-accepted and published as the first stable
 - [x] Exact 1.0.2 DLL handed to the user.
 - [x] Real-game 1.0.2 CJK smoke test accepted.
 
-## Required runtime acceptance
+## Runtime acceptance — COMPLETE
 
-Only the last CJK typography property needs focused testing:
+The focused 1.0.2 runtime pass is accepted:
 
-1. Japanese: revisit the representative requirements list and confirm no wrapped line begins with `、`.
-2. Simplified Chinese: one quick sanity check that there is still no visible Western spacing and `(xN)` tokens remain intact.
-3. Return the support log; expected marker is `DTT_READY version=1.0.2` with no DTT disable/failure event.
+- Japanese wrapped lists no longer begin a line with `、`;
+- Simplified Chinese keeps native-looking CJK spacing and intact `(xN)` quantity tokens;
+- the support log contains `DTT_READY version=1.0.2` and no DTT initialization/runtime/viewport/wrap-repair disable marker.
 
-Everything else is already accepted evidence and should not be repeated.
+No further 1.0.2 runtime repetition is required.
 
 ## Stable promotion — COMPLETE
 
