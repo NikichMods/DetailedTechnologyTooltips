@@ -14,8 +14,8 @@ Stable publication is blocked until the exact 1.0.0 candidate is runtime-accepte
 - [x] README, changelog and release notes prepared.
 - [x] MPL-2.0 repository/license scope rechecked.
 - [x] Exact accepted-artifact publication workflow prepared without enabling publication.
-- [ ] Candidate CI succeeds in Release with localization completeness validation.
-- [ ] Exact candidate source SHA, workflow run, artifact and DLL SHA recorded.
+- [x] Candidate CI succeeds in Release with localization completeness validation.
+- [x] Exact candidate source SHA, workflow run, artifact and DLL SHA recorded.
 - [ ] Exact candidate DLL handed to the user.
 - [ ] Real-game 1.0.0 release-candidate acceptance completed.
 
