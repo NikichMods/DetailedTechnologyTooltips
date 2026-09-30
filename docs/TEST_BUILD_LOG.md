@@ -160,5 +160,24 @@ Explicitly unchanged:
 8. Normal item tooltip outside Technology: verify vanilla aggregate crafting locations are unchanged.
 9. Return `LogOutput.log`; confirm normal `Detailed Technology Tooltips 0.1.1 loaded` and no runtime-disable / viewport-safety error.
 
-Status: **pending real-game UX acceptance**.
+Status: **runtime accepted for its intended 0.1.1 gates**.
+
+### Runtime acceptance — 2026-09-30
+
+User tested the exact 0.1.1 candidate in Graveyard Keeper 1.407 at 2560x1440 with PrayerClarity: Rebalanced 0.2.52 and the current mod set.
+
+Accepted:
+- Russian `Нужно:`, `Изготовление:`, `Строительство:` wording;
+- English `Requires:`, `Crafted at:`, `Build menu:` wording;
+- spaced list separators;
+- sparse Work/Perk descriptions for the proved gathering cases;
+- symmetric Technology tooltip viewport safety: the previously overflowing long gamepad tooltip was translated upward and remained within the viewport; no top/bottom overflow was observed while browsing;
+- PrayerClarity Technology presentation showed no observed regression.
+
+New follow-up gaps opened after 0.1.1:
+- some recipes with multi-quality/group requirements (representative runtime examples: Carved Wood, Notes, Book) still omit the requirements row;
+- mod-generated Craft detail rows are visibly left-aligned inside the combined gamepad tooltip while the native item-detail family is centered;
+- Pyrite should receive the separately accepted informational note that it is not implemented in the current game version.
+
+These follow-ups are not regressions in the accepted 0.1.1 mechanisms; they open new 0.1.2 evidence gates.
 
