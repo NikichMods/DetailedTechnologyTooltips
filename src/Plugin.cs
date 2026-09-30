@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.0.1";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -50,6 +50,17 @@ namespace DetailedTechnologyTooltips
                     null,
                     nameof(RuntimePatches.ItemTooltipCraftAtPostfix),
                     null);
+
+                try
+                {
+                    TechnologyTextWrapRepair.Install(_harmony, Log);
+                }
+                catch (Exception ex)
+                {
+                    Log.LogWarning(
+                        "DTT_WRAP_REPAIR_FALLBACK action=native-wrap reason="
+                        + ex.GetType().Name + ": " + ex.Message);
+                }
 
                 try
                 {
