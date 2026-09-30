@@ -7,9 +7,9 @@
     <Authors>NikichMods</Authors>
     <Description>Vanilla-friendly Technology tooltip details for Graveyard Keeper.</Description>
     <RepositoryUrl>https://github.com/NikichMods/DetailedTechnologyTooltips</RepositoryUrl>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
