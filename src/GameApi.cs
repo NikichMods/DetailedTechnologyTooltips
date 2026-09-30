@@ -14,6 +14,8 @@ namespace DetailedTechnologyTooltips
     {
         public object Craft;
         public bool IsBlueprint;
+        public string IngredientsRow;
+        public string LocationRow;
     }
 
     internal static class GameApi
@@ -212,7 +214,9 @@ namespace DetailedTechnologyTooltips
             return new TechTooltipContext
             {
                 Craft = craft,
-                IsBlueprint = isBlueprint
+                IsBlueprint = isBlueprint,
+                IngredientsRow = BuildIngredientsRow(craft),
+                LocationRow = BuildLocationRow(craft, isBlueprint)
             };
         }
 
@@ -237,30 +241,40 @@ namespace DetailedTechnologyTooltips
             if (tooltip == null || context == null || context.Craft == null)
                 return;
 
+            if (!string.IsNullOrEmpty(context.IngredientsRow))
+                AddTinyLeftText(tooltip, context.IngredientsRow);
+
+            if (!string.IsNullOrEmpty(context.LocationRow))
+                AddTinyLeftText(tooltip, context.LocationRow);
+        }
+
+        private static string BuildIngredientsRow(object craft)
+        {
             var ingredients = FormatNeeds(
-                _needsField.GetValue(context.Craft) as IList);
+                _needsField.GetValue(craft) as IList);
 
-            if (!string.IsNullOrEmpty(ingredients))
-            {
-                var ingredientsLabel = LocalizeRequired("ingredients");
-                var colon = LocalizeRequired(":");
+            if (string.IsNullOrEmpty(ingredients))
+                return null;
 
-                AddTinyLeftText(
-                    tooltip,
-                    ingredientsLabel + colon + " " + ingredients);
-            }
+            return LocalizeRequired("ingredients")
+                + LocalizeRequired(":")
+                + " "
+                + ingredients;
+        }
 
-            var locationIds = context.IsBlueprint
-                ? _builderIdsField.GetValue(context.Craft) as IList
-                : _craftInField.GetValue(context.Craft) as IList;
+        private static string BuildLocationRow(
+            object craft,
+            bool isBlueprint)
+        {
+            var locationIds = isBlueprint
+                ? _builderIdsField.GetValue(craft) as IList
+                : _craftInField.GetValue(craft) as IList;
 
             var locations = FormatLocalizedIds(locationIds);
-            if (!string.IsNullOrEmpty(locations))
-            {
-                AddTinyLeftText(
-                    tooltip,
-                    LocalizeRequired("crafted_at") + " " + locations);
-            }
+            if (string.IsNullOrEmpty(locations))
+                return null;
+
+            return LocalizeRequired("crafted_at") + " " + locations;
         }
 
         private static string FormatNeeds(IList items)
