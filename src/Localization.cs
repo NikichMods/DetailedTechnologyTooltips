@@ -269,8 +269,8 @@ namespace DetailedTechnologyTooltips
             if (normalized == "ja" || normalized == "zh_cn")
             {
                 return string.IsNullOrEmpty(nativeSeparator)
-                    ? ", "
-                    : nativeSeparator;
+                    ? ",\u200B"
+                    : nativeSeparator + "\u200B";
             }
 
             if (string.IsNullOrWhiteSpace(nativeSeparator))
