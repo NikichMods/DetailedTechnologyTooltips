@@ -13,8 +13,8 @@ Stable publication is blocked until the exact 1.0.1 candidate is runtime-accepte
 - [x] DTT-authored text localized for all current game languages.
 - [x] README, changelog and release notes updated for 1.0.1.
 - [x] Exact accepted-artifact publication workflow made version-independent.
-- [ ] Final 1.0.1 candidate CI succeeds with zero build warnings/errors and all localization/formatting tests.
-- [ ] Exact source SHA, run, artifact and DLL SHA recorded.
+- [x] Final 1.0.1 candidate CI succeeds with zero build warnings/errors and all localization/formatting tests.
+- [x] Exact source SHA, run, artifact and DLL SHA recorded.
 - [ ] Exact 1.0.1 DLL handed to the user.
 - [ ] Real-game 1.0.1 acceptance completed.
 
