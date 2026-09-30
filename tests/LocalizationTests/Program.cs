@@ -101,7 +101,7 @@ internal static class Program
         }
 
         Console.WriteLine(
-            "Localization completeness OK: "
+            "Localization/formatting validation OK: "
             + Localization.SupportedLanguages.Length
             + " languages x "
             + Localization.Keys.Length
