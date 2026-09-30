@@ -181,3 +181,48 @@ New follow-up gaps opened after 0.1.1:
 
 These follow-ups are not regressions in the accepted 0.1.1 mechanisms; they open new 0.1.2 evidence gates.
 
+## 0.1.2 — grouped requirements / alignment / Pyrite note candidate
+
+### Candidate identity
+
+- Version: `0.1.2`
+- Development branch: `dev/0.1.2`
+- Exact build source: `5aaa3d4affb83d362146536f6f2056e490f3b8b3`
+- GitHub Actions run: `36727412677`
+- CI result: **SUCCESS**, 0 warnings / 0 errors
+- CI artifact: `DetailedTechnologyTooltips-0.1.2-5aaa3d4affb83d362146536f6f2056e490f3b8b3`
+- Artifact ID: `11103162487`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-0.1.2.dll`
+- DLL SHA-256: `b75d642a9cb26c6d0f15a2775c7cce267f05c4655f7994a34dfadc36e7a53050`
+- DLL size: 24,064 bytes
+- Binary/plugin metadata: `0.1.2`
+
+Downloaded CI artifact verification:
+- `BUILD_IDENTITY.txt` matches version and exact source SHA;
+- computed DLL SHA-256 matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded strings include the plugin GUID/name/version and the new Pyrite note.
+
+### Included READY changes
+
+- group/multi-quality requirements now use the vanilla Craft UI's base-name resolution family instead of dropping the whole requirements row when the authored base ID has no direct ItemDefinition;
+- generated Craft requirements/location rows use native item-detail `Center` alignment;
+- generated Work/Perk descriptions retain `Left` alignment;
+- Pyrite receives the accepted Russian/English “not implemented in the current game version” note;
+- no PrayerClarity compatibility behavior was changed because accepted 0.1.1 runtime showed no collision.
+
+### Runtime acceptance requested
+
+Only new 0.1.2 properties need testing:
+
+1. Carved Wood: `Нужно:` row appears and resolves the grouped chisel requirement naturally.
+2. Notes: `Нужно:` row appears for Story / Pen and Ink / Clean Paper.
+3. Book: `Нужно:` row appears for Cover / Chapter.
+4. Combined gamepad tooltip: `Нужно:` / `Изготовление:` rows visually center like vanilla item-detail rows.
+5. Related Ore: Pyrite shows the implementation-status note; Limestone/Sulfur behavior remains as accepted in 0.1.1.
+6. One PrayerClarity Technology tooltip sanity check only if convenient; no repeat of the full prayer acceptance matrix is required.
+7. Return `LogOutput.log` and verify no DTT initialization/runtime-disable/viewport-safety error.
+
+Already accepted in 0.1.1 and not necessary to repeat: general RU/EN wording, list separators, ordinary exact station mapping, blueprint builder mapping, sparse proved Work/Perk explanations, and general viewport top/bottom clamping.
+
