@@ -356,3 +356,20 @@ Focused 1.0.1 test only:
 
 All 0.1.2-accepted mechanics remain reusable evidence and do not need exhaustive repetition.
 
+### Runtime result — 2026-10-01
+
+Status: **REJECTED for stable promotion due to one remaining CJK typography defect**.
+
+Accepted from the exact 1.0.1 candidate:
+- Italian, German, Polish and other checked Latin-script DTT lists have readable spacing after ordinary commas;
+- Simplified Chinese no longer splits inside an `(xN)` token;
+- Remote Control explanation is accepted in Russian and English;
+- no clipping, missing glyphs, fallback-English regression or DTT runtime failure was observed;
+- support log contains only the normal `DTT_READY version=1.0.1` DTT event and no DTT disable/failure event.
+
+Remaining blocker found by review of the Japanese screenshot:
+- a DTT list line can begin with the Japanese separator `、` (representative: the second ingredient after `鉄インゴット (x2)`).
+- This is readable but typographically undesirable and should be corrected before the stable release.
+
+The handed 1.0.1 bytes remain immutable. The correction moves to 1.0.2.
+
