@@ -6,7 +6,7 @@ Detailed Technology Tooltips makes visible Technology-tree unlocks explain what 
 
 ## Status
 
-**1.0.2 release candidate.**
+**1.0.2 accepted release candidate.**
 
 The accepted gameplay/UI baseline is 0.1.2. Version 1.0.2 carries that behavior forward, completes localization for every language exposed by Graveyard Keeper 1.407, fixes locale-specific list formatting/wrapping found during 1.0.0–1.0.1 testing, and explains the otherwise opaque Better Save Soul Remote Control unlock.
 
