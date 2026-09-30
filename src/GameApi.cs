@@ -341,8 +341,12 @@ namespace DetailedTechnologyTooltips
             if (string.IsNullOrEmpty(locations))
                 return null;
 
-            return (isBlueprint ? GetBuildMenuPrefix() : GetCraftedAtPrefix())
-                + locations;
+            var prefix =
+                isBlueprint ? GetBuildMenuPrefix() : GetCraftedAtPrefix();
+            if (string.IsNullOrEmpty(prefix))
+                return null;
+
+            return prefix + locations;
         }
 
         private static string BuildSparseUnlockDescription(
