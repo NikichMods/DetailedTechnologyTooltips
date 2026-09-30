@@ -15,8 +15,8 @@ Stable publication is blocked until the exact 1.0.1 candidate is runtime-accepte
 - [x] Exact accepted-artifact publication workflow made version-independent.
 - [x] Final 1.0.1 candidate CI succeeds with zero build warnings/errors and all localization/formatting tests.
 - [x] Exact source SHA, run, artifact and DLL SHA recorded.
-- [ ] Exact 1.0.1 DLL handed to the user.
-- [ ] Real-game 1.0.1 acceptance completed.
+- [x] Exact 1.0.1 DLL handed to the user.
+- [x] Real-game 1.0.1 review completed — stable promotion rejected for remaining Japanese line-start separator.
 
 ## Required runtime acceptance
 
