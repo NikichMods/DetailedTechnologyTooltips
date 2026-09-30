@@ -247,3 +247,45 @@ The unrelated Unity/resource/sprite/idle-point errors present in the shared game
 
 0.1.2 is now the accepted behavior baseline. Its numbered bytes remain frozen. Any further production behavior change requires a new version.
 
+## 1.0.0 — release candidate
+
+### Candidate identity
+
+- Version: `1.0.0`
+- Development branch: `dev/1.0.0`
+- Exact build source: `5c2e13e3be57ee37fa9b89c020e6cbb413543527`
+- GitHub Actions run: `36766118963`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization validation: **11 languages x 10 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.0.0-5c2e13e3be57ee37fa9b89c020e6cbb413543527`
+- Artifact ID: `11121086456`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.0.0.dll`
+- DLL SHA-256: `78be3a14e306b53be59ae8bbec7d6909c476d6228e0d35fedf55ce31ac88d75d`
+- DLL size: 34,816 bytes
+- Binary/plugin metadata: `1.0.0`
+- Assembly informational version: `1.0.0+5c2e13e3be57ee37fa9b89c020e6cbb413543527`
+
+The extracted CI DLL hash matches the recorded build identity and the binary is a valid non-empty Windows Mono/.NET assembly.
+
+### Delta from accepted 0.1.2
+
+The accepted 0.1.2 gameplay/UI mechanics are unchanged. The 1.0.0 release candidate adds complete DTT-owned text coverage for all 11 current 1.407 languages and stable support-log event IDs. Native item/station/build-desk names remain game-owned.
+
+### Runtime acceptance state
+
+Status: **PENDING**.
+
+Required new evidence is localization-focused:
+1. Confirm the normal `DTT_READY version=1.0.0` startup event and no DTT failure/disable event.
+2. Cycle through all 11 game languages once.
+3. Visually inspect representative DTT text in at least one Latin non-English language and one CJK language.
+4. Include a blueprint, a sparse Work/Perk explanation, and Pyrite among those checks.
+5. Confirm no conspicuous fallback English, missing glyph/font issue, or new clipping.
+6. Return the full BepInEx support log.
+
+Already accepted and not required to repeat exhaustively: exact recipe/blueprint data, grouped requirements, centered Craft rows, Russian/English sparse text, Pyrite semantics, general viewport clamping and PrayerClarity compatibility.
+
+The 1.0.0 numbered candidate is immutable after handoff. Stable publication remains blocked until explicit user acceptance.
+
