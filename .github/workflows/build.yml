@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'src/**'
+      - 'tests/**'
       - 'DetailedTechnologyTooltips.csproj'
       - 'nuget.config'
       - '.github/workflows/build.yml'
@@ -35,6 +36,9 @@ jobs:
       - name: Build
         run: dotnet build DetailedTechnologyTooltips.csproj -c Release --no-restore
 
+      - name: Validate localization
+        run: dotnet run --project tests/LocalizationTests/LocalizationTests.csproj -c Release
+
       - name: Prepare artifact
         shell: pwsh
         run: |
@@ -44,7 +48,7 @@ jobs:
           Copy-Item $dll (Join-Path $out 'DetailedTechnologyTooltips.dll')
           $hash = (Get-FileHash $dll -Algorithm SHA256).Hash.ToLowerInvariant()
           @(
-            "version=0.1.2"
+            "version=1.0.0"
             "source_sha=${{ github.sha }}"
             "sha256=$hash"
             "assembly=DetailedTechnologyTooltips.dll"
@@ -54,7 +58,7 @@ jobs:
       - name: Upload candidate
         uses: actions/upload-artifact@v4
         with:
-          name: DetailedTechnologyTooltips-0.1.2-${{ github.sha }}
+          name: DetailedTechnologyTooltips-1.0.0-${{ github.sha }}
           path: artifact/*
           if-no-files-found: error
           retention-days: 14
