@@ -96,7 +96,7 @@ namespace DetailedTechnologyTooltips
             if (!string.IsNullOrEmpty(finalizerName))
                 finalizer = new HarmonyMethod(GetPatchMethod(finalizerName));
 
-            _harmony.Patch(target, prefix, postfix, null, finalizer);
+            _harmony.Patch(target, prefix, postfix, null, finalizer, null);
         }
 
         private static MethodInfo GetPatchMethod(string name)
