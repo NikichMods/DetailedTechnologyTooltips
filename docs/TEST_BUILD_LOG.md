@@ -420,3 +420,24 @@ Required focused evidence:
 
 Everything else remains covered by accepted prior runtime evidence.
 
+### Runtime acceptance — 2026-10-01
+
+Status: **ACCEPTED** for stable promotion.
+
+User reviewed the exact 1.0.2 candidate built from `9653174c320f0d7139d9e49a2a041527e5530bd2` in Graveyard Keeper 1.407.
+
+Accepted visual evidence:
+- Japanese DTT lists no longer start a wrapped line with `、`; the separator stays with the preceding item while the following item may wrap naturally.
+- Simplified Chinese keeps native-looking CJK punctuation with no injected visible Western spacing.
+- Simplified-Chinese `(xN)` quantity clusters remain internally intact in the previously failing long tooltip.
+- Korean, English, Spanish and the additional checked layouts remain visually coherent; no new clipping, missing glyphs or fallback-language text was observed.
+- Long embalming/injection Technology tooltips remain within the visible viewport.
+
+Support-log evidence:
+- `Detailed Technology Tooltips 1.0.2` is loaded by BepInEx;
+- `DTT_READY version=1.0.2 contract=technology-tooltip host_mvid=6f50b8e7-156b-49ac-bbe8-7505894b2364` is present;
+- no DTT initialization/runtime/viewport/wrap-repair disable marker appears in the submitted session;
+- the run exercised Japanese, Simplified Chinese, Korean and the other current game locales during the Technology-tree checks.
+
+The exact 1.0.2 production bytes are now the accepted stable-release artifact. No further production-source mutation is permitted under version 1.0.2.
+
