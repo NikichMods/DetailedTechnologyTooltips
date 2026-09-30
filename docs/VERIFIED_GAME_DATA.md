@@ -200,3 +200,16 @@ The native Craft UI handles this without a manual mapping:
 
 Therefore Technology requirements should not interpret a missing direct `ItemDefinition` as “no requirements”. The least-complex presentation fallback is to reuse the same native base-name resolution family, keep the authored quantity from `CraftDefinition.needs`, and fail closed only if no concrete native variant resolves.
 
+## Current 1.407 language coverage
+
+Accepted runtime language-selector evidence establishes these 11 current PC locale codes:
+
+`en`, `de`, `fr`, `pt-br`, `es`, `ru`, `it`, `pl`, `ja`, `zh_cn`, `ko`.
+
+Release implication:
+- DTT-owned strings must cover all 11 for the 1.0.0 “all current game languages” claim;
+- item/station/build-desk names remain native and therefore continue to follow Graveyard Keeper's own active localization;
+- unknown future locale codes remain unverified and should fail closed instead of silently substituting a guessed translation.
+
+The reusable host fact is also recorded in `NikichMods/GraveyardKeeperResearch/docs/UI_INPUT_TIME_AND_ENVIRONMENT.md`.
+
