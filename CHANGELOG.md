@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.6 — candidate
+
+- Blueprint location rows are now deterministic: DTT lists every native build menu in the current 1.407 balance that builds the same `out_obj` / `build_type`, regardless of current save progression.
+- Removes the 1.1.5 save-dependent `GameSave.IsCraftVisible` location filter and its MainGame/GameSave reflection bindings.
+- Hidden blueprint records are still not rendered as separate Technology unlocks; only their native builder location names can contribute to the complete location list.
+- Ingredient quantity wrapping remains unchanged; DTT still only repairs a quantity token when NGUI splits the `(xN)` token itself.
+
 ## 1.1.5 — candidate
 
 - Fixes the 1.1.4 startup regression by binding the static `MainGame.me` field through the correct static reflection path.
