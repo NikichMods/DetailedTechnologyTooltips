@@ -60,7 +60,6 @@ namespace DetailedTechnologyTooltips
         private static MethodInfo _getObjectCraftById;
         private static MethodInfo _getItemDefinitionById;
         private static MethodInfo _getItemsOfBaseName;
-        private static MethodInfo _craftGetNameNonLocalized;
 
         private static FieldInfo _needsField;
         private static FieldInfo _craftInField;
@@ -177,12 +176,6 @@ namespace DetailedTechnologyTooltips
                 "GetItemsOfBaseName",
                 AllInstance,
                 new[] { typeof(string) });
-            _craftGetNameNonLocalized = RequireMethod(
-                craftDefinitionType,
-                "GetNameNonLocalized",
-                AllInstance,
-                Type.EmptyTypes);
-
             _needsField = RequireField(craftDefinitionType, "needs");
             _craftInField = RequireField(craftDefinitionType, "craft_in");
             _builderIdsField =
@@ -714,7 +707,7 @@ namespace DetailedTechnologyTooltips
             {
                 var original =
                     _techUnlockDataDescriptionField.GetValue(data) as string;
-                var corrected = CorrectBigGuyDescription(original);
+                var corrected = TextFormatting.CorrectBigGuyDescription(original);
 
                 if (!string.IsNullOrEmpty(corrected))
                 {
@@ -748,35 +741,6 @@ namespace DetailedTechnologyTooltips
                     state.Data,
                     state.OriginalDescription);
             }
-        }
-
-        private static string CorrectBigGuyDescription(string description)
-        {
-            if (string.IsNullOrEmpty(description))
-                return null;
-
-            const string stale = "+1";
-            var first = description.IndexOf(
-                stale,
-                StringComparison.Ordinal);
-            if (first < 0)
-                return null;
-
-            var second = description.IndexOf(
-                stale,
-                first + stale.Length,
-                StringComparison.Ordinal);
-            if (second < 0)
-                return null;
-
-            var third = description.IndexOf(
-                stale,
-                second + stale.Length,
-                StringComparison.Ordinal);
-            if (third >= 0)
-                return null;
-
-            return description.Replace(stale, "+2");
         }
 
         private static string FormatNeeds(IList items)
