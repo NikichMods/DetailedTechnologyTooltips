@@ -523,9 +523,6 @@ namespace DetailedTechnologyTooltips
                     case "p_butcher":
                         key = Localization.Butcher;
                         break;
-                    case "p_cultist":
-                        key = Localization.Cultist;
-                        break;
                     case "p_blacksmith":
                         key = Localization.Blacksmith;
                         break;
@@ -583,7 +580,6 @@ namespace DetailedTechnologyTooltips
                 case "p_persistence":
                 case "p_butcher":
                 case "p_doctor":
-                case "p_cultist":
                 case "p_blacksmith":
                     return true;
                 default:
