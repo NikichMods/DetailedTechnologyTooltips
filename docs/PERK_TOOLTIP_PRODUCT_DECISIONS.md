@@ -72,15 +72,15 @@ Final wording still open.
 
 ### Doctor / Доктор
 
-Do not rely only on the term "important organs".
+Accepted presentation:
+- identify brain / heart / intestine directly rather than relying only on the hidden category "important organs";
+- show both native preparation-table contexts;
+- semantic wording: `Chance of error when extracting the brain, heart, and intestine: 50% -> 25% at Preparation Place I; 25% -> 0% at Preparation Place II.`
+- use the native localized station names in production rather than hard-coded translated station names.
 
-The wording should identify brain / heart / intestine directly and distinguish the two preparation-table contexts using native localized station names.
-
-Verified baseline mechanic, ignoring Clean Cut:
+Verified mechanic, isolating the Perk from the independent Clean Cut buff:
 - Preparation Place I: 50% -> 25%;
 - Preparation Place II: 25% -> 0%.
-
-Final wording still open.
 
 ### Cultist / Сектант
 
@@ -118,3 +118,16 @@ Accepted product direction:
 - this is a deliberate exception to the normal "native game help" voice because a non-meta formulation would mislead the player.
 
 Production behavior remains unchanged until this exact presentation change receives its own READY gate.
+
+
+## Remaining product / research tails
+
+The current perk-mechanics investigation is substantially closed. Remaining items before a coherent next production candidate:
+
+- Butcher: mechanic is closed (25% -> 0% for the explicitly enumerated affected parts), but the final wording after removing the misleading "base chance" qualifier still needs one explicit product acceptance.
+- Blacksmith: mechanics are closed (+3 nails, +1 simple iron part, +1 complex iron part, +2 steel parts, +★0.1 steel-chisel quality), but no final product decision has been made on whether DTT should augment the authored description.
+- Super mushroom: the practical unlock action is proved (enables the red-mushroom source), but the vanilla "special dish" flavor claim still needs a narrow follow-up to determine whether it corresponds to any real current 1.407 gameplay path or is stale/misleading text.
+- Grape / hops growth unlocks: the growth/planting relationship is proved and the generic `Create` wording is accepted as inadequate; the exact final presentation still needs the location/access question settled, especially whether mentioning the vineyard area would merely restate a native station name or expose story-gated access context.
+- Localization: accepted English semantics must still be rendered naturally across all 11 supported locales before release; this is implementation/copy work, not a new mechanics investigation.
+
+Everything else selected in this document has enough mechanics evidence for a production gate; no broad new Perk audit is needed.
