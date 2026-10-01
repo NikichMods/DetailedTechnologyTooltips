@@ -18,6 +18,18 @@ namespace DetailedTechnologyTooltips
         public string LocationRow;
         public string CraftDescriptionRow;
         public string SparseDescriptionRow;
+        public string[] ExtraCraftRows;
+        public string OverrideName;
+        public bool CorrectBigGuyStats;
+    }
+
+    internal sealed class TechTooltipPresentationOverride
+    {
+        public object Data;
+        public string OriginalName;
+        public string OriginalDescription;
+        public bool NameChanged;
+        public bool DescriptionChanged;
     }
 
     internal static class GameApi
@@ -36,6 +48,9 @@ namespace DetailedTechnologyTooltips
 
         private static FieldInfo _techUnlockTypeField;
         private static FieldInfo _techUnlockIdField;
+        private static MethodInfo _techUnlockGetData;
+        private static FieldInfo _techUnlockDataNameField;
+        private static FieldInfo _techUnlockDataDescriptionField;
         private static object _craftUnlockEnumValue;
         private static object _workUnlockEnumValue;
         private static object _perkUnlockEnumValue;
@@ -45,6 +60,7 @@ namespace DetailedTechnologyTooltips
         private static MethodInfo _getObjectCraftById;
         private static MethodInfo _getItemDefinitionById;
         private static MethodInfo _getItemsOfBaseName;
+        private static MethodInfo _craftGetNameNonLocalized;
 
         private static FieldInfo _needsField;
         private static FieldInfo _craftInField;
@@ -104,6 +120,22 @@ namespace DetailedTechnologyTooltips
 
             _techUnlockTypeField = RequireField(techUnlockType, "type");
             _techUnlockIdField = RequireField(techUnlockType, "id");
+            _techUnlockGetData = RequireMethod(
+                techUnlockType,
+                "GetData",
+                AllInstance,
+                Type.EmptyTypes);
+
+            var techUnlockDataType = techUnlockType.GetNestedType(
+                "TechUnlockData",
+                BindingFlags.Public | BindingFlags.NonPublic);
+            if (techUnlockDataType == null)
+                throw new TypeLoadException("TechUnlock.TechUnlockData was not found.");
+
+            _techUnlockDataNameField = RequireField(techUnlockDataType, "name");
+            _techUnlockDataDescriptionField =
+                RequireField(techUnlockDataType, "description");
+
             _craftUnlockEnumValue = Enum.Parse(
                 _techUnlockTypeField.FieldType,
                 "Craft",
@@ -145,6 +177,11 @@ namespace DetailedTechnologyTooltips
                 "GetItemsOfBaseName",
                 AllInstance,
                 new[] { typeof(string) });
+            _craftGetNameNonLocalized = RequireMethod(
+                craftDefinitionType,
+                "GetNameNonLocalized",
+                AllInstance,
+                Type.EmptyTypes);
 
             _needsField = RequireField(craftDefinitionType, "needs");
             _craftInField = RequireField(craftDefinitionType, "craft_in");
@@ -242,16 +279,19 @@ namespace DetailedTechnologyTooltips
             if (Equals(unlockType, _workUnlockEnumValue)
                 || Equals(unlockType, _perkUnlockEnumValue))
             {
-                var sparseDescription = BuildSparseUnlockDescription(
-                    id,
-                    Equals(unlockType, _workUnlockEnumValue));
+                var isWork = Equals(unlockType, _workUnlockEnumValue);
+                var description = BuildUnlockDescription(id, isWork);
+                var correctBigGuy =
+                    !isWork
+                    && string.Equals(id, "p_big_guy", StringComparison.Ordinal);
 
-                if (string.IsNullOrEmpty(sparseDescription))
+                if (string.IsNullOrEmpty(description) && !correctBigGuy)
                     return null;
 
                 return new TechTooltipContext
                 {
-                    SparseDescriptionRow = sparseDescription
+                    SparseDescriptionRow = description,
+                    CorrectBigGuyStats = correctBigGuy
                 };
             }
 
@@ -276,13 +316,17 @@ namespace DetailedTechnologyTooltips
             if (craft == null)
                 return null;
 
+            var growthContext = BuildGrowthCraftContext(id, craft);
+            if (growthContext != null)
+                return growthContext;
+
             return new TechTooltipContext
             {
                 Craft = craft,
                 IsBlueprint = isBlueprint,
                 IngredientsRow = BuildIngredientsRow(craft),
                 LocationRow = BuildLocationRow(craft, isBlueprint),
-                CraftDescriptionRow = BuildSparseCraftDescription(id)
+                CraftDescriptionRow = BuildCraftDescription(id)
             };
         }
 
@@ -321,6 +365,15 @@ namespace DetailedTechnologyTooltips
 
             if (!string.IsNullOrEmpty(context.LocationRow))
                 AddTinyCenteredText(tooltip, context.LocationRow, false);
+
+            if (context.ExtraCraftRows != null)
+            {
+                foreach (var row in context.ExtraCraftRows)
+                {
+                    if (!string.IsNullOrEmpty(row))
+                        AddTinyCenteredText(tooltip, row, false);
+                }
+            }
         }
 
         private static string BuildIngredientsRow(object craft)
@@ -354,17 +407,39 @@ namespace DetailedTechnologyTooltips
             return prefix + locations;
         }
 
-        private static string BuildSparseCraftDescription(string id)
+        private static string BuildCraftDescription(string id)
         {
-            if (!string.Equals(id, "fake_global_craft", StringComparison.Ordinal))
-                return null;
+            var language = GetCurrentLanguage();
+            string key = null;
 
-            return Localization.Get(
-                Localization.RemoteControl,
-                GetCurrentLanguage());
+            switch (id)
+            {
+                case "fake_global_craft":
+                    key = Localization.RemoteControl;
+                    break;
+                case "peat_from_waste":
+                    key = Localization.PeatEffect;
+                    break;
+                case "sack_clock_silver":
+                    key = Localization.BoostFertilizerI;
+                    break;
+                case "sack_clock_gold":
+                    key = Localization.BoostFertilizerII;
+                    break;
+                case "sack_star_silver":
+                    key = Localization.QualityFertilizerI;
+                    break;
+                case "sack_star_gold":
+                    key = Localization.QualityFertilizerII;
+                    break;
+            }
+
+            return string.IsNullOrEmpty(key)
+                ? null
+                : Localization.Get(key, language);
         }
 
-        private static string BuildSparseUnlockDescription(
+        private static string BuildUnlockDescription(
             string id,
             bool isWork)
         {
@@ -380,6 +455,9 @@ namespace DetailedTechnologyTooltips
                         break;
                     case "t_marble":
                         key = Localization.Marble;
+                        break;
+                    case "t_mushroom2":
+                        key = Localization.SuperMushroom;
                         break;
                 }
             }
@@ -418,6 +496,42 @@ namespace DetailedTechnologyTooltips
                         key = Localization.PyriteNote;
                         break;
 
+                    case "p_jevelery":
+                        key = Localization.Jeweler;
+                        break;
+                    case "p_wine_master":
+                        key = Localization.WineMaster;
+                        break;
+                    case "p_writer":
+                        key = Localization.Writer;
+                        break;
+                    case "p_good_writer":
+                        key = Localization.Playwright;
+                        break;
+                    case "p_industriousness":
+                        key = Localization.Industriousness;
+                        break;
+                    case "p_engineer":
+                        key = Localization.Engineer;
+                        break;
+                    case "p_sword_master":
+                        key = Localization.SwordMaster;
+                        break;
+                    case "p_persistence":
+                        key = Localization.Persistence;
+                        break;
+                    case "p_butcher":
+                        key = Localization.Butcher;
+                        break;
+                    case "p_cultist":
+                        key = Localization.Cultist;
+                        break;
+                    case "p_blacksmith":
+                        key = Localization.Blacksmith;
+                        break;
+                    case "p_doctor":
+                        return BuildDoctorDescription(language);
+
                     // Intentionally excluded:
                     // p_t_old_books — no proved consumer in the accepted audit.
                 }
@@ -426,6 +540,243 @@ namespace DetailedTechnologyTooltips
             return string.IsNullOrEmpty(key)
                 ? null
                 : Localization.Get(key, language);
+        }
+
+        private static string BuildDoctorDescription(string language)
+        {
+            var table1 = LocalizeWithFallback(
+                "mf_preparation_1",
+                Localization.PreparationPlace);
+            var table2 = LocalizeWithFallback(
+                "mf_preparation_2",
+                Localization.PreparationPlaceII);
+
+            if (string.IsNullOrEmpty(table1) || string.IsNullOrEmpty(table2))
+                return null;
+
+            return Localization.Format(
+                Localization.Doctor,
+                language,
+                table1,
+                table2);
+        }
+
+        private static TechTooltipContext BuildGrowthCraftContext(
+            string id,
+            object craft)
+        {
+            string seedId;
+            string cropId;
+            string vendorNativeId;
+            string vendorFallbackKey;
+
+            if (string.Equals(
+                id,
+                "garden_grapes_growing",
+                StringComparison.Ordinal))
+            {
+                seedId = "grapes_seed:1";
+                cropId = "fruit:grapes_crop:1";
+                vendorNativeId = "npc_merchant";
+                vendorFallbackKey = Localization.Merchant;
+            }
+            else if (string.Equals(
+                id,
+                "garden_hop_growing",
+                StringComparison.Ordinal))
+            {
+                seedId = "hop_seed:1";
+                cropId = "hop_crop:1";
+                vendorNativeId = "npc_miller";
+                vendorFallbackKey = Localization.Miller;
+            }
+            else
+            {
+                return null;
+            }
+
+            var language = GetCurrentLanguage();
+            var cropName = GetItemDisplayNameById(cropId);
+            var seedName = GetItemDisplayNameById(seedId);
+            var growingPrefix =
+                Localization.Get(Localization.GrowingPrefix, language);
+            var grownAtPrefix =
+                Localization.Get(Localization.GrownAtPrefix, language);
+            var seedsPrefix =
+                Localization.Get(Localization.SeedsPrefix, language);
+            var vineyard =
+                Localization.Get(Localization.Vineyard, language);
+            var trellis = LocalizeWithFallback(
+                "vineyard_grapes_stick",
+                Localization.VineTrellis);
+            var vendor = LocalizeWithFallback(
+                vendorNativeId,
+                vendorFallbackKey);
+
+            if (string.IsNullOrEmpty(cropName)
+                || string.IsNullOrEmpty(seedName)
+                || string.IsNullOrEmpty(growingPrefix)
+                || string.IsNullOrEmpty(grownAtPrefix)
+                || string.IsNullOrEmpty(seedsPrefix)
+                || string.IsNullOrEmpty(vineyard)
+                || string.IsNullOrEmpty(trellis)
+                || string.IsNullOrEmpty(vendor))
+            {
+                return null;
+            }
+
+            return new TechTooltipContext
+            {
+                Craft = craft,
+                IsBlueprint = false,
+                OverrideName = growingPrefix + cropName,
+                IngredientsRow =
+                    GetRequirementsPrefix() + seedName + " (x4)",
+                LocationRow =
+                    grownAtPrefix + vineyard + " — " + trellis,
+                ExtraCraftRows = new[]
+                {
+                    seedsPrefix + vendor
+                }
+            };
+        }
+
+        private static string GetItemDisplayNameById(string id)
+        {
+            var balance = _gameBalanceMeProperty.GetValue(null, null);
+            if (balance == null)
+                return null;
+
+            var definition =
+                _getItemDefinitionById.Invoke(
+                    balance,
+                    new object[] { id });
+            if (definition == null)
+                return null;
+
+            var name =
+                _itemDefinitionGetItemName.Invoke(
+                    definition,
+                    new object[] { true }) as string;
+
+            return string.IsNullOrEmpty(name) ? null : name;
+        }
+
+        private static string LocalizeWithFallback(
+            string nativeId,
+            string fallbackKey)
+        {
+            var native = Localize(nativeId);
+            if (!string.IsNullOrEmpty(native)
+                && !string.Equals(native, nativeId, StringComparison.Ordinal))
+            {
+                return native;
+            }
+
+            return Localization.Get(
+                fallbackKey,
+                GetCurrentLanguage());
+        }
+
+        internal static TechTooltipPresentationOverride ApplyPresentationOverride(
+            object techUnlock,
+            TechTooltipContext context)
+        {
+            if (techUnlock == null || context == null)
+                return null;
+
+            if (string.IsNullOrEmpty(context.OverrideName)
+                && !context.CorrectBigGuyStats)
+            {
+                return null;
+            }
+
+            var data = _techUnlockGetData.Invoke(techUnlock, null);
+            if (data == null)
+                return null;
+
+            var state = new TechTooltipPresentationOverride
+            {
+                Data = data
+            };
+
+            if (!string.IsNullOrEmpty(context.OverrideName))
+            {
+                state.OriginalName =
+                    _techUnlockDataNameField.GetValue(data) as string;
+                _techUnlockDataNameField.SetValue(
+                    data,
+                    context.OverrideName);
+                state.NameChanged = true;
+            }
+
+            if (context.CorrectBigGuyStats)
+            {
+                var original =
+                    _techUnlockDataDescriptionField.GetValue(data) as string;
+                var corrected = CorrectBigGuyDescription(original);
+
+                if (!string.IsNullOrEmpty(corrected))
+                {
+                    state.OriginalDescription = original;
+                    _techUnlockDataDescriptionField.SetValue(data, corrected);
+                    state.DescriptionChanged = true;
+                }
+            }
+
+            return state.NameChanged || state.DescriptionChanged
+                ? state
+                : null;
+        }
+
+        internal static void RestorePresentationOverride(
+            TechTooltipPresentationOverride state)
+        {
+            if (state == null || state.Data == null)
+                return;
+
+            if (state.NameChanged)
+            {
+                _techUnlockDataNameField.SetValue(
+                    state.Data,
+                    state.OriginalName);
+            }
+
+            if (state.DescriptionChanged)
+            {
+                _techUnlockDataDescriptionField.SetValue(
+                    state.Data,
+                    state.OriginalDescription);
+            }
+        }
+
+        private static string CorrectBigGuyDescription(string description)
+        {
+            if (string.IsNullOrEmpty(description))
+                return null;
+
+            const string stale = "+1";
+            var first = description.IndexOf(
+                stale,
+                StringComparison.Ordinal);
+            if (first < 0)
+                return null;
+
+            var second = description.IndexOf(
+                stale,
+                first + stale.Length,
+                StringComparison.Ordinal);
+            if (second < 0)
+                return null;
+
+            var third = description.IndexOf(
+                stale,
+                second + stale.Length,
+                StringComparison.Ordinal);
+            if (third >= 0)
+                return null;
+
+            return description.Replace(stale, "+2");
         }
 
         private static string FormatNeeds(IList items)
