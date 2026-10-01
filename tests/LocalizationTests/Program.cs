@@ -60,11 +60,16 @@ internal static class Program
                 "TABLE_TWO");
 
             if (string.IsNullOrEmpty(formatted)
-                || formatted.IndexOf("TABLE_ONE", StringComparison.Ordinal) < 0
-                || formatted.IndexOf("TABLE_TWO", StringComparison.Ordinal) < 0
                 || formatted.IndexOf("{0}", StringComparison.Ordinal) >= 0
                 || formatted.IndexOf("{1}", StringComparison.Ordinal) >= 0
-                || formatted.IndexOf("→", StringComparison.Ordinal) >= 0)
+                || formatted.IndexOf("→", StringComparison.Ordinal) >= 0
+                || (!string.Equals(language, "ru", StringComparison.Ordinal)
+                    && (formatted.IndexOf(
+                            "TABLE_ONE",
+                            StringComparison.Ordinal) < 0
+                        || formatted.IndexOf(
+                            "TABLE_TWO",
+                            StringComparison.Ordinal) < 0)))
             {
                 Console.Error.WriteLine(
                     "Doctor localization formatting failed: language=" + language);
@@ -125,10 +130,10 @@ internal static class Program
         var russianDoctor = Localization.Format(
             Localization.Doctor,
             "ru",
-            "Препарационный стол I",
-            "Препарационный стол II");
+            "IGNORED_TABLE_ONE",
+            "IGNORED_TABLE_TWO");
         if (russianDoctor !=
-            "На Препарационный стол I шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25%. На Препарационный стол II — с 25% до 0%.")
+            "На препарационном столе I шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25%. На препарационном столе II — с 25% до 0%.")
         {
             Console.Error.WriteLine(
                 "Russian Doctor wording regression.");
