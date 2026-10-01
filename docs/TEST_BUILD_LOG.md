@@ -666,3 +666,85 @@ Accepted final copy direction for the next candidate:
 7. Keep the accepted one-blank-line separation between vanilla authored descriptions and DTT-added clarification text.
 
 No remaining product wording decision is intentionally open at this checkpoint. The next chat should recover repository state first, then implement/build a fresh candidate (expected 1.1.2) from these accepted decisions. Do not mutate or relabel the handed 1.1.1 artifact.
+
+
+## 1.1.2 — final copy-polish candidate
+
+### Candidate identity
+
+- Version: `1.1.2`
+- Development branch: `dev/1.1.2`
+- Exact build source: `284187c4af4c8a5d0d0125d19d0ad9eedf21e544`
+- GitHub Actions run: `36848879751`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 37 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.2-284187c4af4c8a5d0d0125d19d0ad9eedf21e544`
+- Artifact ID: `11154128646`
+- Artifact ZIP digest: `sha256:1ac9f7267bd955e4edb8c0eba68a375a46a128e8f882491c03ff20c5b018a5fe`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.1.2.dll`
+- DLL SHA-256: `aece8265213910762f26bff1a8ad0a15edf75dd54a11c43abc820702f074cfc9`
+- DLL size: 80,384 bytes
+- Binary/plugin metadata: `1.1.2`
+- Assembly informational version: `1.1.2+284187c4af4c8a5d0d0125d19d0ad9eedf21e544`
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- computed DLL SHA-256 matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded strings contain the 1.1.2 readiness marker, exact semantic copy changes and exact informational source identity.
+
+### Delta from 1.1.1
+
+No gameplay, progression, recipe/build data, unlock state, saves, hidden unlocks, viewport behavior, CJK separator handling or quantity-token handling changed.
+
+- Butcher and Doctor no longer use the unsupported `→` glyph; all 11 DTT locales use ordinary natural-language before/after wording.
+- Doctor still resolves the two preparation-table names from native game localization, with the existing DTT fallback only if the native name is unavailable.
+- Quality fertilizer I/II now state both effects separately: increased crop/seed quantity, plus exactly 1/2 crop(s) and 1/2 seed(s) one quality tier higher.
+- Pyrite still reuses the active native `p_t_pyrite` display name, but no quotation marks are added around it.
+- Cultist is fully vanilla again: it has no DTT localization key, no DTT description branch and no DTT blank-line separation branch.
+- The accepted one-blank-line separation remains for the other authored Work/Perk entries that receive a DTT clarification.
+
+### Automated evidence
+
+The final candidate run compiled the exact build source successfully with 0 compiler warnings and 0 errors.
+
+Localization/formatting validation passed for all 11 supported game languages and additionally asserts:
+- Doctor native-name placeholders resolve and no arrow glyph remains;
+- Butcher contains no arrow glyph;
+- Cultist has no DTT-owned localization entry;
+- Pyrite native-name templates contain no quotation marks;
+- the exact accepted Russian Quality I/II wording is present;
+- previously accepted list-separator, CJK break-opportunity, quantity-token repair and Big Guy fail-closed tests remain passing.
+
+### Focused runtime acceptance requested
+
+Only the changed 1.1.2 copy/presentation needs rechecking. Previously accepted 1.0.2/1.1.x mechanics do not need exhaustive repetition.
+
+1. **Russian Butcher + Doctor**
+   - one blank line still separates vanilla text from the DTT clarification;
+   - there is no missing-glyph gap where the rejected arrow used to be;
+   - the natural-language decrease statements are easy to read;
+   - Doctor shows the active native preparation-table names.
+
+2. **Russian Quality fertilizer I**
+   - confirm the accepted two-sentence wording reads naturally in the real tooltip:
+     `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 1 единицу урожая и 1 семя на одну ступень качества выше.`
+   - Quality II uses the same pattern with 2 and only needs a separate check if convenient.
+
+3. **Russian Pyrite**
+   - visible unlock name and note use the same native mineral term;
+   - there are no quotation marks around the mineral name;
+   - expected current Russian shape: `Примечание: Серный колчедан не выпадает при добыче угля.`
+
+4. **Cultist**
+   - no runtime test is requested. The user does not have this unlock and spoiler-oriented test tooling is explicitly unwanted; source and automated tests prove that DTT no longer owns any Cultist clarification path.
+
+5. **Support log**
+   - expected: `DTT_READY version=1.1.2 contract=technology-tooltip host_mvid=6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+   - no DTT initialization/runtime/viewport/wrap-repair disable marker.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+The numbered 1.1.2 bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit runtime acceptance and promotion of the semantic expansion.
