@@ -298,6 +298,6 @@ Three visible-blueprint outputs also have same-output builders outside the ownin
 - corpse pallet: `souls_builddesk`, separately `needs_unlock=true`;
 - porter station: `vineyard_builddesk`, separately `needs_unlock=true`.
 
-Therefore global same-`out_obj` aggregation without a native visibility check is not safe: it can expose separately gated progression. The accepted safe presentation rule is:
-1. include same-Technology same-output/build-type siblings because the Technology itself unlocks them;
-2. include outside-Technology same-output/build-type variants only when the current save's native `GameSave.IsCraftVisible` returns true.
+Therefore global same-`out_obj` aggregation has a real spoiler/gating implication: it can name builders belonging to separately gated progression.
+
+**Product decision update (1.1.6):** after runtime review, the user explicitly accepted that limited disclosure for build-location names. DTT now intentionally lists every native builder for the same `out_obj` / `build_type` immediately, independent of current save state. The hidden craft/Technology entries themselves remain undisclosed as unlock rows, and no story/progression ownership is inferred from the builder name.
