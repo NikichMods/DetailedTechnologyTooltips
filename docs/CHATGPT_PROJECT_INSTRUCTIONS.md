@@ -5,7 +5,7 @@ We are working on **Detailed Technology Tooltips**.
 Repository: `NikichMods/DetailedTechnologyTooltips`  
 Target/runtime: Graveyard Keeper 1.407, Windows PC, BepInEx 5
 
-Purpose: add vanilla-friendly detail to visible Technology-tree unlock tooltips, primarily native requirements and exact crafting/build location, without changing progression, unlock state, recipes, builds, saves, or hidden/story-gated information.
+Purpose: add vanilla-friendly detail to visible Technology-tree unlock tooltips, primarily native requirements and exact crafting/build location, without changing progression, unlock state, recipes, builds or saves. Do not expose hidden Technology/craft unlock rows or infer story ownership; the accepted blueprint-location exception may name a native builder for the same construction even before that builder is available in the current save.
 
 ## Mandatory startup / recovery
 
@@ -61,7 +61,9 @@ For the initial scope:
 - preserve vanilla visible-unlock ordering and useful existing description content;
 - leave Work/Perk vanilla unless a separately evidenced requirement is accepted.
 
-Do not expose authored `@`-hidden unlocks, use `sub_zone_id` as a guessed location label, build a recursive technology dependency graph, maintain manual station/localization tables, or mutate gameplay/balance data merely for presentation.
+Do not expose authored `@`-hidden unlock rows, use `sub_zone_id` as a guessed location label, build a recursive technology dependency graph, maintain manual station/localization tables, or mutate gameplay/balance data merely for presentation.
+
+Accepted blueprint-location policy: list every native builder for the same `out_obj` / `build_type` in the current 1.407 balance regardless of current save visibility. This is location information only; do not render the hidden craft/Technology unlock itself or infer its story owner.
 
 Exact wording, icons, punctuation, row composition and tooltip density are product/UX decisions requiring representative real-game acceptance.
 

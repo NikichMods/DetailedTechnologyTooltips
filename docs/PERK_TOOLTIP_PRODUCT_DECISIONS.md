@@ -2,7 +2,7 @@
 
 Date: 2026-10-01
 Target: Graveyard Keeper 1.407
-Status: product-scope checkpoint; no production implementation approved by this document alone.
+Status: accepted product-decision ledger. Selected decisions were separately gated, implemented and accepted in stable 1.0.2, and remain current in stable 1.1.6. Exact shipped copy is canonical in `docs/TOOLTIP_COPY_CONTRACT.md`.
 
 Shared mechanics source:
 - `NikichMods/GraveyardKeeperResearch/docs/PERK_MECHANICS.md`
@@ -117,23 +117,20 @@ Accepted product direction:
 - accepted final semantic: format the active game's native `p_t_pyrite` name into a plain unquoted technical note that describes the Technology itself as non-functional in the current game version, e.g. Russian `Примечание: в текущей версии игры эта технология не позволяет получать Серный колчедан.`
 - this is a deliberate exception to the normal "native game help" voice because a non-meta formulation would mislead the player.
 
-Production behavior remains unchanged until this exact presentation change receives its own READY gate.
+This presentation was separately gated, implemented and accepted in stable 1.0.2 and remains current in stable 1.1.6.
 
 
-## Remaining product / research tails
+## Implemented follow-up status
 
-The current perk-mechanics investigation is substantially closed. Remaining items before a coherent next production candidate:
+The former implementation/research tail is closed for the current release line:
 
-- Butcher: mechanic and wording are closed; use a natural-language decrease statement rather than a special arrow glyph.
-- Blacksmith: accepted for enrichment. Preserve the vanilla flavor sentence and append a concise general summary rather than an exhaustive per-item list: `Crafting nails and metal parts produces more items. Steel chisel quality: +★0.1.` This intentionally groups +3 nails / +1 simple iron part / +1 complex iron part / +2 steel parts under one player-facing statement while retaining the exact steel-chisel quality number.
-- Super mushroom: follow-up is closed. A real later Infusion recipe uses red mushrooms, and raw red mushrooms are harmful, so the vanilla flavor is not fabricated; however, that later recipe is separately unlock-gated and is not granted by this Technology. Accepted presentation: preserve vanilla flavor and append only `Unlocks gathering red mushrooms.`
-- Grape / hops growth unlocks: accepted four-line informational presentation. Replace generic `Create` semantics with growth semantics, show the 4-seed requirement, identify the **Vineyard / vine trellis** as the growing location without explaining story access, and identify the primary seed vendor. Accepted Russian-oriented structure:
-  - Grapes: `Выращивание: Виноград` / `Нужно: Семена винограда (x4)` / `Выращивается: Виноградник — Опора под лозу` / `Семена: Торговец`.
-  - Hops: `Выращивание: Хмель` / `Нужно: Семена хмеля (x4)` / `Выращивается: Виноградник — Опора под лозу` / `Семена: Мельник`.
-  - Do not add trade-tier detail here; the vendor line answers the first-contact acquisition question, while quality progression belongs to fertilizer mechanics.
-- Localization: accepted semantics must still be rendered naturally across all 11 supported locales before release; this is implementation/copy work, not an open product decision.
+- Butcher uses the accepted natural-language decrease statement.
+- Blacksmith preserves vanilla flavor and appends the accepted concise output/quality summary.
+- Super mushroom preserves vanilla flavor and appends only the red-mushroom gathering statement.
+- Grape / hops growth unlocks use the accepted four-line growth presentation with four seeds, Vineyard / vine trellis, and the primary seed vendor; trade-tier/story-access detail remains excluded.
+- DTT-owned copy is present for all 11 current Graveyard Keeper 1.407 locales and is mechanically validated in CI.
 
-Everything else selected in this document has enough mechanics evidence for a production gate; no broad new Perk audit is needed.
+There is no open production item implied by this ledger. Any future wording/mechanics expansion is a new change and requires its own evidence/product gate.
 
 
 ## Fertilizer tooltip copy

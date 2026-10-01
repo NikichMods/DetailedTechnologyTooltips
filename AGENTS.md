@@ -24,11 +24,12 @@ This file contains only project-specific additions, constraints, verified facts,
 
 This is a vanilla-friendly informational UI mod.
 
-Initial product scope:
+Product scope / accepted evolution:
 - enrich authored-visible Technology **blueprint** unlocks with native build requirements and the owning build desk/menu;
 - enrich authored-visible Technology **ordinary recipe** unlocks with native ingredient requirements and the exact recipe station(s);
 - preserve useful vanilla title/description information;
-- leave Work and Perk unlock behavior vanilla in the initial version unless a separate proved need is accepted.
+- keep Work and Perk vanilla by default, with only separately evidenced and accepted enrichments/corrections;
+- for blueprint location rows, list every native builder for the same `out_obj` / `build_type` in the current 1.407 balance, even when a named builder is not yet available in the current save. This is a location-name-only exception: do not render hidden Technology/craft unlock rows or infer their story owner.
 
 Out of scope by default:
 - technology prices or progression changes;
@@ -75,7 +76,7 @@ Accepted shared research already establishes:
 
 Do not generalize these facts beyond their recorded applicability limits.
 
-Before the first production-source mutation, the concrete tooltip-composition change still needs its own reviewable DevRules READY/BLOCKED gate. Bootstrap/research completion is not permission to mutate production behavior speculatively.
+The initial production implementation is already accepted. For every future materially independent production behavior change, create the normal reviewable DevRules READY/BLOCKED gate before its first source mutation. Accepted existing behavior is not blanket permission to broaden scope.
 
 ## Architecture / runtime constraints
 
@@ -90,7 +91,7 @@ Avoid:
 - mutating balance definitions merely for presentation;
 - parallel recipe/build databases;
 - parsing localized display strings to recover semantic IDs already present natively;
-- exposing hidden/story-gated information not already visible in the vanilla Technology node.
+- exposing hidden Technology/craft unlock rows or inferred story ownership. Accepted exception: a blueprint location row may name any native builder proved for the same `out_obj` / `build_type`, even before that builder is available in the current save.
 
 For a blueprint, `builder_ids` answers build-menu ownership; `sub_zone_id` is a placement restriction and is not a substitute player-facing area label.
 

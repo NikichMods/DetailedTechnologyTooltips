@@ -20,6 +20,7 @@ Pinned static host source used by the shared research:
 Full-balance audit inputs supplied from Graveyard Keeper 1.407:
 - `resources.assets` SHA-256 `215c7981901a4b72d5db717666ba47ad3cc032527c95f58dc39d8af1293a69ca`
 - `Assembly-CSharp.dll` SHA-256 `e72e4270e4b88dd0a87ca23c9cf1750aec4c4a0fedb40b6d2dae7902fc9c7fd8`
+- accepted 1.407 runtime host module MVID: `6f50b8e7-156b-49ac-bbe8-7505894b2364`
 
 The raw game files and full extracted balance payload are research inputs only and are not repository content.
 
@@ -159,7 +160,7 @@ Two sparse Perks are intentionally excluded:
 - `p_t_old_books`: exact native consumer is unresolved;
 - `p_t_pyrite`: runtime data is internally inconsistent — Perk `output_res` writes `p_t_pirit=1` while the coal-drop expression reads `Ppar("p_t_pyrite")`. The presentation mod must not claim that this Technology enables pyrite drops and must not fix the gameplay data.
 
-Product implication: preserve authored Work/Perk descriptions; add a short action/source explanation only for the explicitly proved sparse IDs above. Do not expose exact chance percentages, future uses, guessed locations, hidden `@` unlocks, or the two unresolved/mismatched cases.
+Historical implication from the initial sparse-unlock audit: preserve authored Work/Perk descriptions and enrich only proved cases. Later mechanics research and explicit product decisions separately broadened this for selected authored Work/Perk entries. The current accepted presentation contract is `docs/TOOLTIP_COPY_CONTRACT.md`. `p_t_old_books` remains excluded; the Pyrite mismatch is handled only by the accepted technical note and does not change gameplay.
 
 Canonical shared evidence: `NikichMods/GraveyardKeeperResearch/docs/TECH_TREE_INFORMATION_RESEARCH.md`, runtime diagnostic source `64a3751a67e3a1950c2ccfb9970e7991fb304daf`.
 
@@ -174,20 +175,13 @@ Unless separately approved and evidenced, the mod must not change:
 - authored invisible unlocks;
 - unrelated tooltip surfaces.
 
-## Initial implementation gate
+## Production status
 
-Research feasibility is **SUPPORTED FOR PRODUCTION BOOTSTRAP**, but the first production behavior has not yet been mutated.
+The initial tooltip-composition gate is closed. The production implementation was accepted in stable 1.0.2 and the current accepted behavior is retained in stable 1.1.6 for Graveyard Keeper 1.407.
 
-Before production C# is added for tooltip enrichment, explicitly choose the least-complex concrete composition strategy and record a DevRules evidence gate for that behavior:
-- observable property;
-- canonical owner;
-- final writer/consumer;
-- blast radius;
-- preserved invariants;
-- mechanical/runtime acceptance;
-- **READY** or **BLOCKED**.
+Current production behavior is documented by `docs/TOOLTIP_COPY_CONTRACT.md`; exact candidate/release identity and runtime acceptance evidence remain in `docs/TEST_BUILD_LOG.md` and the corresponding GitHub Release.
 
-The next unknown is primarily product/UI composition and real-game density, not whether the native data exists.
+Any future materially independent behavior change still requires its own DevRules READY/BLOCKED production evidence gate before source mutation.
 
 ## Multi-quality/group requirement presentation
 
@@ -240,13 +234,13 @@ Representative real-game Technology screenshots and current 1.407 data expose tw
 
 `Grape farming` visibly unlocks `garden_grapes_growing` and `garden_hop_growing`. These are internal automatic growth crafts, while the actual player actions are separate planting recipes on `vineyard_grapes_stick` that consume four corresponding seeds and chain into those growth crafts.
 
-Product implication: the current generic `Create: Grapes / Hops` presentation is semantically weak. A growth-oriented label, and potentially the planting requirements/location derived through the native `craft_after_finish` relationship, is a candidate DTT correction. No production behavior is approved yet.
+Accepted product status: the generic `Create: Grapes / Hops` presentation was replaced by the growth-oriented four-line presentation defined in `docs/TOOLTIP_COPY_CONTRACT.md`. The implementation uses native item/station/NPC identities where available and does not expose story-access instructions.
 
 ### Super mushroom Work unlock
 
 `The master gathering -> t_mushroom2` already has an authored flavor description, but the accepted audit proves its concrete current action is gating the `mushroom_2` source, which drops `shr_agaric` ("Красный гриб" in the inspected Russian runtime).
 
-Product implication: this is evidence that an authored Work description can still omit the practical meaning of the unlock. Augmenting authored Work descriptions would broaden the current DTT policy beyond sparse-only Work enrichment and therefore requires its own product decision/evidence gate. Future-use information such as study/alchemy should not be added merely because it is discoverable in the data.
+Accepted product status: Super mushroom was separately approved for enrichment. DTT preserves the authored flavor description and appends only the accepted red-mushroom gathering statement. Future-use information such as study/alchemy remains intentionally excluded.
 
 
 ## Authored Perk numeric-mechanics research
@@ -273,8 +267,20 @@ Product-relevant conclusions:
 
 These findings invalidate the previous shortcut “authored Perk description exists, therefore it is sufficiently informative.” Some descriptions are directionally adequate, some omit important numerical mechanics, and a few are stale or materially overbroad.
 
-No production behavior is approved by this section. Any authored-description augmentation/replacement is a separate product decision and requires its own READY/BLOCKED production gate before source mutation. The stable 1.0.2 behavior remains unchanged.
+Production status: the selected authored-description enrichments/corrections were separately gated, accepted and shipped in stable 1.0.2, and are retained in stable 1.1.6. Exact current wording and explicit non-changes are canonical in `docs/TOOLTIP_COPY_CONTRACT.md` and `docs/PERK_TOOLTIP_PRODUCT_DECISIONS.md`. New additions still require their own READY/BLOCKED gate.
 
+
+
+## Better Save Soul Rebalance local Gratitude compatibility
+
+Accepted compatibility conclusion for Better Save Soul Rebalance 1.1.1:
+
+- DTT correctly observes BSSR physical recipe mutations because it reads the live `CraftDefinition.needs`; added physical ingredients such as `sin_shard` therefore appear automatically.
+- BSSR's local Soul Gratitude surcharge is intentionally owned outside `CraftDefinition.needs` and is injected only at the normal Craft UI renderer boundary.
+- `gratitude_points_craft_cost` is not the local manual surcharge; in the affected rebalance path it represents the combined Remote Craft cost and must not be reused as the Technology requirement.
+- The product decision is **closed non-goal**: DTT will not add a BSSR-specific Gratitude bridge unless the integration is explicitly reopened later.
+
+See `docs/BSS_GRATITUDE_COMPATIBILITY_RESEARCH.md` for the ownership analysis and rejected alternatives.
 
 ## Multi-builder visible Technology blueprints — runtime audit 2026-10-01
 
