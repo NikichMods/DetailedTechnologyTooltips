@@ -865,3 +865,100 @@ User runtime evidence on Graveyard Keeper 1.407:
 A new independent product gap was observed immediately afterward: some buildable objects are unlocked through multiple authored `ObjectCraftDefinition` entries for different builders, while the current DTT location row only reads the visible Technology blueprint's own `builder_ids`. Representative accepted runtime observation: the Vine press tooltip reports Yard, while the same unlocked Vine press is also buildable from the Cellar.
 
 Do not promote 1.1.3 to stable while this newly accepted follow-up is being resolved. Exact 1.1.3 bytes remain immutable.
+
+
+## 1.1.4 — multi-builder blueprint-location candidate
+
+### Research closure
+
+Read-only runtime audit on the user's Graveyard Keeper 1.407 installation completed successfully.
+
+Observed population:
+- 187 Technology definitions;
+- 533 object-craft definitions;
+- 105 visible Technology blueprints;
+- 0 unresolved visible blueprints;
+- 5 same-Technology multi-builder blueprint groups;
+- 3 additional global same-output builder groups outside the owning Technology.
+
+Same-Technology groups proved by the audit:
+- `The idea of the stone` / stone stockpile: Yard + Quarry build desks;
+- `Stone processing` / first stone cutter: Yard + Quarry build desks;
+- `Mining` / iron ore stockpile: Yard + Quarry build desks;
+- `Improvement` / trunk: Garden + Quarry + Vineyard + Graveyard + Cremation build desks;
+- `Winemaking` / vine press: Yard + Cellar build desks.
+
+The audit also proved why a blind global same-`out_obj` union is unsafe:
+- trunk has two additional always-visible global aliases;
+- corpse pallet has a separately lock-controlled Souls builder alias;
+- porter station has a separately lock-controlled Vineyard alias.
+
+Static 1.407 host semantics establish that authored leading `@` hides only the Technology unlock presentation while `GameSave.UnlockTech` still unlocks the referenced craft ID. Native `GameSave.IsCraftVisible` remains the authoritative current-save gate for independent aliases.
+
+### Candidate behavior
+
+Blueprint location rows now:
+1. include all same-Technology same-`out_obj` / same-`build_type` sibling blueprint builders, including `@`-hidden sibling records;
+2. include outside-Technology same-output/build-type aliases only when native `GameSave.IsCraftVisible` reports them currently available in the active save;
+3. preserve first-seen order and de-duplicate builder IDs.
+
+Preserved:
+- visible blueprint requirements still come from the visible authored blueprint;
+- hidden sibling blueprints are not rendered as separate Technology unlocks;
+- independently locked/story-gated aliases are not exposed early;
+- ordinary recipe station rows are unchanged;
+- no `sub_zone_id` location guessing;
+- the accepted exact `alchemy_builddesk -> Alchemy Lab` presentation override remains unchanged;
+- no progression, recipe, build, save or balance data is mutated.
+
+### Candidate identity
+
+- Version: `1.1.4`
+- Development branch: `dev/1.1.4`
+- Exact build source: `09ca4dc62b92d8578278b63150a4a050fc653ebd`
+- GitHub Actions run: `36863419114`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 38 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.4-09ca4dc62b92d8578278b63150a4a050fc653ebd`
+- Artifact ID: `11162412259`
+- Artifact ZIP digest: `sha256:1a2d429704e9f41cd6a1339535f5219e52f40956ed6da6b5a905c8dec7d1a3e1`
+- Handed DLL filename: `DetailedTechnologyTooltips-1.1.4.dll`
+- DLL SHA-256: `8c593b7dcd1855227e30c84dc3713d77fd9042dc30116915b9b1ee29ccb19f08`
+- DLL size: 83,968 bytes
+- Binary/plugin metadata: `1.1.4`
+- Assembly informational version contains exact source `09ca4dc62b92d8578278b63150a4a050fc653ebd`.
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, source SHA and DLL hash;
+- independently computed DLL SHA-256 matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded strings contain the `DTT_READY version=1.1.4` marker and exact informational source identity.
+
+### Focused runtime acceptance requested
+
+The research-only `DTTBlueprintLocationAudit.dll` is no longer required and should be removed before this candidate test.
+
+Only the changed blueprint-location behavior needs checking:
+
+1. **Winemaking / Vine press**
+   - expected: both Yard and Cellar are listed in the one `Строительство` row.
+
+2. **One Yard/Quarry duplicate**
+   - Stone stockpile, first Stone cutter, or Iron ore stockpile;
+   - expected: both corresponding native build-menu names are listed.
+
+3. **Improvement / Trunk**
+   - expected: all same-Technology locations are present;
+   - additionally, already-native-visible independent trunk locations in the current save are included;
+   - names must not duplicate;
+   - long wrapping must remain readable.
+
+4. **Regression sanity**
+   - one ordinary recipe tooltip still shows its exact recipe station as before;
+   - one ordinary single-location blueprint still shows one location;
+   - no new `DTT_INIT_FAILED`, `DTT_RUNTIME_DISABLED`, `DTT_VIEWPORT_DISABLED` or `DTT_WRAP_REPAIR_DISABLED` marker.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+Exact 1.1.4 handed bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance/promotion.
