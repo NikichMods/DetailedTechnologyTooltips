@@ -542,3 +542,26 @@ Focus only on the new 1.1.0 properties; stable 1.0.2 mechanics do not need exhau
 Status: **PENDING USER RUNTIME ACCEPTANCE**.
 
 The 1.1.0 numbered candidate bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance and later promotion.
+
+
+### Runtime result — 2026-10-01 — 1.1.0
+
+Status: **SUPERSEDED FOR PRESENTATION/COPY POLISH**. The exact 1.1.0 bytes remain immutable; stable 1.0.2 remains published.
+
+Accepted from the user’s Graveyard Keeper 1.407 runtime review:
+- DTT started normally as `1.1.0` against host MVID `6f50b8e7-156b-49ac-bbe8-7505894b2364`; no DTT failure/disable marker was found in the returned support log.
+- Peat presentation is accepted.
+- fertilizer effect presentation is mechanically correct; the Russian Quality wording needs only a natural-language polish.
+- Grape/Hops growth presentation, four-seed requirements, Vineyard/trellis location and Merchant/Miller seed-source rows are accepted visually.
+- native quality-star markup renders correctly in Russian, English and Simplified Chinese for checked perk rows.
+- Big Guy’s stale vanilla values are corrected successfully to `+2 damage, +2 defense`.
+- Simplified-Chinese DTT additions render coherently with no missing glyph/fallback problem in the checked Playwright, Peat and Grape-farming examples.
+
+Observed polish issues moved to 1.1.1:
+1. Butcher/Doctor before/after probabilities read less clearly without the earlier arrow notation.
+2. appended DTT explanations visually merge with authored vanilla lore; one blank line is preferred over brackets/italics.
+3. Russian Quality-fertilizer wording `семя следующего качества` is awkward.
+4. Russian Pyrite note hardcodes `пирит` while the native visible unlock name is `Серный колчедан`; the note should reuse the native localized `p_t_pyrite` name in every locale.
+5. Simplified Chinese shows a line beginning with the normal full stop `。` inside the vanilla Playwright paragraph. This is a native paragraph-wrap typography artifact, not a missing glyph and not caused by the DTT-added quality row. It is intentionally left outside 1.1.1 scope.
+
+Cultist was not checked in this runtime pass and remains on the next focused checklist.
