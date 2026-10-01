@@ -20,8 +20,10 @@ Shared mechanics source:
 
 - Jeweler / Ювелир:
   - add a factual clarification because current mechanics differ materially from what the vanilla wording leads the player to expect;
-  - current verified quality consumer is hardcover/book crafting (+★0.7), plus audited precious-material yield effects;
-  - final player-facing wording remains to be selected.
+  - accepted semantic wording:
+    - `Hardcover book crafting quality: +★0.7.`
+    - `Dungeon diamond, gold, and silver sources yield at least +1 more.`
+  - the second line deliberately describes the corresponding dungeon sources rather than promising that all three resources are always obtained.
 
 - Writer / Писатель:
   - add a short numeric quality line: +★0.3 on affected writing crafts.
@@ -88,8 +90,26 @@ Problem to solve:
 - the actual values are the part's contribution while installed in the corpse;
 - extraction removes that contribution from the corpse total.
 
-Preferred semantic:
-- make explicit that displayed skulls are the part's contribution while it remains in the body;
-- optionally add that removing the part removes that contribution.
+Accepted presentation:
+- preserve the vanilla flavor/mechanical sentence unchanged;
+- append one neutral system-style clarification equivalent to:
+  `When a body part is removed, its displayed values stop counting toward the body's total skulls.`
+- exact localization should read as native game help, not as commentary from the mod author.
 
-Final wording still open.
+
+## Voice / style contract
+
+All DTT additions inside the Technology Tree should read as if they were native game help:
+
+- preserve useful vanilla flavor text where possible;
+- prefer neutral factual labels/statements over commentary;
+- do not address the player as the mod author;
+- avoid meta-language about the mod, implementation, data files, or "the current game version" unless no in-world/system-style wording can express the necessary fact;
+- concise mechanical statements such as `Crafting quality: +★0.3`, `Chance: 25% -> 0%`, or `Restores more energy` fit the intended voice.
+
+### Existing 1.0.2 style outlier
+
+The current sparse Pyrite note is:
+`Note: not implemented in the current game version.`
+
+This is mechanically motivated by the verified `p_t_pyrite` / `p_t_pirit` mismatch, but it is meta-text and reads like the mod author speaking through the Technology Tree. Treat it as a separate wording-cleanup candidate before the next production release. Do not change production behavior until that exact presentation change has its own READY gate.
