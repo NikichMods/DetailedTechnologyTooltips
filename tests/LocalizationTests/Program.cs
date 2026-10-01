@@ -63,12 +63,53 @@ internal static class Program
                 || formatted.IndexOf("TABLE_ONE", StringComparison.Ordinal) < 0
                 || formatted.IndexOf("TABLE_TWO", StringComparison.Ordinal) < 0
                 || formatted.IndexOf("{0}", StringComparison.Ordinal) >= 0
-                || formatted.IndexOf("{1}", StringComparison.Ordinal) >= 0)
+                || formatted.IndexOf("{1}", StringComparison.Ordinal) >= 0
+                || CountOccurrences(formatted, "→") != 2)
             {
                 Console.Error.WriteLine(
                     "Doctor localization formatting failed: language=" + language);
                 return 1;
             }
+
+            var butcher = Localization.Get(Localization.Butcher, language);
+            if (string.IsNullOrEmpty(butcher)
+                || CountOccurrences(butcher, "→") != 1)
+            {
+                Console.Error.WriteLine(
+                    "Butcher before/after notation failed: language=" + language);
+                return 1;
+            }
+
+            var pyrite = Localization.Format(
+                Localization.PyriteNote,
+                language,
+                "NATIVE_PYRITE_NAME");
+
+            if (string.IsNullOrEmpty(pyrite)
+                || pyrite.IndexOf(
+                    "NATIVE_PYRITE_NAME",
+                    StringComparison.Ordinal) < 0
+                || pyrite.IndexOf("{0}", StringComparison.Ordinal) >= 0)
+            {
+                Console.Error.WriteLine(
+                    "Pyrite native-name formatting failed: language=" + language);
+                return 1;
+            }
+        }
+
+        var russianQuality =
+            Localization.Get(Localization.QualityFertilizerI, "ru");
+        if (string.IsNullOrEmpty(russianQuality)
+            || russianQuality.IndexOf(
+                "семя того же качества",
+                StringComparison.Ordinal) < 0
+            || russianQuality.IndexOf(
+                "семя следующего качества",
+                StringComparison.Ordinal) >= 0)
+        {
+            Console.Error.WriteLine(
+                "Russian Quality fertilizer wording regression.");
+            return 1;
         }
 
         const string bigGuyVanilla =
@@ -160,5 +201,24 @@ internal static class Program
             + Localization.Keys.Length
             + " keys.");
         return 0;
+    }
+
+    private static int CountOccurrences(string text, string value)
+    {
+        if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(value))
+            return 0;
+
+        var count = 0;
+        var index = 0;
+        while ((index = text.IndexOf(
+            value,
+            index,
+            StringComparison.Ordinal)) >= 0)
+        {
+            count++;
+            index += value.Length;
+        }
+
+        return count;
     }
 }
