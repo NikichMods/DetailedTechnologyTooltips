@@ -565,3 +565,74 @@ Observed polish issues moved to 1.1.1:
 5. Simplified Chinese shows a line beginning with the normal full stop `。` inside the vanilla Playwright paragraph. This is a native paragraph-wrap typography artifact, not a missing glyph and not caused by the DTT-added quality row. It is intentionally left outside 1.1.1 scope.
 
 Cultist was not checked in this runtime pass and remains on the next focused checklist.
+
+
+## 1.1.1 — runtime copy-polish candidate
+
+### Candidate identity
+
+- Version: `1.1.1`
+- Development branch: `dev/1.1.1`
+- Exact build source: `1cbc36d5815bbb28a64047d84257174c39ab7da4`
+- GitHub Actions run: `36839388438`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 38 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.1-1cbc36d5815bbb28a64047d84257174c39ab7da4`
+- Artifact ID: `11150338334`
+- Artifact ZIP digest: `sha256:1086b9af66ad5afe43b6bfa16ffbec98b0c2fa10fc1b91fa4827e074bd939292`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.1.1.dll`
+- DLL SHA-256: `88f02edb4d4bc1e7ddcfb8d19db18042ddd5f8b393f1e89dc08b7b209db45e11`
+- DLL size: 80,384 bytes
+- Binary/plugin metadata: `1.1.1`
+- Assembly informational version: `1.1.1+1cbc36d5815bbb28a64047d84257174c39ab7da4`
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- computed DLL SHA-256 matches the identity file;
+- binary contains the 1.1.1 DTT readiness marker;
+- representative English/Russian before→after strings, Russian Quality-fertilizer wording and native-name Pyrite template are present in the exact DLL.
+
+### Delta from 1.1.0
+
+No gameplay/progression/data semantics changed.
+
+- Butcher and Doctor now use explicit before→after notation with `→` in every supported DTT locale.
+- authored Work/Perk descriptions that receive a DTT clarification get one blank line between vanilla text and the DTT addition; untouched authored perks remain visually unchanged.
+- Russian Quality fertilizer I/II wording now says the seed is of the same quality as the next-quality crop rather than the awkward `семя следующего качества`.
+- Pyrite note no longer owns a translated mineral name. It formats the active game’s native `GJL.L("p_t_pyrite")` name into the note, so terminology must match the visible gathering-unlock title in every locale.
+- the Simplified-Chinese full stop observed at the start of a wrapped vanilla Playwright line is deliberately unchanged: it is a vanilla paragraph-wrap typography artifact, not a DTT glyph/localization failure.
+
+### Focused runtime acceptance requested
+
+Only the 1.1.1 polish needs rechecking:
+
+1. **Russian Butcher + Doctor**
+   - confirm one blank line visually separates vanilla lore from the DTT clarification;
+   - confirm `25% → 0%` and Doctor’s two before→after pairs are immediately understandable;
+   - confirm the `→` glyph renders normally.
+
+2. **Russian Quality fertilizer I**
+   - confirm the revised `...урожая следующего качества и 1 семя того же качества` wording reads naturally.
+   - Quality II can be checked only if convenient; it uses the same wording pattern.
+
+3. **Russian Pyrite**
+   - the visible gathering name and the note must use the same native term;
+   - expected current Russian shape: `Примечание: «Серный колчедан» не выпадает при добыче угля.`
+
+4. **Cultist**
+   - inspect once in Russian because it was missed in the 1.1.0 pass;
+   - confirm the clarification is understandable and separated from vanilla text by one blank line.
+
+5. **One CJK arrow sanity check**
+   - Chinese or Japanese Butcher/Doctor: confirm `→` is a real glyph, with no square/fallback/missing character.
+   - no need to repeat Peat/Grape/Playwright unless a new regression is visible.
+
+6. **Support log**
+   - expected: `DTT_READY version=1.1.1 contract=technology-tooltip host_mvid=6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+   - no DTT initialization/runtime/viewport/wrap-repair disable marker.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+The numbered 1.1.1 bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance/promotion of the semantic expansion.
