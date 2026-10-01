@@ -848,3 +848,20 @@ No repeat test is requested for fertilizers, grape/hops, Butcher, Cultist, CJK s
 Status: **PENDING USER RUNTIME ACCEPTANCE**.
 
 The numbered 1.1.3 bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance/promotion of the semantic expansion.
+
+
+### Runtime result — 2026-10-01 — 1.1.3
+
+Status: **ACCEPTED FOR THE 1.1.3 DELTA; SUPERSEDED BY NEW MULTI-BUILDER LOCATION WORK BEFORE STABLE PROMOTION**.
+
+User runtime evidence on Graveyard Keeper 1.407:
+- the exact handed 1.1.3 candidate loaded successfully against host MVID `6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+- all three 1.1.3 changes were explicitly accepted in game:
+  - `alchemy_builddesk` blueprint rows display `Алхимическая лаборатория` correctly;
+  - Doctor's Preparation Table I/II wording and presentation are correct;
+  - the revised Pyrite technical note is correct;
+- submitted support log contains `DTT_READY version=1.1.3` and no reported DTT initialization/runtime/viewport/wrap-repair failure marker.
+
+A new independent product gap was observed immediately afterward: some buildable objects are unlocked through multiple authored `ObjectCraftDefinition` entries for different builders, while the current DTT location row only reads the visible Technology blueprint's own `builder_ids`. Representative accepted runtime observation: the Vine press tooltip reports Yard, while the same unlocked Vine press is also buildable from the Cellar.
+
+Do not promote 1.1.3 to stable while this newly accepted follow-up is being resolved. Exact 1.1.3 bytes remain immutable.
