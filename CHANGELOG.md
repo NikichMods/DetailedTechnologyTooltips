@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.5 — candidate
+
+- Fixes the 1.1.4 startup regression by binding the static `MainGame.me` field through the correct static reflection path.
+- Multi-builder blueprint-location behavior is otherwise unchanged from 1.1.4.
+
 ## 1.1.4 — candidate
 
 - Blueprint Technology tooltips now aggregate all build menus that the same Technology unlocks for the same construction, including authored `@`-hidden sibling blueprint records.
