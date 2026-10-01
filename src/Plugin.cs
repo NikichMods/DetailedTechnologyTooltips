@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.0.2";
+        public const string PluginVersion = "1.1.0";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -153,6 +153,7 @@ namespace DetailedTechnologyTooltips
     {
         public TechTooltipContext Previous;
         public TechTooltipContext Current;
+        public TechTooltipPresentationOverride PresentationOverride;
     }
 
     internal static class RuntimePatches
@@ -179,6 +180,10 @@ namespace DetailedTechnologyTooltips
             try
             {
                 __state.Current = GameApi.TryCreateContext(__instance);
+                __state.PresentationOverride =
+                    GameApi.ApplyPresentationOverride(
+                        __instance,
+                        __state.Current);
                 _currentContext = __state.Current;
             }
             catch (Exception ex)
@@ -214,6 +219,21 @@ namespace DetailedTechnologyTooltips
             Exception __exception,
             TechTooltipPatchState __state)
         {
+            try
+            {
+                if (__state != null)
+                {
+                    GameApi.RestorePresentationOverride(
+                        __state.PresentationOverride);
+                }
+            }
+            catch (Exception ex)
+            {
+                Plugin.DisableAfterRuntimeFailure(
+                    "presentation override restore",
+                    ex);
+            }
+
             _currentContext = __state == null ? null : __state.Previous;
             return __exception;
         }
