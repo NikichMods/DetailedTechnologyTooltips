@@ -57,7 +57,7 @@ Shared mechanics source:
 - Woodworker / Столяр:
   - same decision as Mason; no extra quality/output-number line at this stage.
 
-## Open wording decisions
+## Closed wording decisions
 
 ### Butcher / Мясник
 
@@ -65,7 +65,8 @@ Accepted presentation:
 - preserve the useful vanilla flavor sentence;
 - do not use the internal category label "basic parts";
 - enumerate the affected extraction items directly;
-- accepted semantic wording: `Chance of error when extracting flesh, blood, fat, skin, skull, and bones: 25% -> 0%.`
+- accepted player-facing form uses an explicit verb rather than a special arrow glyph:
+  `Chance of error when extracting flesh, blood, fat, skin, skull, and bones decreases from 25% to 0%.`
 - do not add the qualifier "base": the Perk itself takes this path to zero, so that qualifier makes the result harder rather than easier to understand.
 
 Verified mechanic, isolating the Perk from the independent Clean Cut buff:
@@ -76,7 +77,8 @@ Verified mechanic, isolating the Perk from the independent Clean Cut buff:
 Accepted presentation:
 - identify brain / heart / intestine directly rather than relying only on the hidden category "important organs";
 - show both native preparation-table contexts;
-- semantic wording: `Chance of error when extracting the brain, heart, and intestine: 50% -> 25% at Preparation Place I; 25% -> 0% at Preparation Place II.`
+- accepted player-facing form uses an explicit verb rather than a special arrow glyph:
+  `Chance of error when extracting the brain, heart, and intestine decreases from 50% to 25% at Preparation Place I and from 25% to 0% at Preparation Place II.`
 - use the native localized station names in production rather than hard-coded translated station names.
 
 Verified mechanic, isolating the Perk from the independent Clean Cut buff:
@@ -85,17 +87,14 @@ Verified mechanic, isolating the Perk from the independent Clean Cut buff:
 
 ### Cultist / Сектант
 
-Problem to solve:
-- vanilla says the player can see red/white skull values of body parts, but does not state the direction of those values;
-- while the player is in an extraction UI, it is easy to read the displayed skulls as "what removing this part will do";
-- the actual values are the part's contribution while installed in the corpse;
-- extraction removes that contribution from the corpse total.
+Final product decision: **leave vanilla; do not append DTT text**.
 
-Accepted presentation:
-- preserve the vanilla flavor/mechanical sentence unchanged;
-- append one neutral system-style clarification equivalent to:
-  `When a body part is removed, its displayed values stop counting toward the body's total skulls.`
-- exact localization should read as native game help, not as commentary from the mod author.
+Reason:
+- the vanilla Technology description already explains the actual unlock: the player can see the red/white skull values of body parts;
+- the real ambiguity arises later in the corpse/extraction UI, where a displayed organ value can be misread as the result of removal rather than the part's current contribution;
+- repeating that relationship in the Technology Tree does not solve the problem at the point where the player encounters it and adds redundant text.
+
+If this ambiguity is ever addressed, the correct product surface is the corpse/body-part UI, not Detailed Technology Tooltips.
 
 
 ## Voice / style contract
@@ -115,7 +114,7 @@ The Pyrite unlock is a verified broken-native-data case (`p_t_pyrite` / `p_t_pir
 Accepted product direction:
 - keep an explicit technical note for this exceptional broken mechanic;
 - prefer operational wording over speculation about developer intent or version-specific temporariness;
-- accepted final semantic: `Note: obtaining pyrite while mining coal does not work.`
+- accepted final semantic: format the active game's native `p_t_pyrite` name into a plain unquoted note, e.g. Russian `Примечание: Серный колчедан не выпадает при добыче угля.`
 - this is a deliberate exception to the normal "native game help" voice because a non-meta formulation would mislead the player.
 
 Production behavior remains unchanged until this exact presentation change receives its own READY gate.
@@ -125,14 +124,14 @@ Production behavior remains unchanged until this exact presentation change recei
 
 The current perk-mechanics investigation is substantially closed. Remaining items before a coherent next production candidate:
 
-- Butcher: mechanic is closed (25% -> 0% for the explicitly enumerated affected parts), but the final wording after removing the misleading "base chance" qualifier still needs one explicit product acceptance.
+- Butcher: mechanic and wording are closed; use a natural-language decrease statement rather than a special arrow glyph.
 - Blacksmith: accepted for enrichment. Preserve the vanilla flavor sentence and append a concise general summary rather than an exhaustive per-item list: `Crafting nails and metal parts produces more items. Steel chisel quality: +★0.1.` This intentionally groups +3 nails / +1 simple iron part / +1 complex iron part / +2 steel parts under one player-facing statement while retaining the exact steel-chisel quality number.
 - Super mushroom: follow-up is closed. A real later Infusion recipe uses red mushrooms, and raw red mushrooms are harmful, so the vanilla flavor is not fabricated; however, that later recipe is separately unlock-gated and is not granted by this Technology. Accepted presentation: preserve vanilla flavor and append only `Unlocks gathering red mushrooms.`
 - Grape / hops growth unlocks: accepted four-line informational presentation. Replace generic `Create` semantics with growth semantics, show the 4-seed requirement, identify the **Vineyard / vine trellis** as the growing location without explaining story access, and identify the primary seed vendor. Accepted Russian-oriented structure:
   - Grapes: `Выращивание: Виноград` / `Нужно: Семена винограда (x4)` / `Выращивается: Виноградник — Опора под лозу` / `Семена: Торговец`.
   - Hops: `Выращивание: Хмель` / `Нужно: Семена хмеля (x4)` / `Выращивается: Виноградник — Опора под лозу` / `Семена: Мельник`.
   - Do not add trade-tier detail here; the vendor line answers the first-contact acquisition question, while quality progression belongs to fertilizer mechanics.
-- Localization: accepted English semantics must still be rendered naturally across all 11 supported locales before release; this is implementation/copy work, not a new mechanics investigation.
+- Localization: accepted semantics must still be rendered naturally across all 11 supported locales before release; this is implementation/copy work, not an open product decision.
 
 Everything else selected in this document has enough mechanics evidence for a production gate; no broad new Perk audit is needed.
 
@@ -148,8 +147,8 @@ Accepted Russian-oriented semantics for manual-plot fertilizer explanation:
 - Boost fertilizer II:
   `Эффект на один цикл: сокращает время роста на 60%.`
 - Quality fertilizer I:
-  `Эффект на один цикл: повышает урожайность и даёт 1 единицу урожая и 1 семя следующего качества.`
+  `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 1 единицу урожая и 1 семя на одну ступень качества выше.`
 - Quality fertilizer II:
-  `Эффект на один цикл: повышает урожайность и даёт 2 единицы урожая и 2 семени следующего качества.`
+  `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 2 единицы урожая и 2 семени на одну ступень качества выше.`
 
 The Peat line intentionally does not add a negative clause about not producing next-tier crops/seeds; the distinction is already conveyed by the Quality-fertilizer wording.
