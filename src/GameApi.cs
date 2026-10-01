@@ -65,6 +65,14 @@ namespace DetailedTechnologyTooltips
         private static FieldInfo _needsField;
         private static FieldInfo _craftInField;
         private static FieldInfo _builderIdsField;
+        private static FieldInfo _outObjField;
+        private static FieldInfo _buildTypeField;
+        private static FieldInfo _techsDataField;
+        private static FieldInfo _objectCraftDataField;
+        private static FieldInfo _techCraftsField;
+        private static FieldInfo _mainGameMeField;
+        private static FieldInfo _mainGameSaveField;
+        private static MethodInfo _isCraftVisible;
 
         private static FieldInfo _itemIdField;
         private static FieldInfo _itemValueField;
@@ -89,8 +97,11 @@ namespace DetailedTechnologyTooltips
             _itemType = RequireType("Item");
             var craftDefinitionType = RequireType("CraftDefinition");
             var objectCraftDefinitionType = RequireType("ObjectCraftDefinition");
+            var techDefinitionType = RequireType("TechDefinition");
             var gameBalanceType = RequireType("GameBalance");
             var gameBalanceBaseType = RequireType("GameBalanceBase");
+            var mainGameType = RequireType("MainGame");
+            var gameSaveType = RequireType("GameSave");
             var gameSettingsType = RequireType("GameSettings");
             var bubbleWidgetDataType = RequireType("BubbleWidgetData");
             var bubbleWidgetTextDataType = RequireType("BubbleWidgetTextData");
@@ -181,6 +192,25 @@ namespace DetailedTechnologyTooltips
             _craftInField = RequireField(craftDefinitionType, "craft_in");
             _builderIdsField =
                 RequireField(objectCraftDefinitionType, "builder_ids");
+            _outObjField =
+                RequireField(objectCraftDefinitionType, "out_obj");
+            _buildTypeField =
+                RequireField(objectCraftDefinitionType, "build_type");
+            _techsDataField =
+                RequireField(gameBalanceType, "techs_data");
+            _objectCraftDataField =
+                RequireField(gameBalanceType, "craft_obj_data");
+            _techCraftsField =
+                RequireField(techDefinitionType, "crafts");
+            _mainGameMeField =
+                RequireField(mainGameType, "me");
+            _mainGameSaveField =
+                RequireField(mainGameType, "save");
+            _isCraftVisible = RequireMethod(
+                gameSaveType,
+                "IsCraftVisible",
+                AllInstance,
+                new[] { craftDefinitionType });
 
             _itemIdField = RequireField(_itemType, "id");
             _itemValueField = RequireField(_itemType, "value");
@@ -321,7 +351,11 @@ namespace DetailedTechnologyTooltips
                 Craft = craft,
                 IsBlueprint = isBlueprint,
                 IngredientsRow = BuildIngredientsRow(craft),
-                LocationRow = BuildLocationRow(craft, isBlueprint),
+                LocationRow = BuildLocationRow(
+                    balance,
+                    craft,
+                    isBlueprint,
+                    id),
                 CraftDescriptionRow = BuildCraftDescription(id)
             };
         }
@@ -389,11 +423,16 @@ namespace DetailedTechnologyTooltips
         }
 
         private static string BuildLocationRow(
+            object balance,
             object craft,
-            bool isBlueprint)
+            bool isBlueprint,
+            string craftId)
         {
             var locationIds = isBlueprint
-                ? _builderIdsField.GetValue(craft) as IList
+                ? BuildBlueprintLocationIds(
+                    balance,
+                    craft,
+                    craftId)
                 : _craftInField.GetValue(craft) as IList;
 
             var locations = FormatLocalizedIds(
@@ -408,6 +447,188 @@ namespace DetailedTechnologyTooltips
                 return null;
 
             return prefix + locations;
+        }
+
+        private static IList BuildBlueprintLocationIds(
+            object balance,
+            object visibleCraft,
+            string visibleCraftId)
+        {
+            var result = new System.Collections.Generic.List<string>();
+            AppendBuilderIds(result, visibleCraft);
+
+            if (balance == null
+                || visibleCraft == null
+                || string.IsNullOrEmpty(visibleCraftId))
+            {
+                return result;
+            }
+
+            var outObj = _outObjField.GetValue(visibleCraft) as string;
+            var buildType = _buildTypeField.GetValue(visibleCraft);
+            if (string.IsNullOrEmpty(outObj) || buildType == null)
+                return result;
+
+            var techs = _techsDataField.GetValue(balance) as IList;
+            if (techs != null)
+            {
+                foreach (var tech in techs)
+                {
+                    var authoredCrafts =
+                        _techCraftsField.GetValue(tech) as IList;
+                    if (!ContainsAuthoredCraft(
+                            authoredCrafts,
+                            visibleCraftId))
+                    {
+                        continue;
+                    }
+
+                    foreach (var authored in authoredCrafts)
+                    {
+                        var siblingId = StripHiddenUnlockPrefix(
+                            authored as string);
+                        if (string.IsNullOrEmpty(siblingId))
+                            continue;
+
+                        var sibling = _getObjectCraftById.Invoke(
+                            balance,
+                            new object[] { siblingId });
+
+                        if (IsSameBlueprintVariant(
+                                visibleCraft,
+                                sibling,
+                                outObj,
+                                buildType))
+                        {
+                            AppendBuilderIds(result, sibling);
+                        }
+                    }
+                }
+            }
+
+            var objectCrafts =
+                _objectCraftDataField.GetValue(balance) as IList;
+            if (objectCrafts != null)
+            {
+                foreach (var candidate in objectCrafts)
+                {
+                    if (!IsSameBlueprintVariant(
+                            visibleCraft,
+                            candidate,
+                            outObj,
+                            buildType))
+                    {
+                        continue;
+                    }
+
+                    if (IsCraftVisibleNow(candidate))
+                        AppendBuilderIds(result, candidate);
+                }
+            }
+
+            return result;
+        }
+
+        private static bool ContainsAuthoredCraft(
+            IList authoredCrafts,
+            string craftId)
+        {
+            if (authoredCrafts == null
+                || string.IsNullOrEmpty(craftId))
+            {
+                return false;
+            }
+
+            foreach (var authored in authoredCrafts)
+            {
+                if (string.Equals(
+                        StripHiddenUnlockPrefix(authored as string),
+                        craftId,
+                        StringComparison.Ordinal))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsSameBlueprintVariant(
+            object visibleCraft,
+            object candidate,
+            string outObj,
+            object buildType)
+        {
+            if (candidate == null)
+                return false;
+
+            if (ReferenceEquals(visibleCraft, candidate))
+                return true;
+
+            return string.Equals(
+                    _outObjField.GetValue(candidate) as string,
+                    outObj,
+                    StringComparison.Ordinal)
+                && Equals(
+                    _buildTypeField.GetValue(candidate),
+                    buildType);
+        }
+
+        private static void AppendBuilderIds(
+            System.Collections.Generic.List<string> result,
+            object craft)
+        {
+            if (result == null || craft == null)
+                return;
+
+            var builders =
+                _builderIdsField.GetValue(craft) as IList;
+            if (builders == null)
+                return;
+
+            foreach (var value in builders)
+            {
+                var id = value as string;
+                if (!string.IsNullOrEmpty(id)
+                    && !result.Contains(id))
+                {
+                    result.Add(id);
+                }
+            }
+        }
+
+        private static string StripHiddenUnlockPrefix(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return null;
+
+            return id[0] == '@'
+                ? id.Substring(1)
+                : id;
+        }
+
+        private static bool IsCraftVisibleNow(object craft)
+        {
+            try
+            {
+                var mainGame = _mainGameMeField.GetValue(null);
+                if (mainGame == null)
+                    return false;
+
+                var save = _mainGameSaveField.GetValue(mainGame);
+                if (save == null)
+                    return false;
+
+                var result = _isCraftVisible.Invoke(
+                    save,
+                    new[] { craft });
+
+                return result is bool && (bool)result;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static string BuildCraftDescription(string id)
