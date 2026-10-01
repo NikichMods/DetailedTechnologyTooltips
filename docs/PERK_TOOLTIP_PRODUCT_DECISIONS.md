@@ -78,7 +78,7 @@ Accepted presentation:
 - identify brain / heart / intestine directly rather than relying only on the hidden category "important organs";
 - show both native preparation-table contexts;
 - accepted player-facing form uses an explicit verb rather than a special arrow glyph:
-  `Chance of error when extracting the brain, heart, and intestine decreases from 50% to 25% at Preparation Place I and from 25% to 0% at Preparation Place II.`
+  `At Preparation Place I, chance of error when extracting the brain, heart, and intestine decreases from 50% to 25%. At Preparation Place II, it decreases from 25% to 0%.`
 - use the native localized station names in production rather than hard-coded translated station names.
 
 Verified mechanic, isolating the Perk from the independent Clean Cut buff:
@@ -114,7 +114,7 @@ The Pyrite unlock is a verified broken-native-data case (`p_t_pyrite` / `p_t_pir
 Accepted product direction:
 - keep an explicit technical note for this exceptional broken mechanic;
 - prefer operational wording over speculation about developer intent or version-specific temporariness;
-- accepted final semantic: format the active game's native `p_t_pyrite` name into a plain unquoted note, e.g. Russian `Примечание: Серный колчедан не выпадает при добыче угля.`
+- accepted final semantic: format the active game's native `p_t_pyrite` name into a plain unquoted technical note that describes the Technology itself as non-functional in the current game version, e.g. Russian `Примечание: в текущей версии игры эта технология не позволяет получать Серный колчедан.`
 - this is a deliberate exception to the normal "native game help" voice because a non-meta formulation would mislead the player.
 
 Production behavior remains unchanged until this exact presentation change receives its own READY gate.
