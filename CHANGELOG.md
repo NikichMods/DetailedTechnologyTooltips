@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.4 — candidate
+
+- Blueprint Technology tooltips now aggregate all build menus that the same Technology unlocks for the same construction, including authored `@`-hidden sibling blueprint records.
+- If the same construction is already independently available from another build menu in the current save, that currently visible native location is included as well.
+- Independently locked or story-gated same-output variants remain hidden until the game itself reports them visible.
+- Requirements still come from the visible Technology blueprint; ordinary recipe locations, progression, build data and saves are unchanged.
+
 ## 1.0.2 — 2026-10-01
 
 First stable release.
