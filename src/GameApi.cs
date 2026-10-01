@@ -449,6 +449,8 @@ namespace DetailedTechnologyTooltips
             return prefix + locations;
         }
 
+        // The Technology owns hidden sibling blueprints that purchase together;
+        // separately gated aliases are included only after vanilla exposes them.
         private static IList BuildBlueprintLocationIds(
             object balance,
             object visibleCraft,
