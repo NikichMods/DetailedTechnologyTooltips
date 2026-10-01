@@ -636,3 +636,33 @@ Only the 1.1.1 polish needs rechecking:
 Status: **PENDING USER RUNTIME ACCEPTANCE**.
 
 The numbered 1.1.1 bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance/promotion of the semantic expansion.
+
+
+### Runtime result — 2026-10-01 — 1.1.1
+
+Status: **SUPERSEDED FOR FINAL COPY POLISH**. Exact 1.1.1 bytes remain immutable; stable 1.0.2 remains published.
+
+User runtime evidence on Graveyard Keeper 1.407:
+- DTT loaded as `1.1.1` with expected verified host MVID `6f50b8e7-156b-49ac-bbe8-7505894b2364`.
+- the blank line separating vanilla authored text from DTT-added mechanics is accepted.
+- native quality-star icon rendering remains correct.
+- Butcher/Doctor arrow glyph `→` does **not render** in the game font in the tested English, German, Russian and Simplified-Chinese locales; the numeric values remain visible without the arrow. Therefore the arrow approach is rejected.
+- Russian Quality-fertilizer wording using `того же качества` is rejected as awkward/ambiguous.
+- Pyrite native-name reuse works, but quotation marks around the native mineral name are visually inconsistent and rejected.
+- Cultist was not runtime-tested because the user’s current save has not unlocked it and the user does not want spoiler-oriented test tooling. Product review concluded that DTT should not append any Cultist clarification: the ambiguity belongs to the corpse/body-part UI, not the Technology Tree.
+
+Accepted final copy direction for the next candidate:
+1. Butcher: use a natural-language decrease statement, no special arrow glyph.
+   - RU: `Шанс ошибки при извлечении мяса, крови, жира, кожи, черепа и костей снижается с 25% до 0%.`
+2. Doctor: same natural-language pattern, using native localized preparation-table names.
+   - RU semantic: `Шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25% на препарационном столе и с 25% до 0% на препарационном столе II.`
+3. Quality fertilizer I:
+   - RU: `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 1 единицу урожая и 1 семя на одну ступень качества выше.`
+4. Quality fertilizer II:
+   - RU: `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 2 единицы урожая и 2 семени на одну ступень качества выше.`
+5. Pyrite: reuse the native localized `p_t_pyrite` name but **without quotation marks**.
+   - RU semantic: `Примечание: Серный колчедан не выпадает при добыче угля.`
+6. Cultist: leave fully vanilla; remove the DTT-added clarification.
+7. Keep the accepted one-blank-line separation between vanilla authored descriptions and DTT-added clarification text.
+
+No remaining product wording decision is intentionally open at this checkpoint. The next chat should recover repository state first, then implement/build a fresh candidate (expected 1.1.2) from these accepted decisions. Do not mutate or relabel the handed 1.1.1 artifact.
