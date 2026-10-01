@@ -9,6 +9,53 @@ namespace DetailedTechnologyTooltips
 {
     internal static class TextFormatting
     {
+        internal static string CorrectBigGuyDescription(
+            string description)
+        {
+            if (string.IsNullOrEmpty(description))
+                return null;
+
+            const string stale = "+1";
+            var starts = new List<int>();
+
+            for (var i = 0; i <= description.Length - stale.Length; i++)
+            {
+                if (description[i] != '+'
+                    || description[i + 1] != '1')
+                {
+                    continue;
+                }
+
+                var after = i + stale.Length;
+                if (after < description.Length)
+                {
+                    var next = description[after];
+                    if (char.IsDigit(next)
+                        || next == '.'
+                        || next == ',')
+                    {
+                        continue;
+                    }
+                }
+
+                starts.Add(i);
+                i += stale.Length - 1;
+            }
+
+            if (starts.Count != 2)
+                return null;
+
+            var result = description;
+            for (var i = starts.Count - 1; i >= 0; i--)
+            {
+                result =
+                    result.Remove(starts[i], stale.Length)
+                          .Insert(starts[i], "+2");
+            }
+
+            return result;
+        }
+
         internal static string RepairBrokenQuantityTokens(
             string raw,
             string processed)
