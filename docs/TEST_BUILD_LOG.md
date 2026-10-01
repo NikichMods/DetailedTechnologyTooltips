@@ -748,3 +748,103 @@ Only the changed 1.1.2 copy/presentation needs rechecking. Previously accepted 1
 Status: **PENDING USER RUNTIME ACCEPTANCE**.
 
 The numbered 1.1.2 bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit runtime acceptance and promotion of the semantic expansion.
+
+
+### Runtime result — 2026-10-01 — 1.1.2
+
+Status: **SUPERSEDED FOR FINAL LOCATION/COPY POLISH**. Exact 1.1.2 bytes remain immutable; stable 1.0.2 remains published.
+
+User runtime evidence on Graveyard Keeper 1.407:
+- DTT loaded as `1.1.2` with expected host MVID `6f50b8e7-156b-49ac-bbe8-7505894b2364`; the submitted support log contains the expected `DTT_READY` marker and no DTT init/runtime/viewport/wrap-repair disable marker.
+- Russian Quality fertilizer wording is accepted as clear and unambiguous.
+- Grape/Hops presentation was rechecked and remains accepted.
+- Doctor's natural-language probability wording is readable and the one-blank-line separation remains visually good.
+- Three presentation issues remain:
+  1. blueprint location `Строительство: Алхимия` is semantically awkward because the native `alchemy_builddesk` display label names the discipline rather than the actual build location;
+  2. Doctor should make the station pair explicit as `Препарационный стол I` / `Препарационный стол II` and use a shorter two-sentence composition;
+  3. Pyrite's `не выпадает при добыче угля` wording can imply another working acquisition source, so the note should instead state explicitly that the Technology does not enable obtaining the mineral in the current game version.
+
+Accepted 1.1.3 direction:
+- exact `alchemy_builddesk` blueprint location override: RU `Алхимическая лаборатория`, EN `Alchemy Lab`; other builders remain native;
+- RU Doctor: `На препарационном столе I шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25%. На препарационном столе II — с 25% до 0%.`
+- Pyrite: keep the active native mineral name but use the technical-note semantic `в текущей версии игры эта технология не позволяет получать {native name}`.
+
+
+## 1.1.3 — accepted location/copy polish candidate
+
+### Candidate identity
+
+- Version: `1.1.3`
+- Development branch: `dev/1.1.3`
+- Exact build source: `18134e549613200cbc19f20213db4064a80cbbfc`
+- GitHub Actions run: `36851265438`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 38 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.3-18134e549613200cbc19f20213db4064a80cbbfc`
+- Artifact ID: `11156320019`
+- Artifact ZIP digest: `sha256:284d70b2465b6bf88db16be1653c66fdd938def9d217544237eb88c36ab6e7fd`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.1.3.dll`
+- DLL SHA-256: `1dfc13d499c2bd712bb8eb683a6ac0c51de8c4a74228360fbf8639829f89f6fb`
+- DLL size: 81,920 bytes
+- Binary/plugin metadata: `1.1.3`
+- Assembly informational version contains exact source `18134e549613200cbc19f20213db4064a80cbbfc`.
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- computed DLL SHA-256 matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded strings contain the exact 1.1.3 Russian Alchemy Lab, Doctor and Pyrite wording plus the 1.1.3 readiness marker/source identity.
+
+### Delta from 1.1.2
+
+No gameplay/progression/save/recipe/build/unlock data changed.
+
+- For blueprint location rows only, exact builder ID `alchemy_builddesk` gets a DTT-owned location-name override. Russian now reads `Строительство: Алхимическая лаборатория`; English uses `Alchemy Lab`. Every other blueprint builder and every ordinary recipe station still uses the existing native localization path.
+- Doctor explicitly distinguishes table I from table II. Russian uses the accepted fully inflected two-sentence wording; other DTT locales keep native preparation-table names and append `I` to the first table name while retaining the native second-table name.
+- Pyrite still inserts the active native `p_t_pyrite` mineral name, but the note now says that in the current game version this Technology does not enable obtaining that mineral.
+- Accepted fertilizer, grape/hops, blank-line separation, CJK/list wrapping, quantity-token repair, viewport clamp, Cultist exclusion and all other 1.1.x behavior remain unchanged.
+
+### Automated evidence
+
+The exact build source compiled successfully with 0 warnings and 0 errors.
+
+Localization/formatting validation passed for all 11 supported game languages and asserts:
+- all 38 DTT-owned keys are present;
+- `alchemy_builddesk` resolves to the dedicated Alchemy Lab override while unrelated builders do not;
+- Doctor contains no rejected arrow glyph;
+- the exact accepted Russian Doctor sentence is present;
+- Pyrite templates still contain the native-name placeholder, contain no quotation marks, and the exact accepted Russian technical-note wording is present;
+- Cultist remains fully vanilla;
+- prior Quality-fertilizer, Big Guy, CJK separator and quantity-token checks remain passing.
+
+### Focused runtime acceptance requested
+
+Only these 1.1.3 deltas need checking:
+
+1. **Russian alchemy blueprints**
+   - one representative blueprint such as Alchemy Workbench / Hand Mixer / Alchemy Mill;
+   - location row should read `Строительство: Алхимическая лаборатория`;
+   - requirements and the rest of the tooltip remain unchanged.
+
+2. **Russian Doctor**
+   - expected text:
+     `На препарационном столе I шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25%. На препарационном столе II — с 25% до 0%.`
+   - verify the two sentences read cleanly;
+   - especially check that `I` / `II` do not end up visually stranded from the table name in the actual tooltip at the user's current resolution.
+
+3. **Russian Pyrite**
+   - expected semantic shape:
+     `Примечание: в текущей версии игры эта технология не позволяет получать Серный колчедан.`
+   - the mineral term must still match the native visible unlock name.
+
+4. **Support log**
+   - expected: `DTT_READY version=1.1.3 contract=technology-tooltip host_mvid=6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+   - no `DTT_INIT_FAILED`, `DTT_RUNTIME_DISABLED`, `DTT_VIEWPORT_DISABLED` or `DTT_WRAP_REPAIR_DISABLED`.
+
+No repeat test is requested for fertilizers, grape/hops, Butcher, Cultist, CJK separator behavior or other already accepted properties unless a new regression is visible.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+The numbered 1.1.3 bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance/promotion of the semantic expansion.
