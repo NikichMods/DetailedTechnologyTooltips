@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.6 — candidate
+## 1.1.6 — 2026-10-01
 
 - Blueprint location rows are now deterministic: DTT lists every native build menu in the current 1.407 balance that builds the same `out_obj` / `build_type`, regardless of current save progression.
 - Removes the 1.1.5 save-dependent `GameSave.IsCraftVisible` location filter and its MainGame/GameSave reflection bindings.
