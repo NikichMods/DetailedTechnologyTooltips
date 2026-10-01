@@ -1,0 +1,59 @@
+name: Build blueprint-location audit
+
+on:
+  push:
+    branches:
+      - 'research/multi-builder-blueprints'
+    paths:
+      - 'research/BlueprintLocationAudit/**'
+      - '.github/workflows/research-blueprint-location-audit.yml'
+      - 'nuget.config'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore research/BlueprintLocationAudit/BlueprintLocationAudit.csproj --configfile nuget.config
+
+      - name: Build
+        run: dotnet build research/BlueprintLocationAudit/BlueprintLocationAudit.csproj -c Release --no-restore
+
+      - name: Prepare artifact
+        shell: pwsh
+        run: |
+          $dll = Resolve-Path 'research/BlueprintLocationAudit/bin/Release/DTTBlueprintLocationAudit.dll'
+          $out = Join-Path $PWD 'audit-artifact'
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          Copy-Item $dll (Join-Path $out 'DTTBlueprintLocationAudit.dll')
+          $hash = (Get-FileHash $dll -Algorithm SHA256).Hash.ToLowerInvariant()
+          @(
+            "audit=multi-builder-blueprints"
+            "version=0.1.0"
+            "source_sha=${{ github.sha }}"
+            "sha256=$hash"
+            "assembly=DTTBlueprintLocationAudit.dll"
+          ) | Set-Content -Encoding UTF8 (Join-Path $out 'AUDIT_IDENTITY.txt')
+          Get-Content (Join-Path $out 'AUDIT_IDENTITY.txt')
+
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: DTT-BlueprintLocationAudit-${{ github.sha }}
+          path: audit-artifact/*
+          if-no-files-found: error
+          retention-days: 7
