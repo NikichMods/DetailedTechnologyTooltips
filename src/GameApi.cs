@@ -21,6 +21,7 @@ namespace DetailedTechnologyTooltips
         public string[] ExtraCraftRows;
         public string OverrideName;
         public bool CorrectBigGuyStats;
+        public bool SeparateDescriptionRow;
     }
 
     internal sealed class TechTooltipPresentationOverride
@@ -284,7 +285,9 @@ namespace DetailedTechnologyTooltips
                 return new TechTooltipContext
                 {
                     SparseDescriptionRow = description,
-                    CorrectBigGuyStats = correctBigGuy
+                    CorrectBigGuyStats = correctBigGuy,
+                    SeparateDescriptionRow =
+                        ShouldSeparateUnlockDescription(id, isWork)
                 };
             }
 
@@ -345,7 +348,12 @@ namespace DetailedTechnologyTooltips
                 return;
 
             if (!string.IsNullOrEmpty(context.SparseDescriptionRow))
-                AddTinyLeftText(tooltip, context.SparseDescriptionRow);
+            {
+                var description = context.SeparateDescriptionRow
+                    ? "\n" + context.SparseDescriptionRow
+                    : context.SparseDescriptionRow;
+                AddTinyLeftText(tooltip, description);
+            }
 
             if (context.Craft == null)
                 return;
@@ -486,8 +494,7 @@ namespace DetailedTechnologyTooltips
                         break;
 
                     case "p_t_pyrite":
-                        key = Localization.PyriteNote;
-                        break;
+                        return BuildPyriteDescription(id, language);
 
                     case "p_jevelery":
                         key = Localization.Jeweler;
@@ -533,6 +540,55 @@ namespace DetailedTechnologyTooltips
             return string.IsNullOrEmpty(key)
                 ? null
                 : Localization.Get(key, language);
+        }
+
+        private static string BuildPyriteDescription(
+            string id,
+            string language)
+        {
+            var nativeName = Localize(id);
+            if (string.IsNullOrEmpty(nativeName)
+                || string.Equals(nativeName, id, StringComparison.Ordinal))
+            {
+                return null;
+            }
+
+            return Localization.Format(
+                Localization.PyriteNote,
+                language,
+                nativeName);
+        }
+
+        private static bool ShouldSeparateUnlockDescription(
+            string id,
+            bool isWork)
+        {
+            if (isWork)
+            {
+                return string.Equals(
+                    id,
+                    "t_mushroom2",
+                    StringComparison.Ordinal);
+            }
+
+            switch (id)
+            {
+                case "p_jevelery":
+                case "p_wine_master":
+                case "p_writer":
+                case "p_good_writer":
+                case "p_industriousness":
+                case "p_engineer":
+                case "p_sword_master":
+                case "p_persistence":
+                case "p_butcher":
+                case "p_doctor":
+                case "p_cultist":
+                case "p_blacksmith":
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         private static string BuildDoctorDescription(string language)
