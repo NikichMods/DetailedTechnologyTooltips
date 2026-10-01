@@ -67,12 +67,7 @@ namespace DetailedTechnologyTooltips
         private static FieldInfo _builderIdsField;
         private static FieldInfo _outObjField;
         private static FieldInfo _buildTypeField;
-        private static FieldInfo _techsDataField;
         private static FieldInfo _objectCraftDataField;
-        private static FieldInfo _techCraftsField;
-        private static FieldInfo _mainGameMeField;
-        private static FieldInfo _mainGameSaveField;
-        private static MethodInfo _isCraftVisible;
 
         private static FieldInfo _itemIdField;
         private static FieldInfo _itemValueField;
@@ -97,11 +92,8 @@ namespace DetailedTechnologyTooltips
             _itemType = RequireType("Item");
             var craftDefinitionType = RequireType("CraftDefinition");
             var objectCraftDefinitionType = RequireType("ObjectCraftDefinition");
-            var techDefinitionType = RequireType("TechDefinition");
             var gameBalanceType = RequireType("GameBalance");
             var gameBalanceBaseType = RequireType("GameBalanceBase");
-            var mainGameType = RequireType("MainGame");
-            var gameSaveType = RequireType("GameSave");
             var gameSettingsType = RequireType("GameSettings");
             var bubbleWidgetDataType = RequireType("BubbleWidgetData");
             var bubbleWidgetTextDataType = RequireType("BubbleWidgetTextData");
@@ -196,24 +188,8 @@ namespace DetailedTechnologyTooltips
                 RequireField(objectCraftDefinitionType, "out_obj");
             _buildTypeField =
                 RequireField(objectCraftDefinitionType, "build_type");
-            _techsDataField =
-                RequireField(gameBalanceType, "techs_data");
             _objectCraftDataField =
                 RequireField(gameBalanceType, "craft_obj_data");
-            _techCraftsField =
-                RequireField(techDefinitionType, "crafts");
-            _mainGameMeField =
-                mainGameType.GetField("me", AllStatic);
-            if (_mainGameMeField == null)
-                throw new MissingFieldException(mainGameType.FullName, "me");
-
-            _mainGameSaveField =
-                RequireField(mainGameType, "save");
-            _isCraftVisible = RequireMethod(
-                gameSaveType,
-                "IsCraftVisible",
-                AllInstance,
-                new[] { craftDefinitionType });
 
             _itemIdField = RequireField(_itemType, "id");
             _itemValueField = RequireField(_itemType, "value");
@@ -357,8 +333,7 @@ namespace DetailedTechnologyTooltips
                 LocationRow = BuildLocationRow(
                     balance,
                     craft,
-                    isBlueprint,
-                    id),
+                    isBlueprint),
                 CraftDescriptionRow = BuildCraftDescription(id)
             };
         }
@@ -428,14 +403,12 @@ namespace DetailedTechnologyTooltips
         private static string BuildLocationRow(
             object balance,
             object craft,
-            bool isBlueprint,
-            string craftId)
+            bool isBlueprint)
         {
             var locationIds = isBlueprint
                 ? BuildBlueprintLocationIds(
                     balance,
-                    craft,
-                    craftId)
+                    craft)
                 : _craftInField.GetValue(craft) as IList;
 
             var locations = FormatLocalizedIds(
@@ -452,110 +425,41 @@ namespace DetailedTechnologyTooltips
             return prefix + locations;
         }
 
-        // The Technology owns hidden sibling blueprints that purchase together;
-        // separately gated aliases are included only after vanilla exposes them.
+        // A blueprint row describes every native build menu that can
+        // construct the same authored output/build variant in 1.407.
         private static IList BuildBlueprintLocationIds(
             object balance,
-            object visibleCraft,
-            string visibleCraftId)
+            object visibleCraft)
         {
             var result = new System.Collections.Generic.List<string>();
             AppendBuilderIds(result, visibleCraft);
 
-            if (balance == null
-                || visibleCraft == null
-                || string.IsNullOrEmpty(visibleCraftId))
-            {
+            if (balance == null || visibleCraft == null)
                 return result;
-            }
 
             var outObj = _outObjField.GetValue(visibleCraft) as string;
             var buildType = _buildTypeField.GetValue(visibleCraft);
             if (string.IsNullOrEmpty(outObj) || buildType == null)
                 return result;
 
-            var techs = _techsDataField.GetValue(balance) as IList;
-            if (techs != null)
-            {
-                foreach (var tech in techs)
-                {
-                    var authoredCrafts =
-                        _techCraftsField.GetValue(tech) as IList;
-                    if (!ContainsAuthoredCraft(
-                            authoredCrafts,
-                            visibleCraftId))
-                    {
-                        continue;
-                    }
-
-                    foreach (var authored in authoredCrafts)
-                    {
-                        var siblingId = StripHiddenUnlockPrefix(
-                            authored as string);
-                        if (string.IsNullOrEmpty(siblingId))
-                            continue;
-
-                        var sibling = _getObjectCraftById.Invoke(
-                            balance,
-                            new object[] { siblingId });
-
-                        if (IsSameBlueprintVariant(
-                                visibleCraft,
-                                sibling,
-                                outObj,
-                                buildType))
-                        {
-                            AppendBuilderIds(result, sibling);
-                        }
-                    }
-                }
-            }
-
             var objectCrafts =
                 _objectCraftDataField.GetValue(balance) as IList;
-            if (objectCrafts != null)
-            {
-                foreach (var candidate in objectCrafts)
-                {
-                    if (!IsSameBlueprintVariant(
-                            visibleCraft,
-                            candidate,
-                            outObj,
-                            buildType))
-                    {
-                        continue;
-                    }
+            if (objectCrafts == null)
+                return result;
 
-                    if (IsCraftVisibleNow(candidate))
-                        AppendBuilderIds(result, candidate);
+            foreach (var candidate in objectCrafts)
+            {
+                if (IsSameBlueprintVariant(
+                        visibleCraft,
+                        candidate,
+                        outObj,
+                        buildType))
+                {
+                    AppendBuilderIds(result, candidate);
                 }
             }
 
             return result;
-        }
-
-        private static bool ContainsAuthoredCraft(
-            IList authoredCrafts,
-            string craftId)
-        {
-            if (authoredCrafts == null
-                || string.IsNullOrEmpty(craftId))
-            {
-                return false;
-            }
-
-            foreach (var authored in authoredCrafts)
-            {
-                if (string.Equals(
-                        StripHiddenUnlockPrefix(authored as string),
-                        craftId,
-                        StringComparison.Ordinal))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private static bool IsSameBlueprintVariant(
@@ -599,40 +503,6 @@ namespace DetailedTechnologyTooltips
                 {
                     result.Add(id);
                 }
-            }
-        }
-
-        private static string StripHiddenUnlockPrefix(string id)
-        {
-            if (string.IsNullOrEmpty(id))
-                return null;
-
-            return id[0] == '@'
-                ? id.Substring(1)
-                : id;
-        }
-
-        private static bool IsCraftVisibleNow(object craft)
-        {
-            try
-            {
-                var mainGame = _mainGameMeField.GetValue(null);
-                if (mainGame == null)
-                    return false;
-
-                var save = _mainGameSaveField.GetValue(mainGame);
-                if (save == null)
-                    return false;
-
-                var result = _isCraftVisible.Invoke(
-                    save,
-                    new[] { craft });
-
-                return result is bool && (bool)result;
-            }
-            catch
-            {
-                return false;
             }
         }
 
