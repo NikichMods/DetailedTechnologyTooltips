@@ -976,3 +976,56 @@ Root cause is source-local and established: 1.1.4 bound the static `MainGame.me`
 The game's DTT fail-closed path worked as intended: DTT disabled itself and the host continued with vanilla Technology tooltips.
 
 Exact 1.1.4 handed bytes remain immutable.
+
+
+## 1.1.5 — corrected multi-builder blueprint-location candidate
+
+### Delta from rejected 1.1.4
+
+The 1.1.4 runtime failure is closed by one startup-binding correction:
+- `MainGame.me` is a static field;
+- 1.1.4 incorrectly requested it through the existing instance-only `RequireField` helper;
+- 1.1.5 binds exactly that field with `AllStatic`;
+- the instance-only helper and all other reflection bindings remain unchanged.
+
+No multi-builder location policy, wording, localization, progression, recipe/build data or save behavior changed from 1.1.4.
+
+### Candidate identity
+
+- Version: `1.1.5`
+- Development branch: `dev/1.1.5`
+- Exact build source: `df16f02cde814ff25f7dea4c7182fbc6ebd66abc`
+- GitHub Actions run: `36864395858`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 38 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.5-df16f02cde814ff25f7dea4c7182fbc6ebd66abc`
+- Artifact ID: `11163218443`
+- Artifact ZIP digest: `sha256:917867925200f5e84ca45e58942b55ebdbb30e08d659419e24c12bd206bc4863`
+- Handed DLL filename: `DetailedTechnologyTooltips-1.1.5.dll`
+- DLL SHA-256: `1f6542d59cdcc894760469c3ccd0d36201a6f35c5b2c0d463a102d61c39761d6`
+- DLL size: 83,968 bytes
+- Binary/plugin metadata: `1.1.5`
+- Assembly informational version: `1.1.5+df16f02cde814ff25f7dea4c7182fbc6ebd66abc`.
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- independently computed DLL SHA-256 matches;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded strings contain the exact 1.1.5 readiness marker and informational source identity.
+
+### Focused runtime acceptance requested
+
+First gate:
+- log must contain `DTT_READY version=1.1.5`;
+- no `DTT_INIT_FAILED`.
+
+If initialization succeeds, continue the already pending multi-builder checks:
+- Vine press: Yard + Cellar;
+- one of Stone stockpile / Stone cutter I / Iron ore stockpile: both native build menus;
+- Trunk: complete readable de-duplicated location list;
+- one ordinary recipe and one ordinary single-location blueprint remain unchanged.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+Exact 1.1.5 handed bytes are immutable after handoff.
