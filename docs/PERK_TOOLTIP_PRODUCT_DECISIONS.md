@@ -113,8 +113,8 @@ The Pyrite unlock is a verified broken-native-data case (`p_t_pyrite` / `p_t_pir
 
 Accepted product direction:
 - keep an explicit technical note for this exceptional broken mechanic;
-- prefer operational wording over speculation about developer intent;
-- target semantic: `Note: obtaining pyrite while mining coal does not work in the current game version.`
+- prefer operational wording over speculation about developer intent or version-specific temporariness;
+- accepted final semantic: `Note: obtaining pyrite while mining coal does not work.`
 - this is a deliberate exception to the normal "native game help" voice because a non-meta formulation would mislead the player.
 
 Production behavior remains unchanged until this exact presentation change receives its own READY gate.
