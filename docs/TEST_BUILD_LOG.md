@@ -1132,3 +1132,14 @@ Confirmed:
 Stable promotion authorization was explicit: promote 1.1.6 to `main`, reconcile documentation, and publish the exact accepted artifact without rebuilding.
 
 Exact 1.1.6 handed bytes are immutable after handoff.
+
+### Stable promotion
+
+- Accepted source was promoted to `main` with documentation/release metadata only; the numbered DLL was not rebuilt.
+- GitHub Actions publication run `36868727244` completed successfully.
+- GitHub Release `v1.1.6` targets exact accepted source `2a991fde8843c4eea1405091b6e7f9d0f201b501`.
+- Release ID: `400993962`.
+- Published raw asset: `DetailedTechnologyTooltips.dll`, asset ID `603323133`.
+- Published asset size: 82,944 bytes.
+- Published asset digest: `sha256:a6cf0acf44c08c377afccfba4fcebec56c81310956b0fce324be197f71b22849`, exactly matching the accepted candidate.
+- Status: **accepted stable / published**.
