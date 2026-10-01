@@ -61,14 +61,15 @@ Shared mechanics source:
 
 ### Butcher / Мясник
 
-Do not use the internal category label "basic parts" in player-facing text.
+Accepted presentation:
+- preserve the useful vanilla flavor sentence;
+- do not use the internal category label "basic parts";
+- enumerate the affected extraction items directly;
+- accepted semantic wording: `Chance of error when extracting flesh, blood, fat, skin, skull, and bones: 25% -> 0%.`
+- do not add the qualifier "base": the Perk itself takes this path to zero, so that qualifier makes the result harder rather than easier to understand.
 
-The wording should identify the affected extracted parts directly rather than requiring the player to know the game's hidden classification.
-
-Verified baseline mechanic, ignoring the independent Clean Cut buff:
+Verified mechanic, isolating the Perk from the independent Clean Cut buff:
 - applicable common extraction mistake chance: 25% -> 0%.
-
-Final wording still open.
 
 ### Doctor / Доктор
 
@@ -125,9 +126,9 @@ Production behavior remains unchanged until this exact presentation change recei
 The current perk-mechanics investigation is substantially closed. Remaining items before a coherent next production candidate:
 
 - Butcher: mechanic is closed (25% -> 0% for the explicitly enumerated affected parts), but the final wording after removing the misleading "base chance" qualifier still needs one explicit product acceptance.
-- Blacksmith: mechanics are closed (+3 nails, +1 simple iron part, +1 complex iron part, +2 steel parts, +★0.1 steel-chisel quality), but no final product decision has been made on whether DTT should augment the authored description.
-- Super mushroom: the practical unlock action is proved (enables the red-mushroom source), but the vanilla "special dish" flavor claim still needs a narrow follow-up to determine whether it corresponds to any real current 1.407 gameplay path or is stale/misleading text.
-- Grape / hops growth unlocks: the growth/planting relationship is proved and the generic `Create` wording is accepted as inadequate; the exact final presentation still needs the location/access question settled, especially whether mentioning the vineyard area would merely restate a native station name or expose story-gated access context.
+- Blacksmith: mechanics are closed (+3 nails, +1 simple iron part, +1 complex iron part, +2 steel parts, +★0.1 steel-chisel quality), but no final product decision has been made on whether DTT should augment the authored description. The current product leaning is to leave it vanilla rather than add an awkward exhaustive list for several individually small effects.
+- Super mushroom: follow-up is closed. A real later Infusion recipe uses red mushrooms, and raw red mushrooms are harmful, so the vanilla flavor is not fabricated; however, that later recipe is separately unlock-gated and is not granted by this Technology. Product direction: preserve vanilla flavor and append only the immediate practical fact that the Technology enables gathering red mushrooms.
+- Grape / hops growth unlocks: the growth/planting relationship is proved and the generic `Create` wording is accepted as inadequate. Mentioning the **Vineyard** as the growth area is accepted as location information, without exposing how story access is obtained. Primary seed-source research is also closed: grape seeds come from the Merchant and hops seeds from the Miller; trade tiers and Quality-fertilizer upgrading exist but the exact tooltip density/source wording still needs product acceptance.
 - Localization: accepted English semantics must still be rendered naturally across all 11 supported locales before release; this is implementation/copy work, not a new mechanics investigation.
 
 Everything else selected in this document has enough mechanics evidence for a production gate; no broad new Perk audit is needed.
