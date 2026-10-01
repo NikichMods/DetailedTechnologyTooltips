@@ -12,6 +12,7 @@ Primary shared research:
 - `NikichMods/GraveyardKeeperResearch/docs/UI_INPUT_TIME_AND_ENVIRONMENT.md`
 - `NikichMods/GraveyardKeeperResearch/docs/GAME_INTERNALS.md`
 - `NikichMods/GraveyardKeeperResearch/docs/FARMING_AND_FERTILIZER.md`
+- `NikichMods/GraveyardKeeperResearch/docs/PERK_MECHANICS.md`
 
 Pinned static host source used by the shared research:
 - `Kupie/GYK_DECOMP@6abf79199d92482af1c7573870dd9a20ec2270b9`
@@ -246,3 +247,30 @@ Product implication: the current generic `Create: Grapes / Hops` presentation is
 `The master gathering -> t_mushroom2` already has an authored flavor description, but the accepted audit proves its concrete current action is gating the `mushroom_2` source, which drops `shr_agaric` ("Красный гриб" in the inspected Russian runtime).
 
 Product implication: this is evidence that an authored Work description can still omit the practical meaning of the unlock. Augmenting authored Work descriptions would broaden the current DTT policy beyond sparse-only Work enrichment and therefore requires its own product decision/evidence gate. Future-use information such as study/alchemy should not be added merely because it is discoverable in the data.
+
+
+## Authored Perk numeric-mechanics research
+
+Exact current Graveyard Keeper 1.407 mechanics for the authored-description Perks are now recorded in shared research:
+`NikichMods/GraveyardKeeperResearch/docs/PERK_MECHANICS.md`.
+
+Product-relevant conclusions:
+
+- native multi-quality Perk values are **star-score contributions**, not percentages, and vanilla Craft UI already presents them in the same `★0.0` scale;
+- Writer = +★0.3; Playwright = +★0.5; Industriousness = +★0.2 on their authored linked craft sets;
+- Engineer = +★0.3 on current carved-wood, carved-marble and steel-chisel quality consumers;
+- Jeweler = +★0.7 on current hardcover/book quality consumers and +1 minimum yield at the audited dungeon diamond/gold/silver sources; the vanilla jewelry wording does not describe that quality consumer set literally;
+- Wine Master = +★0.8 on red-wine crafting quality, not all alcohol craft quality; current alcohol item definitions also give heterogeneous `p_wine_master` energy-on-consumption additions, so there is no one verified universal percentage suitable for a tooltip;
+- Blacksmith adds +3 nails, +1 simple iron part, +1 complex iron part, +2 steel parts, and +★0.1 to current steel-chisel quality crafts;
+- Mason / Woodworker have both exact output bonuses and +★0.5 quality consumers;
+- Butcher changes the common/basic surgery-mistake path 25% -> 0% (ignoring the independent Clean Cut buff);
+- Doctor changes important-organ mistake chance 50% -> 25% at Preparation Place I and 25% -> 0% at Preparation Place II (again isolating the Perk from Clean Cut);
+- Big Guy currently writes and consumes +2 weapon damage / +2 armor mitigation; the authored Russian description's +1/+1 numbers are stale for 1.407;
+- Sword Master gives +5 weapon damage;
+- Persistence passively restores 1 energy per running second through its hidden conditional buff;
+- Miner has multiple per-source changes rather than one universal percentage; for iron mining, once the corresponding unlocks are active, gold nugget chance is 5% -> 10% and silver 10% -> 20%;
+- Cultist reveals each body part's red/white skull **contribution while installed**; removing the part reverses that contribution in the corpse total.
+
+These findings invalidate the previous shortcut “authored Perk description exists, therefore it is sufficiently informative.” Some descriptions are directionally adequate, some omit important numerical mechanics, and a few are stale or materially overbroad.
+
+No production behavior is approved by this section. Any authored-description augmentation/replacement is a separate product decision and requires its own READY/BLOCKED production gate before source mutation. The stable 1.0.2 behavior remains unchanged.
