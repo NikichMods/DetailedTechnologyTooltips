@@ -458,3 +458,87 @@ Status: **PUBLISHED**.
 - Published asset digest: `sha256:986a41e660db7d816ee896a6c624f009063274ad93eb4bb1d212f3dd712f8f5f`.
 
 The published stable asset digest exactly matches the runtime-accepted 1.0.2 DLL. No production-source mutation occurred after the accepted source; the intervening commits contain acceptance documentation and release metadata only.
+
+
+## 1.1.0 — semantic Technology tooltip expansion candidate
+
+### Candidate identity
+
+- Version: `1.1.0`
+- Development branch: `dev/1.1.0`
+- Exact build source: `813dc29bc905267288ad83d3f85df5274810b680`
+- GitHub Actions run: `36802495848`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 38 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.0-813dc29bc905267288ad83d3f85df5274810b680`
+- Artifact ID: `11136522564`
+- Artifact ZIP digest: `sha256:728ca10529e559941063605cf7a06ad312ab9386a00b390cc3240fae0814dc49`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.1.0.dll`
+- DLL SHA-256: `bdf58c241c120fd2767849c863347bc3f1744d019d72992753c1b457fb1c64ee`
+- DLL size: 80,384 bytes
+- Binary/plugin metadata: `1.1.0`
+- Assembly informational version: `1.1.0+813dc29bc905267288ad83d3f85df5274810b680`
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- computed DLL SHA-256 matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded plugin identity/version and representative new semantic strings match this candidate.
+
+### Included READY changes
+
+- manual-plot fertilizer explanations:
+  - Peat: crop/seed yield increase plus 20% growth-time reduction for one crop cycle;
+  - Boost I/II: 40% / 60% growth-time reduction for one crop cycle;
+  - Quality I/II: increased yield plus 1 / 2 next-quality crop(s) and seed(s);
+- Grape/Hops growth unlocks:
+  - replace misleading generic `Create` title with growth semantics;
+  - show four-seed requirement;
+  - show Vineyard / vine-trellis location;
+  - show Merchant / Miller as the primary seed vendor;
+- Super mushroom: preserve authored flavor and add that red-mushroom gathering is unlocked;
+- accepted authored-Perk clarifications for Jeweler, Wine Master, Writer, Playwright, Industriousness, Engineer, Sword Master, Persistence, Butcher, Doctor, Cultist and Blacksmith;
+- Big Guy: temporarily correct the stale authored `+1/+1` presentation to current 1.407 `+2/+2` only while the Technology tooltip is being composed, then restore the cached vanilla string; unexpected localized text fails closed to vanilla;
+- Pyrite note: remove the misleading temporary-version qualifier and state only that obtaining pyrite while mining coal does not work;
+- all new DTT-owned semantic text is present for all 11 current game languages;
+- prior 1.0.2 CJK/list/wrap/viewport behavior remains unchanged.
+
+### Runtime acceptance requested
+
+Focus only on the new 1.1.0 properties; stable 1.0.2 mechanics do not need exhaustive repetition.
+
+1. **Fertilizers, Russian, gamepad**
+   - Peat: confirm the one-cycle yield/seeds/+20%-time explanation is readable.
+   - Simple fertilizers: confirm Boost I and Quality I explanations both appear in the combined tooltip.
+   - Complex fertilizers: confirm Boost II and Quality II explanations both appear and the combined tooltip remains usable.
+
+2. **Grape farming, Russian, gamepad**
+   - Grapes/Hops use `Выращивание`, not `Создать`.
+   - each shows 4 matching seeds;
+   - location reads as Vineyard / vine trellis;
+   - Grapes point to Merchant, Hops to Miller;
+   - combined tooltip has no clipping/overlap or unreasonable density.
+
+3. **Authored Work/Perk enrichment, Russian**
+   - Super mushroom keeps its vanilla flavor and adds `Открывает сбор красных грибов.`
+   - Big Guy shows only the corrected `+2 урон, +2 защита` values.
+   - Check representative appended Perks: Jeweler, Wine Master, Doctor, Cultist and Blacksmith.
+   - Verify native `(s1)` quality-icon markup renders as the normal quality star rather than literal text.
+
+4. **Pyrite, Russian**
+   - note reads: `Примечание: получение пирита при добыче угля не работает.`
+
+5. **Localization sanity**
+   - English: inspect one quality-score Perk and Grape farming.
+   - Japanese or Simplified Chinese: inspect one new long Perk/fertilizer tooltip for readable wrapping, native icon rendering, no fallback English and no missing glyphs.
+   - No need to repeat the full 1.0.2 CJK separator test unless a new regression is visible.
+
+6. **Support log**
+   - expected startup marker: `DTT_READY version=1.1.0 contract=technology-tooltip host_mvid=6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+   - no `DTT_INIT_FAILED`, `DTT_RUNTIME_DISABLED`, `DTT_VIEWPORT_DISABLED` or `DTT_WRAP_REPAIR_DISABLED`.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+The 1.1.0 numbered candidate bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance and later promotion.
