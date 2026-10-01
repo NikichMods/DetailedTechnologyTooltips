@@ -24,8 +24,8 @@ English is the semantic source for translation; Russian is the accepted primary 
 | Peat / `peat_from_waste` | `Effect for one crop cycle: increases crop and seed yields and reduces growth time by 20%.` | `Эффект на один цикл: увеличивает урожай и количество семян при сборе, сокращает время роста на 20%.` |
 | Boost fertilizer I / `sack_clock_silver` | `Effect for one crop cycle: reduces growth time by 40%.` | `Эффект на один цикл: сокращает время роста на 40%.` |
 | Boost fertilizer II / `sack_clock_gold` | `Effect for one crop cycle: reduces growth time by 60%.` | `Эффект на один цикл: сокращает время роста на 60%.` |
-| Quality fertilizer I / `sack_star_silver` | `Effect for one crop cycle: increases yield and produces 1 crop and 1 seed of the next quality.` | `Эффект на один цикл: повышает урожайность и даёт 1 единицу урожая следующего качества и 1 семя того же качества.` |
-| Quality fertilizer II / `sack_star_gold` | `Effect for one crop cycle: increases yield and produces 2 crops and 2 seeds of the next quality.` | `Эффект на один цикл: повышает урожайность и даёт 2 единицы урожая следующего качества и 2 семени того же качества.` |
+| Quality fertilizer I / `sack_star_silver` | `Effect for one crop cycle: increases crop and seed yields. Additionally produces 1 crop and 1 seed one quality tier higher.` | `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 1 единицу урожая и 1 семя на одну ступень качества выше.` |
+| Quality fertilizer II / `sack_star_gold` | `Effect for one crop cycle: increases crop and seed yields. Additionally produces 2 crops and 2 seeds one quality tier higher.` | `Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 2 единицы урожая и 2 семени на одну ступень качества выше.` |
 
 ### Grape / hops growth unlocks
 
@@ -75,7 +75,7 @@ Do not mention the later Infusion recipe, Vagner/Ms. Charm quest context, or lat
 
 ## Perks
 
-Unless noted otherwise, preserve the vanilla authored description and append the following line(s).
+Unless noted otherwise, preserve the vanilla authored description and append the following line(s). Cultist / `p_cultist` is deliberately left fully vanilla and therefore does not appear in the table.
 
 | Perk / ID | English addition | Russian addition |
 | --- | --- | --- |
@@ -87,9 +87,8 @@ Unless noted otherwise, preserve the vanilla authored description and append the
 | Engineer / `p_engineer` | `Crafting quality for carved wood, carved marble, and steel chisels: (s1)+0.3.` | `Качество резного дерева, резного мрамора и стальных резцов: (s1)+0,3.` |
 | Sword Master / `p_sword_master` | `Weapon damage: +5.` | `Урон оружием: +5.` |
 | Persistence / `p_persistence` | `Passively restores 1 energy per second.` | `Пассивно восстанавливает 1 энергию в секунду.` |
-| Butcher / `p_butcher` | `Chance of error when extracting flesh, blood, fat, skin, skull, and bones: 25% → 0%.` | `Шанс ошибки при извлечении мяса, крови, жира, кожи, черепа и костей: 25% → 0%.` |
-| Doctor / `p_doctor` | `Chance of error when extracting the brain, heart, and intestine: 50% → 25% (Preparation Place); 25% → 0% (Preparation Place II).` | `Шанс ошибки при извлечении мозга, сердца и кишечника: 50% → 25% (Препарационный стол); 25% → 0% (Препарационный стол II).` |
-| Cultist / `p_cultist` | `When a body part is removed, its displayed values stop counting toward the body's total skulls.` | `При извлечении части тела её показанные значения перестают учитываться в общем числе черепов тела.` |
+| Butcher / `p_butcher` | `Chance of error when extracting flesh, blood, fat, skin, skull, and bones decreases from 25% to 0%.` | `Шанс ошибки при извлечении мяса, крови, жира, кожи, черепа и костей снижается с 25% до 0%.` |
+| Doctor / `p_doctor` | `Chance of error when extracting the brain, heart, and intestine decreases from 50% to 25% at Preparation Place and from 25% to 0% at Preparation Place II.` | `Шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25% на препарационном столе и с 25% до 0% на препарационном столе II.` |
 | Blacksmith / `p_blacksmith` | `Crafting nails and metal parts produces more items. Steel chisel quality: (s1)+0.1.` | `При изготовлении гвоздей и металлических деталей получается больше изделий. Качество стальных резцов: (s1)+0,1.` |
 
 ### Big Guy / `p_big_guy`
@@ -108,10 +107,10 @@ Implementation must fail closed if the expected two stale numeric tokens cannot 
 Do not hardcode the mineral name. Format the note with the same native localization key, `p_t_pyrite`, that vanilla uses for the visible gathering-unlock name.
 
 Semantic source:
-- EN: `Note: "{native name}" does not drop while mining coal.`
-- RU: `Примечание: «{native name}» не выпадает при добыче угля.`
+- EN: `Note: {native name} does not drop while mining coal.`
+- RU: `Примечание: {native name} не выпадает при добыче угля.`
 
-This keeps terminology identical to the active game locale (for example, Russian `Серный колчедан` rather than a separately translated `пирит`) and remains an accepted explicit technical-note exception because an in-world formulation would imply that non-functionality is the intended Technology effect.
+Do not add quotation marks around the native mineral name. This keeps the note visually consistent with the surrounding Technology unlock names while still guaranteeing terminology identical to the active game locale (for example, Russian `Серный колчедан` rather than a separately translated `пирит`). The note remains an accepted explicit technical-note exception because an in-world formulation would imply that non-functionality is the intended Technology effect.
 
 ## Explicit non-changes
 
@@ -121,6 +120,7 @@ No new detail is added at this stage to:
 - Mason;
 - Woodworker;
 - Old books;
+- Cultist;
 - unrelated Work/Perk entries.
 
 Gameplay data, progression, unlock state, recipes, builds, saves and authored-hidden unlocks remain unchanged.
