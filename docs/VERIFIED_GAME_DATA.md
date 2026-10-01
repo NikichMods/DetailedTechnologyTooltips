@@ -274,3 +274,30 @@ Product-relevant conclusions:
 These findings invalidate the previous shortcut “authored Perk description exists, therefore it is sufficiently informative.” Some descriptions are directionally adequate, some omit important numerical mechanics, and a few are stale or materially overbroad.
 
 No production behavior is approved by this section. Any authored-description augmentation/replacement is a separate product decision and requires its own READY/BLOCKED production gate before source mutation. The stable 1.0.2 behavior remains unchanged.
+
+
+## Multi-builder visible Technology blueprints — runtime audit 2026-10-01
+
+Accepted read-only 1.407 runtime audit population:
+- 187 Technology definitions;
+- 533 object-craft definitions;
+- 105 visible Technology blueprint unlocks;
+- 0 visible blueprint records unresolved to object-craft data.
+
+Five visible blueprints have same-Technology sibling `ObjectCraftDefinition` records with the same `out_obj` / `build_type` and additional builders:
+- `The idea of the stone`: `mf_stones_1_place` — `mf_wood_builddesk` + `mining_builddesk`;
+- `Stone processing`: `mf_hammer_0_place` — `mf_wood_builddesk` + `mining_builddesk`;
+- `Mining`: `mf_ore_1_complete` — `mf_wood_builddesk` + `mining_builddesk`;
+- `Improvement`: `mf_box_stuff_place` — `garden_builddesk`, `mining_builddesk`, `vineyard_builddesk`, `graveyard_builddesk`, `cremation_builddesk`;
+- `Winemaking`: `mf_vine_press_place` — `mf_wood_builddesk` + `cellar_builddesk`.
+
+In each case, the extra same-Technology entries are authored with leading `@` in `TechDefinition.crafts`. Host semantics prove that `@` hides the Technology unlock presentation but `GameSave.UnlockTech` / `CopyLists` still unlocks the craft ID.
+
+Three visible-blueprint outputs also have same-output builders outside the owning Technology:
+- trunk: `cellar_builddesk` and `mf_wood_builddesk` definitions, both native `needs_unlock=false`;
+- corpse pallet: `souls_builddesk`, separately `needs_unlock=true`;
+- porter station: `vineyard_builddesk`, separately `needs_unlock=true`.
+
+Therefore global same-`out_obj` aggregation without a native visibility check is not safe: it can expose separately gated progression. The accepted safe presentation rule is:
+1. include same-Technology same-output/build-type siblings because the Technology itself unlocks them;
+2. include outside-Technology same-output/build-type variants only when the current save's native `GameSave.IsCraftVisible` returns true.
