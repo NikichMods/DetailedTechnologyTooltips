@@ -135,3 +135,21 @@ The current perk-mechanics investigation is substantially closed. Remaining item
 - Localization: accepted English semantics must still be rendered naturally across all 11 supported locales before release; this is implementation/copy work, not a new mechanics investigation.
 
 Everything else selected in this document has enough mechanics evidence for a production gate; no broad new Perk audit is needed.
+
+
+## Fertilizer tooltip copy
+
+Accepted Russian-oriented semantics for manual-plot fertilizer explanation:
+
+- Peat / Торф:
+  `Эффект на один цикл: увеличивает урожай и количество семян при сборе, сокращает время роста на 20%.`
+- Boost fertilizer I:
+  `Эффект на один цикл: сокращает время роста на 40%.`
+- Boost fertilizer II:
+  `Эффект на один цикл: сокращает время роста на 60%.`
+- Quality fertilizer I:
+  `Эффект на один цикл: повышает урожайность и даёт 1 единицу урожая и 1 семя следующего качества.`
+- Quality fertilizer II:
+  `Эффект на один цикл: повышает урожайность и даёт 2 единицы урожая и 2 семени следующего качества.`
+
+The Peat line intentionally does not add a negative clause about not producing next-tier crops/seeds; the distinction is already conveyed by the Quality-fertilizer wording.
