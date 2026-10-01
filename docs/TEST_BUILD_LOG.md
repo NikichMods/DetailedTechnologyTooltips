@@ -962,3 +962,17 @@ Only the changed blueprint-location behavior needs checking:
 Status: **PENDING USER RUNTIME ACCEPTANCE**.
 
 Exact 1.1.4 handed bytes are immutable after handoff. Stable 1.0.2 remains the published baseline until explicit acceptance/promotion.
+
+
+### Runtime result — 2026-10-01 — 1.1.4
+
+Status: **REJECTED — STARTUP BINDING REGRESSION**.
+
+The exact handed 1.1.4 DLL loaded as plugin version 1.1.4, but DTT initialization failed immediately with:
+`MissingFieldException: Field 'MainGame.me' not found.`
+
+Root cause is source-local and established: 1.1.4 bound the static `MainGame.me` field through the pre-existing instance-only `RequireField` helper. No 1.1.4 multi-builder tooltip behavior executed, so the location acceptance checks remain pending for the corrected successor candidate.
+
+The game's DTT fail-closed path worked as intended: DTT disabled itself and the host continued with vanilla Technology tooltips.
+
+Exact 1.1.4 handed bytes remain immutable.
