@@ -6,18 +6,18 @@ Detailed Technology Tooltips makes visible Technology-tree unlocks explain what 
 
 ## Status
 
-**1.0.2 stable release.**
+**1.1.6 stable release.**
 
-The accepted gameplay/UI baseline is 0.1.2. Version 1.0.2 carries that behavior forward, completes localization for every language exposed by Graveyard Keeper 1.407, fixes locale-specific list formatting/wrapping found during 1.0.0–1.0.1 testing, and explains the otherwise opaque Better Save Soul Remote Control unlock.
+Version 1.1.6 keeps the accepted 1.0.2 tooltip/localization behavior and extends blueprint location coverage: when the same construction exists in multiple native build menus, DTT lists the complete current-1.407 builder set deterministically rather than depending on the current save state.
 
-The current stable release is **v1.0.2**.
+The current stable release is **v1.1.6**.
 
 ## What it does
 
 For visible Technology unlocks:
 
 - **ordinary recipes** show their native requirements and the exact crafting station(s) owned by that unlocked recipe;
-- **blueprints/build unlocks** show their native build requirements and the owning build menu / build desk;
+- **blueprints/build unlocks** show their native build requirements and every native build menu / build desk that owns the same construction variant in the current 1.407 balance;
 - useful existing vanilla descriptions are preserved;
 - sparse Work/Perk unlocks receive a short explanation only where the current 1.407 data path has been specifically verified;
 - Pyrite is marked as not implemented in the current game version rather than implying that the broken vanilla unlock produces drops;
