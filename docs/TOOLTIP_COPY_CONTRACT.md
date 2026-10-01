@@ -16,13 +16,17 @@ English is the semantic source for translation; Russian is the accepted primary 
 - Native item, station and NPC names should come from game localization where the implementation has a proved native ID.
 - Blueprint builder names normally come from native localization. Exact exception: `alchemy_builddesk` is presented as the actual Alchemy Lab location because its native builder label names the discipline (`Alchemy` / `Алхимия`) rather than the place where those blueprints are built.
 - Probability changes are shown as before/after values, not as ambiguous relative percentages.
-- Do not expose future quest/story ownership merely because later uses are known.
+- Do not expose future quest/story ownership merely because later uses are known, except for the narrowly accepted blueprint-location rule below: a valid native builder name for the same `out_obj` / `build_type` may be listed before that builder is available in the current save.
 
-## Blueprint build-location exception
+## Blueprint build-location presentation
 
-For visible blueprints owned by `alchemy_builddesk`, keep native requirements and ownership semantics but present the build location as **Alchemy Lab / Алхимическая лаборатория** rather than the native generic builder label **Alchemy / Алхимия**.
+For every visible Technology blueprint, list the complete set of native build-menu names from current 1.407 `ObjectCraftDefinition` records with the same `out_obj` and `build_type`. This list is intentionally deterministic and does not depend on the current save's unlock state.
 
-This is a single proved UX exception, not a manual station table. Other blueprint builders continue to use native `ObjectDefinition` localization.
+This is an explicit product exception to the normal hidden/story-gating rule: the tooltip may name a later builder/location (for example a later hut or DLC-area builder) when native balance data proves that the same construction is buildable there. It must not render the hidden craft/Technology unlock itself, explain its story owner, or infer extra progression details.
+
+Names continue to come from native `ObjectDefinition` localization. Exact display exception: `alchemy_builddesk` is presented as **Alchemy Lab / Алхимическая лаборатория** because its native builder label names the discipline (**Alchemy / Алхимия**) rather than the actual place.
+
+Do not use `sub_zone_id` as a guessed player-facing location and do not maintain a manual station table.
 
 ## Farming and fertilizer
 
