@@ -203,7 +203,10 @@ namespace DetailedTechnologyTooltips
             _techCraftsField =
                 RequireField(techDefinitionType, "crafts");
             _mainGameMeField =
-                RequireField(mainGameType, "me");
+                mainGameType.GetField("me", AllStatic);
+            if (_mainGameMeField == null)
+                throw new MissingFieldException(mainGameType.FullName, "me");
+
             _mainGameSaveField =
                 RequireField(mainGameType, "save");
             _isCraftVisible = RequireMethod(
