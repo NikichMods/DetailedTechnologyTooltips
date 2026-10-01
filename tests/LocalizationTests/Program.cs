@@ -88,6 +88,22 @@ internal static class Program
                 return 1;
             }
 
+            var alchemyLab =
+                Localization.Get(Localization.AlchemyLab, language);
+            if (string.IsNullOrEmpty(alchemyLab)
+                || Localization.GetBlueprintBuilderOverride(
+                    "alchemy_builddesk",
+                    language) != alchemyLab
+                || Localization.GetBlueprintBuilderOverride(
+                    "morgue_builddesk",
+                    language) != null)
+            {
+                Console.Error.WriteLine(
+                    "Alchemy Lab builder-location override failed: language="
+                    + language);
+                return 1;
+            }
+
             var pyrite = Localization.Format(
                 Localization.PyriteNote,
                 language,
@@ -104,6 +120,40 @@ internal static class Program
                     "Pyrite native-name formatting failed: language=" + language);
                 return 1;
             }
+        }
+
+        var russianDoctor = Localization.Format(
+            Localization.Doctor,
+            "ru",
+            "Препарационный стол I",
+            "Препарационный стол II");
+        if (russianDoctor !=
+            "На Препарационный стол I шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25%. На Препарационный стол II — с 25% до 0%.")
+        {
+            Console.Error.WriteLine(
+                "Russian Doctor wording regression.");
+            return 1;
+        }
+
+        var russianPyrite = Localization.Format(
+            Localization.PyriteNote,
+            "ru",
+            "Серный колчедан");
+        if (russianPyrite !=
+            "Примечание: в текущей версии игры эта технология не позволяет получать Серный колчедан.")
+        {
+            Console.Error.WriteLine(
+                "Russian Pyrite technical-note wording regression.");
+            return 1;
+        }
+
+        if (Localization.GetBlueprintBuilderOverride(
+                "alchemy_builddesk",
+                "ru") != "Алхимическая лаборатория")
+        {
+            Console.Error.WriteLine(
+                "Russian Alchemy Lab location wording regression.");
+            return 1;
         }
 
         var russianQualityI =
