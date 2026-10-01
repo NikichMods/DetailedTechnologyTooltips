@@ -396,7 +396,9 @@ namespace DetailedTechnologyTooltips
                 ? _builderIdsField.GetValue(craft) as IList
                 : _craftInField.GetValue(craft) as IList;
 
-            var locations = FormatLocalizedIds(locationIds);
+            var locations = FormatLocalizedIds(
+                locationIds,
+                isBlueprint);
             if (string.IsNullOrEmpty(locations))
                 return null;
 
@@ -598,6 +600,9 @@ namespace DetailedTechnologyTooltips
 
             if (string.IsNullOrEmpty(table1) || string.IsNullOrEmpty(table2))
                 return null;
+
+            if (!table1.EndsWith(" I", StringComparison.Ordinal))
+                table1 += " I";
 
             return Localization.Format(
                 Localization.Doctor,
@@ -878,12 +883,15 @@ namespace DetailedTechnologyTooltips
             return name;
         }
 
-        private static string FormatLocalizedIds(IList ids)
+        private static string FormatLocalizedIds(
+            IList ids,
+            bool allowBlueprintLocationOverride)
         {
             if (ids == null || ids.Count == 0)
                 return null;
 
             var names = new string[ids.Count];
+            var language = GetCurrentLanguage();
 
             for (var i = 0; i < ids.Count; i++)
             {
@@ -891,7 +899,13 @@ namespace DetailedTechnologyTooltips
                 if (string.IsNullOrEmpty(id))
                     return null;
 
-                var localized = LocalizeRequired(id);
+                var localized = allowBlueprintLocationOverride
+                    ? Localization.GetBlueprintBuilderOverride(id, language)
+                    : null;
+
+                if (string.IsNullOrEmpty(localized))
+                    localized = LocalizeRequired(id);
+
                 if (string.Equals(localized, id, StringComparison.Ordinal))
                     return null;
 
