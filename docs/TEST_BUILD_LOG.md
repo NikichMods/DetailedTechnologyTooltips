@@ -1114,6 +1114,21 @@ The branch contains documentation-only commits after the exact build source; com
 
 No retest is requested for Doctor, Pyrite, fertilizers, grapes/hops, Alchemy Lab naming, Butcher, Cultist, CJK separators or the intentionally deferred whole-item quantity wrapping.
 
-Status: **PENDING USER RUNTIME ACCEPTANCE**.
+Status: **ACCEPTED STABLE — 2026-10-01**.
+
+### Runtime result — 2026-10-01
+
+The user accepted the exact 1.1.6 candidate after a broad real-game review on Graveyard Keeper 1.407.
+
+Confirmed:
+- the uploaded production log shows `Detailed Technology Tooltips 1.1.6` loading and reaching `DTT_READY` on the verified host MVID;
+- no DTT failure/disable marker is present in that log;
+- Vine press still shows both native build locations;
+- the long Trunk location list remains readable and intact;
+- additional ordinary recipes and Perk descriptions were reviewed without regression;
+- representative Better Save Soul grave-decoration Technology tooltips correctly reflect live physical-`needs` mutations from Better Save Soul Rebalance, including added Sin Shards;
+- the intentionally deferred whole-item-name + `(xN)` atomic wrap behavior remains unchanged and was not made part of acceptance.
+
+Stable promotion authorization was explicit: promote 1.1.6 to `main`, reconcile documentation, and publish the exact accepted artifact without rebuilding.
 
 Exact 1.1.6 handed bytes are immutable after handoff.
