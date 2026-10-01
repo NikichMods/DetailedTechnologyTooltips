@@ -1055,3 +1055,65 @@ New cosmetic observation:
 - whole localized ingredient-name + quantity atomic wrapping is deferred because the available approaches add unproved Unicode/font behavior or locale-sensitive wrap heuristics.
 
 Exact 1.1.5 handed bytes remain immutable.
+
+
+## 1.1.6 — deterministic complete blueprint-location candidate
+
+### Candidate identity
+
+- Version: `1.1.6`
+- Development branch: `dev/1.1.6`
+- Exact build source: `2a991fde8843c4eea1405091b6e7f9d0f201b501`
+- GitHub Actions run: `36866380936`
+- CI result: **SUCCESS**
+- Release build: **0 warnings / 0 errors**
+- Localization/formatting validation: **11 languages x 38 DTT keys — PASS**
+- CI artifact: `DetailedTechnologyTooltips-1.1.6-2a991fde8843c4eea1405091b6e7f9d0f201b501`
+- Artifact ID: `11164421740`
+- Artifact ZIP digest: `sha256:5bba490dfc1daea022b1cfe70412f61c1ba2a60553b41683d0b0231d407fecc6`
+- Installed DLL basename: `DetailedTechnologyTooltips.dll`
+- Numbered handoff filename: `DetailedTechnologyTooltips-1.1.6.dll`
+- DLL SHA-256: `a6cf0acf44c08c377afccfba4fcebec56c81310956b0fce324be197f71b22849`
+- DLL size: 82,944 bytes
+- Binary/plugin metadata: `1.1.6`
+- Assembly informational version: `1.1.6+2a991fde8843c4eea1405091b6e7f9d0f201b501`
+
+Downloaded-artifact verification:
+- `BUILD_IDENTITY.txt` matches version, exact source SHA and DLL hash;
+- computed DLL SHA-256 matches the identity file;
+- binary is a non-empty Windows PE32 Mono/.NET assembly;
+- embedded strings contain the exact 1.1.6 readiness marker and source identity.
+
+The branch contains documentation-only commits after the exact build source; compare evidence confirms no production/build/test file changed after `2a991fde8843c4eea1405091b6e7f9d0f201b501`.
+
+### Delta from 1.1.5
+
+- Blueprint location aggregation is now fully deterministic and independent of current save state.
+- DTT scans native `craft_obj_data` for every `ObjectCraftDefinition` with the same `out_obj` and `build_type` as the visible blueprint and unions their `builder_ids`.
+- The previous `GameSave.IsCraftVisible` filter and all MainGame/GameSave reflection bindings introduced only for that filter are removed.
+- Visible blueprint requirements still come from the visible authored blueprint.
+- Hidden craft/Technology rows remain hidden; only the native builder/location name may now be visible before its progression gate.
+- Ordinary recipe station behavior is unchanged.
+- Ingredient quantity wrapping is unchanged: DTT still repairs only a split *inside* `(xN)`; it does not force the whole localized item name + quantity to be atomic.
+
+### Focused runtime acceptance requested
+
+1. **Startup**
+   - expected `DTT_READY version=1.1.6 ...`;
+   - no DTT init/runtime/wrap/viewport disable marker.
+
+2. **Deterministic location behavior**
+   - Vine press remains Yard + Cellar;
+   - one Yard/Quarry duplicate remains correct;
+   - Trunk remains the complete seven-location list and readable;
+   - if convenient, inspect either corpse pallet or porter station: its additional separately gated native builder may now be named immediately by design.
+
+3. **Regression sanity**
+   - one ordinary recipe still shows its exact recipe station;
+   - one ordinary single-location blueprint still shows one location.
+
+No retest is requested for Doctor, Pyrite, fertilizers, grapes/hops, Alchemy Lab naming, Butcher, Cultist, CJK separators or the intentionally deferred whole-item quantity wrapping.
+
+Status: **PENDING USER RUNTIME ACCEPTANCE**.
+
+Exact 1.1.6 handed bytes are immutable after handoff.
