@@ -1029,3 +1029,29 @@ If initialization succeeds, continue the already pending multi-builder checks:
 Status: **PENDING USER RUNTIME ACCEPTANCE**.
 
 Exact 1.1.5 handed bytes are immutable after handoff.
+
+
+### Runtime result — 2026-10-01 — 1.1.5
+
+Status: **ACCEPTED FOR STARTUP + MULTI-BUILDER MECHANISM; SUPERSEDED BY 1.1.6 PRODUCT POLICY**.
+
+User runtime evidence on Graveyard Keeper 1.407:
+- exact handed 1.1.5 loaded and emitted `DTT_READY version=1.1.5 contract=technology-tooltip host_mvid=6f50b8e7-156b-49ac-bbe8-7505894b2364`;
+- the 1.1.4 startup regression is closed;
+- Alchemy Lab single-location presentation remains correct;
+- Vine press correctly lists both Yard and Cellar;
+- Stone stockpile / first Stone cutter / Iron ore stockpile correctly receive their additional audited build location;
+- Trunk renders the expanded location row readably and without duplicate displayed names;
+- an ordinary recipe tooltip remains on its exact recipe station path.
+
+New product decision after runtime review:
+- remove current-save-dependent location admission entirely;
+- always show the complete native builder set for the same blueprint `out_obj` / `build_type`;
+- limited future builder-name disclosure is explicitly accepted; hidden unlock entries and story ownership still remain undisclosed.
+
+New cosmetic observation:
+- NGUI can place an intact native quantity token such as `(x8)` on a line by itself after its ingredient name;
+- the existing repair still correctly protects only against a line break *inside* `(xN)`;
+- whole localized ingredient-name + quantity atomic wrapping is deferred because the available approaches add unproved Unicode/font behavior or locale-sensitive wrap heuristics.
+
+Exact 1.1.5 handed bytes remain immutable.
