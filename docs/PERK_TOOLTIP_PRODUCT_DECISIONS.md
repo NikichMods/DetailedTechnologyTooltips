@@ -107,9 +107,14 @@ All DTT additions inside the Technology Tree should read as if they were native 
 - avoid meta-language about the mod, implementation, data files, or "the current game version" unless no in-world/system-style wording can express the necessary fact;
 - concise mechanical statements such as `Crafting quality: +★0.3`, `Chance: 25% -> 0%`, or `Restores more energy` fit the intended voice.
 
-### Existing 1.0.2 style outlier
+### Existing 1.0.2 style outlier / accepted exception
 
-The current sparse Pyrite note is:
-`Note: not implemented in the current game version.`
+The Pyrite unlock is a verified broken-native-data case (`p_t_pyrite` / `p_t_pirit` mismatch). Attempts to rewrite this as ordinary in-world/system behavior ("does not unlock", "unavailable") make the Technology entry more confusing by implying that non-functionality is the intended effect.
 
-This is mechanically motivated by the verified `p_t_pyrite` / `p_t_pirit` mismatch, but it is meta-text and reads like the mod author speaking through the Technology Tree. Treat it as a separate wording-cleanup candidate before the next production release. Do not change production behavior until that exact presentation change has its own READY gate.
+Accepted product direction:
+- keep an explicit technical note for this exceptional broken mechanic;
+- prefer operational wording over speculation about developer intent;
+- target semantic: `Note: obtaining pyrite while mining coal does not work in the current game version.`
+- this is a deliberate exception to the normal "native game help" voice because a non-meta formulation would mislead the player.
+
+Production behavior remains unchanged until this exact presentation change receives its own READY gate.
