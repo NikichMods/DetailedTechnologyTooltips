@@ -64,7 +64,7 @@ internal static class Program
                 || formatted.IndexOf("TABLE_TWO", StringComparison.Ordinal) < 0
                 || formatted.IndexOf("{0}", StringComparison.Ordinal) >= 0
                 || formatted.IndexOf("{1}", StringComparison.Ordinal) >= 0
-                || CountOccurrences(formatted, "→") != 2)
+                || formatted.IndexOf("→", StringComparison.Ordinal) >= 0)
             {
                 Console.Error.WriteLine(
                     "Doctor localization formatting failed: language=" + language);
@@ -73,10 +73,18 @@ internal static class Program
 
             var butcher = Localization.Get(Localization.Butcher, language);
             if (string.IsNullOrEmpty(butcher)
-                || CountOccurrences(butcher, "→") != 1)
+                || butcher.IndexOf("→", StringComparison.Ordinal) >= 0)
             {
                 Console.Error.WriteLine(
-                    "Butcher before/after notation failed: language=" + language);
+                    "Butcher natural-language decrease wording failed: language="
+                    + language);
+                return 1;
+            }
+
+            if (Localization.Get("cultist", language) != null)
+            {
+                Console.Error.WriteLine(
+                    "Cultist must remain fully vanilla: language=" + language);
                 return 1;
             }
 
@@ -89,7 +97,8 @@ internal static class Program
                 || pyrite.IndexOf(
                     "NATIVE_PYRITE_NAME",
                     StringComparison.Ordinal) < 0
-                || pyrite.IndexOf("{0}", StringComparison.Ordinal) >= 0)
+                || pyrite.IndexOf("{0}", StringComparison.Ordinal) >= 0
+                || HasQuoteMark(pyrite))
             {
                 Console.Error.WriteLine(
                     "Pyrite native-name formatting failed: language=" + language);
@@ -97,15 +106,14 @@ internal static class Program
             }
         }
 
-        var russianQuality =
+        var russianQualityI =
             Localization.Get(Localization.QualityFertilizerI, "ru");
-        if (string.IsNullOrEmpty(russianQuality)
-            || russianQuality.IndexOf(
-                "семя того же качества",
-                StringComparison.Ordinal) < 0
-            || russianQuality.IndexOf(
-                "семя следующего качества",
-                StringComparison.Ordinal) >= 0)
+        var russianQualityII =
+            Localization.Get(Localization.QualityFertilizerII, "ru");
+        if (russianQualityI !=
+                "Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 1 единицу урожая и 1 семя на одну ступень качества выше."
+            || russianQualityII !=
+                "Эффект на один цикл: увеличивает количество урожая и семян. Дополнительно даёт 2 единицы урожая и 2 семени на одну ступень качества выше.")
         {
             Console.Error.WriteLine(
                 "Russian Quality fertilizer wording regression.");
@@ -201,6 +209,23 @@ internal static class Program
             + Localization.Keys.Length
             + " keys.");
         return 0;
+    }
+
+    private static bool HasQuoteMark(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return false;
+
+        return text.IndexOf('"') >= 0
+            || text.IndexOf('«') >= 0
+            || text.IndexOf('»') >= 0
+            || text.IndexOf('“') >= 0
+            || text.IndexOf('”') >= 0
+            || text.IndexOf('「') >= 0
+            || text.IndexOf('」') >= 0
+            || text.IndexOf('『') >= 0
+            || text.IndexOf('』') >= 0
+            || text.IndexOf('„') >= 0;
     }
 
     private static int CountOccurrences(string text, string value)
