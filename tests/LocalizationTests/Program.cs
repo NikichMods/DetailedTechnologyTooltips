@@ -20,6 +20,14 @@ internal static class Program
                         "Missing localization: language=" + language + " key=" + key);
                     return 1;
                 }
+
+                if (value.Contains(@"\n"))
+                {
+                    Console.Error.WriteLine(
+                        "Literal newline escape leaked into localization: language="
+                        + language + " key=" + key);
+                    return 1;
+                }
             }
         }
 
@@ -40,6 +48,51 @@ internal static class Program
         if (Localization.Get(Localization.BuildMenu, "unknown") != null)
         {
             Console.Error.WriteLine("Unknown language must fail closed.");
+            return 1;
+        }
+
+        foreach (var language in Localization.SupportedLanguages)
+        {
+            var formatted = Localization.Format(
+                Localization.Doctor,
+                language,
+                "TABLE_ONE",
+                "TABLE_TWO");
+
+            if (string.IsNullOrEmpty(formatted)
+                || formatted.IndexOf("TABLE_ONE", StringComparison.Ordinal) < 0
+                || formatted.IndexOf("TABLE_TWO", StringComparison.Ordinal) < 0
+                || formatted.IndexOf("{0}", StringComparison.Ordinal) >= 0
+                || formatted.IndexOf("{1}", StringComparison.Ordinal) >= 0)
+            {
+                Console.Error.WriteLine(
+                    "Doctor localization formatting failed: language=" + language);
+                return 1;
+            }
+        }
+
+        const string bigGuyVanilla =
+            "Heavy work made you bigger and stronger. +1 damage, +1 defense.";
+        var bigGuyCorrected =
+            TextFormatting.CorrectBigGuyDescription(bigGuyVanilla);
+        if (bigGuyCorrected !=
+            "Heavy work made you bigger and stronger. +2 damage, +2 defense.")
+        {
+            Console.Error.WriteLine("Big Guy stat correction failed.");
+            return 1;
+        }
+
+        if (TextFormatting.CorrectBigGuyDescription(
+                "Unexpected +1 damage only.") != null
+            || TextFormatting.CorrectBigGuyDescription(
+                "Unexpected +1 damage, +1 defense, +1 extra.") != null
+            || TextFormatting.CorrectBigGuyDescription(
+                "Do not touch +10 damage and +1 defense.") != null
+            || TextFormatting.CorrectBigGuyDescription(
+                "Do not touch +1.5 damage and +1 defense.") != null)
+        {
+            Console.Error.WriteLine(
+                "Big Guy stat correction must fail closed on unexpected text.");
             return 1;
         }
 
