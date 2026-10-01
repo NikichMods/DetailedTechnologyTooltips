@@ -14,8 +14,15 @@ English is the semantic source for translation; Russian is the accepted primary 
 - DTT additions read as neutral game help, not commentary from the mod author.
 - Use the game's native quality icon token `(s1)` for the quality-score metric; do not render a literal Unicode star.
 - Native item, station and NPC names should come from game localization where the implementation has a proved native ID.
+- Blueprint builder names normally come from native localization. Exact exception: `alchemy_builddesk` is presented as the actual Alchemy Lab location because its native builder label names the discipline (`Alchemy` / `Алхимия`) rather than the place where those blueprints are built.
 - Probability changes are shown as before/after values, not as ambiguous relative percentages.
 - Do not expose future quest/story ownership merely because later uses are known.
+
+## Blueprint build-location exception
+
+For visible blueprints owned by `alchemy_builddesk`, keep native requirements and ownership semantics but present the build location as **Alchemy Lab / Алхимическая лаборатория** rather than the native generic builder label **Alchemy / Алхимия**.
+
+This is a single proved UX exception, not a manual station table. Other blueprint builders continue to use native `ObjectDefinition` localization.
 
 ## Farming and fertilizer
 
@@ -88,7 +95,7 @@ Unless noted otherwise, preserve the vanilla authored description and append the
 | Sword Master / `p_sword_master` | `Weapon damage: +5.` | `Урон оружием: +5.` |
 | Persistence / `p_persistence` | `Passively restores 1 energy per second.` | `Пассивно восстанавливает 1 энергию в секунду.` |
 | Butcher / `p_butcher` | `Chance of error when extracting flesh, blood, fat, skin, skull, and bones decreases from 25% to 0%.` | `Шанс ошибки при извлечении мяса, крови, жира, кожи, черепа и костей снижается с 25% до 0%.` |
-| Doctor / `p_doctor` | `Chance of error when extracting the brain, heart, and intestine decreases from 50% to 25% at Preparation Place and from 25% to 0% at Preparation Place II.` | `Шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25% на препарационном столе и с 25% до 0% на препарационном столе II.` |
+| Doctor / `p_doctor` | `At Preparation Place I, chance of error when extracting the brain, heart, and intestine decreases from 50% to 25%. At Preparation Place II, it decreases from 25% to 0%.` | `На препарационном столе I шанс ошибки при извлечении мозга, сердца и кишечника снижается с 50% до 25%. На препарационном столе II — с 25% до 0%.` |
 | Blacksmith / `p_blacksmith` | `Crafting nails and metal parts produces more items. Steel chisel quality: (s1)+0.1.` | `При изготовлении гвоздей и металлических деталей получается больше изделий. Качество стальных резцов: (s1)+0,1.` |
 
 ### Big Guy / `p_big_guy`
@@ -107,10 +114,10 @@ Implementation must fail closed if the expected two stale numeric tokens cannot 
 Do not hardcode the mineral name. Format the note with the same native localization key, `p_t_pyrite`, that vanilla uses for the visible gathering-unlock name.
 
 Semantic source:
-- EN: `Note: {native name} does not drop while mining coal.`
-- RU: `Примечание: {native name} не выпадает при добыче угля.`
+- EN: `Note: in the current version of the game, this technology does not allow obtaining {native name}.`
+- RU: `Примечание: в текущей версии игры эта технология не позволяет получать {native name}.`
 
-Do not add quotation marks around the native mineral name. This keeps the note visually consistent with the surrounding Technology unlock names while still guaranteeing terminology identical to the active game locale (for example, Russian `Серный колчедан` rather than a separately translated `пирит`). The note remains an accepted explicit technical-note exception because an in-world formulation would imply that non-functionality is the intended Technology effect.
+Do not add quotation marks around the native mineral name. The wording deliberately describes the broken Technology effect from outside the game rather than saying only that the mineral does not drop from coal, which could imply another working acquisition path. The active game's native `p_t_pyrite` display name is still inserted dynamically (for example, Russian `Серный колчедан`). This remains an accepted technical-note exception to the normal in-world/help voice.
 
 ## Explicit non-changes
 
