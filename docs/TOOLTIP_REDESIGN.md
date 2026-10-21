@@ -73,13 +73,41 @@ Community wiki cross-checks:
 
 Wiki text is a secondary explanation source, not developer-authored copy or a version-pinned mechanics authority. Its article paragraphs include details beyond the purpose block. No wiki paragraphs or native localization corpus are imported into the public repository.
 
-Proposed editorial approach for user review:
+Accepted editorial approach (the user approved this approach after reviewing the investigation):
 1. Look for useful native description text first; retain/reuse it through a verified native lookup where adequate and accurate.
 2. Where incomplete, preserve useful native information and add only the missing purpose. Where absent, author a concise explanation from verified behavior, using wiki explanations as a secondary cross-check.
 3. Lead with action and useful result, normally one sentence. Include a differentiating capability such as two versus three ingredients when it explains the tier. Avoid repeating the title, vague praise, a full product catalog or story/recipe spoilers.
 4. Match native terminology and approachable in-world voice, without requiring every blueprint to imitate humorous Perk text. Meaning and correctness take priority over copying vanilla omissions or awkward wording.
 5. Keep English as semantic source and Russian as review locale. Select the short emphasized result phrase while editing each translation; color must not be the only carrier of meaning.
 6. Review a small representative copy set before scaling to all eligible blueprints. Record evidence and native-text availability with each reviewed entry; exact implementation/data format remains open.
+
+### Editorial pilot — draft wording, not accepted copy
+
+The user further specified concise, unambiguous, clear, easily read and elegant sentences. Avoid vague appendages such as “and other alchemical mixtures.” A purpose sentence need not enumerate every product: a meaningful category or representative concrete outputs can convey the function. The user is considering both `алхимические составы` and `зелья и краски` for the first workbench; neither is yet final. Do not interpret the latter as an exhaustive product list. Avoid changing an important capability just to make two tiers share an identical sentence template.
+
+Bold spans below illustrate candidate semantic emphasis, not literal markup or verified host colors. All entries are original editorial drafts. English remains the semantic source, with Russian used for review.
+
+| Native unlock | English draft | Russian draft |
+| --- | --- | --- |
+| Alchemy workbench / `mf_alchemy_craft_02` | Makes **potions and paints** from two ingredients. | Готовит **зелья и краски** из двух ингредиентов. |
+| Hand mixer / `mf_alchemy_stirrer_01` | Processes materials into alchemical **solutions**. | Перерабатывает материалы в алхимические **растворы**. |
+| Alchemy mill / `mf_alchemy_mill` | Grinds materials into alchemical **powders**. | Измельчает материалы в алхимические **порошки**. |
+| Alchemy workbench II / `mf_alchemy_craft_03` | Makes alchemical mixtures from **three ingredients**. | Готовит алхимические составы из **трёх ингредиентов**. |
+| Trunk / `mf_box_stuff` | Provides **item storage**. | Место для **хранения предметов**. |
+| Candelabra I / `candelabrum_1` | Improves **church quality** and holds candles. | Повышает **качество церкви** и служит подставкой для свечей. |
+| Water pump / `well_pump_place` | Automatically replenishes your **water supply**. | Автоматически пополняет **запас воды**. |
+
+Alternative first-workbench draft: `Makes **alchemical mixtures** from two ingredients.` / `Готовит **алхимические составы** из двух ингредиентов.` Author preference for review: concrete potions/paints makes the first unfamiliar station easier to picture; the broader category is shorter conceptually and does not suggest complete coverage. Workbench II deliberately emphasizes its three-input capability rather than claiming it has the same output categories as tier I.
+
+Bounded static evidence for the additional pilot entries, from installed 1.407 data:
+- The four additional entries are authored-visible blueprint records in Advanced alchemy, Improvement, Light of faith and Engineer respectively (visibility still depends on native UI/save rules).
+- The non-auxiliary, non-hidden tier-II formula rows inspected have three ingredient entries (20 rows). This supports three-input wording; it does not authorize revealing their recipes.
+- `mf_box_stuff` has native inventory storage (inventory size25). The draft deliberately omits a numerical slots/stack interpretation pending the corresponding UI contract.
+- `candelabrum_1` has base quality1 under the church builder, and native candle-input crafts change it to candle-bearing variants. The draft states both roles without claiming a permanent candle bonus, duration or numerical buff.
+- The water-pump build record targets `well_pump_place`; its functioning `well_pump` object accepts water, and the native automatic pumping craft writes water into that object's inventory. The draft does not claim pumping speed, unlimited supply or automation of all nearby stations. This is static functional support, not a new runtime acceptance.
+- Direct localization inspection found names but no purpose text under the inspected additional object IDs; wording is original. No proprietary data corpus is committed.
+
+This pilot tests production, processing, tier distinction, storage, decoration and automatic supply. Before production, final wording must still pass the relevant purpose-copy gate and representative localization/runtime review. The pilot is not a promise to broaden scope to hidden unlocks or rewrite all existing Work/Perk descriptions.
 
 ## Evidence and next review
 
