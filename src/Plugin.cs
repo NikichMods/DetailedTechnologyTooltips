@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.2.2";
+        public const string PluginVersion = "1.2.3";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -575,3 +575,4 @@ namespace DetailedTechnologyTooltips
     }
 
 }
+

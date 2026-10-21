@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using HarmonyLib;
@@ -17,16 +16,14 @@ namespace DetailedTechnologyTooltips
         private sealed class State
         {
             internal bool Dirty = true;
-            internal readonly Dictionary<Component, float> Shifts = new Dictionary<Component, float>();
-            internal readonly List<Component> Materials = new List<Component>();
             internal int Width, MaterialWidth;
         }
         private static readonly ConditionalWeakTable<object, Tag> Tags = new ConditionalWeakTable<object, Tag>();
         private static readonly ConditionalWeakTable<object, State> States = new ConditionalWeakTable<object, State>();
         private static Type bubbleType, widgetType, labelType, textWidgetType, blankType, rootType;
-        private static FieldInfo tooltipData, dataList, widgets, widgetData;
-        private static PropertyInfo width, height, overflow, overflowWidth, printed, alignment, pivot;
-        private static object resizeFreely, resizeHeight, left, center, leftPivot;
+        private static FieldInfo tooltipData, dataList, widgets, widgetData, bubbleWidget;
+        private static PropertyInfo width, height, overflow, overflowWidth, printed, alignment, pivotOffset, worldCorners;
+        private static object resizeFreely, resizeHeight, left, center;
         private static bool installed, failed;
         internal static bool Available { get { return installed && !failed; } }
         private static ConstructorInfo blankCtor;
@@ -42,25 +39,26 @@ namespace DetailedTechnologyTooltips
             tooltipData = AccessTools.Field(AccessTools.TypeByName("Tooltip"), "data");
             dataList = AccessTools.Field(tooltipData.FieldType, "data_list");
             widgets = AccessTools.Field(bubbleType, "bubble_widgets");
+            bubbleWidget = AccessTools.Field(bubbleType, "widget");
             widgetData = AccessTools.Field(textWidgetType, "data");
             width = AccessTools.Property(widgetType, "width"); height = AccessTools.Property(widgetType, "height");
             overflow = AccessTools.Property(labelType, "overflowMethod");
             overflowWidth = AccessTools.Property(labelType, "overflowWidth");
             printed = AccessTools.Property(labelType, "printedSize");
-            alignment = AccessTools.Property(labelType, "alignment"); pivot = AccessTools.Property(widgetType, "pivot");
+            alignment = AccessTools.Property(labelType, "alignment");
+            pivotOffset = AccessTools.Property(widgetType, "pivotOffset");
+            worldCorners = AccessTools.Property(widgetType, "worldCorners");
             resizeFreely = Enum.Parse(overflow.PropertyType, "ResizeFreely");
             resizeHeight = Enum.Parse(overflow.PropertyType, "ResizeHeight");
             left = Enum.Parse(alignment.PropertyType, "Left"); center = Enum.Parse(alignment.PropertyType, "Center");
-            leftPivot = Enum.Parse(pivot.PropertyType, "Left");
             blankCtor = blankType.GetConstructor(Type.EmptyTypes);
-            if (widgets == null || widgetData == null || printed == null || blankCtor == null)
+            if (widgets == null || widgetData == null || printed == null || blankCtor == null
+                || bubbleWidget == null || pivotOffset == null || worldCorners == null)
                 throw new MissingMemberException("Pilot layout native contract");
             harmony.Patch(AccessTools.DeclaredMethod(bubbleType, "UpdateSize", Type.EmptyTypes),
                 prefix: new HarmonyMethod(typeof(PilotLayout), nameof(Prepare)));
-            foreach (string name in new[] { "SimpleUITable", "UITable" })
-                harmony.Patch(AccessTools.DeclaredMethod(AccessTools.TypeByName(name), "Reposition", Type.EmptyTypes),
-                    new HarmonyMethod(typeof(PilotLayout), nameof(TableBefore)),
-                    new HarmonyMethod(typeof(PilotLayout), nameof(TableAfter)), null, null, null);
+            harmony.Patch(AccessTools.DeclaredMethod(bubbleType, "Reposition", Type.EmptyTypes),
+                postfix: new HarmonyMethod(typeof(PilotLayout), nameof(PositionRows)));
             installed = true;
         }
         internal static int Count(object tooltip)
@@ -152,7 +150,6 @@ namespace DetailedTechnologyTooltips
                 }
                 state.Width = LayoutPolicy.Width(longest, Math.Max(100, max));
                 state.MaterialWidth = Math.Min(state.Width, (int)Math.Ceiling(longest) + 4);
-                state.Materials.Clear();
                 foreach (var item in list)
                 {
                     var component = item as Component;
@@ -174,47 +171,43 @@ namespace DetailedTechnologyTooltips
                     overflow.SetValue(label, resizeHeight, null);
                     overflowWidth.SetValue(label, state.Width, null);
                     width.SetValue(label, state.Width, null);
-                    pivot.SetValue(label, leftPivot, null);
                     alignment.SetValue(label, tag.Role == PilotRole.Material ? left : PilotCalibration.Center(tag.Role) ? center : left, null);
                     printed.GetValue(label, null); // Commit wrapped height before native measurement.
-                    if (tag.Role == PilotRole.Material) state.Materials.Add(component);
                 }
                 state.Dirty = false;
             }
             catch (Exception ex) { Disable(ex); }
         }
-        public static void TableBefore(object __instance)
+        public static void PositionRows(object __instance)
         {
             if (!installed || failed) return;
             try
             {
-                var bubble = ((Component)__instance).GetComponentInParent(bubbleType);
                 State state;
-                if (bubble == null || !States.TryGetValue(bubble, out state)) return;
-                foreach (var shift in state.Shifts)
-                    if (shift.Key != null)
-                    {
-                        var p = shift.Key.transform.localPosition; p.x -= shift.Value; shift.Key.transform.localPosition = p;
-                    }
-                state.Shifts.Clear();
-            }
-            catch (Exception ex) { Disable(ex); }
-        }
-        public static void TableAfter(object __instance)
-        {
-            if (!installed || failed || !PilotCalibration.MaterialCenter) return;
-            try
-            {
-                var bubble = ((Component)__instance).GetComponentInParent(bubbleType);
-                State state;
-                if (bubble == null || !States.TryGetValue(bubble, out state)) return;
-                float shift = (state.Width - state.MaterialWidth) * 0.5f;
-                foreach (var material in state.Materials)
-                    if (material != null && material.gameObject.activeInHierarchy)
-                    {
-                        var p = material.transform.localPosition; p.x += shift; material.transform.localPosition = p;
-                        state.Shifts[material] = shift;
-                    }
+                if (!States.TryGetValue(__instance, out state)) return;
+                var frame = bubbleWidget.GetValue(__instance);
+                var corners = (Vector3[])worldCorners.GetValue(frame, null);
+                foreach (var item in (IList)widgets.GetValue(__instance))
+                {
+                    if (!textWidgetType.IsInstanceOfType(item)) continue;
+                    var component = (Component)item;
+                    if (!component.gameObject.activeInHierarchy) continue;
+                    var data = widgetData.GetValue(item);
+                    Tag tag;
+                    if (data == null || !Tags.TryGetValue(data, out tag) || tag.Role >= PilotRole.TitleGap) continue;
+                    var label = (Component)component.GetComponent(labelType);
+                    var parent = label.transform.parent;
+                    float edgeLeft = parent.InverseTransformPoint(corners[0]).x;
+                    float edgeRight = parent.InverseTransformPoint(corners[2]).x;
+                    float rowWidth = Convert.ToInt32(width.GetValue(label, null)) * label.transform.localScale.x;
+                    bool material = tag.Role == PilotRole.Material;
+                    bool centered = material ? PilotCalibration.MaterialCenter : PilotCalibration.Center(tag.Role);
+                    float span = material ? Math.Min(rowWidth, state.MaterialWidth * label.transform.localScale.x) : rowWidth;
+                    var p = label.transform.localPosition;
+                    p.x = LayoutPolicy.RowX(edgeLeft, edgeRight, rowWidth,
+                        ((Vector2)pivotOffset.GetValue(label, null)).x, span, centered);
+                    label.transform.localPosition = p;
+                }
             }
             catch (Exception ex) { Disable(ex); }
         }

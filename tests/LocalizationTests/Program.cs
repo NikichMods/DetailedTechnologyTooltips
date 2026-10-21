@@ -257,9 +257,19 @@ internal static class Program
             return 1;
         }
 
-        if (LayoutPolicy.Width(180, 800) != 300 || LayoutPolicy.Width(330.2f, 800) != 335
-            || LayoutPolicy.Width(450, 320) != 320 || LayoutPolicy.Width(80, 250) != 250)
+        if (LayoutPolicy.Width(180, 800) != 184 || LayoutPolicy.Width(330.2f, 800) != 335
+            || LayoutPolicy.Width(450, 320) != 320 || LayoutPolicy.Width(80, 250) != 150)
             throw new Exception("Material-width floor/ceil/viewport policy regression");
+        // Compare physical row edges, independently of native table/pivot placement.
+        foreach (float pivot in new[] { 0f, 0.5f, 1f })
+        {
+            float x = LayoutPolicy.RowX(-100, 100, 200, pivot, 150, false);
+            if (x - pivot * 200 != -100 || x + (1 - pivot) * 200 != 100)
+                throw new Exception("Row must occupy the bubble span for every native pivot");
+            x = LayoutPolicy.RowX(-100, 100, 200, pivot, 150, true);
+            if (x - pivot * 200 != -75)
+                throw new Exception("Material block must center its shared150-unit content span");
+        }
         if (LayoutPolicy.BindQuantity("Простые железные детали (x4)") != "Простые железные детали\u00a0(x4)"
             || LayoutPolicy.BindQuantity("Nails (x8)") != "Nails\u00a0(x8)"
             || LayoutPolicy.BindQuantity("Storage (items)") != "Storage (items)"
