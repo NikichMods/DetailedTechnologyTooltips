@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.2
+# Tooltip layout pilot — current candidate1.2.3
 
-Status: candidate1.2.2 built, frozen and installed after user-confirmed host closure; runtime visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.2 rejected for excess width and controller text overflow; corrected1.2.3 frozen and installed, runtime visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -73,3 +73,11 @@ Reopened solution selection: retain native vertical ordering/background sizing a
 **READY width-floor correction:** LayoutPolicy used300 UI units as a fixed minimum despite the inspected inherited tooltip ceiling150. This causes excess width independently of material measurement. Replace floor with150 UI units; retain actual current-language native-font resource measurement, margin and viewport cap. Description remains excluded. Exact pixel scale is screenshot-dependent; do not assert universal2x scaling.
 
 **READY horizontal final-writer correction:** installed firstpass SimpleUITable.Reposition computes V15 from CalculateWidgetHeight, then uses V15 for horizontal pivot compensation (IL013e–01ee), while WidgetsBubbleGUI.Reposition may subsequently change UILabel pivot when container alignment is Left. DTT1.2.2 forces Left pivot before this pipeline and only shifts materials when centering is enabled; it cannot ensure common final left edges on the combined controller path. Remove table-level hooks and forced pivot mutation. Postfix WidgetsBubbleGUI.Reposition after native pivot changes; adjust only current tagged text rows' horizontal positions using the enclosing widget worldCorners projected into each row parent and the row's final pivotOffset/localScale. Keep native vertical positions, gaps, ornament, sizing and placement. Whole material block centering uses longest material span; text stays left-aligned. Nonpilot rows/PrayerClarity remain untouched. Current tags are checked on every reposition, including pooled widget reuse; no per-frame text/font measurement. Native late reposition may repeat the same idempotent x assignment. Acceptance: bounded unit edge/pivot/width checks plus real mouse/controller screenshots and F2 controls. Installed visual correction is pending, not inferred from compilation.
+
+
+###1.2.3 frozen correction
+
+Source `e8228972a10236ffea1fcb871c37b08a479b2f63`; local native-reference DLL105472 bytes, SHA256 `4625f7a86fb10cd0bd2bd9d82ecd7f94845fcf621b48b817a6b5a6bb0bbdf43a`, FileVersion1.2.3.0. SDK8.0.426 Release build zero warnings/errors. Existing localization/formatting/pilot/quantity checks and corrected width floor/cap plus physical edge assertions across three pivot choices pass. These pure geometry checks do not execute Unity transforms or native table layout; screenshot/runtime acceptance remains necessary.
+
+Final owned-row horizontal placement now follows native WidgetsBubbleGUI.Reposition, including its late repeats and pivot changes; original table hooks and forced pivot mutation removed. Native vertical positions and all F2 controls retained. Shared native table finding promoted to GraveyardKeeperResearch commit1226269. CI39672651190/job119474262149 completed success. User confirmed current host closure; process check found no game. Installed canonical DetailedTechnologyTooltips.dll matches the frozen1.2.3 hash/version, with one DTT payload in the plugin tree. Prior artifacts retained outside plugins. Status: INSTALLED TEST CANDIDATE, runtime visual acceptance pending.
+

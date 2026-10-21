@@ -1164,3 +1164,10 @@ With host closed, stable1.1.6 was hash-verified/backed up outside plugins, candi
 
 Native-reference Release: zero warnings/errors. Localization/formatting/pilot scope, pure width policy and EN/RU quantity-binding checks pass. CI39652950942 success. Source gates and runtime checks: TOOLTIP_LAYOUT_PILOT.md. User confirmed host closure; no host process found. Installed canonical DLL hash/version match frozen1.2.2, one DTT payload present. Prior1.2.1 verified and retained outside plugins for rollback. No stable release or main promotion.
 
+
+##1.2.3 — correct1.2.2 layout regression,2026-10-21
+
+**INSTALLED CORRECTION — runtime visual acceptance pending.**1.2.2 rejected: excess mouse width, combined controller text outside parchment. Captured session SHA256fb2c51f467ee5a7a3e9be459492a327ef2f268654a78d2a178825c721610dd57 loads1.2.2 without DTT disable markers; defaults unchanged. Direct native IL exposes height-based horizontal pivot compensation in SimpleUITable and subsequent pivot mutation in WidgetsBubbleGUI.Reposition.1.2.3 removes forced pivots/table hooks and assigns current tagged rows' x from bubble edges after the final native writer. Width floor corrected300→150UI; longest localized materials still widen the tooltip. F2 gaps/alignment and PrayerClarity ownership retained.
+
+Exact source `e8228972a10236ffea1fcb871c37b08a479b2f63`, DLL105472 bytes, SHA256 `4625f7a86fb10cd0bd2bd9d82ecd7f94845fcf621b48b817a6b5a6bb0bbdf43a`. Local native-reference Release zero warnings/errors; tests pass, including physical left/right edges for three native pivot choices. No Unity runtime visual acceptance inferred. CI39672651190/job119474262149 success. With user-confirmed host closure and no detected game process, installed canonical DLL hash/version verified against exact1.2.3 artifact; one DTT copy present. Prior1.2.2/1.2.1/stable artifacts retained outside plugins. Next review: same alchemy mouse/controller tooltip and F2 switches, no crafting required.
+
