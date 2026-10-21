@@ -53,7 +53,7 @@ The paired data audit is complete for these ten families, but this is not a univ
 
 ## Manual-station voice options
 
-The following are competing drafts for comparison; no global surface template has yet been selected by the user. The approved semantic content of alchemy/candelabra/pump sentences remains binding, while the manual-station actor objection reopens their grammatical presentation where applicable.
+These are historical comparison drafts; no global surface template has been selected by the user. Subsequent feedback rejects repetitive `Для…` and bare process names, and finds unbound `Можно…` insufficient. Current object-enabled action candidates and source research are in [TOOLTIP_LANGUAGE_RESEARCH.md](TOOLTIP_LANGUAGE_RESEARCH.md). Approved alchemy/candelabra/pump semantics remain binding while manual-station grammar is reviewed.
 
 | Pattern | Sawhorse | DeskII | Strength / cost |
 | --- | --- | --- | --- |
@@ -63,10 +63,10 @@ The following are competing drafts for comparison; no global surface template ha
 | Place/action | Здесь можно распиливать брёвна на **доски и заготовки**. | Здесь можно писать книги и молитвы с **большим шансом высокого качества**. | Natural in-world language, but “здесь” is slightly awkward before construction and costs a word. |
 | Impersonal result | Из брёвен получаются **доски и заготовки**. | Записи и большинство молитв получаются **более высокого качества**. | Concise, but can sound guaranteed and may obscure manual work; the quality line needs probability wording. |
 
-Author recommendation for comparison: use purpose phrases as the leading candidate, not an automatic rule to force onto every row. Example EN `For cutting logs into flitch and billets.` / `For writing notes, chapters, books and prayers. Better chances of high-quality results.` Actual automation should still be explicit (`Automatically…`, `A zombie…`). Storage/quality-bonus rows need not be forced into the same grammatical shape.
+The author's earlier purpose-phrase recommendation is superseded by the user's rejection of that style. Current recommendation for comparison is object-enabled action (`Позволяет…` / `Allows you to…`), supported and qualified in the language research. Actual automation should remain explicit (`Automatically…`, `A zombie…`). Storage/quality-bonus rows need not be forced into the same grammatical shape.
 
 ## Benefit selection and next review
 
 For the short line, prefer the difference that changes the player's decision: new capability, yield, quality, preservation or risk, as supported for that family. Speed/energy can be secondary or omitted. This is editorial prioritization, not a claim that one ranking suits every construction. Keep the family purpose recognizable and vary only the relevant distinction, but do not trade correctness for symmetry.
 
-The catalogue now uses purpose phrases as a comparison draft for manual stations. This is not user acceptance of that template or proof that all remaining mechanics have been resolved. Next product decision: compare the voice options; next technical work: exact owner checks for flagged tier/virtual/soul behaviors. No production change, version or runtime acceptance is implied.
+The catalogue's purpose-phrase rows now serve as a semantic/benefit inventory, not a recommended final template. Compare the smaller object-enabled-action set in the language research before another wholesale grammar conversion. Exact owner checks for flagged tier/virtual/soul behaviors remain separate. No production change, version or runtime acceptance is implied.
