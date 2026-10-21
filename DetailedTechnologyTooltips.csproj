@@ -7,9 +7,10 @@
     <Authors>NikichMods</Authors>
     <Description>Vanilla-friendly Technology tooltip details for Graveyard Keeper.</Description>
     <RepositoryUrl>https://github.com/NikichMods/DetailedTechnologyTooltips</RepositoryUrl>
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <FileVersion>1.2.0.0</FileVersion>
+    <Version>1.2.1</Version>
+    <AssemblyVersion>1.2.1.0</AssemblyVersion>
+    <FileVersion>1.2.1.0</FileVersion>
+    <DefineConstants>$(DefineConstants);DTT_CALIBRATION</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
@@ -27,6 +28,7 @@
     <Compile Include="src\TechnologyTextWrapRepair.cs" />
     <Compile Include="src\PilotPurposeCopy.cs" />
     <Compile Include="src\PilotMaterialIcons.cs" />
+    <Compile Include="src\PilotCalibration.cs" />
   </ItemGroup>
 
   <ItemGroup>

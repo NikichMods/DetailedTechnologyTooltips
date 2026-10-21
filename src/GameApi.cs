@@ -415,17 +415,19 @@ namespace DetailedTechnologyTooltips
 
             if (!string.IsNullOrEmpty(context.PilotPurpose))
             {
-                AddTinyText(tooltip, context.PilotPurpose + "\n", _leftAlignment, false);
+                AddTinyText(tooltip, context.PilotPurpose + "\n", _leftAlignment, false, true);
                 foreach (var material in context.PilotMaterials)
                 {
                     var data = _textDataCtor.Invoke(new object[] {
                         "[AA]      " + material.Name + "[FF]", _tinyDescriptionStyle, _leftAlignment, -1 });
                     TechnologyTextWrapRepair.Mark(data);
                     PilotMaterialIcons.Mark(data, material.Icon);
+                    PilotCalibration.Mark(data, true);
                     _tooltipAddData.Invoke(tooltip, new[] { data });
                 }
                 if (!string.IsNullOrEmpty(context.LocationRow))
-                    AddTinyText(tooltip, "\n" + context.LocationRow + "[FF]", _leftAlignment, false);
+                    AddTinyText(tooltip, "\n" + context.LocationRow + "[FF]", _leftAlignment, false, true);
+                PilotCalibration.RememberTooltip(tooltip);
                 return;
             }
 
@@ -1170,13 +1172,15 @@ namespace DetailedTechnologyTooltips
             object tooltip,
             string text,
             object alignment,
-            bool protectQuantityTokens)
+            bool protectQuantityTokens,
+            bool pilot = false)
         {
             if (string.IsNullOrEmpty(text))
                 return;
 
             var data = _textDataCtor.Invoke(
                 new[] { (object)text, _tinyDescriptionStyle, alignment, -1 });
+            if (pilot) PilotCalibration.Mark(data, false);
 
             if (protectQuantityTokens)
                 TechnologyTextWrapRepair.Mark(data);

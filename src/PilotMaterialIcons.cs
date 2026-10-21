@@ -20,6 +20,8 @@ namespace DetailedTechnologyTooltips
         private static PropertyInfo sprite2D, depth, width, height;
         private static FieldInfo[] anchors;
         private static FieldInfo anchorTarget, anchorRelative, anchorAbsolute;
+        private static Component nativeIcon;
+        private static Color nativeColor;
 
         internal static void Install(Harmony harmony)
         {
@@ -79,24 +81,25 @@ namespace DetailedTechnologyTooltips
                 Component image;
                 if (existing == null)
                 {
-                    var child = new GameObject(ChildName);
-                    child.SetActive(false);
-                    child.layer = label.gameObject.layer;
-                    child.transform.SetParent(label.transform, false);
-                    image = child.AddComponent(spriteType);
+                    EnsureNativeRenderer();
+                    image = UnityEngine.Object.Instantiate(nativeIcon, label.transform, false);
+                    image.name = ChildName;
+                    image.gameObject.layer = label.gameObject.layer;
                 }
                 else image = existing.GetComponent(spriteType);
                 sprite2D.SetValue(image, sprite, null);
+                AccessTools.Property(spriteType, "color").SetValue(image, nativeColor, null);
                 depth.SetValue(image, Convert.ToInt32(depth.GetValue(label, null)) + 1, null);
-                width.SetValue(image, 14, null);
-                height.SetValue(image, 14, null);
+                width.SetValue(image, PilotCalibration.IconSize, null);
+                height.SetValue(image, PilotCalibration.IconSize, null);
                 // Fixed 14x14 icon inside reserved indent, native anchors follow wrap/position changes.
                 for (int i = 0; i < anchors.Length; i++)
                 {
                     var point = anchors[i].GetValue(image);
                     anchorTarget.SetValue(point, label.transform);
                     anchorRelative.SetValue(point, i < 2 ? 0f : 1f);
-                    anchorAbsolute.SetValue(point, i == 1 ? 14 : i == 2 ? -14 : 0);
+                    anchorAbsolute.SetValue(point, i == 1 ? PilotCalibration.IconSize :
+                        i == 2 ? PilotCalibration.IconY - PilotCalibration.IconSize : i == 3 ? PilotCalibration.IconY : 0);
                 }
                 image.gameObject.SetActive(true);
             }
@@ -106,6 +109,21 @@ namespace DetailedTechnologyTooltips
                 failed = true;
                 Plugin.Log.LogError("DTT_PILOT_ICONS_DISABLED fallback=material-names reason=" + ex.GetType().Name + ": " + ex.Message);
             }
+        }
+
+        private static void EnsureNativeRenderer()
+        {
+            if (nativeIcon != null) return;
+            var guiType = AccessTools.TypeByName("GUIElements");
+            var gui = AccessTools.Property(guiType, "me").GetValue(null, null);
+            var craft = AccessTools.Field(guiType, "craft").GetValue(gui);
+            var prefab = AccessTools.Field(craft.GetType(), "craft_item_prefab").GetValue(craft);
+            var itemGui = AccessTools.Field(prefab.GetType(), "item_gui").GetValue(prefab);
+            var cell = AccessTools.Field(itemGui.GetType(), "x1").GetValue(itemGui);
+            nativeIcon = (Component)AccessTools.Field(cell.GetType(), "icon").GetValue(cell);
+            var colors = AccessTools.Field(itemGui.GetType(), "colors").GetValue(itemGui);
+            nativeColor = (Color)AccessTools.Field(colors.GetType(), "normal").GetValue(colors);
+            if (nativeIcon == null) throw new MissingMemberException("Native item renderer unavailable");
         }
     }
 }
