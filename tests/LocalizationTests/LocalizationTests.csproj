@@ -11,5 +11,6 @@
     <Compile Include="..\..\src\Localization.cs" Link="Localization.cs" />
     <Compile Include="..\..\src\TextFormatting.cs" Link="TextFormatting.cs" />
     <Compile Include="..\..\src\PilotPurposeCopy.cs" Link="PilotPurposeCopy.cs" />
+    <Compile Include="..\..\src\LayoutPolicy.cs" Link="LayoutPolicy.cs" />
   </ItemGroup>
 </Project>

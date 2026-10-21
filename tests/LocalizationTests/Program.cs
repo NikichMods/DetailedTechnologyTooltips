@@ -257,6 +257,16 @@ internal static class Program
             return 1;
         }
 
+        if (LayoutPolicy.Width(180, 800) != 300 || LayoutPolicy.Width(330.2f, 800) != 335
+            || LayoutPolicy.Width(450, 320) != 320 || LayoutPolicy.Width(80, 250) != 250)
+            throw new Exception("Material-width floor/ceil/viewport policy regression");
+        if (LayoutPolicy.BindQuantity("Простые железные детали (x4)") != "Простые железные детали\u00a0(x4)"
+            || LayoutPolicy.BindQuantity("Nails (x8)") != "Nails\u00a0(x8)"
+            || LayoutPolicy.BindQuantity("Storage (items)") != "Storage (items)"
+            || LayoutPolicy.BindQuantity("Nails\u00a0(x8)") != "Nails\u00a0(x8)")
+            throw new Exception("Quantity binding must preserve names/counts and unrelated parentheses");
+        Console.WriteLine("Material width/viewport and non-orphan quantity policy validation OK.");
+
         int pilotCount = 0;
         foreach (var id in PilotPurposeCopy.Ids)
         {

@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.2.1";
+        public const string PluginVersion = "1.2.2";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -66,6 +66,7 @@ namespace DetailedTechnologyTooltips
                 {
                     PilotMaterialIcons.Install(_harmony);
                     PilotCalibration.Install(_harmony);
+                    PilotLayout.Install(_harmony);
                 }
                 catch (Exception ex)
                 {
@@ -171,6 +172,7 @@ namespace DetailedTechnologyTooltips
         public TechTooltipContext Previous;
         public TechTooltipContext Current;
         public TechTooltipPresentationOverride PresentationOverride;
+        public int StartRow;
     }
 
     internal static class RuntimePatches
@@ -196,6 +198,7 @@ namespace DetailedTechnologyTooltips
 
             try
             {
+                __state.StartRow = PilotLayout.Count(tooltip);
                 __state.Current = GameApi.TryCreateContext(__instance);
                 __state.PresentationOverride =
                     GameApi.ApplyPresentationOverride(
@@ -225,6 +228,7 @@ namespace DetailedTechnologyTooltips
             try
             {
                 GameApi.AppendDetails(tooltip, __state.Current);
+                if (__state.Current.PilotPurpose != null) PilotLayout.Header(tooltip, __state.StartRow);
             }
             catch (Exception ex)
             {

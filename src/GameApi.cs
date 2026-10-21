@@ -347,7 +347,7 @@ namespace DetailedTechnologyTooltips
                     isBlueprint),
                 CraftDescriptionRow = BuildCraftDescription(id)
             };
-            if (isBlueprint && PilotMaterialIcons.Available)
+            if (isBlueprint && PilotMaterialIcons.Available && PilotLayout.Available)
             {
                 var purpose = PilotPurposeCopy.Get(id, GetCurrentLanguage());
                 var materials = purpose == null ? null : BuildPilotMaterials(balance, craft);
@@ -415,18 +415,22 @@ namespace DetailedTechnologyTooltips
 
             if (!string.IsNullOrEmpty(context.PilotPurpose))
             {
-                AddTinyText(tooltip, context.PilotPurpose + "\n", _leftAlignment, false, true);
+                AddTinyText(tooltip, context.PilotPurpose, _leftAlignment, false, true);
+                _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.PurposeGap) });
                 foreach (var material in context.PilotMaterials)
                 {
                     var data = _textDataCtor.Invoke(new object[] {
                         "[AA]      " + material.Name + "[FF]", _tinyDescriptionStyle, _leftAlignment, -1 });
-                    TechnologyTextWrapRepair.Mark(data);
                     PilotMaterialIcons.Mark(data, material.Icon);
                     PilotCalibration.Mark(data, true);
+                    PilotLayout.Mark(data, PilotRole.Material);
                     _tooltipAddData.Invoke(tooltip, new[] { data });
                 }
                 if (!string.IsNullOrEmpty(context.LocationRow))
-                    AddTinyText(tooltip, "\n" + context.LocationRow + "[FF]", _leftAlignment, false, true);
+                {
+                    _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.MaterialGap) });
+                    AddTinyText(tooltip, context.LocationRow + "[FF]", _leftAlignment, false, true, PilotRole.Location);
+                }
                 PilotCalibration.RememberTooltip(tooltip);
                 return;
             }
@@ -1173,14 +1177,15 @@ namespace DetailedTechnologyTooltips
             string text,
             object alignment,
             bool protectQuantityTokens,
-            bool pilot = false)
+            bool pilot = false,
+            PilotRole role = PilotRole.Purpose)
         {
             if (string.IsNullOrEmpty(text))
                 return;
 
             var data = _textDataCtor.Invoke(
                 new[] { (object)text, _tinyDescriptionStyle, alignment, -1 });
-            if (pilot) PilotCalibration.Mark(data, false);
+            if (pilot) { PilotCalibration.Mark(data, false); PilotLayout.Mark(data, role); }
 
             if (protectQuantityTokens)
                 TechnologyTextWrapRepair.Mark(data);

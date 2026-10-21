@@ -4,7 +4,7 @@ Target: Graveyard Keeper1.407. Current production remains accepted1.1.6.
 
 ## Adopted design basis — 2026-10-21
 
-The user selected the **icons plus material names** preview as the basis for the next revision and explicitly approved purpose explanations, one keyword-accent color, and single-unlock gamepad tooltips. A blueprint tooltip should answer what the unlocked construction does before listing its requirements and build location:
+The user selected the **icons plus material names** preview as the basis for the next revision and explicitly approved purpose explanations and one keyword-accent color. Single-unlock gamepad tooltips were initially approved, but are now **deferred** after the user reviewed the combined live tooltip: current work uses common mouse/gamepad styling, material-based width and adjustable spacing first. PrayerClarity's existing navigation remains unchanged. A blueprint tooltip should answer what the unlocked construction does before listing its requirements and build location:
 
 1. Native blueprint title.
 2. Short, neutral, in-world purpose explanation, naming its useful action/result.
@@ -27,7 +27,9 @@ Titles, muted body, material icons/names and selective semantic icons already su
 
 Accepted refinements: solutions, powders and extracts at the three ordinary alchemy-processing stations retain their useful category accents; sparse emphasis is not a blanket ban on ordinary-purpose keywords. Healing extensions accent only the organ name, not “a skin slot”/“ячейку для кожи” as a whole. These specific choices override the broad first sparse pass.
 
-## Gamepad single-unlock presentation — approved direction, not implemented
+## Gamepad single-unlock presentation — deferred after live combined-tooltip review
+
+Current decision: the user explicitly defers a new DTT carousel. Keep the native combined presentation and validate compact common styling across representative long nodes/viewports; do not introduce new navigation in the calibration candidate. Earlier carousel details below remain design history and a possible future option, not an implementation requirement for the current revision. PrayerClarity continues to own its existing prayer-bearing-node navigation.
 
 The user proposed reusing the PrayerClarity approach so a multi-unlock Technology shows only the selected existing unlock's tooltip. The inspected precedent is `NikichMods/PrayerClarity@ce915344064655cde5273cea8a10ec4ec2beb2e5`, `src/TechnologyPrayerCarousel.cs`, `docs/DESIGN_NOTES.md` (controller navigation), and accepted0.2.23/1.0.33 evidence in `docs/TEST_BUILD_LOG.md`.
 
@@ -49,7 +51,7 @@ The user explicitly chose the following after reviewing the mixed-node consequen
 - DTT preserves its explanations for non-prayer blueprints/recipes/perks in that same node.
 - DTT does not add requirements/details to prayer unlocks themselves.
 - Do not exclude the entire Technology from DTT content merely because one visible unlock is a prayer.
-- Without PrayerClarity, DTT owns single-unlock gamepad selection across all applicable Technologies, including mixed prayer/blueprint/perk nodes. Non-prayer entries receive DTT content; prayer content stays vanilla under the accepted no-prayer-enrichment scope. A prayer-bearing node is not excluded from DTT navigation just because of its content.
+- Without PrayerClarity, the current revision keeps native combined gamepad tooltips, including mixed prayer/blueprint/perk nodes. The earlier planned DTT single-unlock navigation is deferred. Non-prayer entries receive DTT content; this layout pilot adds no prayer enrichment.
 - Never run two competing carousel controllers on one node. Detect actual carousel ownership/capability, not merely a DLL/plugin's presence. If PrayerClarity is installed but its carousel is unavailable/disabled/fails, DTT should retain its standalone behavior when it can establish exclusive ownership safely; otherwise use a contained native fallback rather than competing handlers. Exact failure-containment and device-switch paths must be proved under the compatibility gate. PrayerClarity is not a hard dependency.
 
 Evidence for retaining non-prayer content: bounded native1.407 data inspection, using PrayerClarity's known item families and linked `pray:` family correspondence, identifies mixed nodes including Embalming (one prayer and two blueprint crafts), Engineer (one prayer, a well-pump craft and p_engineer), and Martial skills (two prayers and p_big_guy). Whole-node content exclusion would remove DTT coverage, including existing accepted special explanations/corrections. This is static authored-data evidence, not a claim about a particular save's live visibility. The exploratory ID-prefix-only lookup was rejected because Technology craft IDs name prayer-item recipes rather than directly starting with `pray:`; production classification must resolve the semantic link.

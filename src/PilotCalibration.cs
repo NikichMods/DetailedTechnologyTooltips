@@ -11,7 +11,9 @@ namespace DetailedTechnologyTooltips
     // Candidate-only live calibration. No settings enter a game save.
     internal static class PilotCalibration
     {
-        internal static int IconSize = 14, IconY = 0, TextSpaces = 6, Opacity = 67;
+        internal static int IconSize = 20, IconY = 0, TextSpaces = 5, Opacity = 100;
+        internal static bool TitleCenter = true, PurposeCenter = true, MaterialCenter = false, LocationCenter = true;
+        internal static int TitleGap = 4, PurposeGap = 8, MaterialGap = 8, EntryGap = 0;
         private sealed class Row { internal string Raw; internal bool Material; }
         private sealed class Live { internal WeakReference Widget, Data; }
         private sealed class CameraState { internal Behaviour Camera; internal bool Enabled; }
@@ -24,7 +26,8 @@ namespace DetailedTechnologyTooltips
         private static Type bubbleType, cameraType;
         private static object lastTooltip;
         private static bool ready, open;
-        private static Rect window = new Rect(650, 45, 440, 320);
+        private static Rect window = new Rect(650, 45, 460, 640);
+        private static Vector2 scroll;
 
         internal static void Install(Harmony harmony)
         {
@@ -68,7 +71,7 @@ namespace DetailedTechnologyTooltips
             {
                 Row row;
                 if (__0 == null || !Rows.TryGetValue(__0, out row)) return;
-                string raw = row.Material ? row.Raw.Replace("[AA]      ", "[AA]" + new string(' ', TextSpaces)) : row.Raw;
+                string raw = row.Material ? LayoutPolicy.BindQuantity(row.Raw.Replace("[AA]      ", "[AA]" + new string(' ', TextSpaces))) : row.Raw;
                 string alpha = "[" + ((int)Math.Round(Opacity * 255 / 100.0)).ToString("X2") + "]";
                 text.SetValue(__0, raw.Replace("[AA]", alpha));
             }
@@ -76,6 +79,7 @@ namespace DetailedTechnologyTooltips
         }
         public static void AfterDraw(object __instance, object __0)
         {
+            PilotLayout.Drawn(__instance, __0);
             Row row;
             if (__0 == null || !Rows.TryGetValue(__0, out row)) return;
             foreach (var live in LiveRows) if (ReferenceEquals(live.Widget.Target, __instance))
@@ -102,7 +106,7 @@ namespace DetailedTechnologyTooltips
                 var bubble = widget.GetComponentInParent(bubbleType);
                 if (bubble != null) bubbles.Add(bubble);
             }
-            foreach (var bubble in bubbles) resize.Invoke(bubble, null);
+            foreach (var bubble in bubbles) { PilotLayout.Invalidate(bubble); resize.Invoke(bubble, null); }
         }
         private static void Fail(Exception e)
         {
@@ -139,17 +143,33 @@ namespace DetailedTechnologyTooltips
         }
         private static void Contents(int id)
         {
+            scroll = GUILayout.BeginScrollView(scroll);
             GUILayout.Label("Перед F2 наведите мышь на нужный чертёж.\nОкно можно перетащить за заголовок.");
             GUI.changed = false;
             IconSize = Slider("Размер иконок (UI)", IconSize, 10, 32);
             IconY = Slider("Сдвиг иконок вверх (+) / вниз (−)", IconY, -16, 16);
             TextSpaces = Slider("Отступ текста (пробелы)", TextSpaces, 0, 16);
             Opacity = Slider("Насыщенность текста, %", Opacity, 20, 100);
-            if (GUILayout.Button("Сбросить")) { IconSize = 14; IconY = 0; TextSpaces = 6; Opacity = 67; GUI.changed = true; }
+            GUILayout.Label("По центру (выключено — слева):");
+            TitleCenter = GUILayout.Toggle(TitleCenter, "Заголовок");
+            PurposeCenter = GUILayout.Toggle(PurposeCenter, "Описание назначения");
+            MaterialCenter = GUILayout.Toggle(MaterialCenter, "Блок материалов целиком");
+            LocationCenter = GUILayout.Toggle(LocationCenter, "Место строительства");
+            TitleGap = Slider("Заголовок → описание (UI)", TitleGap, 0, 24);
+            PurposeGap = Slider("Описание → материалы (UI)", PurposeGap, 0, 24);
+            MaterialGap = Slider("Материалы → место строительства (UI)", MaterialGap, 0, 24);
+            EntryGap = Slider("Дополнительно между открытиями (UI)", EntryGap, 0, 24);
+            if (GUILayout.Button("Сбросить к выбранному образцу"))
+            {
+                IconSize = 20; IconY = 0; TextSpaces = 5; Opacity = 100;
+                TitleCenter = PurposeCenter = LocationCenter = true; MaterialCenter = false;
+                TitleGap = 4; PurposeGap = MaterialGap = 8; EntryGap = 0; GUI.changed = true;
+            }
             if (GUI.changed) try { Refresh(); } catch (Exception e) { Fail(e); }
             if (GUILayout.Button("Записать значения и закрыть")) Close();
             GUILayout.Label("100% — полный цвет. Настройки действуют до выхода из игры.");
-            GUI.DragWindow(new Rect(0, 0, 440, 23));
+            GUILayout.EndScrollView();
+            GUI.DragWindow(new Rect(0, 0, 460, 23));
         }
         private static int Slider(string label, int value, int min, int max)
         {
@@ -160,8 +180,18 @@ namespace DetailedTechnologyTooltips
         {
             foreach (var state in Cameras) if (state.Camera != null) state.Camera.enabled = state.Enabled;
             Cameras.Clear();
-            if (open) Plugin.Log.LogInfo("DTT_CALIBRATION icon_size=" + IconSize + " icon_y=" + IconY + " text_spaces=" + TextSpaces + " opacity=" + Opacity);
+            if (open) Plugin.Log.LogInfo("DTT_CALIBRATION icon_size=" + IconSize + " icon_y=" + IconY + " text_spaces=" + TextSpaces + " opacity=" + Opacity
+                + " title_center=" + TitleCenter + " purpose_center=" + PurposeCenter + " material_center=" + MaterialCenter + " location_center=" + LocationCenter
+                + " title_gap=" + TitleGap + " purpose_gap=" + PurposeGap + " material_gap=" + MaterialGap + " entry_gap=" + EntryGap);
             open = false;
+        }
+        internal static bool Center(PilotRole role)
+        {
+            return role == PilotRole.Title ? TitleCenter : role == PilotRole.Purpose ? PurposeCenter : LocationCenter;
+        }
+        internal static int Gap(PilotRole role)
+        {
+            return role == PilotRole.TitleGap ? TitleGap : role == PilotRole.PurposeGap ? PurposeGap : role == PilotRole.MaterialGap ? MaterialGap : EntryGap;
         }
     }
 }
