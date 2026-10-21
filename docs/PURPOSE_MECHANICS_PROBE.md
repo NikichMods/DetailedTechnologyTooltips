@@ -22,7 +22,7 @@ Installed BetterSaveSoulRebalance is a known confounder. Record plugin identitie
 
 Version owner: research/PurposeMechanicsProbe/PurposeMechanicsProbe.csproj; generated assembly metadata supplies BepInPlugin version. Build Release with .NET SDK8 and installed native references via GameRoot property; no proprietary payload is distributed. Exact source and DLL hash are recorded at handoff below. Runtime evidence pending.
 
-## Current status:0.1.1 loads; mechanics observation available, original hang unresolved
+## Current status: pressII/extractorIII observed; extractorII and original hang unresolved
 
 User reported a hang while loading a save after installing0.1.0. Preserved session snapshot: ignored `local/runtime-evidence/purpose-observer-0.1.0/failed-load-20261021.log`, SHA256 `122088209fcaf384c2ddf584efc92110d573fc416b99b65f729f694120f1be52`. Loader confirms observer0.1.0, matching host MVID and six installed hooks. Last lines are scene restoration (`RestoreScene`, `PrepareScene`, Queue Everything mutations and two active-object messages). No observer scenario event or exception identifying the cause is present. This establishes a failed user run, not attribution to a particular hook or another mod.
 
@@ -45,6 +45,16 @@ Frozen0.1.1 source `fe1270d034767c8755eb5595c4b58a84d735890a`; SHA256 `5d39e3618
 User confirms successful loading and live play. Preserved live snapshot `local/runtime-evidence/purpose-observer-0.1.1/loaded-session.log`, SHA256 `2dc46587b807b52b3c6a3e11267a9895762a4e727303d38c401acd7c3539068f`. Loader confirms all six hooks, matching MVID and version0.1.1. Nine traced callbacks (three completion prefix/postfix/finalizer groups) have matching exits; the logged native craft is water_pumping at well_pump. The snapshot contains no graph-param/generator callback execution, no observer disable, no observer host-exception event and no trace-limit event. This proves the completion observer can return normally for these ordinary crafts, not that the original hang is fixed or all six paths have executed. Trace timing and nondeterministic reproduction remain possible explanations, not established causes.
 
 Keep this working session for the originally requested pressII and extractorII/III observations. No replacement or restart is necessary. Preserve the original failed0.1.0 evidence and leave its cause open; success in0.1.1 alone must not promote a speculative root cause into shared verified mechanics.
+
+### Observed pressII and extractorIII
+
+User opened/closed pressII and reports making10 flyers; extracted one soul onIII, withII no longer present. Frozen live snapshot `local/runtime-evidence/purpose-observer-0.1.1/press-and-extractor3.log`, SHA256 `141974f5a65fd92f1a4a963f761d30c260a9dda16a7e429dd33d1c359af5c92e`.
+
+- Two real `PRESS_MENU station=mf_printing_press_2` events contain exactly `flyer_good_2`. Native `OnCraft`/`Craft` events confirm that recipe was started; the10 completed flyers are user-reported, not independently counted by the observer. Native candidate audit shows both flyer recipes visible/unlocked; `printng_notes`, `printng_notes_2`, `printng_chapter` locked and invisible in this save. This supports the observed limitation, not universal absence of an unlock route or allII benefits.
+- `SOUL_BEGIN seq=1` recipe `soul_extractor_3:soul_harmed_body_part`, input durability0.9177198. Actual graph getter reads `min_corruption_chance=0`, `max_corruption_chance=0`. `SOUL_OUTPUT` is the same Item reference, now `soul_harmed`, durability0.9177198; `SOUL_END delta=0 graph_reads=2 outputs=1`. UI min/max0; both damage-key params0 as well. No condition restoration occurred: no added loss in this native operation.
+- No observer disable/host-exception marker. Observed getter/generator/UI hooks have only observer Harmony ownership; shared completion has several other owners. BetterSaveSoulRebalance patches craft admission/start/finish; the environment is not a clean vanilla control. No blanket exclusion of indirect mod effects follows.
+
+ExtractorIII runtime consumer/key/result path is now observed, butIII's comparative advantage overII remains unresolved: both key families are0 atIII, so this tier cannot discriminate their different lower-tier bounds. Do not request manual downgrade/grinding. Existing static storage-decay facts remain a supported alternative headline for editorial review. All three catalogue daggers remain pending comparative/availability resolution, not because this successful observation is being discarded. Original0.1.0 loading failure remains unattributed. Retain observer only until this session ends; remove exact installed DLL once host closure is established.
 
 ## Frozen local handoff (historical)
 

@@ -47,7 +47,9 @@ Resolved static claims can proceed to final wording review and their normal impl
 
 ### Proposed runtime method and division of work
 
-Current status: **no new diagnostic plugin has been built or installed**. Prefer direct/static closure first. If a runtime observer is needed, keep it read-only and narrowly record the real native paths; do not synthesize an expected result or alter unlocks, recipes, damage or ordinary save progression.
+Current status: observer0.1.1 was built/installed and observed pressII and extractorIII; exact identity, first-build loading regression and bounded runtime evidence are recorded in [PURPOSE_MECHANICS_PROBE.md](PURPOSE_MECHANICS_PROBE.md). The earlier0.1.0 hung on loading; removal restored loading;0.1.1 tracing loaded successfully without establishing the original cause. No unlocks, recipes, damage or save progression are altered by the observer.
+
+Observed2026-10-21: pressII's actual menu has only `flyer_good_2`; note/chapter copying is locked/invisible in this save. The user reports making10 flyers; the log confirms native recipe start. This is a save-specific availability result, not proof of universal absence of otherII benefits. ExtractorIII's actual graph reads `min_corruption_chance`/`max_corruption_chance`, both0, and the same soul reference retains durability0.9177198 before/after (delta0). No restoration to perfect condition occurs. This verifies theIII native consumer path and no added damage in this operation, but does not resolve theII-versus-III advantage:III's damage and corruption keys are all0. NoII station was available. Other mods remain installed; no clean-vanilla control is claimed. The three comparative/availability catalogue flags remain open.
 
 For printing, capture the actual visible recipe lists and the relevant unlock state when opening pressI/II. The user may need to launch/load and open the stations; do not ask them to transcribe IDs, count materials or interpret logs. Availability in one save does not by itself prove the absence of an indirect grant everywhere.
 
