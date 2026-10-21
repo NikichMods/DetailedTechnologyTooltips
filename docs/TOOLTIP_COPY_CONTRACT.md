@@ -9,6 +9,8 @@ English is the semantic source for translation; Russian is the accepted primary 
 
 ## Presentation rules
 
+The next purpose/readability revision is tracked in [TOOLTIP_REDESIGN.md](TOOLTIP_REDESIGN.md). Its adopted design direction and proposals do not change the accepted1.1.6 runtime/copy baseline until the corresponding implementation and runtime acceptance.
+
 - Preserve useful vanilla flavor/description text unless a correction explicitly replaces it.
 - When DTT appends a clarification to an authored Work/Perk description, separate the vanilla text and DTT clarification by one blank line; do not use brackets or italics.
 - DTT additions read as neutral game help, not commentary from the mod author.
