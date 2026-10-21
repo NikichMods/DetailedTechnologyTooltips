@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using HarmonyLib;
@@ -15,16 +14,9 @@ namespace DetailedTechnologyTooltips
         internal static bool TitleCenter = true, PurposeCenter = true, MaterialCenter = false, LocationCenter = true;
         internal static int TitleGap = 4, PurposeGap = 8, MaterialGap = 8, EntryGap = 0;
         private sealed class Row { internal string Raw; internal bool Material; }
-        private sealed class CameraState { internal Behaviour Camera; internal bool Enabled; }
         private static readonly ConditionalWeakTable<object, Row> Rows = new ConditionalWeakTable<object, Row>();
-        private static readonly ConditionalWeakTable<object, Row> Tooltips = new ConditionalWeakTable<object, Row>();
-        private static readonly List<CameraState> Cameras = new List<CameraState>();
-        private static FieldInfo text, linkedTooltip, bubbleWidgets;
-        private static MethodInfo draw, resize, redraw;
-        private static Type bubbleType, cameraType;
-        private static object lastTooltip;
-        private static bool ready, open, refreshPending;
-        private static int refreshRevision;
+        private static FieldInfo text;
+        private static bool ready, open;
         private static Rect window = new Rect(650, 45, 460, 640);
         private static Vector2 scroll;
 
@@ -33,40 +25,17 @@ namespace DetailedTechnologyTooltips
             var dataType = AccessTools.TypeByName("BubbleWidgetTextData");
             var widgetType = AccessTools.TypeByName("BubbleWidgetText");
             text = AccessTools.Field(dataType, "text");
-            draw = AccessTools.DeclaredMethod(widgetType, "Draw", new[] { dataType });
-            bubbleType = AccessTools.TypeByName("WidgetsBubbleGUI");
-            resize = AccessTools.Method(bubbleType, "UpdateSizeAndWidgetsPositions", Type.EmptyTypes);
-            redraw = AccessTools.Method(bubbleType, "Redraw", new[] { typeof(bool) });
-            linkedTooltip = AccessTools.Field(AccessTools.TypeByName("Tooltip"), "linked_tooltip");
-            bubbleWidgets = AccessTools.Field(bubbleType, "bubble_widgets");
-            if (text == null || draw == null || resize == null || redraw == null || linkedTooltip == null || bubbleWidgets == null)
+            var draw = AccessTools.DeclaredMethod(widgetType, "Draw", new[] { dataType });
+            if (text == null || draw == null)
                 throw new MissingMemberException("Calibration draw contract");
             harmony.Patch(draw, new HarmonyMethod(typeof(PilotCalibration), nameof(BeforeDraw)),
                 new HarmonyMethod(typeof(PilotCalibration), nameof(AfterDraw)), null, null, null);
-#if DTT_CALIBRATION
-            cameraType = AccessTools.TypeByName("UICamera");
-            var tooltipType = AccessTools.TypeByName("Tooltip");
-            harmony.Patch(AccessTools.DeclaredMethod(tooltipType, "Show", new[] { typeof(bool) }),
-                postfix: new HarmonyMethod(typeof(PilotCalibration), nameof(Shown)));
-            harmony.Patch(AccessTools.DeclaredMethod(tooltipType, "Hide", Type.EmptyTypes),
-                prefix: new HarmonyMethod(typeof(PilotCalibration), nameof(Hide)));
-            var lazy = AccessTools.TypeByName("LazyInput");
-            foreach (var method in lazy.GetMethods(BindingFlags.Public | BindingFlags.Static))
-                if (method.ReturnType == typeof(bool) && (method.Name == "GetKey" || method.Name == "GetKeyDown"
-                    || method.Name == "AnyClick" || method.Name == "AnyKeyDown"))
-                    harmony.Patch(method, prefix: new HarmonyMethod(typeof(PilotCalibration), nameof(KeyGuard)));
-#endif
             ready = true;
         }
         internal static void Mark(object data, bool material)
         {
             if (!ready) return;
             Rows.Add(data, new Row { Raw = (string)text.GetValue(data), Material = material });
-        }
-        internal static void RememberTooltip(object tooltip)
-        {
-            if (!ready) return;
-            Tooltips.Remove(tooltip); Tooltips.Add(tooltip, new Row());
         }
         public static void BeforeDraw(object __0)
         {
@@ -84,29 +53,6 @@ namespace DetailedTechnologyTooltips
         {
             PilotLayout.Drawn(__instance, __0);
         }
-        public static void Shown(object __instance)
-        {
-            Row marker;
-            if (Tooltips.TryGetValue(__instance, out marker)) lastTooltip = __instance;
-        }
-        public static bool Hide(object __instance) { return !open || !ReferenceEquals(lastTooltip, __instance); }
-        public static bool KeyGuard(ref bool __result) { if (!open) return true; __result = false; return false; }
-        private static void Refresh()
-        {
-            var tooltip = lastTooltip as Component;
-            var bubble = tooltip == null ? null : linkedTooltip.GetValue(tooltip) as Component;
-            if (bubble == null || !bubble.gameObject.activeInHierarchy)
-            {
-                Plugin.Log.LogWarning("DTT_CALIBRATION_SKIPPED reason=no-visible-pinned-tooltip");
-                return;
-            }
-            // Use the host's current rows and full draw lifecycle, outside IMGUI events.
-            redraw.Invoke(bubble, new object[] { false });
-            PilotLayout.Invalidate(bubble);
-            resize.Invoke(bubble, null);
-            Plugin.Log.LogInfo("DTT_CALIBRATION_APPLIED revision=" + (++refreshRevision)
-                + " widgets=" + ((System.Collections.ICollection)bubbleWidgets.GetValue(bubble)).Count);
-        }
         private static void Fail(Exception e)
         {
             if (!ready) return;
@@ -117,24 +63,11 @@ namespace DetailedTechnologyTooltips
         internal static void Update()
         {
 #if DTT_CALIBRATION
-            if (ready && open && refreshPending)
-            {
-                refreshPending = false;
-                try { Refresh(); } catch (Exception e) { Fail(e); }
-            }
             if (!ready || !Input.GetKeyDown(KeyCode.F2)) return;
             if (open) { Close(); return; }
             try
             {
                 open = true;
-                refreshPending = true;
-                foreach (var obj in UnityEngine.Object.FindObjectsOfType(cameraType))
-                {
-                    var camera = obj as Behaviour;
-                    if (camera == null) continue;
-                    Cameras.Add(new CameraState { Camera = camera, Enabled = camera.enabled });
-                    camera.enabled = false;
-                }
                 window.x = Math.Max(0, Math.Min(window.x, Screen.width - window.width));
                 window.y = Math.Max(0, Math.Min(window.y, Screen.height - window.height));
             }
@@ -150,9 +83,8 @@ namespace DetailedTechnologyTooltips
         private static void Contents(int id)
         {
             scroll = GUILayout.BeginScrollView(scroll);
-            GUILayout.Label("Перед F2 наведите мышь на нужный чертёж.\nОкно можно перетащить за заголовок.");
-            var before = Values();
-            IconSize = Slider("Размер иконок (UI)", IconSize, 10, 32);
+            GUILayout.Label("Меняйте настройки и снова наводите на чертёж.\nF2 не удерживает подсказку и не блокирует игру.\nОкно можно перетащить за заголовок.");
+            IconSize = Slider("Размер иконок (ед. интерфейса)", IconSize, 10, 32);
             IconY = Slider("Сдвиг иконок вверх (+) / вниз (−)", IconY, -16, 16);
             TextSpaces = Slider("Отступ текста (пробелы)", TextSpaces, 0, 16);
             Opacity = Slider("Насыщенность текста, %", Opacity, 20, 100);
@@ -161,19 +93,18 @@ namespace DetailedTechnologyTooltips
             PurposeCenter = GUILayout.Toggle(PurposeCenter, "Описание назначения");
             MaterialCenter = GUILayout.Toggle(MaterialCenter, "Блок материалов целиком");
             LocationCenter = GUILayout.Toggle(LocationCenter, "Место строительства");
-            TitleGap = Slider("Заголовок → описание (UI)", TitleGap, 0, 24);
-            PurposeGap = Slider("Описание → материалы (UI)", PurposeGap, 0, 24);
-            MaterialGap = Slider("Материалы → место строительства (UI)", MaterialGap, 0, 24);
-            EntryGap = Slider("Дополнительно между открытиями (UI)", EntryGap, 0, 24);
+            GUILayout.Label("Промежутки (ед. интерфейса, не пиксели экрана):");
+            TitleGap = Slider("Заголовок → описание", TitleGap, 0, 24);
+            PurposeGap = Slider("Описание → материалы", PurposeGap, 0, 24);
+            MaterialGap = Slider("Материалы → место строительства", MaterialGap, 0, 24);
+            EntryGap = Slider("Дополнительно между открытиями", EntryGap, 0, 24);
+            GUILayout.Label("Последний ползунок — для нескольких открытий\nв общей подсказке геймпада.");
             if (GUILayout.Button("Сбросить к выбранному образцу"))
             {
                 IconSize = 20; IconY = 0; TextSpaces = 5; Opacity = 100;
                 TitleCenter = PurposeCenter = LocationCenter = true; MaterialCenter = false;
                 TitleGap = 4; PurposeGap = MaterialGap = 8; EntryGap = 0;
             }
-            var after = Values();
-            for (int i = 0; i < before.Length; i++)
-                if (before[i] != after[i]) { refreshPending = true; break; }
             if (GUILayout.Button("Записать значения и закрыть")) Close();
             GUILayout.Label("100% — полный цвет. Настройки действуют до выхода из игры.");
             GUILayout.EndScrollView();
@@ -184,21 +115,12 @@ namespace DetailedTechnologyTooltips
             GUILayout.Label(label + ": " + value);
             return (int)Math.Round(GUILayout.HorizontalSlider(value, min, max));
         }
-        private static int[] Values()
-        {
-            return new[] { IconSize, IconY, TextSpaces, Opacity, TitleCenter ? 1 : 0,
-                PurposeCenter ? 1 : 0, MaterialCenter ? 1 : 0, LocationCenter ? 1 : 0,
-                TitleGap, PurposeGap, MaterialGap, EntryGap };
-        }
         internal static void Close()
         {
-            foreach (var state in Cameras) if (state.Camera != null) state.Camera.enabled = state.Enabled;
-            Cameras.Clear();
             if (open) Plugin.Log.LogInfo("DTT_CALIBRATION icon_size=" + IconSize + " icon_y=" + IconY + " text_spaces=" + TextSpaces + " opacity=" + Opacity
                 + " title_center=" + TitleCenter + " purpose_center=" + PurposeCenter + " material_center=" + MaterialCenter + " location_center=" + LocationCenter
                 + " title_gap=" + TitleGap + " purpose_gap=" + PurposeGap + " material_gap=" + MaterialGap + " entry_gap=" + EntryGap);
             open = false;
-            refreshPending = false;
         }
         internal static bool Center(PilotRole role)
         {

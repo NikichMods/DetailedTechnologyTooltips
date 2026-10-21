@@ -19,6 +19,7 @@ namespace DetailedTechnologyTooltips
             internal int Width, MaterialWidth;
         }
         private static readonly ConditionalWeakTable<object, Tag> Tags = new ConditionalWeakTable<object, Tag>();
+        private static readonly ConditionalWeakTable<object, Tag> LiveGaps = new ConditionalWeakTable<object, Tag>();
         private static readonly ConditionalWeakTable<object, State> States = new ConditionalWeakTable<object, State>();
         private static Type bubbleType, widgetType, labelType, textWidgetType, blankType, rootType;
         private static FieldInfo tooltipData, dataList, widgets, widgetData, bubbleWidget;
@@ -59,6 +60,8 @@ namespace DetailedTechnologyTooltips
                 prefix: new HarmonyMethod(typeof(PilotLayout), nameof(Prepare)));
             harmony.Patch(AccessTools.DeclaredMethod(bubbleType, "Reposition", Type.EmptyTypes),
                 postfix: new HarmonyMethod(typeof(PilotLayout), nameof(PositionRows)));
+            harmony.Patch(AccessTools.DeclaredMethod(AccessTools.TypeByName("BubbleWidgetBlankSeparator"), "Draw", new[] { blankType }),
+                postfix: new HarmonyMethod(typeof(PilotLayout), nameof(GapDrawn)));
             installed = true;
         }
         internal static int Count(object tooltip)
@@ -124,6 +127,20 @@ namespace DetailedTechnologyTooltips
             State state;
             if (bubble != null && States.TryGetValue(bubble, out state)) state.Dirty = true;
         }
+        public static void GapDrawn(object __instance, object __0)
+        {
+            if (!installed || failed) return;
+            try
+            {
+                LiveGaps.Remove(__instance);
+                Tag tag;
+                if (__0 == null || !Tags.TryGetValue(__0, out tag)) return;
+                LiveGaps.Add(__instance, tag);
+                var bubble = ((Component)__instance).GetComponentInParent(bubbleType);
+                if (bubble != null) States.GetValue(bubble, _ => new State()).Dirty = true;
+            }
+            catch (Exception ex) { Disable(ex); }
+        }
         public static void Prepare(object __instance)
         {
             if (!installed || failed) return;
@@ -157,7 +174,8 @@ namespace DetailedTechnologyTooltips
                     var dataField = AccessTools.Field(item.GetType(), "data");
                     var data = dataField == null ? null : dataField.GetValue(item);
                     Tag tag;
-                    if (data == null || !Tags.TryGetValue(data, out tag)) continue;
+                    if (!LiveGaps.TryGetValue(item, out tag)
+                        && (data == null || !Tags.TryGetValue(data, out tag))) continue;
                     var ui = component.GetComponent(widgetType);
                     if (tag.Role >= PilotRole.TitleGap)
                     {

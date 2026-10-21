@@ -431,7 +431,6 @@ namespace DetailedTechnologyTooltips
                     _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.MaterialGap) });
                     AddTinyText(tooltip, context.LocationRow + "[FF]", _leftAlignment, false, true, PilotRole.Location);
                 }
-                PilotCalibration.RememberTooltip(tooltip);
                 return;
             }
 
