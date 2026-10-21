@@ -74,7 +74,7 @@ Evidence N: native inventories and existing shared storage semantics. No special
 | Study table / `mf_alchemy_survey` | For studying items: **technology points** and alchemical properties. | Для изучения предметов: **очки технологий** и алхимические свойства. |
 | Church workbench / `table_book_constr` | For making **paper, ink and candles**. | Для изготовления **бумаги, чернил и свечей**. |
 | Desk / `desk` | For writing **books and prayers**. | Для написания **книг и молитв**. |
-| Desk II / `desk_2` | For writing books and prayers. **Quality bonus** for most products. | Для написания книг и молитв. **Бонус к качеству** у большинства изделий. |
+| Desk II / `desk_2` | Allows you to make books and prayers. **Writing quality bonus**. | Позволяет создавать книги и молитвы. **Бонус к качеству письма**. |
 | Paper press / `mf_paper_press` | For making **clean paper** from paper glop. | Для изготовления **чистой бумаги** из бумажной массы. |
 | Printing press / `mf_printing_press` † | For printing **flyers in batches**. | Для печати **листовок партиями**. |
 | Printing press II / `mf_printing_press_2` † | For printing **flyers in batches**. | Для печати **листовок партиями**. |

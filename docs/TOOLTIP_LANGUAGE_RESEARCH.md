@@ -55,24 +55,30 @@ The user also prioritizes intelligibility and elegance over output enumeration: 
 
 Distribution recommendation: choose a voice by the building's role and natural sentence rhythm, and keep related tiers parallel. Do not rotate prefixes by row number or vary sister-tier grammar merely to avoid repetition. Capability remains the default candidate; a recognizable workplace can use here; a vessel/process can use a purpose clause; numeric benefits and actual automation can stand directly. Translation may choose its own natural syntax while preserving meaning/emphasis.
 
-The user requested ten different buildings across families/areas. These are **review proposals**, not final copy acceptance or a complete rewrite of the104-row catalogue. Bold marks candidate accent spans; icon principle is accepted but exact placement/rendering remains separate.
+The user accepted the ten-building set as a strong basis, then requested more variation in its early rows without sacrificing other qualities. It remains **a review basis**, not final copy acceptance or a complete rewrite of the104-row catalogue. Bold marks candidate accent spans; icon principle is accepted but exact placement/rendering remains separate.
+
+The user explicitly prioritizes the main player benefit over listing all exceptions in the short purpose. Keep verified exceptions in the research; a concise qualitative benefit label need not enumerate them. This does not permit invented universal percentages, guarantees or unsupported mechanics. The short DeskII quality label below intentionally omits the awkward “most products” qualification while its exact recipe differences remain in the upgrade audit.
 
 | Building / context | Russian proposal | English proposal |
 | --- | --- | --- |
 | Sawhorse / Workyard | Позволяют распиливать брёвна на **доски**. | Allows you to cut logs into **boards**. |
 | Chopping spot / Workyard | Здесь можно заготавливать **дрова и клинья**. | You can make **firewood and wedges** here. |
-| Alchemy workbench / Alchemy lab | Позволяет готовить зелья из **двух ингредиентов**. | Allows you to make potions from **two ingredients**. |
-| Study table / Alchemy lab | Здесь можно изучать предметы и получать **очки технологий**. | You can study items here to earn **technology points**. |
-| DeskII / Alchemy lab | Позволяет создавать книги и молитвы. **Бонус к качеству большинства работ**. | Allows you to make books and prayers. **Quality bonus** for most recipes. |
+| Alchemy workbench / Alchemy lab | Служит для приготовления зелий из **двух ингредиентов**. | Lets you make potions from **two ingredients**. |
+| Study table / Alchemy lab | Используется для изучения предметов и получения **очков технологий**. | Used for studying items and earning **technology points**. |
+| DeskII / Alchemy lab | Позволяет создавать книги и молитвы. **Бонус к качеству письма**. | Allows you to make books and prayers. **Writing quality bonus**. |
 | Wine making barrel / Cellar | Служит для приготовления **вина** из виноградного сока. | Used to make **wine** from grape juice. |
 | Resurrection table / Morgue | Здесь можно создавать **зомби-рабочих** из тел. | Make **zombie workers** from bodies here. |
 | CandelabraI / Church | **+1 к качеству церкви**. Свечи усиливают эффект. | **+1 church quality**. Candles increase the bonus. |
 | Compost heap / Garden | Используется для переработки отходов урожая в **торф**. | Used to turn crop waste into **peat**. |
 | Water pump / Workyard | **Автоматически** пополняет запас воды. | **Automatically** replenishes your water supply. |
 
-Semantic evidence: existing native blueprint/craft study, the paired upgrade review and accepted candelabra/pump/alchemy semantics. Resurrection reuses the direct native localization text; actual localization/rendering owner still needs its normal integration proof. DeskII's scoped quality clause intentionally avoids claiming every recipe improves or guaranteeing gold. Other practical outputs such as billets or maggots are omitted from this set as secondary to the stated purpose, not denied as supported outputs. English Sawhorse purpose uses ordinary-category “boards” for readability; it does not claim direct `wooden_plank` production or rename the native Flitch item in an actual item/material row. No new gameplay behavior is inferred.
+Semantic evidence: existing native blueprint/craft study, the paired upgrade review and accepted candelabra/pump/alchemy semantics. Resurrection reuses the direct native localization text; actual localization/rendering owner still needs its normal integration proof. DeskII uses the shared PrayerClarity quality term as a qualitative benefit, not a claim that every recipe improves or that gold is guaranteed. Other practical outputs such as billets or maggots are omitted from this set as secondary to the stated purpose, not denied as supported outputs. English Sawhorse purpose uses ordinary-category “boards” for readability; it does not claim direct `wooden_plank` production or rename the native Flitch item in an actual item/material row. No new gameplay behavior is inferred.
 
-Author critique: mixed voice is useful when driven by meaning, but arbitrary synonym rotation can weaken the very family comparisons the user requested. Keep alchemyI/II identical apart from the accepted ingredient count. Sawhorse's omitted billet term helps an unfamiliar player; keep wedges at the chopping spot because they communicate a distinct practical output and the sentence remains short. DeskII is deliberately longer because its reason for upgrading matters more than matching a one-line quota. Church/water rows do not need a capability prefix: their effect already answers the question.
+Author critique: mixed voice is useful when driven by meaning, but arbitrary synonym rotation can weaken the very family comparisons the user requested. Keep alchemyI/II identical apart from the accepted ingredient count: the tierII counterpart now reads `Служит для приготовления зелий из **трёх ингредиентов**.` Sawhorse's omitted billet term helps an unfamiliar player; keep wedges at the chopping spot because they communicate a distinct practical output and the sentence remains short. DeskII keeps a brief separate benefit sentence; church/water rows do not need a capability prefix because their effect already answers the question.
+
+### PrayerClarity wording precedent
+
+Inspected the existing local PrayerClarity source checkout at `ce91534`, without changing it. [lang/ru.json](https://github.com/NikichMods/PrayerClarity/blob/ce91534/lang/ru.json) uses `tech.effect.imagination_intro` = `Повышает качество письма.` and `active.pen` = `Бонус к качеству письма: +{0:0.##}`. Its English equivalents in [lang/en.json](https://github.com/NikichMods/PrayerClarity/blob/ce91534/lang/en.json) are `Improves writing quality.` and `Writing quality bonus: +{0:0.##}`. The inspected Rebalanced override does not replace those keys. These supply a terminology precedent, not permission to copy a prayer's numeric bonus onto a station. No number is invented for DeskII because its recipe differences are heterogeneous. `Письмо / writing` keeps consistency with the existing mod rather than introducing a longer new label solely to encode exceptions.
 
 ## Current author judgment
 
