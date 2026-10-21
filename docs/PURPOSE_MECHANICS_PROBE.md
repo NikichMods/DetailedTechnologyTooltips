@@ -22,7 +22,13 @@ Installed BetterSaveSoulRebalance is a known confounder. Record plugin identitie
 
 Version owner: research/PurposeMechanicsProbe/PurposeMechanicsProbe.csproj; generated assembly metadata supplies BepInPlugin version. Build Release with .NET SDK8 and installed native references via GameRoot property; no proprietary payload is distributed. Exact source and DLL hash are recorded at handoff below. Runtime evidence pending.
 
-## Frozen local handoff
+## Current status: failed load reported; observer removed
+
+User reported a hang while loading a save after installing0.1.0. Preserved session snapshot: ignored `local/runtime-evidence/purpose-observer-0.1.0/failed-load-20261021.log`, SHA256 `122088209fcaf384c2ddf584efc92110d573fc416b99b65f729f694120f1be52`. Loader confirms observer0.1.0, matching host MVID and six installed hooks. Last lines are scene restoration (`RestoreScene`, `PrepareScene`, Queue Everything mutations and two active-object messages). No observer scenario event or exception identifying the cause is present. This establishes a failed user run, not attribution to a particular hook or another mod.
+
+Host was already closed when inspected. Removed only the hash-verified observer DLL from plugins; retained frozen0.1.0 artifact. Other plugins and saves untouched. Next minimal discriminating check: load the same save with observer absent. Do not install a speculative replacement before that baseline result. If removal restores loading, inspect/isolate hooks and consider explicit post-load activation instead of startup-wide observation; that remains a hypothesis and method choice, not a verified fix. Original press/extractor procedure below is suspended.
+
+## Frozen local handoff (historical)
 
 - Source: `e3c1b0107e8afca559eaa5f49da99227ccfe76c3`, branch `research/purpose-mechanics-probe`.
 - Observer0.1.0 SHA256: `242ba9e3a3e7e6a4c238e6e39aa1d6ec8114239638fd4c3fa4087613177f0272`.
