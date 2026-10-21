@@ -17,7 +17,7 @@ Purpose must be evidence-backed, not guessed from the object name. Preserve usef
 
 The user approved emphasizing the semantically decisive result/capability in each purpose description, for example powders or solutions. This is a general editorial rule, not a request to color all occurrences of certain Russian words across every surface.
 
-Recommended rule: mark one short result/capability phrase per short explanation, with occasional additional phrase only where the meaning requires it. Use one consistent, readable accent; do not silently turn powder/solution/potion names into a new color-coded category system or imply resource availability. Metadata should follow localized meaning rather than broad localized-string search/replacement.
+Recommended rule: mark a short, decision-relevant result/capability phrase when there is one; zero accents is valid for a generic statement such as item storage. Use occasional additional emphasis only where meaning requires it. Use one consistent, readable accent; do not silently turn powder/solution/potion names into a new color-coded category system or imply resource availability. Metadata should follow localized meaning rather than broad localized-string search/replacement. Accent position follows natural syntax: avoid a mechanical sentence-final pattern, without moving words merely for visual variety.
 
 Draft focus terms: `растворы`, `порошки`; for the table `алхимические составы` is proposed instead of only `зелья`, because the native two-input table also produces paint/other mixtures. The user accepted a single warm red accent in the PrayerClarity color family. Exact localized phrase and host-rendered shade still need copy/runtime review.
 
@@ -80,7 +80,7 @@ Accepted editorial approach (the user approved this approach after reviewing the
 4. Match native terminology and approachable in-world voice, without requiring every blueprint to imitate humorous Perk text. Meaning and correctness take priority over copying vanilla omissions or awkward wording.
 5. Keep English as semantic source and Russian as review locale. Select the short emphasized result phrase while editing each translation; color must not be the only carrier of meaning.
 6. Review a small representative copy set before scaling to all eligible blueprints. Record evidence and native-text availability with each reviewed entry; exact implementation/data format remains open.
-7. Edit related tiers as a family: keep the shared role and sentence structure as consistent as verified behavior permits; change the words/numbers that express the actual difference. Emphasize the decision-relevant distinction (capacity, automation, quality bonus, etc.), not automatically the output noun. Similar wording must not imply unproved recipe inheritance or that every capability is identical.
+7. Edit related tiers as a family. Emphasize the decision-relevant distinction (capacity, automation, quality bonus, etc.), not automatically the output noun. **Current review proposal:** a base tier explains the role; an upgrade foregrounds its verified new benefit and may use a short reference to the previous tier instead of repeating its output catalogue. Use an explicit reference only where it improves comprehension; “improved version” alone adds little. Keep parallel self-contained phrasing for complementary stations (the alchemy tables) and clear short numeric comparisons. The catalogue contains proposed applications for user review, not final copy acceptance. Similar wording must not imply unproved recipe inheritance or that every capability is identical.
 
 ### Editorial pilot — accepted subset and remaining proposals
 
@@ -94,11 +94,11 @@ Bold spans below illustrate semantic emphasis, not literal markup or verified ho
 | Hand mixer / `mf_alchemy_stirrer_01` | Processes materials into alchemical **solutions**. | Перерабатывает материалы в алхимические **растворы**. |
 | Alchemy mill / `mf_alchemy_mill` | Grinds materials into alchemical **powders**. | Измельчает материалы в алхимические **порошки**. |
 | Alchemy workbench II / `mf_alchemy_craft_03` | Makes potions from **three ingredients**. | Готовит зелья из **трёх ингредиентов**. |
-| Trunk / `mf_box_stuff` | Provides **item storage**. | Место для **хранения предметов**. |
+| Trunk / `mf_box_stuff` | Storage for items. | Место для хранения предметов. |
 | Candelabra I / `candelabrum_1` | **+1 church quality**. Candles increase the bonus. | **+1 к качеству церкви**. Свечи усиливают эффект. |
 | Candelabra II / `candelabrum_2` | **+2 church quality**. Candles increase the bonus. | **+2 к качеству церкви**. Свечи усиливают эффект. |
 | Candelabra III / `candelabrum_3` | **+3 church quality**. Candles increase the bonus. | **+3 к качеству церкви**. Свечи усиливают эффект. |
-| Water pump / `well_pump_place` | **Automatically** replenishes your water supply. | **Автоматически** пополняет запас воды. |
+| Water pump / `well_pump_place` | **Automatically** draws water from the well. | **Автоматически** набирает воду из колодца. |
 
 The accepted paired potions/two-versus-three phrasing is sufficient to explain purpose and makes the tier distinction easier to scan. It does not claim exclusive potion production or that tier II inherits the first table's recipes. Do not append “only” or describe the second table as simply replacing all functions of the first. The pump's emphasis on **automatically** is explicitly user-directed and accepted. The accepted candelabra copy replaces the rejected heavy “serves as a candle stand” phrasing. Earlier paint/mixture alternatives are superseded.
 
