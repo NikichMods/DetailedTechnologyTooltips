@@ -21,3 +21,22 @@ Installed BetterSaveSoulRebalance is a known confounder. Record plugin identitie
 ## Build and identity
 
 Version owner: research/PurposeMechanicsProbe/PurposeMechanicsProbe.csproj; generated assembly metadata supplies BepInPlugin version. Build Release with .NET SDK8 and installed native references via GameRoot property; no proprietary payload is distributed. Exact source and DLL hash are recorded at handoff below. Runtime evidence pending.
+
+## Frozen local handoff
+
+- Source: `e3c1b0107e8afca559eaa5f49da99227ccfe76c3`, branch `research/purpose-mechanics-probe`.
+- Observer0.1.0 SHA256: `242ba9e3a3e7e6a4c238e6e39aa1d6ec8114239638fd4c3fa4087613177f0272`.
+- Release build: SDK8.0.426, zero errors/warnings, installed native references; framework package from local cache. Network vulnerability lookup was unavailable in the preliminary build; final build explicitly disables that lookup, not compilation checks.
+- Native Cecil inspection verifies exact five named patch signatures/parameter names plus the GenerateSoul closure/owner/output fields. Assembly/plugin version0.1.0 verified. No host mutation methods are intentionally invoked.
+- Installed byte-identically as `BepInEx/plugins/PurposeMechanicsProbe.dll`, host closed at installation. Production DTT payload remains unchanged. No runtime/load success is claimed yet.
+- No CI build added: the observer compiles against local proprietary host references which must not be uploaded to a public runner. Local native compilation proves the relevant ABI more directly than a stub build.
+
+## User procedure
+
+1. Launch normally and load the progressed save.
+2. Open Printing pressII's crafting menu, then close it. No crafting is needed. If only pressI exists, open that instead and report II absent.
+3. At extractorII, place a fresh corpse containing an extractable soul; open its window and complete one extraction. Repeat once at extractorIII if available. Do not use a corpse whose soul has already been extracted, or substitute a sin-shard-only action.
+4. If a tier is unavailable, skip it and report which tier was used; do not downgrade, grind materials or edit saves solely for this first observation.
+5. Tell Codex the actions are complete. Codex reads local `BepInEx/LogOutput.log`; no manual copying/screenshots required. Avoid another game launch before capture, since the log is replaced.
+
+Normal gameplay actions retain their ordinary effects. The observer itself adds no saved state and requires no in-game cleanup. After evidence collection Codex removes its exact DLL while the game is closed. Vanilla-versus-BetterSaveSoulRebalance attribution remains an analysis step; any controlled comparison needs a separately prepared exact setup.
