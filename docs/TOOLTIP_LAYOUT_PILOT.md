@@ -1,6 +1,6 @@
 # Tooltip layout pilot1.2.0
 
-Status: source readiness established below; installed visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.0 built, verified and installed; installed visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -17,3 +17,9 @@ Integration: icons mark only pilot rows created by the existing composer. Prayer
 ## Build/acceptance
 
 Version1.2.0 is a test candidate, not a stable release. Required: Release compilation, existing localization/formatting tests plus meaningful pilot whitelist/language/markup checks; version agreement across project/plugin/workflow; frozen exact source and handed DLL digest. Stable1.1.6 is backed up and remains rollback baseline. Successful build does not establish Unity geometry, color/contrast or runtime acceptance.
+
+Frozen source `61fdb06ee68b92708c1f78177695ac4378bf75e6`, branch `feature/tooltip-layout-1.2.0` based on stable main; diagnostic observer source stays on its separate research branch and is not in this candidate. Local native-reference Release DLL SHA256 `bb2888a0df1cd03ffa64eb8a3293b2312814302455f8ee19a094165f0a7db852`,91648 bytes, file version1.2.0.0, ProductVersion identifies this SHA. Build SDK8.0.426; no errors/warnings. Existing11-language/38-key formatting suite plus13-entry EN/RU locale-boundary/markup/scope checks pass. CI run [39617698820](https://github.com/NikichMods/DetailedTechnologyTooltips/actions/runs/39617698820), job119282849204 completed success, including source/version consistency, compilation and tests. Installed artifact is the locally built native-reference DLL, not the independently compiled CI payload.
+
+Installed as canonical `DetailedTechnologyTooltips.dll` with host closed; installed hash matches frozen local artifact. Stable1.1.6 hash `a6cf0acf44c08c377afccfba4fcebec56c81310956b0fce324be197f71b22849` backed up outside plugins; removed only its obsolete installed versioned filename after successful candidate verification. Other mods unchanged, research observer absent.
+
+User check: launch/load; hover individual unlock icons with mouse in Technology tree. Review alchemy table/mixer/mill, one furnace upgrade, one candelabra and trunk (long build-location list). EN and RU where convenient. Inspect muted ordinary text versus dark title, red accents, native material icon/name/count alignment, wrapping and viewport fit. Open a nonpilot blueprint/ordinary recipe/prayer as a regression sanity check. No building/crafting required. Tell Codex observations and any visually wrong tooltip; local log collection belongs to Codex. Gamepad carousel/full catalogue/other-locale purpose translations remain future work.
