@@ -140,6 +140,7 @@ Do not establish a compiler/package contract by assumption. When production sour
 - `AGENTS.md`
 - `docs/VERIFIED_GAME_DATA.md`
 - `docs/TOOLTIP_REDESIGN.md` — adopted next-revision design, compatibility ownership and remaining presentation proposals
+- `docs/BLUEPRINT_PURPOSE_CATALOGUE.md` — grouped EN/RU purpose copy, accepted pilot subset and explicitly flagged mechanics checks
 - `docs/CHATGPT_PROJECT_INSTRUCTIONS.md`
 - `docs/TEST_BUILD_LOG.md` once numbered handoff builds exist
 - `README.md`
