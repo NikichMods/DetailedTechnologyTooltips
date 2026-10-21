@@ -15,17 +15,16 @@ namespace DetailedTechnologyTooltips
         internal static bool TitleCenter = true, PurposeCenter = true, MaterialCenter = false, LocationCenter = true;
         internal static int TitleGap = 4, PurposeGap = 8, MaterialGap = 8, EntryGap = 0;
         private sealed class Row { internal string Raw; internal bool Material; }
-        private sealed class Live { internal WeakReference Widget, Data; }
         private sealed class CameraState { internal Behaviour Camera; internal bool Enabled; }
         private static readonly ConditionalWeakTable<object, Row> Rows = new ConditionalWeakTable<object, Row>();
         private static readonly ConditionalWeakTable<object, Row> Tooltips = new ConditionalWeakTable<object, Row>();
-        private static readonly List<Live> LiveRows = new List<Live>();
         private static readonly List<CameraState> Cameras = new List<CameraState>();
-        private static FieldInfo text;
-        private static MethodInfo draw, resize;
+        private static FieldInfo text, linkedTooltip, bubbleWidgets;
+        private static MethodInfo draw, resize, redraw;
         private static Type bubbleType, cameraType;
         private static object lastTooltip;
-        private static bool ready, open;
+        private static bool ready, open, refreshPending;
+        private static int refreshRevision;
         private static Rect window = new Rect(650, 45, 460, 640);
         private static Vector2 scroll;
 
@@ -37,7 +36,11 @@ namespace DetailedTechnologyTooltips
             draw = AccessTools.DeclaredMethod(widgetType, "Draw", new[] { dataType });
             bubbleType = AccessTools.TypeByName("WidgetsBubbleGUI");
             resize = AccessTools.Method(bubbleType, "UpdateSizeAndWidgetsPositions", Type.EmptyTypes);
-            if (text == null || draw == null || resize == null) throw new MissingMemberException("Calibration draw contract");
+            redraw = AccessTools.Method(bubbleType, "Redraw", new[] { typeof(bool) });
+            linkedTooltip = AccessTools.Field(AccessTools.TypeByName("Tooltip"), "linked_tooltip");
+            bubbleWidgets = AccessTools.Field(bubbleType, "bubble_widgets");
+            if (text == null || draw == null || resize == null || redraw == null || linkedTooltip == null || bubbleWidgets == null)
+                throw new MissingMemberException("Calibration draw contract");
             harmony.Patch(draw, new HarmonyMethod(typeof(PilotCalibration), nameof(BeforeDraw)),
                 new HarmonyMethod(typeof(PilotCalibration), nameof(AfterDraw)), null, null, null);
 #if DTT_CALIBRATION
@@ -80,12 +83,6 @@ namespace DetailedTechnologyTooltips
         public static void AfterDraw(object __instance, object __0)
         {
             PilotLayout.Drawn(__instance, __0);
-            Row row;
-            if (__0 == null || !Rows.TryGetValue(__0, out row)) return;
-            foreach (var live in LiveRows) if (ReferenceEquals(live.Widget.Target, __instance))
-                { live.Data = new WeakReference(__0); return; }
-            if (LiveRows.Count >= 256) LiveRows.RemoveAt(0);
-            LiveRows.Add(new Live { Widget = new WeakReference(__instance), Data = new WeakReference(__0) });
         }
         public static void Shown(object __instance)
         {
@@ -96,32 +93,41 @@ namespace DetailedTechnologyTooltips
         public static bool KeyGuard(ref bool __result) { if (!open) return true; __result = false; return false; }
         private static void Refresh()
         {
-            var bubbles = new HashSet<Component>();
-            foreach (var live in LiveRows.ToArray())
+            var tooltip = lastTooltip as Component;
+            var bubble = tooltip == null ? null : linkedTooltip.GetValue(tooltip) as Component;
+            if (bubble == null || !bubble.gameObject.activeInHierarchy)
             {
-                var widget = live.Widget.Target as Component;
-                var data = live.Data.Target;
-                if (widget == null || data == null || !widget.gameObject.activeInHierarchy) continue;
-                draw.Invoke(widget, new[] { data });
-                var bubble = widget.GetComponentInParent(bubbleType);
-                if (bubble != null) bubbles.Add(bubble);
+                Plugin.Log.LogWarning("DTT_CALIBRATION_SKIPPED reason=no-visible-pinned-tooltip");
+                return;
             }
-            foreach (var bubble in bubbles) { PilotLayout.Invalidate(bubble); resize.Invoke(bubble, null); }
+            // Use the host's current rows and full draw lifecycle, outside IMGUI events.
+            redraw.Invoke(bubble, new object[] { false });
+            PilotLayout.Invalidate(bubble);
+            resize.Invoke(bubble, null);
+            Plugin.Log.LogInfo("DTT_CALIBRATION_APPLIED revision=" + (++refreshRevision)
+                + " widgets=" + ((System.Collections.ICollection)bubbleWidgets.GetValue(bubble)).Count);
         }
         private static void Fail(Exception e)
         {
             if (!ready) return;
             ready = false; Close();
-            Plugin.Log.LogError("DTT_CALIBRATION_DISABLED reason=" + e.GetType().Name + ": " + e.Message);
+            var cause = e.GetBaseException();
+            Plugin.Log.LogError("DTT_CALIBRATION_DISABLED reason=" + cause.GetType().Name + ": " + cause.Message);
         }
         internal static void Update()
         {
 #if DTT_CALIBRATION
+            if (ready && open && refreshPending)
+            {
+                refreshPending = false;
+                try { Refresh(); } catch (Exception e) { Fail(e); }
+            }
             if (!ready || !Input.GetKeyDown(KeyCode.F2)) return;
             if (open) { Close(); return; }
             try
             {
                 open = true;
+                refreshPending = true;
                 foreach (var obj in UnityEngine.Object.FindObjectsOfType(cameraType))
                 {
                     var camera = obj as Behaviour;
@@ -145,7 +151,7 @@ namespace DetailedTechnologyTooltips
         {
             scroll = GUILayout.BeginScrollView(scroll);
             GUILayout.Label("Перед F2 наведите мышь на нужный чертёж.\nОкно можно перетащить за заголовок.");
-            GUI.changed = false;
+            var before = Values();
             IconSize = Slider("Размер иконок (UI)", IconSize, 10, 32);
             IconY = Slider("Сдвиг иконок вверх (+) / вниз (−)", IconY, -16, 16);
             TextSpaces = Slider("Отступ текста (пробелы)", TextSpaces, 0, 16);
@@ -163,9 +169,11 @@ namespace DetailedTechnologyTooltips
             {
                 IconSize = 20; IconY = 0; TextSpaces = 5; Opacity = 100;
                 TitleCenter = PurposeCenter = LocationCenter = true; MaterialCenter = false;
-                TitleGap = 4; PurposeGap = MaterialGap = 8; EntryGap = 0; GUI.changed = true;
+                TitleGap = 4; PurposeGap = MaterialGap = 8; EntryGap = 0;
             }
-            if (GUI.changed) try { Refresh(); } catch (Exception e) { Fail(e); }
+            var after = Values();
+            for (int i = 0; i < before.Length; i++)
+                if (before[i] != after[i]) { refreshPending = true; break; }
             if (GUILayout.Button("Записать значения и закрыть")) Close();
             GUILayout.Label("100% — полный цвет. Настройки действуют до выхода из игры.");
             GUILayout.EndScrollView();
@@ -176,6 +184,12 @@ namespace DetailedTechnologyTooltips
             GUILayout.Label(label + ": " + value);
             return (int)Math.Round(GUILayout.HorizontalSlider(value, min, max));
         }
+        private static int[] Values()
+        {
+            return new[] { IconSize, IconY, TextSpaces, Opacity, TitleCenter ? 1 : 0,
+                PurposeCenter ? 1 : 0, MaterialCenter ? 1 : 0, LocationCenter ? 1 : 0,
+                TitleGap, PurposeGap, MaterialGap, EntryGap };
+        }
         internal static void Close()
         {
             foreach (var state in Cameras) if (state.Camera != null) state.Camera.enabled = state.Enabled;
@@ -184,6 +198,7 @@ namespace DetailedTechnologyTooltips
                 + " title_center=" + TitleCenter + " purpose_center=" + PurposeCenter + " material_center=" + MaterialCenter + " location_center=" + LocationCenter
                 + " title_gap=" + TitleGap + " purpose_gap=" + PurposeGap + " material_gap=" + MaterialGap + " entry_gap=" + EntryGap);
             open = false;
+            refreshPending = false;
         }
         internal static bool Center(PilotRole role)
         {
