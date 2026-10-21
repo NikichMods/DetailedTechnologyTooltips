@@ -22,7 +22,7 @@ Installed BetterSaveSoulRebalance is a known confounder. Record plugin identitie
 
 Version owner: research/PurposeMechanicsProbe/PurposeMechanicsProbe.csproj; generated assembly metadata supplies BepInPlugin version. Build Release with .NET SDK8 and installed native references via GameRoot property; no proprietary payload is distributed. Exact source and DLL hash are recorded at handoff below. Runtime evidence pending.
 
-## Current status: pressII/extractorIII observed; extractorII and original hang unresolved
+## Current status: observer removed; pressII/extractorIII observed; extractorII and original hang unresolved
 
 User reported a hang while loading a save after installing0.1.0. Preserved session snapshot: ignored `local/runtime-evidence/purpose-observer-0.1.0/failed-load-20261021.log`, SHA256 `122088209fcaf384c2ddf584efc92110d573fc416b99b65f729f694120f1be52`. Loader confirms observer0.1.0, matching host MVID and six installed hooks. Last lines are scene restoration (`RestoreScene`, `PrepareScene`, Queue Everything mutations and two active-object messages). No observer scenario event or exception identifying the cause is present. This establishes a failed user run, not attribution to a particular hook or another mod.
 
@@ -55,6 +55,8 @@ User opened/closed pressII and reports making10 flyers; extracted one soul onIII
 - No observer disable/host-exception marker. Observed getter/generator/UI hooks have only observer Harmony ownership; shared completion has several other owners. BetterSaveSoulRebalance patches craft admission/start/finish; the environment is not a clean vanilla control. No blanket exclusion of indirect mod effects follows.
 
 ExtractorIII runtime consumer/key/result path is now observed, butIII's comparative advantage overII remains unresolved: both key families are0 atIII, so this tier cannot discriminate their different lower-tier bounds. Do not request manual downgrade/grinding. Existing static storage-decay facts remain a supported alternative headline for editorial review. All three catalogue daggers remain pending comparative/availability resolution, not because this successful observation is being discarded. Original0.1.0 loading failure remains unattributed. Retain observer only until this session ends; remove exact installed DLL once host closure is established.
+
+User subsequently confirmed host closure and requested removal. Removed only installed PurposeMechanicsProbe.dll after matching0.1.1 SHA256 against the retained immutable artifact and checking no host process; unrelated plugins/saves untouched. User selects damage-basedII/III purpose copy, supported by native UI/wiki and their experience, with no numerical tooltip promise. See PURPOSE_MECHANICS_REVIEW.md for external-source results and the still-open technical comparison. No further runtime test is requested in this segment.
 
 ## Frozen local handoff (historical)
 
