@@ -1,6 +1,6 @@
-# Tooltip layout pilot1.2.0
+# Tooltip layout pilot — current candidate1.2.2
 
-Status: candidate1.2.0 built, verified and installed; installed visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.2 built and frozen; installation awaits current host-closed confirmation. Candidate1.2.1 remains installed. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -38,7 +38,7 @@ User explicitly accepts material-based active-language width, four alignment con
 
 **READY block gaps:** reuse native BubbleWidgetBlankSeparatorData, mark only own instances, set their UIWidget height/active state before native measurement. Native blank Draw is empty; SimpleUITable skips inactive widgets; UpdateSize skips inactiveSelf. Tag the native blank immediately after each owned title via captured GetTooltip start index; insert two own gap rows between purpose/materials/location and an optional additional blank before a subsequent pilot title. Native ornament separator remains unchanged. No artificial newline padding. Four F2 gap sliders0–24UI units. Preserve nonpilot content and native unlock order. Acceptance: RU/EN material quantities, shared column edges, four alignments, zero/nonzero gaps, repeated refresh/reopen and controller combined layout, plus PrayerClarity/nonpilot sanity. This is an independent test candidate1.2.2, not runtime acceptance.
 
-The user tentatively questions the planned new DTT controller carousel after seeing this combined tooltip fit. Reopen that product choice: evaluate compact common styling and representative worst cases first; do not silently remove the previously accepted carousel direction or change PrayerClarity's existing ownership/navigation on this single example. Proposed simpler direction is to retain native combined DTT presentation if bounded viewport checks support it. Pending discussion/acceptance, not an implemented behavior change.
+The user explicitly deferred the new DTT controller carousel. Candidate1.2.2 retains native combined presentation and applies the same owned-row layout policy to mouse and controller; PrayerClarity navigation is unchanged.
 
 Source `77688ced5ae07cc7e7208763f3e47e6590efbc68`; frozen local native-reference DLL SHA256 `49c9f5a65654b423d8b7ee7c2bc1c54b654a234d840cd3c90a5d46a41bcebfe9`, version1.2.1.0. Release build zero warnings/errors; existing localization/formatting and pilot scope tests pass. CI39620469037 completed success. User confirmed game closed; installed same bytes as DetailedTechnologyTooltips.dll after verifying retained1.2.0 rollback artifact. Stable1.1.6 backup remains. Screenshot/user report accepts1.2.0 structural consistency, not final visual acceptance. Prior log confirms1.2.0 READY/iconsTrue with no DTT failure marker.1.2.1 runtime pin/slider/input/shader acceptance pending.
 
@@ -51,3 +51,14 @@ Frozen source `61fdb06ee68b92708c1f78177695ac4378bf75e6`, branch `feature/toolti
 Installed as canonical `DetailedTechnologyTooltips.dll` with host closed; installed hash matches frozen local artifact. Stable1.1.6 hash `a6cf0acf44c08c377afccfba4fcebec56c81310956b0fce324be197f71b22849` backed up outside plugins; removed only its obsolete installed versioned filename after successful candidate verification. Other mods unchanged, research observer absent.
 
 User check: launch/load; hover individual unlock icons with mouse in Technology tree. Review alchemy table/mixer/mill, one furnace upgrade, one candelabra and trunk (long build-location list). EN and RU where convenient. Inspect muted ordinary text versus dark title, red accents, native material icon/name/count alignment, wrapping and viewport fit. Open a nonpilot blueprint/ordinary recipe/prayer as a regression sanity check. No building/crafting required. Tell Codex observations and any visually wrong tooltip; local log collection belongs to Codex. Gamepad carousel/full catalogue/other-locale purpose translations remain future work.
+
+
+###1.2.2 frozen candidate
+
+Source `a00cb56cbe26f373515ab05ad074a572feb1f90b`; local native-reference Release artifact `DetailedTechnologyTooltips-1.2.2.dll`,105472 bytes, SHA256 `5900c9ea5bd15a00cc5764e5de2c6c1964717cb417ae80d6a5d2c8690c164921`, file version1.2.2.0. SDK8.0.426, zero build warnings/errors. Localization/formatting, pilot scope, width floor/ceil/viewport and EN/RU quantity-binding checks pass. CI [39652950942](https://github.com/NikichMods/DetailedTechnologyTooltips/actions/runs/39652950942) completed success. The local native-reference artifact is frozen independently of CI payload.
+
+Default calibration: icons20, Y0, indent5font spaces, opacity100%; title/purpose/location centered, material block left. Gaps4/8/8/0UI units (title→purpose, purpose→materials, materials→location, additional between unlocks). Native ornamental separators remain. Active-language material rows determine minimum width, capped by viewport; purpose wraps within it. NBSP binds the final material-name word and quantity as a narrow-view fallback. Native NGUIText.IsSpace does not classify U+00A0 as a break space; actual font rendering and geometry remain runtime acceptance questions.
+
+Status: **PREPARED, NOT INSTALLED; visual acceptance pending.** Current host-closed confirmation is outstanding;1.2.1 remains installed. Retained1.2.1/1.2.0 and stable1.1.6 artifacts support rollback.
+
+Focused user check after installation: reopen alchemy unlocks in RU and EN; verify no isolated quantity and coherent material columns. Open F2 with a pilot tooltip visible, compare four alignment toggles, zero/nonzero internal gaps and the extra inter-unlock gap on controller. Close/reopen tooltips and F2, verify input restored and consistent mouse/controller styling. Check one furnace, long-location trunk and nonpilot/prayer tooltip as convenient. No crafting or save manipulation required. Calibration remains session-only; settings are logged on close. This candidate still covers thirteen EN/RU blueprints, not the complete catalogue.
