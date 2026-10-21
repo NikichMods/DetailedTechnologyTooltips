@@ -349,7 +349,14 @@ namespace DetailedTechnologyTooltips
             };
             if (isBlueprint && PilotMaterialIcons.Available && PilotLayout.Available)
             {
-                var purpose = PilotPurposeCopy.Get(id, GetCurrentLanguage());
+                var purpose = BlueprintPurposeCopy.Get(id, GetCurrentLanguage());
+                var nativePurposeKey = purpose == null ? null : BlueprintPurposeCopy.NativeDescriptionKey(id);
+                if (nativePurposeKey != null)
+                {
+                    var nativePurpose = Localize(nativePurposeKey);
+                    if (!string.IsNullOrEmpty(nativePurpose) && nativePurpose != nativePurposeKey)
+                        purpose = BlueprintPurposeCopy.Render(nativePurpose);
+                }
                 var materials = purpose == null ? null : BuildPilotMaterials(balance, craft);
                 if (materials != null)
                 {
@@ -416,7 +423,8 @@ namespace DetailedTechnologyTooltips
             if (!string.IsNullOrEmpty(context.PilotPurpose))
             {
                 AddTinyText(tooltip, context.PilotPurpose, _leftAlignment, false, true);
-                _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.PurposeGap) });
+                bool hasMaterials = context.PilotMaterials.Length > 0;
+                if (hasMaterials) _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.PurposeGap) });
                 foreach (var material in context.PilotMaterials)
                 {
                     var data = _textDataCtor.Invoke(new object[] {
@@ -428,7 +436,7 @@ namespace DetailedTechnologyTooltips
                 }
                 if (!string.IsNullOrEmpty(context.LocationRow))
                 {
-                    _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.MaterialGap) });
+                    _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(hasMaterials ? PilotRole.MaterialGap : PilotRole.PurposeGap) });
                     AddTinyText(tooltip, context.LocationRow + "[FF]", _leftAlignment, false, true, PilotRole.Location);
                 }
                 return;

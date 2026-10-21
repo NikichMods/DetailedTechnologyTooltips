@@ -1,6 +1,6 @@
 # Blueprint purpose copy — grouped editorial catalogue
 
-Target: Graveyard Keeper 1.407. Prepared 2026-10-21. This is a **review draft**, not a runtime implementation or accepted replacement for stable1.1.6.
+Target: Graveyard Keeper 1.407. Prepared 2026-10-21. This is the **authored catalogue selected for full EN/RU test integration**; it is not an accepted replacement for stable1.1.6.
 
 Coverage:105 authored-visible Technology blueprint references,104 distinct build records. The Church workbench appears in two technologies and shares one description. Hidden `@` references, ordinary item recipes and existing Work/Perk copy are outside this catalogue. This covers the blueprint purpose work requested here, including visible DLC/system upgrades.
 
@@ -255,3 +255,7 @@ Font-symbol existence is static eligibility, not proof of correct tint/baseline/
 Every distinct visible blueprint has an editorial row. Daggered claims require further mechanics verification before production. Other entries still require wording acceptance and integration gates; N is not a blanket READY gate. Retain existing vanilla descriptions and native visibility/order. The user's approved family rule does not authorize new prayer content, progression changes, hidden unlock disclosure or invented tier benefits.
 
 Review the grouped families first, then resolve the flagged owners. The next useful technical work is concentrated on virtual build actions, body decay/tier benefits, soul equipment and any native name/icon route required for final presentation; it is not another full game-data dump.
+
+## Full integration decision —2026-10-22
+
+User authorizes integrating all104 rows into the next test candidate with the adopted layout. Per-entry claims and preserved evidence limits are gated in FULL_BLUEPRINT_CATALOGUE_GATE.md. Recovered research31d4af5 selects the qualitative damage copy for extractorII/III despite the unresolved native key mismatch; no percentages enter tooltips. PrintingII retains only confirmed batch-flyer role. Daggered facts remain bounded engineering uncertainties, not a request to reopen the completed user diagnostic run. The ordinary-recipe/prayer/other-language scope is unchanged.

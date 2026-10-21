@@ -10,7 +10,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="..\..\src\Localization.cs" Link="Localization.cs" />
     <Compile Include="..\..\src\TextFormatting.cs" Link="TextFormatting.cs" />
-    <Compile Include="..\..\src\PilotPurposeCopy.cs" Link="PilotPurposeCopy.cs" />
+    <Compile Include="..\..\src\BlueprintPurposeCopy.cs" Link="BlueprintPurposeCopy.cs" />
     <Compile Include="..\..\src\LayoutPolicy.cs" Link="LayoutPolicy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fixtures\VisibleBlueprintUnlocks.tsv" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\docs\BLUEPRINT_PURPOSE_CATALOGUE.md" Link="BlueprintPurposeCatalogue.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

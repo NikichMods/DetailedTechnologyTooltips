@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.2.6";
+        public const string PluginVersion = "1.2.7";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -87,7 +87,7 @@ namespace DetailedTechnologyTooltips
                 Log.LogInfo(
                     "DTT_READY version=" + PluginVersion
                     + " contract=technology-tooltip"
-                    + " layout_pilot=en-ru-13 icons=" + PilotMaterialIcons.Available
+                    + " blueprint_purposes=en-ru-" + BlueprintPurposeCopy.Count + " icons=" + PilotMaterialIcons.Available
                     + " host_mvid=" + GameApi.HostModuleVersionId + ".");
             }
             catch (Exception ex)

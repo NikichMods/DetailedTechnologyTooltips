@@ -3,6 +3,9 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 using DetailedTechnologyTooltips;
 
 internal static class Program
@@ -277,31 +280,65 @@ internal static class Program
             throw new Exception("Quantity binding must preserve names/counts and unrelated parentheses");
         Console.WriteLine("Material width/viewport and non-orphan quantity policy validation OK.");
 
-        int pilotCount = 0;
-        foreach (var id in PilotPurposeCopy.Ids)
+        int purposeCount = 0;
+        foreach (var id in BlueprintPurposeCopy.Ids)
         {
-            pilotCount++;
+            purposeCount++;
             foreach (var language in new[] { "en", "ru", "en-US", "ru_RU" })
             {
-                var purpose = PilotPurposeCopy.Get("native_builder:p:" + id + "_place", language);
+                var purpose = BlueprintPurposeCopy.Get("native_builder:p:" + id + "_place", language);
                 if (string.IsNullOrEmpty(purpose) || purpose.Contains("**")
                     || !purpose.StartsWith("[AA]", StringComparison.Ordinal)
                     || !purpose.EndsWith("[FF]", StringComparison.Ordinal)
                     || CountOccurrences(purpose, "[FF7A70]") != CountOccurrences(purpose, "[-]"))
-                    throw new Exception("Invalid pilot text/markup: " + id + "/" + language);
+                    throw new Exception("Invalid blueprint text/markup: " + id + "/" + language);
             }
-            if (PilotPurposeCopy.Get(id, "de") != null || PilotPurposeCopy.Get(id, "") != null)
-                throw new Exception("Pilot must not leak English into other locales");
+            if (BlueprintPurposeCopy.Get(id, "de") != null || BlueprintPurposeCopy.Get(id, "") != null)
+                throw new Exception("Purpose catalogue must not leak English into other locales");
         }
-        if (pilotCount != 13 || PilotPurposeCopy.Get("unknown", "en") != null
-            || PilotPurposeCopy.Get("pray:prayer_for_faith", "en") != null)
-            throw new Exception("Pilot coverage escaped selected scope");
-        if (PilotPurposeCopy.Get("mf_box_stuff", "en").Contains("FF7A70"))
+        if (purposeCount != 104 || BlueprintPurposeCopy.Count != 104 || BlueprintPurposeCopy.Get("unknown", "en") != null
+            || BlueprintPurposeCopy.Get("pray:prayer_for_faith", "en") != null
+            || BlueprintPurposeCopy.Get("wooden_plank", "en") != null)
+            throw new Exception("Blueprint coverage escaped selected scope");
+        var seenNative = new HashSet<string>(StringComparer.Ordinal);
+        int references = 0;
+        foreach (var line in File.ReadAllLines(Path.Combine(AppContext.BaseDirectory, "Fixtures", "VisibleBlueprintUnlocks.tsv")))
+        {
+            if (line.StartsWith("#", StringComparison.Ordinal) || line.Length == 0) continue;
+            var cells = line.Split('\t');
+            if (cells.Length != 2 || cells[0].StartsWith("@", StringComparison.Ordinal))
+                throw new Exception("Invalid visible blueprint fixture");
+            references++; seenNative.Add(cells[1]);
+            foreach (var language in new[] { "en", "ru" })
+                if (BlueprintPurposeCopy.Get(cells[0], language) != BlueprintPurposeCopy.Get(cells[1], language)
+                    || BlueprintPurposeCopy.Get(cells[0], language) == null)
+                    throw new Exception("Native unlock does not resolve its catalogue row: " + cells[0]);
+        }
+        if (references != 105 || seenNative.Count != 104 || !seenNative.SetEquals(BlueprintPurposeCopy.Ids))
+            throw new Exception("Catalogue must match the complete native visible blueprint set");
+        var seenCatalogue = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var line in File.ReadAllLines(Path.Combine(AppContext.BaseDirectory, "BlueprintPurposeCatalogue.md")))
+        {
+            var cells = line.Split('|');
+            if (cells.Length != 5) continue;
+            var match = Regex.Match(cells[1], "`([^`]+)`");
+            if (!match.Success) continue;
+            string id = match.Groups[1].Value;
+            if (!seenCatalogue.Add(id)) throw new Exception("Duplicate authored purpose: " + id);
+            if (BlueprintPurposeCopy.Get(id, "en") != BlueprintPurposeCopy.Render(cells[2].Trim())
+                || BlueprintPurposeCopy.Get(id, "ru") != BlueprintPurposeCopy.Render(cells[3].Trim()))
+                throw new Exception("Compiled EN/RU text differs from reviewed catalogue: " + id);
+        }
+        if (!seenCatalogue.SetEquals(seenNative)) throw new Exception("Authored/native blueprint coverage drift");
+        if (BlueprintPurposeCopy.NativeDescriptionKey("church_builddesk:p:zombie_crafting_table_place") != "zombie_crafting_table_d"
+            || BlueprintPurposeCopy.NativeDescriptionKey("mf_furnace_0") != null)
+            throw new Exception("Native purpose reuse escaped resurrection-table scope");
+        if (BlueprintPurposeCopy.Get("mf_box_stuff", "en").Contains("FF7A70"))
             throw new Exception("Generic item storage must remain unaccented");
         bool rejected = false;
-        try { PilotPurposeCopy.Render("broken **accent"); } catch (ArgumentException) { rejected = true; }
+        try { BlueprintPurposeCopy.Render("broken **accent"); } catch (ArgumentException) { rejected = true; }
         if (!rejected) throw new Exception("Unbalanced emphasis must be rejected");
-        Console.WriteLine("Pilot scope/language/markup validation OK: 13 blueprints, EN/RU, native fallback elsewhere.");
+        Console.WriteLine("Catalogue/native/compiled parity OK:104 blueprints,105 visible references, EN/RU; native fallback elsewhere.");
 
         Console.WriteLine(
             "Localization/formatting validation OK: "
