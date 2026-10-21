@@ -1,6 +1,6 @@
 # Tooltip layout pilot — current candidate1.2.2
 
-Status: candidate1.2.2 built and frozen; installation awaits current host-closed confirmation. Candidate1.2.1 remains installed. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.2 built, frozen and installed after user-confirmed host closure; runtime visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -59,6 +59,7 @@ Source `a00cb56cbe26f373515ab05ad074a572feb1f90b`; local native-reference Releas
 
 Default calibration: icons20, Y0, indent5font spaces, opacity100%; title/purpose/location centered, material block left. Gaps4/8/8/0UI units (title→purpose, purpose→materials, materials→location, additional between unlocks). Native ornamental separators remain. Active-language material rows determine minimum width, capped by viewport; purpose wraps within it. NBSP binds the final material-name word and quantity as a narrow-view fallback. Native NGUIText.IsSpace does not classify U+00A0 as a break space; actual font rendering and geometry remain runtime acceptance questions.
 
-Status: **PREPARED, NOT INSTALLED; visual acceptance pending.** Current host-closed confirmation is outstanding;1.2.1 remains installed. Retained1.2.1/1.2.0 and stable1.1.6 artifacts support rollback.
+Status: **INSTALLED TEST CANDIDATE; visual acceptance pending.** User confirmed host closure; process check found no host. Installed canonical DetailedTechnologyTooltips.dll has matching SHA2565900c9ea5bd15a00cc5764e5de2c6c1964717cb417ae80d6a5d2c8690c164921 and ProductVersion1.2.2+a00cb56cbe26f373515ab05ad074a572feb1f90b. Exactly one DTT payload found in plugin tree. Retained1.2.1/1.2.0 and stable1.1.6 artifacts support rollback; unrelated mods/saves unchanged.
 
 Focused user check after installation: reopen alchemy unlocks in RU and EN; verify no isolated quantity and coherent material columns. Open F2 with a pilot tooltip visible, compare four alignment toggles, zero/nonzero internal gaps and the extra inter-unlock gap on controller. Close/reopen tooltips and F2, verify input restored and consistent mouse/controller styling. Check one furnace, long-location trunk and nonpilot/prayer tooltip as convenient. No crafting or save manipulation required. Calibration remains session-only; settings are logged on close. This candidate still covers thirteen EN/RU blueprints, not the complete catalogue.
+
