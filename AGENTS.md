@@ -142,6 +142,7 @@ Do not establish a compiler/package contract by assumption. When production sour
 - `docs/TOOLTIP_REDESIGN.md` — adopted next-revision design, compatibility ownership and remaining presentation proposals
 - `docs/BLUEPRINT_PURPOSE_CATALOGUE.md` — grouped EN/RU purpose copy, accepted pilot subset and explicitly flagged mechanics checks
 - `docs/WORKSTATION_UPGRADE_REVIEW.md` — benefit selection, native paired upgrade audit, community cross-checks and manual-station voice alternatives
+- `docs/PURPOSE_MECHANICS_REVIEW.md` — final-owner checks for formerly disputed purpose claims, resolved facts and remaining press/extractor contradictions
 - `docs/TOOLTIP_LANGUAGE_RESEARCH.md` — current manual-station language candidates, user-rejected patterns, native/comparative examples and evidence limits
 - `docs/CHATGPT_PROJECT_INSTRUCTIONS.md`
 - `docs/TEST_BUILD_LOG.md` once numbered handoff builds exist

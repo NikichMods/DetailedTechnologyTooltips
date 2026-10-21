@@ -24,6 +24,8 @@ Full-balance audit inputs supplied from Graveyard Keeper 1.407:
 
 The raw game files and full extracted balance payload are research inputs only and are not repository content.
 
+Purpose-copy follow-up2026-10-21: [PURPOSE_MECHANICS_REVIEW.md](PURPOSE_MECHANICS_REVIEW.md) records native final-owner checks for body preservation, known zombie alchemy recipes, virtual mine builds, fixed lantern sites, temporary incense quality, organ enhancement, six soul-healing extensions, fuelled cremation and receiver zone/cost scope. Twenty of23 formerly flagged selected claims are resolved statically. PressII's distinguishing benefit and extractorII/III's displayed-versus-consumed damage discrepancy remain open; the latter includes an installed-IL-checked parameter-key mismatch. Static eligibility is not a production/readability/runtime acceptance gate.
+
 ## Product problem
 
 Community evidence and host inspection support a recurring Technology-tree information gap: before spending technology points, players may see the name/icon of an unlock without enough concrete information to know its materials, exact crafting/build location, or practical form.

@@ -2,6 +2,8 @@
 
 Status: static research and editorial revision. No production changes or installed acceptance. Owning copy catalogue: [BLUEPRINT_PURPOSE_CATALOGUE.md](BLUEPRINT_PURPOSE_CATALOGUE.md).
 
+Current follow-up: [PURPOSE_MECHANICS_REVIEW.md](PURPOSE_MECHANICS_REVIEW.md) establishes the native body-decay owner and resolves20 of23 formerly flagged selected claims. PrintingII's distinguishing benefit and extractorII/III damage remain unresolved for explicit reasons there. Historical “pending” statements in the paired-audit table below are superseded where that follow-up supplies the missing owner; no new claim of copying availability or surgical-risk reduction follows.
+
 ## Corrected question and method
 
 The first catalogue established many supported outputs, but often selected the easiest measurable tier difference rather than the benefit a player needs to understand. In particular, DeskII energy savings obscured its quality improvement, and the distillation comparison omitted evaluated output expressions. The user rejected manual-station wording that makes the object sound like an automatic actor, approved selective native purpose icons, and requested externally informed benefit research.
