@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.5
+# Tooltip layout pilot — current candidate1.2.6
 
-Status: candidate1.2.2 rejected for excess width and controller text overflow; 1.2.5 installed: ordinary nonmodal F2, no pin/input interception or forced redraw; corrected native blank gap binding. Runtime acceptance pending.1.2.4 preview approach rejected. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.2 rejected for excess width and controller text overflow; 1.2.6 installed with user-selected defaults. User confirms1.2.5 calibration works; adopted gaps2/6/6/10, icons20/0/5/100, centered title/purpose/location, left materials. Still thirteen EN/RU pilot blueprints, not stable/full-catalogue acceptance. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -121,3 +121,8 @@ Installed1.2.5 after current user closure confirmation and no detected game proc
 User confirms settings work on1.2.5 and explicitly requests the chosen final log values as defaults. Frozen current session `local/runtime-evidence/layout-pilot-1.2.5/adopted-defaults-session.log`, SHA256d5f55739286eca0f749e03e71bceb20366b652acd8b1d4c88396a598e66f4f5d, records READY1.2.5 and last calibration20/0/5/100, title/purpose/location centered, material left, gaps2/6/6/10. No DTT failure/disable/fallback marker found. Earlier entry gaps0/3/24 are superseded by final10. This accepts calibration operation and selected visual parameters, not release/main promotion or all-tree coverage.
 
 READY: defaults and reset are owned solely by PilotCalibration static initializers and its reset button. Change only gap defaults4/8/8/0→2/6/6/10 in both consumers, sharing constants to keep them synchronized. All icon/body/alignment values already match. Preserve natural hover, no input/pin/refresh machinery, width, copy, scope and PrayerClarity behavior. Acceptance: source/build/CI identity and existing regression suite; next game launch and F2 reset must start with chosen values. No additional gameplay test requested for unchanged mechanics.
+
+###1.2.6 frozen selected defaults
+
+Source `a76497e3de47b6da4c0fb707c603536210a634fa`; native-reference DLL103936 bytes, SHA256 `4b530017e4e46a85395a95271c437374e5bf79983b076a1009b386d64affdb47`, FileVersion1.2.6.0. SDK8.0.426, zero warnings/errors; existing regression suite passes. CI39677739813/job119491890536 success. Startup/reset use selected20/0/5/100, centered title/purpose/location and left materials, gaps2/6/6/10. No new runtime behavior/coverage beyond defaults. User confirmed game closed; process check clear. Installed canonical DLL hash/version matches frozen1.2.6, one DTT payload; prior1.2.5 retained outside plugins. No new gameplay/full visual regression requested for this defaults-only change.
+

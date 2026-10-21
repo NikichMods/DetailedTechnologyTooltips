@@ -1191,3 +1191,12 @@ Source `fb2372c88d95541c176c279e4c764bb849ebabee`, local native-reference DLL103
 
 1.2.5 handoff: CI39674817189/job119481777661 success. User confirmed current host closure; process check clear. Installed canonical DLL matches exact source/version/hash; one DTT payload. Prior1.2.4 retained outside plugins. Native separator correction/ordinary nonmodal F2 still require visual/input acceptance.
 
+
+##1.2.6 — adopted layout defaults,2026-10-22
+
+**INSTALLED TEST CANDIDATE — selected defaults adopted.** User confirms1.2.5 settings work and requests final log values as defaults. Preserved session snapshot SHA256d5f55739286eca0f749e03e71bceb20366b652acd8b1d4c88396a598e66f4f5d loads1.2.5 and ends with20/0/5/100, centered title/purpose/location, left material block, gaps2/6/6/10; no DTT disable/failure/fallback found. This accepts working calibration and selected visual settings, not stable promotion/full catalogue acceptance.
+
+Source `a76497e3de47b6da4c0fb707c603536210a634fa`; native-reference Release DLL103936 bytes, SHA256 `4b530017e4e46a85395a95271c437374e5bf79983b076a1009b386d64affdb47`. SDK8.0.426 Release zero warnings/errors, existing regression checks pass. Only startup/reset gap defaults change4/8/8/0→2/6/6/10; shared constants keep reset synchronized. Icons/body/alignment already match; nonmodal F2 and pilot scope unchanged. User confirmed game closed for installation.
+
+1.2.6 installed after current user closure confirmation and no game process detected. CI39677739813/job119491890536 success. Canonical DLL hash/version matches frozen artifact; one DTT payload.1.2.5 retained for rollback. Stable1.1.6/main unchanged; calibration and selected settings accepted, full-catalogue scope still pending.
+
