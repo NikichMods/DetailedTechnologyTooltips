@@ -147,3 +147,7 @@ Next: review the remaining grouped copy in the catalogue and resolve its flagged
 ## Adopted live layout defaults — 2026-10-22
 
 After working1.2.5 calibration the user selected icon size20, Y0, material text indent5 font spaces, body opacity100%; title/purpose/location centered, material block left. Gaps in native UI units: title→purpose2, purpose→materials6, materials→location6, additional between unlocks10. The final logged inter-unlock value10 supersedes exploratory0/3/24. Use these values at startup and F2 reset. F2 remains a nonmodal session-only settings panel with natural hover/reopen; no tooltip pin/input interception/forced refresh. This is adoption of the tested visual parameters, not stable release or all-catalogue runtime acceptance.
+
+## Full catalogue test integration —2026-10-22
+
+Candidate1.2.7 implements the selected104 distinct EN/RU purposes (105 visible blueprint references), extending the thirteen-entry pilot. Source/runtime-readiness details: FULL_BLUEPRINT_CATALOGUE_GATE.md. Current format/settings are adopted, full native runtime coverage remains to review. Other locales retain earlier behavior. Selective in-purpose metric/category symbols remain a separate visual addition; this candidate preserves the tested material-icon layout. New DTT carousel remains deferred, PrayerClarity navigation unchanged. Release removal of temporary F2 and stable promotion have not been authorized by this integration request.

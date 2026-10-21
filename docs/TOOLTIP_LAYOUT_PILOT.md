@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.6
+# Tooltip layout pilot — current candidate1.2.7
 
-Status: candidate1.2.2 rejected for excess width and controller text overflow; 1.2.6 installed with user-selected defaults. User confirms1.2.5 calibration works; adopted gaps2/6/6/10, icons20/0/5/100, centered title/purpose/location, left materials. Still thirteen EN/RU pilot blueprints, not stable/full-catalogue acceptance. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status:1.2.7 full EN/RU catalogue test candidate installed; CI passed, runtime acceptance pending.104 distinct blueprint purposes/105 visible Technology references now share the adopted layout, replacing the thirteen-entry pilot boundary. F2 remains nonmodal, chosen defaults retained. Stable1.1.6 unchanged; runtime acceptance pending. Read FULL_BLUEPRINT_CATALOGUE_GATE.md for scope, ready gates and evidence limits. Historical pilot/candidate evidence follows.
 
 ## Solution selection and READY gates before source changes
 
@@ -125,4 +125,9 @@ READY: defaults and reset are owned solely by PilotCalibration static initialize
 ###1.2.6 frozen selected defaults
 
 Source `a76497e3de47b6da4c0fb707c603536210a634fa`; native-reference DLL103936 bytes, SHA256 `4b530017e4e46a85395a95271c437374e5bf79983b076a1009b386d64affdb47`, FileVersion1.2.6.0. SDK8.0.426, zero warnings/errors; existing regression suite passes. CI39677739813/job119491890536 success. Startup/reset use selected20/0/5/100, centered title/purpose/location and left materials, gaps2/6/6/10. No new runtime behavior/coverage beyond defaults. User confirmed game closed; process check clear. Installed canonical DLL hash/version matches frozen1.2.6, one DTT payload; prior1.2.5 retained outside plugins. No new gameplay/full visual regression requested for this defaults-only change.
+
+
+###1.2.7 full catalogue handoff
+
+Exact sourcef24619a864f3febe0a1b86a0db8d385acc8a0a95, DLL124416 bytes, SHA256ae6d69818e7e29c29dc08e37fc07d95413843d71efa6aba55340e782008401e5. Native-reference Release zero warnings/errors;104 compiled/authored/native ID parity and105 visible-ref coverage plus existing regressions pass. CI39678947286/job119496054946 success. Installed canonical DLL matches the frozen hash/source/version; retained1.2.6 rollback outside plugins. All selected EN/RU blueprints now use this format, including virtual/DLC builds; no full runtime acceptance claim. Empty material blocks receive only a purpose→location gap; native resurrection purpose lookup scoped to that blueprint. Adopted settings and all earlier fallback/PrayerClarity boundaries remain. See TEST_BUILD_LOG.md1.2.7 for a short representative runtime review. No public release/main merge.
 

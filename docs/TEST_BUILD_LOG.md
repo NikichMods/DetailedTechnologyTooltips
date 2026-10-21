@@ -1200,3 +1200,14 @@ Source `a76497e3de47b6da4c0fb707c603536210a634fa`; native-reference Release DLL1
 
 1.2.6 installed after current user closure confirmation and no game process detected. CI39677739813/job119491890536 success. Canonical DLL hash/version matches frozen artifact; one DTT payload.1.2.5 retained for rollback. Stable1.1.6/main unchanged; calibration and selected settings accepted, full-catalogue scope still pending.
 
+
+##1.2.7 — complete EN/RU blueprint catalogue,2026-10-22
+
+**INSTALLED TEST CANDIDATE — full-catalogue runtime acceptance pending.** Source `f24619a864f3febe0a1b86a0db8d385acc8a0a95`, local native-reference DLL124416 bytes, SHA256 `ae6d69818e7e29c29dc08e37fc07d95413843d71efa6aba55340e782008401e5`. SDK8.0.426 Release zero warnings/errors. Adds all104 distinct selected EN/RU blueprint purposes covering105 authored-visible Technology references; original thirteen preserve their text/layout. Native material icons/names/counts and owning builder enumeration unchanged; chosen20/0/5/100 and2/6/6/10 defaults retained. Three zero-cost blueprints omit the empty resource block/gap; resurrection purpose reuses native zombie_crafting_table_d. Ordinary recipes, prayer content, Work/Perk, other-language fallback and PrayerClarity navigation unchanged. F2 remains nonmodal for this test candidate.
+
+Native-ID fixture105refs and catalogue/compiled104-pair parity checks pass, with locale/unknown/prayer/ordinary exclusion and existing formatting/width/pivot/quantity tests. Native balance material audit: no missing item IDs among selected needs, three empty lists. This proves data/static integration, not all installed glyph/layout behavior. Full readiness and recovery of accepted press/extractor editorial decisions: FULL_BLUEPRINT_CATALOGUE_GATE.md. No diagnostic source merged; no mechanics/save/progression changes.
+
+Runtime request after installation: no crafting. Inspect an empty garden bed (no resource blank), DeskII or another new station, a new church/graveyard furnishing and one zombie/soul blueprint. Compare a multi-unlock gamepad tooltip and a mixed prayer/blueprint node with PrayerClarity. RU and EN as convenient; report clipping/wrapping/incorrect icon or missing purpose. Beginning Of Alchemy remains the static maximum9 material rows across3 blueprints, not proof of maximum rendered height. Full stable acceptance/public release remains separate.
+
+1.2.7 installed with host still closed after prior explicit confirmation: no process, unchanged prior log hash. CI39678947286/job119496054946 success. Canonical DLL matches frozen hash/source/version; one DTT copy.1.2.6 rollback retained. No stable publication/main promotion.
+
