@@ -16,6 +16,8 @@ The [workstation upgrade audit](WORKSTATION_UPGRADE_REVIEW.md) owns supported ti
 
 Higher-tier copy may refer concisely to the earlier construction or use “also/additionally” when the shared role is clear. Prefer the actual new capability over a repeated base-role catalogue or the empty phrase “improved version.” Do not require opening another tooltip to understand the new benefit. Retain self-contained parallel wording where tiers are complementary (the two alchemy tables), or where a short numeric comparison is already clearer. These are proposed applications of the user's requested direction, not final acceptance of each new sentence.
 
+Benefit priority: prefer a meaningful new product or capability over a modest quantity/speed improvement when both are verified. This is a default, not a reason to invent a new capability or suppress a genuinely important quality/yield effect. Ordinary alchemy solutions/powders/extracts are explicit accepted category accents despite the otherwise sparse policy. Healing extensions accent the organ name only. Storage location is already shown by the native build-location row; do not pad shelf/rack purposes with the same location just to vary their wording.
+
 Accent is optional: a broad word such as “items” does not deserve color merely to fill a template. Emphasize a specific result, distinguishing capability or useful metric. Choose natural word order; neither sentence-final highlighting nor its artificial avoidance is a rule.
 
 Descriptions explain the construction's role, not a promise that every supported recipe becomes available immediately with its blueprint. A higher tier must not imply recipe inheritance or a numeric improvement that has not been proved. Some supported recipes have independent native unlock requirements.
@@ -48,13 +50,13 @@ Evidence N: exact station `craft_in`, multiquality outputs and evaluated-yield e
 | --- | --- | --- |
 | Sawhorse / `mf_beam_gantry_1` | Allows you to cut logs into boards. | Позволяют распиливать брёвна на доски. |
 | Chopping spot / `mf_chocks_1` | You can make firewood and wedges here. | Здесь можно заготавливать дрова и клинья. |
-| Circular saw / `mf_saw_1` | Allows you to get **more boards** from each log. | Позволяет получать **больше досок** из каждого бревна. |
+| Circular saw / `mf_saw_1` | Allows you to make **wooden beams**. | Позволяет делать **деревянные балки**. |
 | Carpenter's workbench / `mf_workbench_1` | You can make wooden planks and wooden grave decorations here. | Здесь можно делать брусья и деревянные надгробия. |
 | Carpenter's workbench II / `mf_workbench_2` | Also allows you to make **lenses and steel equipment**. | Дополнительно позволяет делать **линзы и стальное снаряжение**. |
 | Stone cutter / `mf_hammer_0` | Used to work stone and marble into building materials and grave decorations. | Используется для обработки камня и мрамора, изготовления материалов и надгробий. |
-| Stone cutter II / `mf_hammer_1` | Allows you to make **more intricate grave decorations** from stone and marble. | Позволяет делать **более сложные надгробия** из камня и мрамора. |
+| Stone cutter II / `mf_hammer_1` | Allows you to make **carved stone and marble**. | Позволяет делать **резной камень и мрамор**. |
 
-Evidence N: exact station output families and matched yield expressions. Circular saw billet output4->5+Woodworker and flitch6->7+2*Woodworker for the same log inputs support more output; “more boards” names the flitch improvement as the representative benefit, not a universal multiplier or direct planks recipe; do not infer zombie automation. CarpenterII also supports lenses/steel equipment, now prioritized over the earlier carved-wood-only difference. Review labels for missing direct object-name keys are explanatory only. Base Carpenter copy now names native `wooden_plank` (RU `Брус`) rather than the vague category “wooden parts”; ordinary-craft and grave-output records support the two representative functions. Resolve native names for `jointing`, `wooden_beam`, `flitch`, `wooden_plank` and carved outputs before production. “Intricate” describes the expanded decoration family, not improved quality of every existing output.
+Evidence N: exact station output families and matched yield expressions. Circular saw billet output4->5+Woodworker and flitch6->7+2*Woodworker for the same log inputs support more output; that quantity gain is secondary to the newly supported `wood_balk_1` (native EN Wooden beam / RU Деревянная балка), now selected as the headline; do not infer zombie automation. CarpenterII also supports lenses/steel equipment, now prioritized over the earlier carved-wood-only difference. Review labels for missing direct object-name keys are explanatory only. Base Carpenter copy now names native `wooden_plank` (RU `Брус`) rather than the vague category “wooden parts”; ordinary-craft and grave-output records support the two representative functions. Review remaining compound/multiquality name routes before production; the new beam headline is specifically `wood_balk_1`. Stone cutterII also supports direct `stone_plate_3` and multiquality `marble_plate_3` crafts, absent from cutterI. These make carved stone and carved marble and now lead the purpose instead of the expanded grave-decoration family. New `detail_2` outputs in a raw station-output comparison come from dismantling grave decorations, not an ordinary iron-parts manufacturing capability; do not turn recycling byproducts into the upgrade headline.
 
 ## Storage
 
@@ -92,9 +94,9 @@ Evidence N/S: exact outputs, multiquality writing outputs, native zombie-only st
 | --- | --- | --- |
 | Alchemy workbench / `mf_alchemy_craft_02` | Lets you make potions from **two ingredients**. | Служит для приготовления зелий из **двух ингредиентов**. |
 | Alchemy workbench II / `mf_alchemy_craft_03` | Lets you make potions from **three ingredients**. | Служит для приготовления зелий из **трёх ингредиентов**. |
-| Hand mixer / `mf_alchemy_stirrer_01` | Allows you to obtain alchemical solutions from materials. | Позволяет получать алхимические растворы из материалов. |
-| Alchemy mill / `mf_alchemy_mill` | Used to grind materials into alchemical powders. | Используется для получения алхимических порошков из материалов. |
-| Distillation cube / `mf_distcube_2_clay` | You can obtain alchemical extracts from materials here. | Здесь можно получать алхимические экстракты из материалов. |
+| Hand mixer / `mf_alchemy_stirrer_01` | Allows you to obtain alchemical **solutions** from materials. | Позволяет получать алхимические **растворы** из материалов. |
+| Alchemy mill / `mf_alchemy_mill` | Used to grind materials into alchemical **powders**. | Используется для получения алхимических **порошков** из материалов. |
+| Distillation cube / `mf_distcube_2_clay` | You can obtain alchemical **extracts** from materials here. | Здесь можно получать алхимические **экстракты** из материалов. |
 | Distillation cube II / `mf_distcube_2_cuprum` | Allows you to obtain **more extract** from the same raw materials. | Позволяет получать **больше экстракта** из того же сырья. |
 | Zombie alchemy decomposer / `alchemy_table_zombie` | A zombie processes materials into powders, solutions and extracts. | Зомби перерабатывает материалы в порошки, растворы и экстракты. |
 | Zombie alchemy workbench / `alchemy_workbench_zombie` | A zombie makes potions from known recipes. | Зомби готовит зелья по известным рецептам. |
@@ -105,17 +107,17 @@ Evidence N/S: native station families and [ALCHEMY_SYSTEM](https://github.com/Ni
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Empty garden bed / `garden_empty` | Allows you to grow vegetables and field crops. | Позволяет выращивать овощи и полевые культуры. |
+| Empty garden bed / `garden_empty` | Allows you to grow vegetables. | Позволяет выращивать овощи. |
 | Garden bed with sticks / `garden_empty_stick` | You can grow lentils here. | Здесь можно выращивать чечевицу. |
 | Vine trellis / `vineyard_grapes_stick` | Used to grow grapes and hops. | Служит для выращивания винограда и хмеля. |
-| Berry bush plot / `bush_berry_garden` | A place to grow berries. | Место для выращивания ягод. |
-| Apple tree plot / `tree_apple_garden` | A place to grow apples. | Место для выращивания яблок. |
+| Berry bush plot / `bush_berry_garden` | Allows you to plant berry bushes. | Позволяет сажать ягодные кусты. |
+| Apple tree plot / `tree_apple_garden` | Allows you to plant apple trees. | Позволяет сажать яблони. |
 | Compost heap / `v_obj_compost_heap` | Used to turn crop waste into peat. | Используется для переработки отходов урожая в торф. |
-| Bee hive / `beehouse` | Used to collect honey. | Служит для сбора мёда. |
+| Bee hive / `beehouse` | Used to collect honey and, with a perk, beeswax. | Служит для сбора мёда; с навыком — и воска. |
 | Zombie farm / `zombie_garden_desk` | A zombie grows field crops. | Зомби выращивает полевые культуры. |
 | Zombie vineyard / `zombie_vineyard_desk` | A zombie grows grapes and hops. | Зомби выращивает виноград и хмель. |
 
-Evidence N/S: native growing/compost outputs, authored build families and [FARMING_AND_FERTILIZER](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/FARMING_AND_FERTILIZER.md). The exact `garden_empty_stick` planting census contains only `garden_lentils_planting_1/2/3`, each changing the plot to `garden_lentils`; other crafts at this station are fertilizers. Lentils are therefore the purpose, not an arbitrary exception within an invented broader crop category. These are purpose categories, not unlock lists. No automatic seed multiplication or highest-quality production is promised. Honey wording deliberately avoids promising bees/beeswax without their separately gated perks. Zombie farm/vineyard upgrades are not additional visible blueprint references here; do not add hidden rows to fill out a visually pleasing tier family.
+Evidence N/S: native growing/compost outputs, authored build families and [FARMING_AND_FERTILIZER](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/FARMING_AND_FERTILIZER.md). The exact `garden_empty_stick` planting census contains only `garden_lentils_planting_1/2/3`, each changing the plot to `garden_lentils`; other crafts at this station are fertilizers. Lentils are therefore the purpose, not an arbitrary exception within an invented broader crop category. These are purpose categories, not unlock lists. No automatic seed multiplication or highest-quality production is promised. Beehouse_place completes as beehouse_1 and starts honey_production; it becomes ready beehouse_2. The ready object drops honey and conditionally beeswax through self_chance=0.8*Ppar("p_t_beeswax"). That perk belongs to Browncastle, separate from the hive blueprint's The domestication of bees technology. The short line therefore names wax with a perk condition rather than promising it on every harvest. Native planting builds use tree_garden_builddesk; orchard copy now describes planting bushes/trees rather than merely reserving a fruit-growing place. “Vegetables” is an accepted representative simplification for the ordinary bed, not an exclusive crop filter or denial of grain/hemp support. Zombie farm/vineyard upgrades are not additional visible blueprint references here; do not add hidden rows to fill out a visually pleasing tier family.
 
 ## Drinks and processing
 
@@ -138,14 +140,14 @@ Evidence N: exact craft inputs, ordinary and multiquality outputs. No sale price
 | Preparation place / `mf_preparation_1` | Allows you to remove and replace body parts. | Позволяет извлекать и заменять части тела. |
 | Preparation place II / `mf_preparation_2` | Bodies **do not decay** on this table. | Тело **не разлагается** на этом столе. |
 | Embalming table / `mf_balsamation_1` | You can alter a body’s properties with injections here. | Здесь можно менять свойства тел с помощью инъекций. |
-| Embalming table II / `mf_balsamation_2` | You can give injections **twice as fast** here. Bodies do not decay on the table. | Здесь можно делать инъекции **вдвое быстрее**. Тело на столе не разлагается. |
+| Embalming table II / `mf_balsamation_2` | Bodies **do not decay** on the table. Embalming takes half the time. | Тело **не разлагается** на столе. Бальзамирование вдвое быстрее. |
 | Pallet / `corpse_bed` | Bodies decay more slowly here. Space for **one body**. | Тело разлагается медленнее. Место для **одного тела**. |
 | Double pallet / `corpse_bed_big` | Bodies decay more slowly here. Space for **two bodies**. | Тела разлагаются медленнее. Место для **двух тел**. |
 | Fridge pallet / `corpse_fridge` | Bodies **do not decay** in storage. Holds two bodies. | Тела **не разлагаются** при хранении. Вмещает два тела. |
 | Resurrection table / `zombie_crafting_table` | Make zombie workers from bodies here. | Здесь можно создавать зомби-рабочих из тел. |
 | Place for burning corpses / `mf_pyre_placed` | Used to burn bodies into ash. | Служит для сожжения тел и получения пепла. |
 
-Evidence N/S: body insertion filters/limits, extraction/injection/resurrection crafts and the native cremation-output research in [ALCHEMY_SYSTEM](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/ALCHEMY_SYSTEM.md). The resurrection row uses native `zombie_crafting_table_d` EN/RU prose with proposed emphasis; future production should reuse the proved localization lookup rather than duplicate the language corpus. Its Technology display path is not established by string existence. Paired embalming crafts establish time180->90 across8 matching recipes, supporting twice as fast. The native decay owner is now established: `ItemsDurabilityManager` passes the storage object multiplier to `Item.UpdateDurability`. PreparationII, EmbalmingII and fridge have0; ordinary/double pallets0.05. This supports the selected stopped/slower-body-decay sentences while stored, not restoration of already lost freshness. Surgical-error advantages are not claimed. See the mechanics review for the exact path and evidence boundary.
+Evidence N/S: body insertion filters/limits, extraction/injection/resurrection crafts and the native cremation-output research in [ALCHEMY_SYSTEM](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/ALCHEMY_SYSTEM.md). The resurrection row uses native `zombie_crafting_table_d` EN/RU prose with proposed emphasis; future production should reuse the proved localization lookup rather than duplicate the language corpus. Its Technology display path is not established by string existence. Paired embalming crafts establish time180->90 across8 matching recipes. They are automatic crafts, not a few manual button presses: CraftComponent.ReallyUpdateComponent advances automatic work through DoAction(self), whose progress increment is delta_time/craft_time at the normal coefficient. At ordinary simulation speed the base duration is180 seconds versus90 seconds (3 minutes versus1.5); pause/time scaling can change wall-clock experience. This supports a meaningful shorter wait, retained as the secondary sentence after body preservation. The native decay owner is now established: `ItemsDurabilityManager` passes the storage object multiplier to `Item.UpdateDurability`. PreparationII, EmbalmingII and fridge have0; ordinary/double pallets0.05. This supports the selected stopped/slower-body-decay sentences while stored, not restoration of already lost freshness. Surgical-error advantages are not claimed. See the mechanics review for the exact path and evidence boundary.
 
 ## Zombie extraction and transport
 
@@ -220,12 +222,12 @@ Evidence N: soul containers' `can_insert_items` accepts harmed/healed souls and 
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Healing from pride / `pride_healing_extension` | Adds **a skin slot** to the soul healer. | Добавляет **ячейку для кожи** в целитель душ. |
-| Healing from wrath / `wrath_healing_extension` | Adds **a blood slot** to the soul healer. | Добавляет **ячейку для крови** в целитель душ. |
-| Healing from gluttony / `gluttony_healing_extension` | Adds **a fat slot** to the soul healer. | Добавляет **ячейку для жира** в целитель душ. |
-| Healing from sloth / `sloth_healing_extension` | Adds **a brain slot** to the soul healer. | Добавляет **ячейку для мозга** в целитель душ. |
-| Healing from lust / `lust_healing_extension` | Adds **a heart slot** to the soul healer. | Добавляет **ячейку для сердца** в целитель душ. |
-| Healing from envy / `envy_healing_extension` | Adds **an intestine slot** to the soul healer. | Добавляет **ячейку для кишечника** в целитель душ. |
+| Healing from pride / `pride_healing_extension` | Adds a **skin** slot to the soul healer. | Добавляет ячейку для **кожи** в целитель душ. |
+| Healing from wrath / `wrath_healing_extension` | Adds a **blood** slot to the soul healer. | Добавляет ячейку для **крови** в целитель душ. |
+| Healing from gluttony / `gluttony_healing_extension` | Adds a **fat** slot to the soul healer. | Добавляет ячейку для **жира** в целитель душ. |
+| Healing from sloth / `sloth_healing_extension` | Adds a **brain** slot to the soul healer. | Добавляет ячейку для **мозга** в целитель душ. |
+| Healing from lust / `lust_healing_extension` | Adds a **heart** slot to the soul healer. | Добавляет ячейку для **сердца** в целитель душ. |
+| Healing from envy / `envy_healing_extension` | Adds an **intestine** slot to the soul healer. | Добавляет ячейку для **кишечника** в целитель душ. |
 
 Evidence N: the six end scripts resolve through referenced macro151084 `unlock_sin`, which sets the exact `is_{sin}_unlocked` parameter on `soul_healer`. `SinItem.IsSinUnlocked`, `SoulHealerGUI` visibility/picker and `SinItem.GetOrganIdBySin` establish all six listed slot mappings. Native Russian review-name `лечение от уныния` remains unchanged despite English sloth. No healing guarantee or organ skull recommendations are added. See the mechanics review.
 
