@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.4
+# Tooltip layout pilot — current candidate1.2.5
 
-Status: candidate1.2.2 rejected for excess width and controller text overflow; 1.2.3 geometry correction retained in installed1.2.4, which also replaces the F2 live-refresh route; runtime visual/input acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.2 rejected for excess width and controller text overflow; 1.2.5 installed: ordinary nonmodal F2, no pin/input interception or forced redraw; corrected native blank gap binding. Runtime acceptance pending.1.2.4 preview approach rejected. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -105,4 +105,13 @@ User rejects1.2.4 live preview and explicitly requests removal of helpful pin/in
 **READY nonmodal controls:** user chooses ordinary F2 settings with natural hover/reopen. Remove Tooltip Show/Hide patching, pin state/metadata, LazyInput guards, UICamera disabling/restoration, weak/current bubble refresh bookkeeping and forced redraw. Preserve only owned text Draw hooks required to apply session values on natural draws, F2 toggle, window drag and close logging. No game input is suppressed and no tooltip is held open. Ordinary hovering generates a fresh native tooltip with current settings; explicit instructions explain rehover. This removes the old chosen freeze behavior at user request, not an unapproved compatibility change. PrayerClarity remains untouched.
 
 **READY actual gap association:** installed BubbleWidgetBlankSeparator.Draw(data) is empty and does not assign inherited generic data, whereas BubbleWidgetText.Draw assigns it. Existing Prepare reads generic data to identify all rows, so owned blank tags are lost at that lookup and height controls cannot apply. Keep native blank widgets and all accepted gap semantics. Record the current marked blank data's Tag in a weak widget-keyed map from a narrow blank Draw postfix; clear map on unmarked Draw/reuse. Prepare uses that map for blank rows and native data for text rows, applies active/height/width before native GetSize/table layout. Invalidate only the containing pilot bubble on tagged blank Draw. No native data/balance mutation or substitute text spacer. Native blank IsEmpty inherits false; native GetSize initializes/read UIWidget.localSize. Acceptance: compile/regression checks plus natural reopen at gap0 versus24, ordinary single/combined tooltips and unaffected nonpilot separators. UI units are game layout units, not guaranteed physical pixels; fourth gap applies only between multiple unlocks, native ornament remains. Replace (UI) label with Russian '(ед. интерфейса)' and explain controls.
+
+
+###1.2.5 frozen candidate
+
+Source `fb2372c88d95541c176c279e4c764bb849ebabee`; native-reference DLL103936 bytes, SHA256 `c252cde89f9f680aa1fea80b870eb0f85f9083b7d0f670438743ddab608f12ee`, FileVersion1.2.5.0. SDK8.0.426 Release zero warnings/errors, existing regression tests pass. CI39674817189/job119481777661 success. Source inspection confirms no UICamera/LazyInput/Tooltip Show/Hide patches or refresh/pin state in PilotCalibration. Only F2 and owned text Draw processing remain. Blank Draw association is independent of its unused inherited data field.
+
+Current workflow supersedes the old pinned-preview instructions: open F2, change a setting, move back to a pilot unlock to create its natural tooltip. F2 leaves game hover/click/key handling active. Compare gap0/24 on title→purpose, purpose→materials and materials→location; fourth slider adds space between multiple unlocks in a combined controller tooltip only. Native ornamental separator remains. User confirmed host closure for replacement. Actual nonmodal interaction/gap visuals await runtime review.
+
+Installed1.2.5 after current user closure confirmation and no detected game process. Canonical DLL version/hash matches the frozen local artifact, one DTT payload in plugin tree.1.2.4 and earlier artifacts remain outside plugins. Runtime gap/interaction acceptance pending.
 

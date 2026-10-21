@@ -1180,3 +1180,14 @@ Source `b31ff3ed728fc470cfa6ed46cffe11948e064ec1`; local native-reference DLL105
 
 1.2.4 handoff: CI39673553329/job119477402995 success. Host still closed after prior explicit confirmation; no process/new launch log found. Installed canonical DLL matches exact source/version/hash, one DTT payload.1.2.3 rollback retained outside plugins; no save/other-plugin changes.
 
+
+##1.2.5 — ordinary F2 and working blank gap ownership,2026-10-21
+
+**INSTALLED TEST CANDIDATE — runtime acceptance pending.** User rejects1.2.4 live preview despite61 successful native redraw invocation markers; captured1.2.4 log SHA256b1b22ffdadaecd9eec22068bbf8ad4db3fc0431609032a0ff6834dd6652162cc. Per explicit request remove all pin/forced-refresh/input blocking machinery: no UICamera disabling, LazyInput guards or Tooltip Show/Hide patches. New instructions use natural rehover while F2 remains open; settings stay session-only.
+
+Fix independent gap defect: native blank Draw never assigns inherited data, so the old tag lookup skipped all blank heights. A narrow blank Draw postfix records/clears current owned widget→gap tag; normal Prepare applies height/active state before native measurement. UI unit labels explained in Russian; extra inter-unlock gap affects combined tooltips only. Title/purpose/material/location composition and PrayerClarity unchanged.
+
+Source `fb2372c88d95541c176c279e4c764bb849ebabee`, local native-reference DLL103936 bytes, SHA256 `c252cde89f9f680aa1fea80b870eb0f85f9083b7d0f670438743ddab608f12ee`. SDK8.0.426 Release zero warnings/errors; existing localization/formatting/pilot/width/pivot-edge/quantity tests pass. Native IL proves the gap association defect, not resulting visual geometry. User closure confirmed; runtime check is ordinary hover/input with F2 open and gap0 versus24 after rehover.
+
+1.2.5 handoff: CI39674817189/job119481777661 success. User confirmed current host closure; process check clear. Installed canonical DLL matches exact source/version/hash; one DTT payload. Prior1.2.4 retained outside plugins. Native separator correction/ordinary nonmodal F2 still require visual/input acceptance.
+
