@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.1.6";
+        public const string PluginVersion = "1.2.0";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -64,6 +64,15 @@ namespace DetailedTechnologyTooltips
 
                 try
                 {
+                    PilotMaterialIcons.Install(_harmony);
+                }
+                catch (Exception ex)
+                {
+                    Log.LogWarning("DTT_PILOT_FALLBACK action=original-layout reason=" + ex.GetType().Name + ": " + ex.Message);
+                }
+
+                try
+                {
                     TechnologyTooltipViewportClamp.Install(_harmony, Log);
                 }
                 catch (Exception ex)
@@ -76,6 +85,7 @@ namespace DetailedTechnologyTooltips
                 Log.LogInfo(
                     "DTT_READY version=" + PluginVersion
                     + " contract=technology-tooltip"
+                    + " layout_pilot=en-ru-13 icons=" + PilotMaterialIcons.Available
                     + " host_mvid=" + GameApi.HostModuleVersionId + ".");
             }
             catch (Exception ex)

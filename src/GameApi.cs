@@ -22,6 +22,14 @@ namespace DetailedTechnologyTooltips
         public string OverrideName;
         public bool CorrectBigGuyStats;
         public bool SeparateDescriptionRow;
+        public string PilotPurpose;
+        public PilotMaterial[] PilotMaterials;
+    }
+
+    internal sealed class PilotMaterial
+    {
+        public string Name;
+        public string Icon;
     }
 
     internal sealed class TechTooltipPresentationOverride
@@ -73,6 +81,7 @@ namespace DetailedTechnologyTooltips
         private static FieldInfo _itemValueField;
         private static MethodInfo _itemGetItemName;
         private static MethodInfo _itemDefinitionGetItemName;
+        private static MethodInfo _itemDefinitionGetIcon;
         private static MethodInfo _itemDefinitionGetItemDetails;
         private static FieldInfo _itemDetailsCraftsInField;
 
@@ -206,6 +215,8 @@ namespace DetailedTechnologyTooltips
                 AllInstance,
                 new[] { typeof(bool) });
 
+            _itemDefinitionGetIcon = RequireMethod(itemDefinitionType, "GetIcon", AllInstance, Type.EmptyTypes);
+
             _itemDefinitionGetItemDetails = RequireMethod(
                 itemDefinitionType,
                 "GetItemDetails",
@@ -325,7 +336,7 @@ namespace DetailedTechnologyTooltips
             if (growthContext != null)
                 return growthContext;
 
-            return new TechTooltipContext
+            var context = new TechTooltipContext
             {
                 Craft = craft,
                 IsBlueprint = isBlueprint,
@@ -336,6 +347,38 @@ namespace DetailedTechnologyTooltips
                     isBlueprint),
                 CraftDescriptionRow = BuildCraftDescription(id)
             };
+            if (isBlueprint && PilotMaterialIcons.Available)
+            {
+                var purpose = PilotPurposeCopy.Get(id, GetCurrentLanguage());
+                var materials = purpose == null ? null : BuildPilotMaterials(balance, craft);
+                if (materials != null)
+                {
+                    context.PilotPurpose = purpose;
+                    context.PilotMaterials = materials;
+                    bool ru = IsLanguage(GetCurrentLanguage(), "ru");
+                    context.LocationRow = BuildLocationRow(balance, craft, true,
+                        ru ? "[FF]Где строить:[AA] " : "[FF]Built in:[AA] ");
+                }
+            }
+            return context;
+        }
+
+        private static PilotMaterial[] BuildPilotMaterials(object balance, object craft)
+        {
+            var needs = _needsField.GetValue(craft) as IList;
+            if (needs == null) return null;
+            var rows = new PilotMaterial[needs.Count];
+            for (int i = 0; i < needs.Count; i++)
+            {
+                var item = needs[i];
+                var definition = _getItemDefinitionById.Invoke(balance, new object[] { _itemIdField.GetValue(item) });
+                if (definition == null) return null;
+                string name = ResolveNeedDisplayName(item);
+                string icon = _itemDefinitionGetIcon.Invoke(definition, null) as string;
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(icon)) return null;
+                rows[i] = new PilotMaterial { Name = name, Icon = icon };
+            }
+            return rows;
         }
 
         internal static bool HasAggregateCraftLocation(object itemDefinition)
@@ -370,6 +413,22 @@ namespace DetailedTechnologyTooltips
             if (context.Craft == null)
                 return;
 
+            if (!string.IsNullOrEmpty(context.PilotPurpose))
+            {
+                AddTinyText(tooltip, context.PilotPurpose + "\n", _leftAlignment, false);
+                foreach (var material in context.PilotMaterials)
+                {
+                    var data = _textDataCtor.Invoke(new object[] {
+                        "[AA]      " + material.Name + "[FF]", _tinyDescriptionStyle, _leftAlignment, -1 });
+                    TechnologyTextWrapRepair.Mark(data);
+                    PilotMaterialIcons.Mark(data, material.Icon);
+                    _tooltipAddData.Invoke(tooltip, new[] { data });
+                }
+                if (!string.IsNullOrEmpty(context.LocationRow))
+                    AddTinyText(tooltip, "\n" + context.LocationRow + "[FF]", _leftAlignment, false);
+                return;
+            }
+
             if (!string.IsNullOrEmpty(context.CraftDescriptionRow))
                 AddTinyCenteredText(tooltip, context.CraftDescriptionRow, false);
 
@@ -403,7 +462,8 @@ namespace DetailedTechnologyTooltips
         private static string BuildLocationRow(
             object balance,
             object craft,
-            bool isBlueprint)
+            bool isBlueprint,
+            string prefixOverride = null)
         {
             var locationIds = isBlueprint
                 ? BuildBlueprintLocationIds(
@@ -417,8 +477,8 @@ namespace DetailedTechnologyTooltips
             if (string.IsNullOrEmpty(locations))
                 return null;
 
-            var prefix =
-                isBlueprint ? GetBuildMenuPrefix() : GetCraftedAtPrefix();
+            var prefix = prefixOverride ??
+                (isBlueprint ? GetBuildMenuPrefix() : GetCraftedAtPrefix());
             if (string.IsNullOrEmpty(prefix))
                 return null;
 

@@ -31,6 +31,17 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Verify source and version identity
+        shell: pwsh
+        run: |
+          if ((git rev-parse HEAD).Trim() -ne '${{ github.sha }}') { throw 'Source SHA mismatch' }
+          [xml]$project = Get-Content DetailedTechnologyTooltips.csproj
+          $version = [string]$project.Project.PropertyGroup.Version
+          $plugin = Get-Content src/Plugin.cs -Raw
+          if ($plugin -notmatch ('PluginVersion = "' + [regex]::Escape($version) + '"')) { throw 'Plugin version mismatch' }
+          if ([string]$project.Project.PropertyGroup.AssemblyVersion -ne "$version.0" -or [string]$project.Project.PropertyGroup.FileVersion -ne "$version.0") { throw 'Assembly version mismatch' }
+          "DTT_VERSION=$version" | Out-File $env:GITHUB_ENV -Append
+
       - name: Restore
         run: dotnet restore DetailedTechnologyTooltips.csproj --configfile nuget.config
 
@@ -49,7 +60,7 @@ jobs:
           Copy-Item $dll (Join-Path $out 'DetailedTechnologyTooltips.dll')
           $hash = (Get-FileHash $dll -Algorithm SHA256).Hash.ToLowerInvariant()
           @(
-            "version=1.1.6"
+            "version=$env:DTT_VERSION"
             "source_sha=${{ github.sha }}"
             "sha256=$hash"
             "assembly=DetailedTechnologyTooltips.dll"
@@ -59,7 +70,7 @@ jobs:
       - name: Upload candidate
         uses: actions/upload-artifact@v4
         with:
-          name: DetailedTechnologyTooltips-1.1.6-${{ github.sha }}
+          name: DetailedTechnologyTooltips-${{ env.DTT_VERSION }}-${{ github.sha }}
           path: artifact/*
           if-no-files-found: error
           retention-days: 14

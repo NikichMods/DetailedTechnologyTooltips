@@ -257,6 +257,32 @@ internal static class Program
             return 1;
         }
 
+        int pilotCount = 0;
+        foreach (var id in PilotPurposeCopy.Ids)
+        {
+            pilotCount++;
+            foreach (var language in new[] { "en", "ru", "en-US", "ru_RU" })
+            {
+                var purpose = PilotPurposeCopy.Get("native_builder:p:" + id + "_place", language);
+                if (string.IsNullOrEmpty(purpose) || purpose.Contains("**")
+                    || !purpose.StartsWith("[AA]", StringComparison.Ordinal)
+                    || !purpose.EndsWith("[FF]", StringComparison.Ordinal)
+                    || CountOccurrences(purpose, "[FF7A70]") != CountOccurrences(purpose, "[-]"))
+                    throw new Exception("Invalid pilot text/markup: " + id + "/" + language);
+            }
+            if (PilotPurposeCopy.Get(id, "de") != null || PilotPurposeCopy.Get(id, "") != null)
+                throw new Exception("Pilot must not leak English into other locales");
+        }
+        if (pilotCount != 13 || PilotPurposeCopy.Get("unknown", "en") != null
+            || PilotPurposeCopy.Get("pray:prayer_for_faith", "en") != null)
+            throw new Exception("Pilot coverage escaped selected scope");
+        if (PilotPurposeCopy.Get("mf_box_stuff", "en").Contains("FF7A70"))
+            throw new Exception("Generic item storage must remain unaccented");
+        bool rejected = false;
+        try { PilotPurposeCopy.Render("broken **accent"); } catch (ArgumentException) { rejected = true; }
+        if (!rejected) throw new Exception("Unbalanced emphasis must be rejected");
+        Console.WriteLine("Pilot scope/language/markup validation OK: 13 blueprints, EN/RU, native fallback elsewhere.");
+
         Console.WriteLine(
             "Localization/formatting validation OK: "
             + Localization.SupportedLanguages.Length
