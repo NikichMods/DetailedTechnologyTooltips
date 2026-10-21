@@ -1146,8 +1146,14 @@ Exact 1.1.6 handed bytes are immutable after handoff.
 
 ##1.2.0 — blueprint layout pilot,2026-10-21
 
+Superseded for further visual tuning by1.2.1 below; immutable artifact retained.
+
 **INSTALLED TEST CANDIDATE — NOT ACCEPTED / NOT RELEASED.** Exact source `61fdb06ee68b92708c1f78177695ac4378bf75e6`, branch `feature/tooltip-layout-1.2.0`; DLL SHA256 `bb2888a0df1cd03ffa64eb8a3293b2312814302455f8ee19a094165f0a7db852`,91648 bytes. Thirteen selected EN/RU blueprints receive purpose text, muted body, warm-red sparse accents, native sprite/name material rows without a heading and Built in/Где строить location prefix. Other blueprints/languages, ordinary recipes, prayer content and controller navigation retain existing behavior. No diagnostic observer code or gameplay/save changes.
 
 Readiness gates, exact composition/icon ownership and limitations: [TOOLTIP_LAYOUT_PILOT.md](TOOLTIP_LAYOUT_PILOT.md). Native-reference Release build and existing localization/formatting tests pass; added scope/language/markup checks pass. CI39617698820 / job119282849204 success. The local native-reference artifact, rather than CI's independent build, is frozen/installed.
 
 With host closed, stable1.1.6 was hash-verified/backed up outside plugins, candidate installed as DetailedTechnologyTooltips.dll and installed bytes verified before removing the old versioned stable filename. Runtime startup/layout acceptance pending. Requested mouse review: alchemy, furnace upgrade, candelabra, long trunk location list plus nonpilot/ordinary/prayer sanity. No crafting needed. New gamepad carousel is not part of this candidate; stable publication remains1.1.6.
+
+##1.2.1 — F2 calibration and native item renderer,2026-10-21
+
+**INSTALLED TEST CANDIDATE — runtime visual/input acceptance pending.** Source `77688ced5ae07cc7e7208763f3e47e6590efbc68`, DLL SHA256 `49c9f5a65654b423d8b7ee7c2bc1c54b654a234d840cd3c90a5d46a41bcebfe9`. Candidate-only DTT_CALIBRATION exposes F2 size/Y/text-indent/body-opacity controls, reset, pinned preview and log export on close; native mouse/click input restored on close/destroy. Reuses native item renderer/shader/tint to correct blue replacement pixels in1.2.0's bare UI2DSprite. Local Release/tests and CI39620469037 pass. User confirmed host closure; installed bytes hash-verified,1.2.0 and stable1.1.6 retained for rollback. Details and test sequence: TOOLTIP_LAYOUT_PILOT.md. No gamepad carousel or new purpose entries.
