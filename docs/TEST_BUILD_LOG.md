@@ -1171,3 +1171,12 @@ Native-reference Release: zero warnings/errors. Localization/formatting/pilot sc
 
 Exact source `e8228972a10236ffea1fcb871c37b08a479b2f63`, DLL105472 bytes, SHA256 `4625f7a86fb10cd0bd2bd9d82ecd7f94845fcf621b48b817a6b5a6bb0bbdf43a`. Local native-reference Release zero warnings/errors; tests pass, including physical left/right edges for three native pivot choices. No Unity runtime visual acceptance inferred. CI39672651190/job119474262149 success. With user-confirmed host closure and no detected game process, installed canonical DLL hash/version verified against exact1.2.3 artifact; one DTT copy present. Prior1.2.2/1.2.1/stable artifacts retained outside plugins. Next review: same alchemy mouse/controller tooltip and F2 switches, no crafting required.
 
+
+##1.2.4 — live F2 preview refresh,2026-10-21
+
+**INSTALLED TEST CANDIDATE — runtime acceptance pending.** User reports slider values change without visible preview update; accessible log remains the old1.2.2 session, so no1.2.3 runtime result is inferred. Replace IMGUI-time refresh over weak row references with next-frame native Redraw(false) on the actual pinned Tooltip.linked_tooltip, then explicit size/layout update. Actual setting deltas schedule refresh, independent of GUI.changed. Added apply/skip markers and base-exception reporting; pin/input restoration and session-only settings retained. Exact failing stage of the previous refresh route is unproven.
+
+Source `b31ff3ed728fc470cfa6ed46cffe11948e064ec1`; local native-reference DLL105472 bytes, SHA256 `76119478f7ffcc2c16927b9eb47b12bf976b7d57fd10c93d34ba1969fd317c41`. SDK8.0.426 Release zero warnings/errors, existing regression tests pass. Requested runtime check: hover an alchemy blueprint, F2, move icon size and a block gap or alignment toggle while keeping F2 open; observe immediate changes, close and confirm normal input. No crafting required. DTT_CALIBRATION_APPLIED establishes invocation/row count, not appearance.
+
+1.2.4 handoff: CI39673553329/job119477402995 success. Host still closed after prior explicit confirmation; no process/new launch log found. Installed canonical DLL matches exact source/version/hash, one DTT payload.1.2.3 rollback retained outside plugins; no save/other-plugin changes.
+

@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.3
+# Tooltip layout pilot — current candidate1.2.4
 
-Status: candidate1.2.2 rejected for excess width and controller text overflow; corrected1.2.3 frozen and installed, runtime visual acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
+Status: candidate1.2.2 rejected for excess width and controller text overflow; 1.2.3 geometry correction retained in installed1.2.4, which also replaces the F2 live-refresh route; runtime visual/input acceptance pending. Small EN/RU pilot only; existing1.1.6 behavior outside the selected blueprints/languages. No gamepad carousel implementation in this candidate. Test separate mouse unlocks first; existing combined gamepad presentation and PrayerClarity ownership remain unchanged.
 
 ## Solution selection and READY gates before source changes
 
@@ -90,3 +90,10 @@ Reopened mechanism selection: existing Refresh synchronously invokes individual 
 
 **READY calibration refresh:** installed Tooltip.Show(bool) assigns the rendered TooltipBubbleGUI to Tooltip.linked_tooltip; Hide destroys/clears it, while existing candidate pin prevents Hide only for the chosen pilot tooltip. WidgetsBubbleGUI.Redraw(false) uses current data and BaseDraw on existing widgets when schema unchanged, preserving native font/text setup and DTT/other marked Draw hooks. Queue a refresh when IMGUI controls change; consume once in plugin Update outside the IMGUI event, resolve lastTooltip.linked_tooltip, call native Redraw(false), then PilotLayout.Invalidate and UpdateSizeAndWidgetsPositions. Remove weak row tracking and individual reflected Draw iteration; keep per-row alpha/raw-text hooks and native icon hook. Log DTT_CALIBRATION_APPLIED with revision/widget count on successful redraw and diagnostic skipped/no-visible-preview otherwise. Apply errors report base exception then restore input through existing Fail/Close. Scope: selected pinned pilot preview while F2 open; no settings persistence, save mutation, navigation change, world scan or every-frame text redraw. Acceptance: native-reference/CI compilation, existing regression tests, then move one visible icon-size slider and one gap/toggle without closing F2; see live changes, close/reopen and verify input restoration. This changes the unobserved refresh route without claiming a proven single-line root cause or installed visual success.
 Refresh scheduling compares the twelve actual control values before/after controls rather than relying on shared IMGUI GUI.changed; multiple GUI events coalesce into one pending next-frame redraw.
+
+###1.2.4 frozen candidate
+
+Source `b31ff3ed728fc470cfa6ed46cffe11948e064ec1`; native-reference Release DLL105472 bytes, SHA256 `76119478f7ffcc2c16927b9eb47b12bf976b7d57fd10c93d34ba1969fd317c41`, FileVersion1.2.4.0. SDK8.0.426, zero warnings/errors; existing localization/formatting/pilot scope/width/pivot-edge/quantity checks pass. CI39673553329/job119477402995 completed success. Changes only calibration refresh: actual twelve-value deltas enqueue next-Update native redraw on the pinned Tooltip.linked_tooltip, followed by explicit size/layout update. No weak row cache or IMGUI-time Draw invocation. DTT_CALIBRATION_APPLIED logs successful native refresh calls with revision/widget count; it is not visual acceptance. READY gate and limitations above.
+
+Installed1.2.4: current DLL hash/version matches the frozen artifact; one DTT payload found. Host remains closed following prior user confirmation, no process found and accessible log still contains the previous1.2.2 run. Previous1.2.3 and earlier artifacts retained outside plugins. Installed live refresh/geometry acceptance is pending.
+
