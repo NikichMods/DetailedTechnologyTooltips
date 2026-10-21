@@ -12,7 +12,9 @@ namespace DetailedTechnologyTooltips
     {
         internal static int IconSize = 20, IconY = 0, TextSpaces = 5, Opacity = 100;
         internal static bool TitleCenter = true, PurposeCenter = true, MaterialCenter = false, LocationCenter = true;
-        internal static int TitleGap = 4, PurposeGap = 8, MaterialGap = 8, EntryGap = 0;
+        private const int DefaultTitleGap = 2, DefaultBodyGap = 6, DefaultEntryGap = 10;
+        internal static int TitleGap = DefaultTitleGap, PurposeGap = DefaultBodyGap,
+            MaterialGap = DefaultBodyGap, EntryGap = DefaultEntryGap;
         private sealed class Row { internal string Raw; internal bool Material; }
         private static readonly ConditionalWeakTable<object, Row> Rows = new ConditionalWeakTable<object, Row>();
         private static FieldInfo text;
@@ -103,7 +105,7 @@ namespace DetailedTechnologyTooltips
             {
                 IconSize = 20; IconY = 0; TextSpaces = 5; Opacity = 100;
                 TitleCenter = PurposeCenter = LocationCenter = true; MaterialCenter = false;
-                TitleGap = 4; PurposeGap = MaterialGap = 8; EntryGap = 0;
+                TitleGap = DefaultTitleGap; PurposeGap = MaterialGap = DefaultBodyGap; EntryGap = DefaultEntryGap;
             }
             if (GUILayout.Button("Записать значения и закрыть")) Close();
             GUILayout.Label("100% — полный цвет. Настройки действуют до выхода из игры.");

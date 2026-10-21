@@ -115,3 +115,9 @@ Current workflow supersedes the old pinned-preview instructions: open F2, change
 
 Installed1.2.5 after current user closure confirmation and no detected game process. Canonical DLL version/hash matches the frozen local artifact, one DTT payload in plugin tree.1.2.4 and earlier artifacts remain outside plugins. Runtime gap/interaction acceptance pending.
 
+
+###1.2.6 selected defaults — READY before source mutation
+
+User confirms settings work on1.2.5 and explicitly requests the chosen final log values as defaults. Frozen current session `local/runtime-evidence/layout-pilot-1.2.5/adopted-defaults-session.log`, SHA256d5f55739286eca0f749e03e71bceb20366b652acd8b1d4c88396a598e66f4f5d, records READY1.2.5 and last calibration20/0/5/100, title/purpose/location centered, material left, gaps2/6/6/10. No DTT failure/disable/fallback marker found. Earlier entry gaps0/3/24 are superseded by final10. This accepts calibration operation and selected visual parameters, not release/main promotion or all-tree coverage.
+
+READY: defaults and reset are owned solely by PilotCalibration static initializers and its reset button. Change only gap defaults4/8/8/0→2/6/6/10 in both consumers, sharing constants to keep them synchronized. All icon/body/alignment values already match. Preserve natural hover, no input/pin/refresh machinery, width, copy, scope and PrayerClarity behavior. Acceptance: source/build/CI identity and existing regression suite; next game launch and F2 reset must start with chosen values. No additional gameplay test requested for unchanged mechanics.
