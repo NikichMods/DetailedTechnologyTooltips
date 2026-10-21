@@ -43,4 +43,14 @@ This is a verified static key mismatch, **not yet an installed demonstration tha
 
 ## Acceptance boundary
 
-Resolved static claims can proceed to final wording review and their normal implementation gate. The three unresolved rows remain daggered in the catalogue. New variants of accent density are presentation proposals; equal-weight co-listed results must not receive arbitrary asymmetric emphasis. No mockup or static audit is a runtime acceptance claim.
+Resolved static claims can proceed to final wording review and their normal implementation gate. The three unresolved rows remain daggered in the catalogue. Sparse accent density is now accepted as recorded in TOOLTIP_REDESIGN.md; automation alone is not an accent trigger. No mockup or static audit is a runtime acceptance claim.
+
+### Proposed runtime method and division of work
+
+Current status: **no new diagnostic plugin has been built or installed**. Prefer direct/static closure first. If a runtime observer is needed, keep it read-only and narrowly record the real native paths; do not synthesize an expected result or alter unlocks, recipes, damage or ordinary save progression.
+
+For printing, capture the actual visible recipe lists and the relevant unlock state when opening pressI/II. The user may need to launch/load and open the stations; do not ask them to transcribe IDs, count materials or interpret logs. Availability in one save does not by itself prove the absence of an indirect grant everywhere.
+
+For extraction, capture the effective graph getter/input values and the soul's condition before/after the native operation. A first observed extraction can identify the active consumer; one random outcome alone cannot prove a probability range. Prefer inspecting actual bounds over asking for many repeated random extractions. Do not require building/upgrading every tier by hand before checking whether bounded safe diagnostics can establish the missing states. Any synthetic setup needs a separately verified method and must stay outside the player's normal save.
+
+Assistant responsibilities: prepare/build a justified observer if static closure fails, handle authorized installation with the host closed, collect accessible logs, compare evidence and remove the observer afterward. User responsibilities: only the required game launch/load and native gameplay interactions, specified after the observer and scenario are concrete. Do not claim automatic control of the native game UI is available or promise a one-click complete test before verifying the harness path.

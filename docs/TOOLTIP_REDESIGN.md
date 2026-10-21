@@ -15,13 +15,15 @@ Purpose must be evidence-backed, not guessed from the object name. Preserve usef
 
 ## Keyword emphasis — accepted rule and color family
 
-The user previously approved emphasizing the semantically decisive result/capability in purpose descriptions, for example powders or solutions. The latest review reopens **accent density**: a colored phrase in almost every short explanation can feel intrusive when reading many unlocks. The accent family remains warm red when used; its frequency is no longer treated as settled.
+The user accepted **sparse accents for distinguishing benefits, upgrades and numeric effects** after comparing density variants. Ordinary purpose does not need a colored result noun. A colored phrase in almost every explanation becomes intrusive when reading many unlocks. The accent family remains warm red when used.
 
 Recommended rule: mark a short, decision-relevant result/capability phrase when there is one; zero accents is valid for a generic statement such as item storage. Use occasional additional emphasis only where meaning requires it. Use one consistent, readable accent; do not silently turn powder/solution/potion names into a new color-coded category system or imply resource availability. Metadata should follow localized meaning rather than broad localized-string search/replacement. Accent position follows natural syntax: avoid a mechanical sentence-final pattern, without moving words merely for visual variety.
 
-Equal-weight co-listed benefits must be emphasized together or left plain. Do not color planks while leaving the equally presented grave decorations uncolored without a real semantic reason. Carpenter's purpose now leaves both plain. This removes a misleading hierarchy without adopting a catalogue-wide color policy.
+Equal-weight co-listed benefits must be emphasized together or left plain. Do not color planks while leaving the equally presented grave decorations uncolored without a real semantic reason. Carpenter's purpose leaves both plain.
 
-Compare three presentation proposals before changing every row: meaningful result accents throughout; accents only for upgrade differences, numeric effects and automation; no color accents in purpose prose. The sparse version is the current author recommendation, not an accepted replacement. Titles, muted body, material icons/names and selective semantic icons already supply structure; color need not carry every scanning task. Preserve the shared-role/delta distinction and equal-weight rule whichever density is chosen. Exact shade and host rendering still require visual acceptance.
+Automation is **not an independent reason for emphasis**. For the water pump, retain the factual word “automatically” but leave the complete sentence plain: `Automatically draws water from the well.` / `Автоматически набирает воду из колодца.` A future automation accent would need a real decision-relevant comparison, not a rule that every automatic actor receives color. This supersedes the earlier accepted pump automation accent.
+
+Titles, muted body, material icons/names and selective semantic icons already supply structure; color need not carry every scanning task. Apply the sparse principle to the catalogue while keeping semantic copy and evidence status unchanged. Exact shade and host rendering still require visual acceptance. Historical comparison tables/variants illustrate earlier proposals and do not override this current rule.
 
 ## Gamepad single-unlock presentation — approved direction, not implemented
 
@@ -86,9 +88,9 @@ Accepted editorial approach (the user approved this approach after reviewing the
 
 ### Editorial pilot — accepted subset and remaining proposals
 
-The user further specified concise, unambiguous, clear, easily read and elegant sentences. Avoid vague appendages such as “and other alchemical mixtures.” A purpose sentence need not enumerate every product: a meaningful category or representative concrete outputs can convey the function. The user accepted omitting paints from both tier descriptions to make the two/three-input difference immediately scannable, and accepted the candelabra bonus/candle sentences and pump automation accent below. Do not force identical wording at the cost of an important functional difference.
+The user further specified concise, unambiguous, clear, easily read and elegant sentences. Avoid vague appendages such as “and other alchemical mixtures.” A purpose sentence need not enumerate every product: a meaningful category or representative concrete outputs can convey the function. The user accepted omitting paints from both tier descriptions to make the two/three-input difference immediately scannable, and accepted the candelabra bonus/candle sentences and pump automation wording below; the pump accent was subsequently removed under the current sparse rule. Do not force identical wording at the cost of an important functional difference.
 
-Bold spans below illustrate semantic emphasis, not literal markup or verified host colors. All entries are original editorial text. The two tables, three candelabra sentences and pump automation accent are user-accepted; other rows remain drafts. English remains the semantic source, with Russian used for review. The complete grouped continuation is [BLUEPRINT_PURPOSE_CATALOGUE.md](BLUEPRINT_PURPOSE_CATALOGUE.md), covering104 distinct visible blueprints/105 references and distinguishing mechanically unverified drafts.
+Bold spans below illustrate semantic emphasis, not literal markup or verified host colors. All entries are original editorial text. The paired alchemy purpose and three candelabra sentences are accepted; the pump sentence is now plain under the current accent rule. Other rows remain drafts. English remains the semantic source, with Russian used for review. The complete grouped continuation is [BLUEPRINT_PURPOSE_CATALOGUE.md](BLUEPRINT_PURPOSE_CATALOGUE.md), covering104 distinct visible blueprints/105 references and distinguishing mechanically unverified drafts.
 
 | Native unlock | English draft | Russian draft |
 | --- | --- | --- |
@@ -100,9 +102,9 @@ Bold spans below illustrate semantic emphasis, not literal markup or verified ho
 | Candelabra I / `candelabrum_1` | **+1 church quality**. Candles increase the bonus. | **+1 к качеству церкви**. Свечи усиливают эффект. |
 | Candelabra II / `candelabrum_2` | **+2 church quality**. Candles increase the bonus. | **+2 к качеству церкви**. Свечи усиливают эффект. |
 | Candelabra III / `candelabrum_3` | **+3 church quality**. Candles increase the bonus. | **+3 к качеству церкви**. Свечи усиливают эффект. |
-| Water pump / `well_pump_place` | **Automatically** draws water from the well. | **Автоматически** набирает воду из колодца. |
+| Water pump / `well_pump_place` | Automatically draws water from the well. | Автоматически набирает воду из колодца. |
 
-The accepted paired potions/two-versus-three phrasing is sufficient to explain purpose and makes the tier distinction easier to scan. It does not claim exclusive potion production or that tier II inherits the first table's recipes. Do not append “only” or describe the second table as simply replacing all functions of the first. The pump's emphasis on **automatically** is explicitly user-directed and accepted. The accepted candelabra copy replaces the rejected heavy “serves as a candle stand” phrasing. Earlier paint/mixture alternatives are superseded.
+The accepted paired potions/two-versus-three phrasing is sufficient to explain purpose and makes the tier distinction easier to scan. It does not claim exclusive potion production or that tier II inherits the first table's recipes. Do not append “only” or describe the second table as simply replacing all functions of the first. The pump's automatic operation remains in the wording; the user explicitly removed its color emphasis in the later sparse-accent decision. The accepted candelabra copy replaces the rejected heavy “serves as a candle stand” phrasing. Earlier paint/mixture alternatives are superseded.
 
 The user approved selective native purpose icons with explanatory text. Next visual review: church quality `(cross)` plus words; graveyard quality `(wskull)` plus words; optionally native powder/solution/extract category symbols. Exact native mappings and the distinction from crafting quality are recorded in the catalogue. The principle is accepted; placement, tint and production rendering still require normal visual review.
 

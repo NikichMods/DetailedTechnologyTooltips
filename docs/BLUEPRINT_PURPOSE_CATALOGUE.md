@@ -8,7 +8,7 @@ Coverage:105 authored-visible Technology blueprint references,104 distinct build
 
 English is the semantic source; Russian is the review locale. Bold marks the proposed semantic accent. Names in the first column are review labels; production titles must retain native localization, including special build-name resolution. IDs identify records and are not player-facing text. Unless explicitly noted as accepted below, every sentence remains an editorial proposal.
 
-The user accepted the revised ten-building basis and explicitly requested applying its style to the rest of the catalogue: varied natural openings, concise primary benefit, and parallel wording for related constructions. The first full pass reviewed104 distinct rows in both EN and RU. A subsequent user review prompted the delta-first revision below: higher tiers foreground their new benefit, generic storage has no forced accent, and factual ambiguities in gardening, mining and water copy are corrected. The subsequent [mechanics review](PURPOSE_MECHANICS_REVIEW.md) resolved20 of the23 flagged selected claims through native owners;3 rows remain daggered. The user approved the delta-first direction. The latest review also rejects arbitrary one-sided emphasis of equal co-listed results: Carpenter's two representative products are now both plain. Sparse/no-color purpose variants remain open for comparison; no catalogue-wide color removal is adopted yet. This is copy preparation, not a production/runtime acceptance claim. Selective native icons with explanatory text are approved; exact placement/rendering remains separate.
+The user accepted the revised ten-building basis and explicitly requested applying its style to the rest of the catalogue: varied natural openings, concise primary benefit, and parallel wording for related constructions. The first full pass reviewed104 distinct rows in both EN and RU. A subsequent user review prompted the delta-first revision below: higher tiers foreground their new benefit, generic storage has no forced accent, and factual ambiguities in gardening, mining and water copy are corrected. The subsequent [mechanics review](PURPOSE_MECHANICS_REVIEW.md) resolved20 of the23 flagged selected claims through native owners;3 rows remain daggered. The user approved the delta-first direction. The latest review also rejects arbitrary one-sided emphasis of equal co-listed results: Carpenter's two representative products are now both plain. The user subsequently accepted sparse accents for distinctions, improvements and numeric effects. Ordinary purpose/result nouns are now plain; specific storage categories retain their useful contrast. Automation alone is not a trigger, and the pump sentence is entirely plain. Exact rendering remains unaccepted. This is copy preparation, not a production/runtime acceptance claim. Selective native icons with explanatory text are approved; exact placement/rendering remains separate.
 
 The current voice mixes object-enabled action (`Позволяет…`), place-bound action (`Здесь можно…`), natural use/purpose (`Служит для…`, `Используется для…`), storage, direct effects and explicit zombie/automatic actors. Bare repetitive `Для…`, process-only headings and anaphoric `На нём…`/`На них…` are not the general template. Choose voice by role and sentence flow; retain sister-tier wording rather than rotating prefixes by row number. The [language research](TOOLTIP_LANGUAGE_RESEARCH.md) owns those adopted decisions and the PrayerClarity writing-quality terminology.
 
@@ -31,14 +31,14 @@ Primary static input: installed1.407 `resources.assets`, SHA-256 `215c7981901a4b
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Furnace / `mf_furnace_0` | Used to smelt **iron** and make glass and ceramics. | Служит для выплавки **железа**, изготовления стекла и керамики. |
+| Furnace / `mf_furnace_0` | Used to smelt iron and make glass and ceramics. | Служит для выплавки железа, изготовления стекла и керамики. |
 | Furnace II / `mf_furnace_1` | Also allows you to smelt **steel, silver and gold**. | Дополнительно позволяет выплавлять **сталь, серебро и золото**. |
 | Furnace III / `mf_furnace_2` | Adds **steel parts** and yields more graphite from the same coal. | Дополнительно позволяет делать **стальные детали**. Больше графита из того же угля. |
-| Wooden anvil / `mf_anvil_1` | Allows you to forge **nails, simple iron parts and basic tools**. | Позволяет ковать **гвозди, простые железные детали и базовые инструменты**. |
+| Wooden anvil / `mf_anvil_1` | Allows you to forge nails, simple iron parts and basic tools. | Позволяет ковать гвозди, простые железные детали и базовые инструменты. |
 | Anvil / `mf_anvil_2` | Also allows you to forge **complex iron parts**. | Дополнительно позволяет ковать **сложные железные детали**. |
 | Anvil II / `mf_anvil_3` | Allows you to forge **steel equipment**. More nails and simple parts from the same metal. | Позволяет ковать **стальное снаряжение**. Больше гвоздей и простых деталей из того же металла. |
-| Potter's wheel / `mf_potter_wheel_1` | You can shape clay into **ceramic bowls** here. | Здесь можно делать из глины **керамические миски**. |
-| Jewelry table / `mf_jewelry` | Used to make **jewelry** and set gems in swords. | Используется для изготовления **украшений** и отделки мечей самоцветами. |
+| Potter's wheel / `mf_potter_wheel_1` | You can shape clay into ceramic bowls here. | Здесь можно делать из глины керамические миски. |
+| Jewelry table / `mf_jewelry` | Used to make jewelry and set gems in swords. | Используется для изготовления украшений и отделки мечей самоцветами. |
 
 Evidence N: exact station `craft_in`, multiquality outputs and evaluated-yield expressions. Furnace tiers differ by supported recipes; III also increases matching graphite output1->2 for the same coal input. AnvilII increases matching nail/simple-parts output, with equal perk terms. No generic all-products yield increase or universal fuel saving is claimed. TierIII's steel-parts recipe is native; it does not mean the blueprint itself unlocks every metal recipe. See the upgrade audit for the bounded pairs and selection rationale.
 
@@ -46,12 +46,12 @@ Evidence N: exact station `craft_in`, multiquality outputs and evaluated-yield e
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Sawhorse / `mf_beam_gantry_1` | Allows you to cut logs into **boards**. | Позволяют распиливать брёвна на **доски**. |
-| Chopping spot / `mf_chocks_1` | You can make **firewood and wedges** here. | Здесь можно заготавливать **дрова и клинья**. |
+| Sawhorse / `mf_beam_gantry_1` | Allows you to cut logs into boards. | Позволяют распиливать брёвна на доски. |
+| Chopping spot / `mf_chocks_1` | You can make firewood and wedges here. | Здесь можно заготавливать дрова и клинья. |
 | Circular saw / `mf_saw_1` | Allows you to get **more boards** from each log. | Позволяет получать **больше досок** из каждого бревна. |
 | Carpenter's workbench / `mf_workbench_1` | You can make wooden planks and wooden grave decorations here. | Здесь можно делать брусья и деревянные надгробия. |
 | Carpenter's workbench II / `mf_workbench_2` | Also allows you to make **lenses and steel equipment**. | Дополнительно позволяет делать **линзы и стальное снаряжение**. |
-| Stone cutter / `mf_hammer_0` | Used to work **stone and marble** into building materials and grave decorations. | Используется для обработки **камня и мрамора**, изготовления материалов и надгробий. |
+| Stone cutter / `mf_hammer_0` | Used to work stone and marble into building materials and grave decorations. | Используется для обработки камня и мрамора, изготовления материалов и надгробий. |
 | Stone cutter II / `mf_hammer_1` | Allows you to make **more intricate grave decorations** from stone and marble. | Позволяет делать **более сложные надгробия** из камня и мрамора. |
 
 Evidence N: exact station output families and matched yield expressions. Circular saw billet output4->5+Woodworker and flitch6->7+2*Woodworker for the same log inputs support more output; “more boards” names the flitch improvement as the representative benefit, not a universal multiplier or direct planks recipe; do not infer zombie automation. CarpenterII also supports lenses/steel equipment, now prioritized over the earlier carved-wood-only difference. Review labels for missing direct object-name keys are explanatory only. Base Carpenter copy now names native `wooden_plank` (RU `Брус`) rather than the vague category “wooden parts”; ordinary-craft and grave-output records support the two representative functions. Resolve native names for `jointing`, `wooden_beam`, `flitch`, `wooden_plank` and carved outputs before production. “Intricate” describes the expanded decoration family, not improved quality of every existing output.
@@ -75,14 +75,14 @@ Evidence N: native inventories and existing shared storage semantics. No special
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Study table / `mf_alchemy_survey` | Used for studying items and earning **technology points**. | Используется для изучения предметов и получения **очков технологий**. |
-| Church workbench / `table_book_constr` | You can make **paper, ink and candles** here. | Здесь можно делать **бумагу, чернила и свечи**. |
-| Desk / `desk` | Allows you to make **books and prayers**. | Позволяет создавать **книги и молитвы**. |
+| Study table / `mf_alchemy_survey` | Used for studying items and earning technology points. | Используется для изучения предметов и получения очков технологий. |
+| Church workbench / `table_book_constr` | You can make paper, ink and candles here. | Здесь можно делать бумагу, чернила и свечи. |
+| Desk / `desk` | Allows you to make books and prayers. | Позволяет создавать книги и молитвы. |
 | Desk II / `desk_2` | **Writing quality bonus** when making books and prayers. | **Бонус к качеству письма** при создании книг и молитв. |
-| Paper press / `mf_paper_press` | Used to make **clean paper** from paper glop. | Служит для изготовления **чистой бумаги** из бумажной массы. |
-| Printing press / `mf_printing_press` | Allows you to print **flyers in batches**. | Позволяет печатать **листовки партиями**. |
-| Printing press II / `mf_printing_press_2` † | Allows you to print **flyers in batches**. | Позволяет печатать **листовки партиями**. |
-| Random text generator / `zombie_pulpit` | A zombie writes **stories**. | Зомби пишет **истории**. |
+| Paper press / `mf_paper_press` | Used to make clean paper from paper glop. | Служит для изготовления чистой бумаги из бумажной массы. |
+| Printing press / `mf_printing_press` | Allows you to print flyers in batches. | Позволяет печатать листовки партиями. |
+| Printing press II / `mf_printing_press_2` † | Allows you to print flyers in batches. | Позволяет печатать листовки партиями. |
+| Random text generator / `zombie_pulpit` | A zombie writes stories. | Зомби пишет истории. |
 
 Evidence N/S: exact outputs, multiquality writing outputs, native zombie-only station flags, and [STUDY_RESOURCE_ECONOMY](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/STUDY_RESOURCE_ECONOMY.md)/[ALCHEMY_SYSTEM](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/ALCHEMY_SYSTEM.md). DeskII's quality benefit is the selected headline: matching notes/chapter/hardcover/story/prayer difficulties improve, with different deltas and some unchanged prayer recipes. Energy savings are real but secondary; do not replace quality with that easier measurement. No universal percentage or guaranteed gold result. PressI's selected batch-flyer claim is now checked through its native Technology grant and ordinary recipe visibility path. **V: pressII's distinguishing advantage remains pending:** additional serialized copying recipes require unlocks whose native grant has not been established. Matching flyer text is supported role copy, but does not answer the upgrade question or prove whole-station equivalence. See the mechanics review. Prayer recipe support is a role of the desk blueprint, not permission for DTT to rewrite prayer unlocks. Church-workbench copy names representative outputs, not an exhaustive product list.
 
@@ -92,12 +92,12 @@ Evidence N/S: exact outputs, multiquality writing outputs, native zombie-only st
 | --- | --- | --- |
 | Alchemy workbench / `mf_alchemy_craft_02` | Lets you make potions from **two ingredients**. | Служит для приготовления зелий из **двух ингредиентов**. |
 | Alchemy workbench II / `mf_alchemy_craft_03` | Lets you make potions from **three ingredients**. | Служит для приготовления зелий из **трёх ингредиентов**. |
-| Hand mixer / `mf_alchemy_stirrer_01` | Allows you to obtain alchemical **solutions** from materials. | Позволяет получать алхимические **растворы** из материалов. |
-| Alchemy mill / `mf_alchemy_mill` | Used to grind materials into alchemical **powders**. | Используется для получения алхимических **порошков** из материалов. |
-| Distillation cube / `mf_distcube_2_clay` | You can obtain alchemical **extracts** from materials here. | Здесь можно получать алхимические **экстракты** из материалов. |
+| Hand mixer / `mf_alchemy_stirrer_01` | Allows you to obtain alchemical solutions from materials. | Позволяет получать алхимические растворы из материалов. |
+| Alchemy mill / `mf_alchemy_mill` | Used to grind materials into alchemical powders. | Используется для получения алхимических порошков из материалов. |
+| Distillation cube / `mf_distcube_2_clay` | You can obtain alchemical extracts from materials here. | Здесь можно получать алхимические экстракты из материалов. |
 | Distillation cube II / `mf_distcube_2_cuprum` | Allows you to obtain **more extract** from the same raw materials. | Позволяет получать **больше экстракта** из того же сырья. |
-| Zombie alchemy decomposer / `alchemy_table_zombie` | A zombie processes materials into **powders, solutions and extracts**. | Зомби перерабатывает материалы в **порошки, растворы и экстракты**. |
-| Zombie alchemy workbench / `alchemy_workbench_zombie` | A zombie makes potions from **known recipes**. | Зомби готовит зелья по **известным рецептам**. |
+| Zombie alchemy decomposer / `alchemy_table_zombie` | A zombie processes materials into powders, solutions and extracts. | Зомби перерабатывает материалы в порошки, растворы и экстракты. |
+| Zombie alchemy workbench / `alchemy_workbench_zombie` | A zombie makes potions from known recipes. | Зомби готовит зелья по известным рецептам. |
 
 Evidence N/S: native station families and [ALCHEMY_SYSTEM](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/ALCHEMY_SYSTEM.md), not a guessed output taxonomy. Corrected distillation comparison evaluates output expressions:18 matched material-processing formulas gain+1 extract at equal inputs/perks;8 goo-recovery formulas keep their output. Speed90->60 is also real, but higher material yield is now the selected main benefit. “Raw materials” describes material decomposition, not goo recovery; final copy must not turn this into an all-recipes guarantee. Neither universal double nor an unqualified+1 for every action is supported. The known-recipe path is now checked:36 ordinary `mix_*` recipes all require unlocks, and the native ordinary list filters locked entries; manual mixing grants the corresponding simplified ID. See the mechanics review. It must not suggest automatic discovery of unknown formulas.
 
@@ -105,15 +105,15 @@ Evidence N/S: native station families and [ALCHEMY_SYSTEM](https://github.com/Ni
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Empty garden bed / `garden_empty` | Allows you to grow **vegetables and field crops**. | Позволяет выращивать **овощи и полевые культуры**. |
-| Garden bed with sticks / `garden_empty_stick` | You can grow **lentils** here. | Здесь можно выращивать **чечевицу**. |
-| Vine trellis / `vineyard_grapes_stick` | Used to grow **grapes and hops**. | Служит для выращивания **винограда и хмеля**. |
-| Berry bush plot / `bush_berry_garden` | A place to grow **berries**. | Место для выращивания **ягод**. |
-| Apple tree plot / `tree_apple_garden` | A place to grow **apples**. | Место для выращивания **яблок**. |
-| Compost heap / `v_obj_compost_heap` | Used to turn crop waste into **peat**. | Используется для переработки отходов урожая в **торф**. |
-| Bee hive / `beehouse` | Used to collect **honey**. | Служит для сбора **мёда**. |
-| Zombie farm / `zombie_garden_desk` | A zombie grows **field crops**. | Зомби выращивает **полевые культуры**. |
-| Zombie vineyard / `zombie_vineyard_desk` | A zombie grows **grapes and hops**. | Зомби выращивает **виноград и хмель**. |
+| Empty garden bed / `garden_empty` | Allows you to grow vegetables and field crops. | Позволяет выращивать овощи и полевые культуры. |
+| Garden bed with sticks / `garden_empty_stick` | You can grow lentils here. | Здесь можно выращивать чечевицу. |
+| Vine trellis / `vineyard_grapes_stick` | Used to grow grapes and hops. | Служит для выращивания винограда и хмеля. |
+| Berry bush plot / `bush_berry_garden` | A place to grow berries. | Место для выращивания ягод. |
+| Apple tree plot / `tree_apple_garden` | A place to grow apples. | Место для выращивания яблок. |
+| Compost heap / `v_obj_compost_heap` | Used to turn crop waste into peat. | Используется для переработки отходов урожая в торф. |
+| Bee hive / `beehouse` | Used to collect honey. | Служит для сбора мёда. |
+| Zombie farm / `zombie_garden_desk` | A zombie grows field crops. | Зомби выращивает полевые культуры. |
+| Zombie vineyard / `zombie_vineyard_desk` | A zombie grows grapes and hops. | Зомби выращивает виноград и хмель. |
 
 Evidence N/S: native growing/compost outputs, authored build families and [FARMING_AND_FERTILIZER](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/FARMING_AND_FERTILIZER.md). The exact `garden_empty_stick` planting census contains only `garden_lentils_planting_1/2/3`, each changing the plot to `garden_lentils`; other crafts at this station are fertilizers. Lentils are therefore the purpose, not an arbitrary exception within an invented broader crop category. These are purpose categories, not unlock lists. No automatic seed multiplication or highest-quality production is promised. Honey wording deliberately avoids promising bees/beeswax without their separately gated perks. Zombie farm/vineyard upgrades are not additional visible blueprint references here; do not add hidden rows to fill out a visually pleasing tier family.
 
@@ -121,13 +121,13 @@ Evidence N/S: native growing/compost outputs, authored build families and [FARMI
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Vine press / `mf_vine_press` | Allows you to press **juice and oil** from crops. | Позволяет выжимать **сок и масло** из урожая. |
-| Fermentation barrel / `barrel_brew` | Used to **ferment fruit juice** before distillation. | Служит для **сбраживания фруктового сока** перед перегонкой. |
-| Wine making barrel / `mf_barrel_mid` | Used to make **wine** from grape juice. | Служит для приготовления **вина** из виноградного сока. |
-| Alcohol distiller / `mf_distcube_3` | You can distil fermented juice into **spirits** here. | Здесь можно получать **крепкий алкоголь** из перебродившего сока. |
-| Brewing stand / `brewing_stand` | Used to brew **beer and mead**. | Используется для приготовления **пива и медовухи**. |
-| Zombie brewery / `mf_zombie_brewing` | A zombie brews **beer**. | Зомби варит **пиво**. |
-| Zombie winery / `mf_zombie_winemaking` | A zombie makes **wine**. | Зомби делает **вино**. |
+| Vine press / `mf_vine_press` | Allows you to press juice and oil from crops. | Позволяет выжимать сок и масло из урожая. |
+| Fermentation barrel / `barrel_brew` | Used to ferment fruit juice before distillation. | Служит для сбраживания фруктового сока перед перегонкой. |
+| Wine making barrel / `mf_barrel_mid` | Used to make wine from grape juice. | Служит для приготовления вина из виноградного сока. |
+| Alcohol distiller / `mf_distcube_3` | You can distil fermented juice into spirits here. | Здесь можно получать крепкий алкоголь из перебродившего сока. |
+| Brewing stand / `brewing_stand` | Used to brew beer and mead. | Используется для приготовления пива и медовухи. |
+| Zombie brewery / `mf_zombie_brewing` | A zombie brews beer. | Зомби варит пиво. |
+| Zombie winery / `mf_zombie_winemaking` | A zombie makes wine. | Зомби делает вино. |
 
 Evidence N: exact craft inputs, ordinary and multiquality outputs. No sale prices, story buyers or comparative profitability. Native ordinary recipes differ between manual and zombie brewery, so do not mechanically copy the mead claim to the latter.
 
@@ -135,15 +135,15 @@ Evidence N: exact craft inputs, ordinary and multiquality outputs. No sale price
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Preparation place / `mf_preparation_1` | Allows you to remove and replace **body parts**. | Позволяет извлекать и заменять **части тела**. |
+| Preparation place / `mf_preparation_1` | Allows you to remove and replace body parts. | Позволяет извлекать и заменять части тела. |
 | Preparation place II / `mf_preparation_2` | Bodies **do not decay** on this table. | Тело **не разлагается** на этом столе. |
-| Embalming table / `mf_balsamation_1` | You can alter a body’s properties with **injections** here. | Здесь можно менять свойства тел с помощью **инъекций**. |
+| Embalming table / `mf_balsamation_1` | You can alter a body’s properties with injections here. | Здесь можно менять свойства тел с помощью инъекций. |
 | Embalming table II / `mf_balsamation_2` | You can give injections **twice as fast** here. Bodies do not decay on the table. | Здесь можно делать инъекции **вдвое быстрее**. Тело на столе не разлагается. |
 | Pallet / `corpse_bed` | Bodies decay more slowly here. Space for **one body**. | Тело разлагается медленнее. Место для **одного тела**. |
 | Double pallet / `corpse_bed_big` | Bodies decay more slowly here. Space for **two bodies**. | Тела разлагаются медленнее. Место для **двух тел**. |
 | Fridge pallet / `corpse_fridge` | Bodies **do not decay** in storage. Holds two bodies. | Тела **не разлагаются** при хранении. Вмещает два тела. |
-| Resurrection table / `zombie_crafting_table` | Make **zombie workers** from bodies here. | Здесь можно создавать **зомби-рабочих** из тел. |
-| Place for burning corpses / `mf_pyre_placed` | Used to burn bodies into **ash**. | Служит для сожжения тел и получения **пепла**. |
+| Resurrection table / `zombie_crafting_table` | Make zombie workers from bodies here. | Здесь можно создавать зомби-рабочих из тел. |
+| Place for burning corpses / `mf_pyre_placed` | Used to burn bodies into ash. | Служит для сожжения тел и получения пепла. |
 
 Evidence N/S: body insertion filters/limits, extraction/injection/resurrection crafts and the native cremation-output research in [ALCHEMY_SYSTEM](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/ALCHEMY_SYSTEM.md). The resurrection row uses native `zombie_crafting_table_d` EN/RU prose with proposed emphasis; future production should reuse the proved localization lookup rather than duplicate the language corpus. Its Technology display path is not established by string existence. Paired embalming crafts establish time180->90 across8 matching recipes, supporting twice as fast. The native decay owner is now established: `ItemsDurabilityManager` passes the storage object multiplier to `Item.UpdateDurability`. PreparationII, EmbalmingII and fridge have0; ordinary/double pallets0.05. This supports the selected stopped/slower-body-decay sentences while stored, not restoration of already lost freshness. Surgical-error advantages are not claimed. See the mechanics review for the exact path and evidence boundary.
 
@@ -151,10 +151,10 @@ Evidence N/S: body insertion filters/limits, extraction/injection/resurrection c
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Zombie ore mine: left / `zombie_mine_bench_left` | A zombie mines **iron ore and coal**. | Зомби добывает **железную руду и уголь**. |
-| Zombie stone quarry: right / `zombie_mine_fence_front_stone` | A zombie quarries **stone blocks**. | Зомби добывает **каменные блоки**. |
-| Zombie marble quarry: right / `zombie_mine_fence_front_marble_right` | A zombie quarries **marble blocks**. | Зомби добывает **мраморные блоки**. |
-| Porter station / `porter_station` | A zombie **transports resources** between work areas. | Зомби **переносит ресурсы** между рабочими зонами. |
+| Zombie ore mine: left / `zombie_mine_bench_left` | A zombie mines iron ore and coal. | Зомби добывает железную руду и уголь. |
+| Zombie stone quarry: right / `zombie_mine_fence_front_stone` | A zombie quarries stone blocks. | Зомби добывает каменные блоки. |
+| Zombie marble quarry: right / `zombie_mine_fence_front_marble_right` | A zombie quarries marble blocks. | Зомби добывает мраморные блоки. |
+| Porter station / `porter_station` | A zombie transports resources between work areas. | Зомби переносит ресурсы между рабочими зонами. |
 
 Evidence N/S: the three virtual build end scripts now resolve to their fixed-point spawn/start-craft graphs (150844/150848/150847), closing the former virtual-to-physical gap for the selected outputs. The iron and coal crafts form a repeating native cycle. Left/right are positions, not tier numbers. Porter uses native worker assignment and transfer UI. No route, mining speed or infinite-resource claim is added; see the mechanics review.
 
@@ -162,11 +162,11 @@ Evidence N/S: the three virtual build end scripts now resolve to their fixed-poi
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Lantern network / `lantern_network` | Creates **lantern building sites** in the mine. | Создаёт **места для светильников** в шахте. |
-| Lantern / `lantern` | Used to **light** the surrounding area. | Служит для **освещения** пространства вокруг. |
-| Water pump / `well_pump` | **Automatically** draws water from the well. | **Автоматически** набирает воду из колодца. |
+| Lantern network / `lantern_network` | Creates lantern building sites in the mine. | Создаёт места для светильников в шахте. |
+| Lantern / `lantern` | Used to light the surrounding area. | Служит для освещения пространства вокруг. |
+| Water pump / `well_pump` | Automatically draws water from the well. | Автоматически набирает воду из колодца. |
 
-Evidence N: `place_well_pump` native FlowScript (resources pathID150843) spawns `well_pump` and starts `water_pumping`. This automatic recipe has no input needs, energy0 and craft_time10; it adds water1 to its own WGO inventory and repeats. `well_pump` has a water-only insertion filter and limit500. The pinned host `SmartExpression.TakeWaterFromPump` removes up to10 water from this object, drops it toward the player and animates `water_well`, without a player-energy charge. This supports drawing water automatically with a local accumulated supply; it does not prove a global replenished water pool or instantaneous production. The revised short copy names the well and keeps the accepted automation accent. The test recipe `water_pumping_test` is not the installed graph's start target. Network graph150661 now proves creation of eight `lantern_place` sites at fixed `gd_lantern_1..8` points. The purpose names sites, not completed/free lanterns or unrestricted placement. Lantern purpose is a draft role statement, not a claim of a productivity/quality bonus.
+Evidence N: `place_well_pump` native FlowScript (resources pathID150843) spawns `well_pump` and starts `water_pumping`. This automatic recipe has no input needs, energy0 and craft_time10; it adds water1 to its own WGO inventory and repeats. `well_pump` has a water-only insertion filter and limit500. The pinned host `SmartExpression.TakeWaterFromPump` removes up to10 water from this object, drops it toward the player and animates `water_well`, without a player-energy charge. This supports drawing water automatically with a local accumulated supply; it does not prove a global replenished water pool or instantaneous production. The revised short copy names the well; its formerly accepted automation accent is now removed under the sparse-emphasis decision. The test recipe `water_pumping_test` is not the installed graph's start target. Network graph150661 now proves creation of eight `lantern_place` sites at fixed `gd_lantern_1..8` points. The purpose names sites, not completed/free lanterns or unrestricted placement. Lantern purpose is a draft role statement, not a claim of a productivity/quality bonus.
 
 ## Church furnishings
 
@@ -208,11 +208,11 @@ Evidence N: object quality and graveyard builder. Columbarium lines deliberately
 | Soul container I / `soul_container` | Space for **two souls**. | Место для **двух душ**. |
 | Soul container II / `soul_container_2` | Space for **three souls**. | Место для **трёх душ**. |
 | Soul container III / `soul_container_3` | Space for **four souls**. | Место для **четырёх душ**. |
-| Organ workbench / `soul_workbench` | You can add **white and red skulls** to body parts here. | Здесь можно добавлять частям тела **белые и красные черепа**. |
+| Organ workbench / `soul_workbench` | You can add white and red skulls to body parts here. | Здесь можно добавлять частям тела белые и красные черепа. |
 | Soul extractor upgrade II / `soul_extractor_upgrd_to_2` † | Allows you to extract souls with **less damage**. | Позволяет извлекать души с **меньшими повреждениями**. |
 | Soul extractor upgrade III / `soul_extractor_upgrd_to_3` † | Allows you to extract souls **without damage**. | Позволяет извлекать души **без повреждений**. |
-| Wall crematorium / `mf_crematorium` | Used to burn bodies into **ash** using fuel. | Используется для сожжения тел в **пепел** с помощью топлива. |
-| Soul receiver / `soul_totem_souls` | Enables **remote crafting** in its area for souls’ gratitude. | Позволяет **удалённо запускать работу** в своей зоне за благодарность душ. |
+| Wall crematorium / `mf_crematorium` | Used to burn bodies into ash using fuel. | Используется для сожжения тел в пепел с помощью топлива. |
+| Soul receiver / `soul_totem_souls` | Enables remote crafting in its area for souls’ gratitude. | Позволяет удалённо запускать работу в своей зоне за благодарность душ. |
 
 Evidence N: soul containers' `can_insert_items` accepts harmed/healed souls and direct insertion limits are2/3/4. The prose omits storage decay prevention and room-capacity numerical effects until the owning mechanics are checked. The native workbench UI, crematorium lifecycle and receiver zone/cost owners are now checked in the mechanics review. Workbench copy specifies adding white/red skulls rather than arbitrary modification; receiver copy specifies its own zone. **V: extractorII/III damage remains unresolved:** native UI/recipe damage keys differ from the attached graph's getter keys. Do not promote the displayed percentage into proof of actual added damage. The review records the mismatch and a supported preservation-based alternative for explicit product review.
 
@@ -231,7 +231,7 @@ Evidence N: the six end scripts resolve through referenced macro151084 `unlock_s
 
 ## Selective purpose icons
 
-The user approved selective icons with explanatory text in purpose descriptions, following the material-row precedent. Use a native semantic icon for a metric/category where it speeds recognition; retain the words. Avoid a picture for every noun or mixing a specific potion/item sprite into a claim about an entire category. Automation remains a text accent; do not invent an automation pictogram. Exact placement, color and line wrapping still require visual acceptance.
+The user approved selective icons with explanatory text in purpose descriptions, following the material-row precedent. Use a native semantic icon for a metric/category where it speeds recognition; retain the words. Avoid a picture for every noun or mixing a specific potion/item sprite into a claim about an entire category. Automation remains explanatory text; it is not automatically accented. Do not invent an automation pictogram. Exact placement, color and line wrapping still require visual acceptance.
 
 Static font-symbol inspection in the exact input above proves these mappings in the inspected native UIFont records (for example pathID151301):
 
