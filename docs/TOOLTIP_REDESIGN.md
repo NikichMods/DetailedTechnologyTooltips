@@ -13,13 +13,13 @@ The user selected the **icons plus material names** preview as the basis for the
 
 Purpose must be evidence-backed, not guessed from the object name. Preserve useful native description information, visibility, progression, costs and save state. Exact copy and implementation/runtime acceptance remain pending. Do not interpret adoption of the layout as acceptance of every draft phrase or all blueprint descriptions.
 
-## Keyword emphasis — accepted rule, palette under review
+## Keyword emphasis — accepted rule and color family
 
 The user approved emphasizing the semantically decisive result/capability in each purpose description, for example powders or solutions. This is a general editorial rule, not a request to color all occurrences of certain Russian words across every surface.
 
 Recommended rule: mark one short result/capability phrase per short explanation, with occasional additional phrase only where the meaning requires it. Use one consistent, readable accent; do not silently turn powder/solution/potion names into a new color-coded category system or imply resource availability. Metadata should follow localized meaning rather than broad localized-string search/replacement.
 
-Draft focus terms: `растворы`, `порошки`; for the table `алхимические составы` is proposed instead of only `зелья`, because the native two-input table also produces paint/other mixtures. Exact highlighted phrase and palette are pending user review.
+Draft focus terms: `растворы`, `порошки`; for the table `алхимические составы` is proposed instead of only `зелья`, because the native two-input table also produces paint/other mixtures. The user accepted a single warm red accent in the PrayerClarity color family. Exact localized phrase and host-rendered shade still need copy/runtime review.
 
 ## Gamepad single-unlock presentation — approved direction, not implemented
 
@@ -48,18 +48,41 @@ The user explicitly chose the following after reviewing the mixed-node consequen
 
 Evidence for retaining non-prayer content: bounded native1.407 data inspection, using PrayerClarity's known item families and linked `pray:` family correspondence, identifies mixed nodes including Embalming (one prayer and two blueprint crafts), Engineer (one prayer, a well-pump craft and p_engineer), and Martial skills (two prayers and p_big_guy). Whole-node content exclusion would remove DTT coverage, including existing accepted special explanations/corrections. This is static authored-data evidence, not a claim about a particular save's live visibility. The exploratory ID-prefix-only lookup was rejected because Technology craft IDs name prayer-item recipes rather than directly starting with `pray:`; production classification must resolve the semantic link.
 
-## Body hierarchy and row labels — design review
+## Body hierarchy and row labels — accepted design
 
 The user prefers the muted-body preview: title stays dark, ordinary purpose/material/location text is quieter, and structural labels can remain darker. Exact colors/contrast across real game fonts and all locales require runtime acceptance.
 
-The user proposed reusing PrayerClarity's existing red accent rather than introducing blue. Verified source: PrayerClarity `TechnologyTooltipTextStyle.KeyAccent = FF7A70`, reused across structural/named-reward emphasis. The browser proposal uses a readable darker warm red on parchment; it is not proof that a literal NGUI color tag will produce identical final pixels. Final red shade remains under review.
+The user accepted reusing PrayerClarity's red color family rather than introducing blue. Verified source: PrayerClarity `TechnologyTooltipTextStyle.KeyAccent = FF7A70`, reused across structural/named-reward emphasis. The browser proposal uses a readable darker warm red on parchment; it is not proof that a literal NGUI color tag will produce identical final pixels. Final host-rendered shade remains subject to runtime review.
 
-Compare three blueprint-only material-label proposals on the same layout: no label; `Материалы:` / `Materials:`; `Для постройки:` / `Build cost:`. Author recommendation: the last option distinguishes one-time construction requirements from the station's operating ingredients. No label is visually lighter but saves only one line now that gamepad shows one unlock at a time.
+The user explicitly selected **no heading above blueprint materials**, rejecting the author's `Для постройки:` / `Build cost:` recommendation. Native icons, names and quantities form the requirements block directly. The lighter presentation and removal of redundant words are intentional. This decision concerns the blueprint layout; it does not silently remove headings from every existing ordinary-recipe/special tooltip.
 
-Location wording proposal: `Где строить: {native location}` / `Built in: {native location}`. Keep this as one wrappable line group with a darker prefix and muted location; preserve existing native builder coverage and the accepted Alchemy Lab naming exception. Russian `Строится в:` was considered but not preferred because native nominative place/menu labels would require case/preposition adaptation. The interrogative field label permits unmodified native names and multiple locations without an inflection table. These wording/palette choices remain proposals, not accepted localization edits.
+Accepted location wording: `Где строить: {native location}` / `Built in: {native location}`. Keep this as one wrappable line group with a darker prefix and muted location; preserve existing native builder coverage and the accepted Alchemy Lab naming exception. Russian `Строится в:` was considered but not preferred because native nominative place/menu labels would require case/preposition adaptation. The interrogative field label permits unmodified native names and multiple locations without an inflection table. Design acceptance does not establish live rendering acceptance.
+
+## Purpose-copy investigation — 2026-10-21
+
+The three alchemy-purpose sentences in the previews are original editorial drafts, not native game strings. Their functional basis was checked against current native station/recipe data; their exact wording has not been accepted.
+
+Bounded read-only inspection of installed 1.407 `resources.assets`, `game_data`, `lng_en` and `lng_ru` found only names under localization keys containing `mf_alchemy_craft_02`, `mf_alchemy_stirrer_01` and `mf_alchemy_mill`, with no corresponding purpose descriptions. No `mf_*_d` descriptions were found in the inspected localization. The station records themselves have no description field. Searching English localization for the wiki's short mix/grind/two-ingredient phrases found no match. This is evidence against a ready description at those direct station keys, not proof that no related tutorial/dialogue text exists anywhere or that all blueprints lack descriptions.
+
+Native neighboring Work/Perk descriptions use multiple voices: short factual source/action statements (for example ore/coal gathering), direct second-person capability explanations, and humorous flavor followed by an effect (writer/scientist). There is no single mandatory sentence template. Existing accepted project research also proves that authored descriptions can be incomplete or stale; existence alone is insufficient for reuse. Preserve useful native flavor, but verify the functional claim against 1.407 before relying on it.
+
+Community wiki cross-checks:
+- [Alchemy workbench (tier I)](https://graveyardkeeper.fandom.com/wiki/Alchemy_workbench_(tier_I)): two-input combining; listed products include paint as well as potions.
+- [Hand mixer](https://graveyardkeeper.fandom.com/wiki/Hand_mixer): production of solutions and study prerequisite.
+- [Alchemy mill](https://graveyardkeeper.fandom.com/wiki/Alchemy_mill): production of powders and study prerequisite.
+
+Wiki text is a secondary explanation source, not developer-authored copy or a version-pinned mechanics authority. Its article paragraphs include details beyond the purpose block. No wiki paragraphs or native localization corpus are imported into the public repository.
+
+Proposed editorial approach for user review:
+1. Look for useful native description text first; retain/reuse it through a verified native lookup where adequate and accurate.
+2. Where incomplete, preserve useful native information and add only the missing purpose. Where absent, author a concise explanation from verified behavior, using wiki explanations as a secondary cross-check.
+3. Lead with action and useful result, normally one sentence. Include a differentiating capability such as two versus three ingredients when it explains the tier. Avoid repeating the title, vague praise, a full product catalog or story/recipe spoilers.
+4. Match native terminology and approachable in-world voice, without requiring every blueprint to imitate humorous Perk text. Meaning and correctness take priority over copying vanilla omissions or awkward wording.
+5. Keep English as semantic source and Russian as review locale. Select the short emphasized result phrase while editing each translation; color must not be the only carrier of meaning.
+6. Review a small representative copy set before scaling to all eligible blueprints. Record evidence and native-text availability with each reviewed entry; exact implementation/data format remains open.
 
 ## Evidence and next review
 
 The first preview uses bounded native costs/icons and existing private native font/parchment extractions. Browser layout does not establish Unity text-color, native icon-row or gamepad lifecycle correctness. No new production source, gameplay, version or installed payload is authorized merely by a browser preview.
 
-Next: finish palette/material-label/location-wording review; establish separate per-change production gates for purpose copy, icon-row layout, keyword styling and navigation/coexistence before production changes. The overall revision, standalone mixed-node behavior and conditional responsibility split are approved; exact prose and live rendering still need their normal evidence and acceptance. Representative runtime checks must include long single entries, single/multiple unlock counts, mouse/controller switching, close/reopen, hidden-row exclusion, PrayerClarity absent, each supported PrayerClarity edition active, and installed-but-unavailable capability fallback.
+Next: review the purpose-copy approach and representative wording; establish separate per-change production gates for purpose copy, icon-row layout, keyword styling and navigation/coexistence before production changes. The overall layout, warm red accent family, no material heading, location wording, standalone mixed-node behavior and conditional responsibility split are approved; exact purpose prose and live rendering still need their normal evidence and acceptance. Representative runtime checks must include long single entries, single/multiple unlock counts, mouse/controller switching, close/reopen, hidden-row exclusion, PrayerClarity absent, each supported PrayerClarity edition active, and installed-but-unavailable capability fallback.
