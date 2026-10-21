@@ -114,6 +114,8 @@ The subsequent user direction accepts **mixed voice**, with object-enabled actio
 
 The user accepted that set as a strong review basis and requested three/four natural opening patterns in its early rows. Qualitative purpose copy should communicate the main benefit without enumerating every exception; preserve exact exceptions in the mechanics evidence rather than forcing “most products” qualifiers into each short description. The revised DeskII proposal uses PrayerClarity's existing `Бонус к качеству письма` / `Writing quality bonus` terminology. It does not adopt a numeric prayer buff, universal percentage or gold-output guarantee. The refreshed set remains under wording review.
 
+The user subsequently accepted the refreshed set and requested applying its style to all remaining descriptions. The full grouped EN/RU catalogue now has104 reviewed rows,70 revised rows, the accepted ten-row basis preserved, and all23 pre-existing mechanics flags intact. Language direction is settled for this pass; new exact copy and rendering still follow their normal review/integration boundaries. Do not confuse the completed editorial pass with resolution of virtual-build, body-decay, printing-availability or soul-equipment questions.
+
 Bounded static evidence for the additional pilot entries, from installed 1.407 data:
 - The four additional entries are authored-visible blueprint records in Advanced alchemy, Improvement, Light of faith and Engineer respectively (visibility still depends on native UI/save rules).
 - The non-auxiliary, non-hidden tier-II formula rows inspected have three ingredient entries (20 rows). This supports three-input wording; it does not authorize revealing their recipes.
