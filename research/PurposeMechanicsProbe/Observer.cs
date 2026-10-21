@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using BepInEx;
 using BepInEx.Bootstrap;
 using HarmonyLib;
@@ -22,6 +23,8 @@ public sealed class Observer : BaseUnityPlugin
     private static FieldInfo generatorOwner;
     private static int sequence;
     private static bool environmentRecorded;
+    private static readonly int[] traceCounts = new int[8];
+    private static int traceSequence;
     [ThreadStatic] private static Sample active;
     public sealed class Sample
     {
@@ -56,8 +59,11 @@ public sealed class Observer : BaseUnityPlugin
         Guard("bind-" + name, () => {
             var method = type == null ? null : AccessTools.DeclaredMethod(type, name, args);
             if (method == null) throw new MissingMethodException(type == null ? "missing type" : type.FullName, name);
+            Log("BIND_BEGIN method=" + type.FullName + "." + name);
             harmony.Patch(method, Hook(prefix, Priority.First), Hook(postfix, Priority.Last), null, Hook(finalizer, Priority.Last), null);
             targets.Add(method);
+            var owners = Harmony.GetPatchInfo(method);
+            Log("BIND_END method=" + type.FullName + "." + name + " owners=" + string.Join(",", owners.Owners));
         });
     }
     private static HarmonyMethod Hook(string name, int priority) { return name == null ? null : new HarmonyMethod(typeof(Observer), name) { priority = priority }; }
@@ -96,6 +102,10 @@ public sealed class Observer : BaseUnityPlugin
     }
     private static void Menu(BaseCraftGUI __instance, WorldGameObject o)
     {
+        using (Trace(0, "CommonOpen.postfix")) MenuCore(__instance, o);
+    }
+    private static void MenuCore(BaseCraftGUI __instance, WorldGameObject o)
+    {
         if (!Press(o)) return;
         Guard("press-menu", () => {
             PressAudit();
@@ -109,15 +119,27 @@ public sealed class Observer : BaseUnityPlugin
     }
     private static void ExtractorOpen(WorldGameObject craft_obj)
     {
+        using (Trace(1, "SoulExtractorGUI.Open.postfix")) ExtractorOpenCore(craft_obj);
+    }
+    private static void ExtractorOpenCore(WorldGameObject craft_obj)
+    {
         if (!Extractor(craft_obj)) return;
         Guard("extractor-open", () => { EnvironmentAudit(); Log("EXTRACTOR_OPEN station=" + craft_obj.obj_id + " " + Params(craft_obj)); });
     }
     private static void Chance(WorldGameObject craftery_wgo, bool is_min_chance, float __result)
     {
+        using (Trace(2, "GetDamageChance.postfix")) ChanceCore(craftery_wgo, is_min_chance, __result);
+    }
+    private static void ChanceCore(WorldGameObject craftery_wgo, bool is_min_chance, float __result)
+    {
         if (!Extractor(craftery_wgo)) return;
         Guard("ui-chance", () => Log("UI_CHANCE station=" + craftery_wgo.obj_id + " min=" + is_min_chance + " result=" + F(__result)));
     }
     private static void Begin(CraftComponent __instance, out Sample __state)
+    {
+        using (Trace(3, "ProcessFinishedCraft.prefix")) BeginCore(__instance, out __state);
+    }
+    private static void BeginCore(CraftComponent __instance, out Sample __state)
     {
         __state = null;
         Sample captured = null;
@@ -134,10 +156,18 @@ public sealed class Observer : BaseUnityPlugin
     }
     private static void Param(string param, WorldGameObject wgo, float __result)
     {
+        using (Trace(4, "Flow_GetWGOParam.Invoke.postfix")) ParamCore(param, wgo, __result);
+    }
+    private static void ParamCore(string param, WorldGameObject wgo, float __result)
+    {
         if (!Extractor(wgo) || !(param.Contains("damage") || param.Contains("corruption"))) return;
         Guard("graph-param", () => { if (active != null) active.Reads++; Log("GRAPH_PARAM seq=" + (active == null ? 0 : active.Sequence) + " station=" + wgo.obj_id + " key=" + param + " result=" + F(__result)); });
     }
     private static void Generated(object __instance)
+    {
+        using (Trace(5, "Flow_GenerateSoul.callback.postfix")) GeneratedCore(__instance);
+    }
+    private static void GeneratedCore(object __instance)
     {
         Guard("generator-output", () => {
             var item = (Item)output.GetValue(generatorOwner.GetValue(__instance));
@@ -147,13 +177,51 @@ public sealed class Observer : BaseUnityPlugin
     }
     private static void End(Sample __state)
     {
+        using (Trace(6, "ProcessFinishedCraft.postfix")) EndCore(__state);
+    }
+    private static void EndCore(Sample __state)
+    {
         if (__state == null) return;
         Guard("soul-end", () => Log("SOUL_END seq=" + __state.Sequence + " station=" + __state.Station.obj_id + " after=" + (__state.Soul == null ? "none" : F(__state.Soul.durability)) + " delta=" + (__state.Soul == null ? "none" : F(__state.Soul.durability - __state.Before)) + " graph_reads=" + __state.Reads + " outputs=" + __state.Outputs + " " + Params(__state.Station)));
     }
     private static void FinalizeSample(Sample __state, Exception __exception)
     {
+        using (Trace(7, "ProcessFinishedCraft.finalizer")) FinalizeSampleCore(__state, __exception);
+    }
+    private static void FinalizeSampleCore(Sample __state, Exception __exception)
+    {
         if (__state == null) return;
         active = __state.Previous;
         if (__exception != null) Guard("host-exception", () => Log("HOST_EXCEPTION seq=" + __state.Sequence + " error=" + __exception.GetType().Name));
+    }
+
+    private struct TraceScope : IDisposable
+    {
+        public int Sequence;
+        public string Seam;
+        public void Dispose()
+        {
+            if (Sequence == 0) return;
+            try { Log("TRACE_EXIT call=" + Sequence + " seam=" + Seam); }
+            catch { /* Tracing must not affect native execution. */ }
+        }
+    }
+    private static TraceScope Trace(int index, string seam)
+    {
+        var scope = new TraceScope();
+        try
+        {
+            int count = Interlocked.Increment(ref traceCounts[index]);
+            if (count > 128)
+            {
+                if (count == 129) Log("TRACE_LIMIT seam=" + seam + " count=128");
+                return scope;
+            }
+            scope.Sequence = Interlocked.Increment(ref traceSequence);
+            scope.Seam = seam;
+            Log("TRACE_ENTER call=" + scope.Sequence + " seam=" + seam + " thread=" + Thread.CurrentThread.ManagedThreadId);
+        }
+        catch { scope.Sequence = 0; }
+        return scope;
     }
 }

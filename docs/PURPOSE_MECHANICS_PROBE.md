@@ -22,11 +22,21 @@ Installed BetterSaveSoulRebalance is a known confounder. Record plugin identitie
 
 Version owner: research/PurposeMechanicsProbe/PurposeMechanicsProbe.csproj; generated assembly metadata supplies BepInPlugin version. Build Release with .NET SDK8 and installed native references via GameRoot property; no proprietary payload is distributed. Exact source and DLL hash are recorded at handoff below. Runtime evidence pending.
 
-## Current status: failed load reported; observer removed
+## Current status: baseline loads; preparing bounded hook tracing
 
 User reported a hang while loading a save after installing0.1.0. Preserved session snapshot: ignored `local/runtime-evidence/purpose-observer-0.1.0/failed-load-20261021.log`, SHA256 `122088209fcaf384c2ddf584efc92110d573fc416b99b65f729f694120f1be52`. Loader confirms observer0.1.0, matching host MVID and six installed hooks. Last lines are scene restoration (`RestoreScene`, `PrepareScene`, Queue Everything mutations and two active-object messages). No observer scenario event or exception identifying the cause is present. This establishes a failed user run, not attribution to a particular hook or another mod.
 
 Host was already closed when inspected. Removed only the hash-verified observer DLL from plugins; retained frozen0.1.0 artifact. Other plugins and saves untouched. Next minimal discriminating check: load the same save with observer absent. Do not install a speculative replacement before that baseline result. If removal restores loading, inspect/isolate hooks and consider explicit post-load activation instead of startup-wide observation; that remains a hypothesis and method choice, not a verified fix. Original press/extractor procedure below is suspended.
+
+User subsequently confirms the same save loads normally without the observer. Preserved baseline snapshot SHA256 `313b133db26c70b6826f8a38fa2c06662fec7a5214697529b3491624e936e1a6`, ignored `local/runtime-evidence/purpose-observer-0.1.0/baseline-load-20261021.log`; native script/NPC activity continues beyond restoration. One failed/passing pair implicates observer presence under this setup, not a particular patch or vanilla mechanics. Installed IL confirms WorldGameObjectComponentBase.get_wgo is a direct backing-field read, excluding a proposed lazy-initialization explanation at that accessor.
+
+### Reopened method checkpoint:0.1.1
+
+Goal: localize the loading regression before resuming mechanic observations. Alternatives: binary splitting six hooks across separate restarts; moving activation after load (may avoid but mask the cause); bounded entry/exit tracing while retaining all six startup bindings. Choose tracing first: no save changes or new native seams; it distinguishes callback entry/filter/return from a failure before reaching managed observer code. Static evidence and the two existing logs cannot identify the stuck callback. This is diagnostic localization, not a fix.
+
+Trace limits: first128 invocations per callback, separate completion prefix/postfix/finalizer counters, monotonic invocation IDs and explicit trace-budget exhaustion. Emit bind-before/after markers and existing Harmony owners at binding. Trace no object serialization, native calls or per-frame scans. Tracer failures are contained separately. If all last observed calls return, or tracing stops at its budget, do not falsely attribute the hang to the last event. Next step then isolates the affected startup hook group.0.1.0 bytes/source remain immutable;0.1.1 is a distinct observer build.
+
+Minimal runtime matrix: same installed mod set/save, observer0.1.1, launch/load only. Success is useful load evidence but not closure of the original defect; a hang requires inspecting paired trace events and any exception. No press/extractor gameplay yet. Observer and user gameplay must remain independent of save mutation.
 
 ## Frozen local handoff (historical)
 
