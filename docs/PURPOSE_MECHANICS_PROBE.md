@@ -22,7 +22,7 @@ Installed BetterSaveSoulRebalance is a known confounder. Record plugin identitie
 
 Version owner: research/PurposeMechanicsProbe/PurposeMechanicsProbe.csproj; generated assembly metadata supplies BepInPlugin version. Build Release with .NET SDK8 and installed native references via GameRoot property; no proprietary payload is distributed. Exact source and DLL hash are recorded at handoff below. Runtime evidence pending.
 
-## Current status: baseline loads;0.1.1 installed, load tracing pending
+## Current status:0.1.1 loads; mechanics observation available, original hang unresolved
 
 User reported a hang while loading a save after installing0.1.0. Preserved session snapshot: ignored `local/runtime-evidence/purpose-observer-0.1.0/failed-load-20261021.log`, SHA256 `122088209fcaf384c2ddf584efc92110d573fc416b99b65f729f694120f1be52`. Loader confirms observer0.1.0, matching host MVID and six installed hooks. Last lines are scene restoration (`RestoreScene`, `PrepareScene`, Queue Everything mutations and two active-object messages). No observer scenario event or exception identifying the cause is present. This establishes a failed user run, not attribution to a particular hook or another mod.
 
@@ -39,6 +39,12 @@ Trace limits: first128 invocations per callback, separate completion prefix/post
 Minimal runtime matrix: same installed mod set/save, observer0.1.1, launch/load only. Success is useful load evidence but not closure of the original defect; a hang requires inspecting paired trace events and any exception. No press/extractor gameplay yet. Observer and user gameplay must remain independent of save mutation.
 
 Frozen0.1.1 source `fe1270d034767c8755eb5595c4b58a84d735890a`; SHA256 `5d39e3618ea848c401228d372082f0ce74dd2f6b7c3858ca79db11bfc73ac252`. Release build zero errors/warnings; clean probe inputs, generated plugin metadata0.1.1 independently checked with Cecil. Installed identical bytes as `PurposeMechanicsProbe.dll` with host closed. No mechanic fix or successful runtime loading is claimed. Requested user action: launch and load the same save once; report loaded/hung, then Codex captures the local log before another launch.
+
+### Observed0.1.1 load
+
+User confirms successful loading and live play. Preserved live snapshot `local/runtime-evidence/purpose-observer-0.1.1/loaded-session.log`, SHA256 `2dc46587b807b52b3c6a3e11267a9895762a4e727303d38c401acd7c3539068f`. Loader confirms all six hooks, matching MVID and version0.1.1. Nine traced callbacks (three completion prefix/postfix/finalizer groups) have matching exits; the logged native craft is water_pumping at well_pump. The snapshot contains no graph-param/generator callback execution, no observer disable, no observer host-exception event and no trace-limit event. This proves the completion observer can return normally for these ordinary crafts, not that the original hang is fixed or all six paths have executed. Trace timing and nondeterministic reproduction remain possible explanations, not established causes.
+
+Keep this working session for the originally requested pressII and extractorII/III observations. No replacement or restart is necessary. Preserve the original failed0.1.0 evidence and leave its cause open; success in0.1.1 alone must not promote a speculative root cause into shared verified mechanics.
 
 ## Frozen local handoff (historical)
 
