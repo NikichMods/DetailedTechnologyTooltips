@@ -80,30 +80,35 @@ Accepted editorial approach (the user approved this approach after reviewing the
 4. Match native terminology and approachable in-world voice, without requiring every blueprint to imitate humorous Perk text. Meaning and correctness take priority over copying vanilla omissions or awkward wording.
 5. Keep English as semantic source and Russian as review locale. Select the short emphasized result phrase while editing each translation; color must not be the only carrier of meaning.
 6. Review a small representative copy set before scaling to all eligible blueprints. Record evidence and native-text availability with each reviewed entry; exact implementation/data format remains open.
+7. Edit related tiers as a family: keep the shared role and sentence structure as consistent as verified behavior permits; change the words/numbers that express the actual difference. Emphasize the decision-relevant distinction (capacity, automation, quality bonus, etc.), not automatically the output noun. Similar wording must not imply unproved recipe inheritance or that every capability is identical.
 
 ### Editorial pilot — draft wording, not accepted copy
 
-The user further specified concise, unambiguous, clear, easily read and elegant sentences. Avoid vague appendages such as “and other alchemical mixtures.” A purpose sentence need not enumerate every product: a meaningful category or representative concrete outputs can convey the function. The user is considering both `алхимические составы` and `зелья и краски` for the first workbench; neither is yet final. Do not interpret the latter as an exhaustive product list. Avoid changing an important capability just to make two tiers share an identical sentence template.
+The user further specified concise, unambiguous, clear, easily read and elegant sentences. Avoid vague appendages such as “and other alchemical mixtures.” A purpose sentence need not enumerate every product: a meaningful category or representative concrete outputs can convey the function. The user initially selected `зелья и краски` for the first workbench, then proposed omitting paints from both tier descriptions to make the two/three-input difference immediately scannable. The current review proposal follows that family wording; omission of paints is not yet final copy acceptance. Do not force identical wording at the cost of an important functional difference.
 
 Bold spans below illustrate candidate semantic emphasis, not literal markup or verified host colors. All entries are original editorial drafts. English remains the semantic source, with Russian used for review.
 
 | Native unlock | English draft | Russian draft |
 | --- | --- | --- |
-| Alchemy workbench / `mf_alchemy_craft_02` | Makes **potions and paints** from two ingredients. | Готовит **зелья и краски** из двух ингредиентов. |
+| Alchemy workbench / `mf_alchemy_craft_02` | Makes potions from **two ingredients**. | Готовит зелья из **двух ингредиентов**. |
 | Hand mixer / `mf_alchemy_stirrer_01` | Processes materials into alchemical **solutions**. | Перерабатывает материалы в алхимические **растворы**. |
 | Alchemy mill / `mf_alchemy_mill` | Grinds materials into alchemical **powders**. | Измельчает материалы в алхимические **порошки**. |
-| Alchemy workbench II / `mf_alchemy_craft_03` | Makes alchemical mixtures from **three ingredients**. | Готовит алхимические составы из **трёх ингредиентов**. |
+| Alchemy workbench II / `mf_alchemy_craft_03` | Makes potions from **three ingredients**. | Готовит зелья из **трёх ингредиентов**. |
 | Trunk / `mf_box_stuff` | Provides **item storage**. | Место для **хранения предметов**. |
-| Candelabra I / `candelabrum_1` | Improves **church quality** and holds candles. | Повышает **качество церкви** и служит подставкой для свечей. |
-| Water pump / `well_pump_place` | Automatically replenishes your **water supply**. | Автоматически пополняет **запас воды**. |
+| Candelabra I / `candelabrum_1` | **+1 church quality**. Candles increase the bonus. | **+1 к качеству церкви**. Свечи усиливают эффект. |
+| Candelabra II / `candelabrum_2` | **+2 church quality**. Candles increase the bonus. | **+2 к качеству церкви**. Свечи усиливают эффект. |
+| Candelabra III / `candelabrum_3` | **+3 church quality**. Candles increase the bonus. | **+3 к качеству церкви**. Свечи усиливают эффект. |
+| Water pump / `well_pump_place` | **Automatically** replenishes your water supply. | **Автоматически** пополняет запас воды. |
 
-Alternative first-workbench draft: `Makes **alchemical mixtures** from two ingredients.` / `Готовит **алхимические составы** из двух ингредиентов.` Author preference for review: concrete potions/paints makes the first unfamiliar station easier to picture; the broader category is shorter conceptually and does not suggest complete coverage. Workbench II deliberately emphasizes its three-input capability rather than claiming it has the same output categories as tier I.
+Retained alternative first-workbench draft: `Makes potions and paints from **two ingredients**.` / `Готовит зелья и краски из **двух ингредиентов**.` Current author recommendation: the paired potions/two-versus-three phrasing is sufficient to explain purpose and makes the tier distinction easier to scan. It does not claim exclusive potion production or that tier II inherits the first table's recipes. Do not append “only” or describe the second table as simply replacing all functions of the first. The pump's emphasis on **automatically** is explicitly user-directed and accepted. The new candelabra copy replaces the rejected heavy “serves as a candle stand” phrasing, but remains a wording proposal.
 
 Bounded static evidence for the additional pilot entries, from installed 1.407 data:
 - The four additional entries are authored-visible blueprint records in Advanced alchemy, Improvement, Light of faith and Engineer respectively (visibility still depends on native UI/save rules).
 - The non-auxiliary, non-hidden tier-II formula rows inspected have three ingredient entries (20 rows). This supports three-input wording; it does not authorize revealing their recipes.
 - `mf_box_stuff` has native inventory storage (inventory size25). The draft deliberately omits a numerical slots/stack interpretation pending the corresponding UI contract.
-- `candelabrum_1` has base quality1 under the church builder, and native candle-input crafts change it to candle-bearing variants. The draft states both roles without claiming a permanent candle bonus, duration or numerical buff.
+- `candelabrum_1` has base quality1 under the church builder, and native candle-input crafts change it to candle-bearing variants. The revised draft states the base bonus separately from the unquantified candle enhancement, without claiming a permanent candle bonus or duration.
+- Family follow-up: `candelabrum_1/2/3` have base qualities1/2/3. Their native candle crafts consume1/2/3 candles respectively and target variants with qualities2/3/4,4/6/8,6/9/12 according to candle type. This supports the paired base-bonus sentences and “candles increase the bonus.” The purpose block intentionally omits candle-type tables/durations. Quality icon presentation must follow the existing native metric-token contract rather than inventing a Unicode star.
+- Both native alchemy tables have potion/elixir outputs in the inspected recipes, so potions can serve as a representative shared purpose. Their different output sets are not equivalent; this does not support describing paints as a tier-II capability or treating ingredient count as the only mechanical distinction.
 - The water-pump build record targets `well_pump_place`; its functioning `well_pump` object accepts water, and the native automatic pumping craft writes water into that object's inventory. The draft does not claim pumping speed, unlimited supply or automation of all nearby stations. This is static functional support, not a new runtime acceptance.
 - Direct localization inspection found names but no purpose text under the inspected additional object IDs; wording is original. No proprietary data corpus is committed.
 
