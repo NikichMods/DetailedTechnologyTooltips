@@ -12,6 +12,8 @@ The user accepted the paired two/three-ingredient potion semantics, the candelab
 
 The benefit revision incorporates the [workstation upgrade audit](WORKSTATION_UPGRADE_REVIEW.md) and corrects key tier distinctions. Its63 purpose-phrase rows are now **a semantic inventory, not the recommended final voice**: the user rejected repetitive `Для…` and bare process names, and finds bare `Можно…` insufficiently tied to the station. The [language comparison](TOOLTIP_LANGUAGE_RESEARCH.md) proposes object-enabled actions (`Позволяет…` / `Allows you to…`) without treating that candidate as finally accepted or mass-converting the catalogue. Earlier energy-led DeskII and speed-only distillationII copy remains superseded. Mechanical flags are not resolved by wording changes.
 
+Current accepted language direction is mixed voice, led by object-enabled action and supplemented by natural place-bound/use/effect sentences. The language research contains the requested ten-building review set and records the preference against `На нём…`/`На них…`, plus the decision to omit Sawhorse billets from the short purpose. Its new sentences await review; this whole catalogue has not been mass-converted again.
+
 Descriptions explain the construction's role, not a promise that every supported recipe becomes available immediately with its blueprint. A higher tier must not imply recipe inheritance or a numeric improvement that has not been proved. Some supported recipes have independent native unlock requirements.
 
 Evidence classes used in the notes:
