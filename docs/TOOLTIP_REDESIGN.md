@@ -1,6 +1,6 @@
 # Tooltip purpose and readability revision
 
-Target: Graveyard Keeper1.407. Accepted stable baseline:1.2.11; publication result is tracked in RELEASE_1.2.11.md.
+Target: Graveyard Keeper1.407. Published stable baseline:1.2.11; exact accepted source/DLL and verified publication are tracked in RELEASE_1.2.11.md.
 
 ## Current revision status —2026-10-22
 

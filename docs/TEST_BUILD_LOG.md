@@ -1274,3 +1274,9 @@ User confirms game closed and explicitly authorizes installation, superseding in
 ###1.2.11 final acceptance and release authorization
 
 User confirms no F2 window, unchanged appearance, normal language/branch switching and explicitly requests release. Accepted final session SHA256875caf6e56fb7822a1e1b3d47c4039a33639175466d2b527037aa28a40969aa9 reaches READY1.2.11 with no DTT failed/disabled/fallback marker; installed DLL hash stilld64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943. Final runtime gate accepted on exact source bb45fa2fb1f3838372a6d4584cec60e770026930; no rebuild. Main integration and GitHub Release authorized. Publication identity/download verification is owned by RELEASE_1.2.11.md.
+
+###1.2.11 stable published
+
+Published2026-10-22T04:48:49Z as stable v1.2.11 (release420317460), with one canonical DetailedTechnologyTooltips.dll asset664701798. Public download matches accepted193024 bytes/SHA256d64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943. Tag targets exact source bb45fa2fb1f3838372a6d4584cec60e770026930; main fast-forwarded/pushed to a2352cc0f3426961a4925c2aa6b485dc7b18a9b5. Publish verification39724477701 succeeds; main rebuild is verification only, never a replacement accepted DLL. Full publication and CI result: RELEASE_1.2.11.md. Installed accepted1.2.11 remains unchanged.
+
+Main verification39724477526/job119645145025 completed successfully, build/localization/source identity pass and both artifact-production steps skipped. Release verification39724477701 and public download/tag hash checks pass. Stable promotion complete; no accepted binary rebuilt or replaced.
