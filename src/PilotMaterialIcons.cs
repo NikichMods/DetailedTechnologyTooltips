@@ -90,16 +90,16 @@ namespace DetailedTechnologyTooltips
                 sprite2D.SetValue(image, sprite, null);
                 AccessTools.Property(spriteType, "color").SetValue(image, nativeColor, null);
                 depth.SetValue(image, Convert.ToInt32(depth.GetValue(label, null)) + 1, null);
-                width.SetValue(image, PilotCalibration.IconSize, null);
-                height.SetValue(image, PilotCalibration.IconSize, null);
+                width.SetValue(image, TooltipAppearance.IconSize, null);
+                height.SetValue(image, TooltipAppearance.IconSize, null);
                 // Fixed 14x14 icon inside reserved indent, native anchors follow wrap/position changes.
                 for (int i = 0; i < anchors.Length; i++)
                 {
                     var point = anchors[i].GetValue(image);
                     anchorTarget.SetValue(point, label.transform);
                     anchorRelative.SetValue(point, i < 2 ? 0f : 1f);
-                    anchorAbsolute.SetValue(point, i == 1 ? PilotCalibration.IconSize :
-                        i == 2 ? PilotCalibration.IconY - PilotCalibration.IconSize : i == 3 ? PilotCalibration.IconY : 0);
+                    anchorAbsolute.SetValue(point, i == 1 ? TooltipAppearance.IconSize :
+                        i == 2 ? TooltipAppearance.IconY - TooltipAppearance.IconSize : i == 3 ? TooltipAppearance.IconY : 0);
                 }
                 image.gameObject.SetActive(true);
             }

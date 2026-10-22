@@ -85,7 +85,7 @@ namespace DetailedTechnologyTooltips
             if (!installed || failed) return;
             var list = (IList)dataList.GetValue(tooltipData.GetValue(tooltip));
             if (start + 1 >= list.Count) return;
-            Mark(list[start], PilotRole.Title); PilotCalibration.Mark(list[start], false);
+            Mark(list[start], PilotRole.Title); TooltipAppearance.Mark(list[start], false);
             if (blankType.IsInstanceOfType(list[start + 1])) Mark(list[start + 1], PilotRole.TitleGap);
             if (start > 0) list.Insert(start, Gap(PilotRole.EntryGap));
         }
@@ -100,7 +100,7 @@ namespace DetailedTechnologyTooltips
                 Tag existing;
                 if (!textDataType.IsInstanceOfType(data) || Tags.TryGetValue(data, out existing)) continue;
                 Mark(data, PilotRole.Purpose);
-                PilotCalibration.MarkNativeBody(data);
+                TooltipAppearance.MarkNativeBody(data);
             }
             return hasBody;
         }
@@ -195,7 +195,7 @@ namespace DetailedTechnologyTooltips
                     var ui = component.GetComponent(widgetType);
                     if (tag.Role >= PilotRole.TitleGap)
                     {
-                        int gap = PilotCalibration.Gap(tag.Role);
+                        int gap = TooltipAppearance.Gap(tag.Role);
                         component.gameObject.SetActive(gap > 0);
                         width.SetValue(ui, state.Width, null);
                         if (gap > 0) height.SetValue(ui, gap, null);
@@ -205,7 +205,7 @@ namespace DetailedTechnologyTooltips
                     overflow.SetValue(label, resizeHeight, null);
                     overflowWidth.SetValue(label, state.Width, null);
                     width.SetValue(label, state.Width, null);
-                    alignment.SetValue(label, tag.Role == PilotRole.Material ? left : PilotCalibration.Center(tag.Role) ? center : left, null);
+                    alignment.SetValue(label, tag.Role == PilotRole.Material ? left : TooltipAppearance.Center(tag.Role) ? center : left, null);
                     printed.GetValue(label, null); // Commit wrapped height before native measurement.
                 }
                 state.Dirty = false;
@@ -235,7 +235,7 @@ namespace DetailedTechnologyTooltips
                     float edgeRight = parent.InverseTransformPoint(corners[2]).x;
                     float rowWidth = Convert.ToInt32(width.GetValue(label, null)) * label.transform.localScale.x;
                     bool material = tag.Role == PilotRole.Material;
-                    bool centered = material ? PilotCalibration.MaterialCenter : PilotCalibration.Center(tag.Role);
+                    bool centered = material ? TooltipAppearance.MaterialCenter : TooltipAppearance.Center(tag.Role);
                     float span = material ? Math.Min(rowWidth, state.MaterialWidth * label.transform.localScale.x) : rowWidth;
                     var p = label.transform.localPosition;
                     p.x = LayoutPolicy.RowX(edgeLeft, edgeRight, rowWidth,

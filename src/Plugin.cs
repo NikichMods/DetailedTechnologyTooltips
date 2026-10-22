@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.2.10";
+        public const string PluginVersion = "1.2.11";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -65,7 +65,7 @@ namespace DetailedTechnologyTooltips
                 try
                 {
                     PilotMaterialIcons.Install(_harmony);
-                    PilotCalibration.Install(_harmony);
+                    TooltipAppearance.Install(_harmony);
                     PilotLayout.Install(_harmony);
                 }
                 catch (Exception ex)
@@ -101,7 +101,6 @@ namespace DetailedTechnologyTooltips
 
         private void OnDestroy()
         {
-            PilotCalibration.Close();
             try
             {
                 if (_harmony != null)
@@ -111,11 +110,6 @@ namespace DetailedTechnologyTooltips
             {
             }
         }
-
-#if DTT_CALIBRATION
-        private void Update() { PilotCalibration.Update(); }
-        private void OnGUI() { PilotCalibration.Draw(); }
-#endif
 
         private void Patch(
             MethodInfo target,

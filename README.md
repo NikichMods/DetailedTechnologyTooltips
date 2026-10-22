@@ -2,22 +2,22 @@
 
 A vanilla-friendly informational QoL mod for **Graveyard Keeper 1.407** using **BepInEx 5**.
 
-Detailed Technology Tooltips makes visible Technology-tree unlocks explain what they need and where they belong without changing progression, recipes, builds, saves, or hidden content.
+Detailed Technology Tooltips makes visible Technology-tree unlocks explain what they offer, what materials they need and where they belong without changing progression, recipes, builds, saves, or hidden content.
 
 ## Status
 
-**1.1.6 stable release.**
-
-Version 1.1.6 keeps the accepted 1.0.2 tooltip/localization behavior and extends blueprint location coverage: when the same construction exists in multiple native build menus, DTT lists the complete current-1.407 builder set deterministically rather than depending on the current save state.
-
-The current stable release is **v1.1.6**.
+The current public stable release is **v1.1.6**. This development branch prepares **1.2.11**, a prerelease candidate for the redesigned tooltips described below. The preceding1.2.10 visual and multilingual presentation was accepted in game;1.2.11 removes the temporary F2 tuning window and fixes those accepted settings. Final candidate review is pending; no new stable release has been published.
 
 ## What it does
 
 For visible Technology unlocks:
 
-- **ordinary recipes** show their native requirements and the exact crafting station(s) owned by that unlocked recipe;
-- **blueprints/build unlocks** show their native build requirements and every native build menu / build desk that owns the same construction variant in the current 1.407 balance;
+- **blueprints/build unlocks** add concise purpose descriptions, with related upgrades highlighting their main difference;
+- **ordinary recipes** preserve useful native item descriptions and show native requirements plus the exact crafting station(s) owned by that unlocked recipe;
+- material rows combine native icons, names and quantities; tooltip width follows the current language's material rows, subject to the viewport limit;
+- sparse warm-red accents emphasize useful differences and effects; native symbols identify church/graveyard quality and alchemy categories alongside explanatory text;
+- blueprint locations list every native build menu / build desk that owns the same construction variant in the current1.407 balance;
+- mouse and gamepad share alignment and spacing; gamepad keeps the combined native tooltip;
 - useful existing vanilla descriptions are preserved;
 - sparse Work/Perk unlocks receive a short explanation only where the current 1.407 data path has been specifically verified;
 - Pyrite is marked as not implemented in the current game version rather than implying that the broken vanilla unlock produces drops;
@@ -52,7 +52,7 @@ Native item/station names continue to come directly from Graveyard Keeper's acti
 
 When updating, replace the existing `DetailedTechnologyTooltips.dll`. Do not keep multiple versioned copies beside it.
 
-The mod has no configuration options.
+The prerelease uses the accepted fixed appearance and has no configuration window or F2 shortcut. No separate translation files are needed.
 
 ## Compatibility
 
@@ -61,6 +61,8 @@ Tested on **Graveyard Keeper 1.407 (Steam, Windows)** with all DLC installed.
 Other game versions, storefront builds, operating systems and DLC configurations are currently untested rather than known incompatible.
 
 The accepted runtime was also exercised alongside a large mod set including PrayerClarity: Rebalanced; no Detailed Technology Tooltips collision was observed in the tested Technology tooltip paths.
+
+In the redesign, DTT leaves prayer unlock descriptions to the game or PrayerClarity. It still enriches blueprints and nonprayer recipes in mixed technologies. PrayerClarity keeps ownership of its own navigation; DTT adds no carousel. This division does not require PrayerClarity to be installed. A full compatibility matrix for every PrayerClarity edition has not been established.
 
 ## Scope and non-goals
 

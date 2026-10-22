@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.11 — prerelease candidate,2026-10-22
+
+This development candidate is not a published stable release. It preserves the1.2.10 presentation accepted in game and removes the temporary calibration UI for final review.
+
+- Adds concise purpose descriptions for104 distinct visible blueprints (105 Technology references), translated into all11 current game languages.
+- Uses native material icons with names/quantities, active-language material-based width, and common mouse/gamepad alignment and spacing for blueprint and nonprayer recipe unlocks.
+- Adds selective native church/graveyard-quality and alchemy-category symbols, preserving words and sparse warm-red emphasis.
+- Preserves native item descriptions, native quantities and exact recipe stations; blueprint locations retain complete native builder coverage.
+- Leaves prayer unlocks to vanilla/PrayerClarity, while continuing to enrich other unlocks in mixed technologies. No DTT carousel is introduced.
+- Avoids repeated native type discovery during branch preparation; the reported branch-switch delay was corrected and accepted in1.2.9.
+- Removes the F2 window, input/UI callbacks, sliders and session settings export. Keeps accepted icon size20, Y0, indent5 spaces, opacity100%, centered title/purpose/location, left materials and gaps2/6/6/10 as fixed defaults.
+- Progression, recipes, construction mechanics, hidden content and saves remain unchanged.
+
 ## 1.1.6 — 2026-10-01
 
 - Blueprint location rows are now deterministic: DTT lists every native build menu in the current 1.407 balance that builds the same `out_obj` / `build_type`, regardless of current save progression.

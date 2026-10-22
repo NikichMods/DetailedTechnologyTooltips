@@ -100,7 +100,22 @@ $layout.GetField('textDataType',$flags).SetValue($null,[DttFixtureText])
 $layout.GetField('tooltipData',$flags).SetValue($null,[DttFixtureTooltip].GetField('Data'))
 $layout.GetField('dataList',$flags).SetValue($null,[DttFixtureContainer].GetField('DataList'))
 $layout.GetField('installed',$flags).SetValue($null,$true)
-$calibration=$assembly.GetType('DetailedTechnologyTooltips.PilotCalibration',$true)
+$calibration=$assembly.GetType('DetailedTechnologyTooltips.TooltipAppearance',$true)
+$pluginType=$assembly.GetType('DetailedTechnologyTooltips.Plugin',$true)
+$declared=[Reflection.BindingFlags]'Public,NonPublic,Instance,Static,DeclaredOnly'
+if($assembly.GetType('DetailedTechnologyTooltips.PilotCalibration',$false) -or $pluginType.GetMethod('Update',$declared) -or $pluginType.GetMethod('OnGUI',$declared)) { throw 'Temporary calibration type or frame/UI callback remains' }
+foreach($method in @('Contents','Slider','Close','Update','Draw')) {
+ if($calibration.GetMethod($method,$declared)) { throw "Temporary settings method remains: $method" }
+}
+foreach($reference in $assembly.GetReferencedAssemblies()) {
+ if($reference.Name -in @('UnityEngine.InputLegacyModule','UnityEngine.IMGUIModule')) { throw 'Input/IMGUI dependency remains after calibration removal' }
+}
+$defaults=@{IconSize=20;IconY=0;TextSpaces=5;Opacity=100;TitleCenter=$true;PurposeCenter=$true;MaterialCenter=$false;LocationCenter=$true;TitleGap=2;PurposeGap=6;MaterialGap=6;EntryGap=10}
+foreach($key in $defaults.Keys) {
+ $field=$calibration.GetField($key,$flags)
+ if(-not $field -or -not $field.IsLiteral -or $field.GetRawConstantValue() -ne $defaults[$key]) { throw "Accepted appearance is not fixed: $key" }
+}
+'Actual production DLL: fixed accepted defaults; no calibration type, F2 callbacks or Input/IMGUI references PASS.'
 $calibration.GetField('text',$flags).SetValue($null,[DttFixtureText].GetField('Text'))
 $calibration.GetField('ready',$flags).SetValue($null,$true)
 $preview=[DttFixtureTooltip]::new()
@@ -114,5 +129,9 @@ for($i=0;$i -lt 2;$i++) {
 }
 foreach($row in @($earlier,$title,$body)) { $calibration.GetMethod('BeforeDraw',$flags).Invoke($null,@($row)) | Out-Null }
 if($earlier.Text -ne 'Earlier unlock' -or $title.Text -ne 'Current title' -or $body.Text -ne '[FF]Native (wskull)1 body[FF]') { throw 'Cached-type native-body marking changed an earlier/title row or lost native symbol' }
+$material=[DttFixtureText]::new('[AA]      Nails (x8)[FF]',$null,$null,-1)
+$calibration.GetMethod('Mark',$flags).Invoke($null,@($material,$true)) | Out-Null
+for($i=0;$i -lt 2;$i++) { $calibration.GetMethod('BeforeDraw',$flags).Invoke($null,@($material)) | Out-Null }
+if($material.Text -ne "[FF]     Nails$([char]0x00a0)(x8)[FF]") { throw 'Fixed material indent/opacity/quantity binding changed or accumulated' }
 'Actual compiled composition/prayer/group/native-body-scope checks PASS; UI rendering not exercised.'
 

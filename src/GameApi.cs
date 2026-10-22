@@ -501,7 +501,7 @@ namespace DetailedTechnologyTooltips
                     var data = _textDataCtor.Invoke(new object[] {
                         "[AA]      " + material.Name + "[FF]", _tinyDescriptionStyle, _leftAlignment, -1 });
                     PilotMaterialIcons.Mark(data, material.Icon);
-                    PilotCalibration.Mark(data, true);
+                    TooltipAppearance.Mark(data, true);
                     PilotLayout.Mark(data, PilotRole.Material);
                     _tooltipAddData.Invoke(tooltip, new[] { data });
                 }
@@ -1269,7 +1269,7 @@ namespace DetailedTechnologyTooltips
 
             var data = _textDataCtor.Invoke(
                 new[] { (object)text, _tinyDescriptionStyle, alignment, -1 });
-            if (pilot) { PilotCalibration.Mark(data, false); PilotLayout.Mark(data, role); }
+            if (pilot) { TooltipAppearance.Mark(data, false); PilotLayout.Mark(data, role); }
 
             if (protectQuantityTokens)
                 TechnologyTextWrapRepair.Mark(data);
