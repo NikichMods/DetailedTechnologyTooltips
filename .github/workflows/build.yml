@@ -41,6 +41,12 @@ jobs:
           if ($plugin -notmatch ('PluginVersion = "' + [regex]::Escape($version) + '"')) { throw 'Plugin version mismatch' }
           if ([string]$project.Project.PropertyGroup.AssemblyVersion -ne "$version.0" -or [string]$project.Project.PropertyGroup.FileVersion -ne "$version.0") { throw 'Assembly version mismatch' }
           "DTT_VERSION=$version" | Out-File $env:GITHUB_ENV -Append
+          $accepted = Get-Content '.github/release/accepted-release.env' -Raw
+          $acceptedVersion = [regex]::Match($accepted, '(?m)^VERSION=([^\r\n]+)').Groups[1].Value
+          $acceptedSource = [regex]::Match($accepted, '(?m)^SOURCE_SHA=([^\r\n]+)').Groups[1].Value
+          if ($acceptedVersion -eq $version -and $acceptedSource -ne '${{ github.sha }}') {
+            'DTT_VERIFICATION_ONLY=true' | Out-File $env:GITHUB_ENV -Append
+          }
 
       - name: Restore
         run: dotnet restore DetailedTechnologyTooltips.csproj --configfile nuget.config
@@ -52,6 +58,7 @@ jobs:
         run: dotnet run --project tests/LocalizationTests/LocalizationTests.csproj -c Release
 
       - name: Prepare artifact
+        if: env.DTT_VERIFICATION_ONLY != 'true'
         shell: pwsh
         run: |
           $dll = Resolve-Path 'bin/Release/DetailedTechnologyTooltips.dll'
@@ -68,6 +75,7 @@ jobs:
           Get-Content (Join-Path $out 'BUILD_IDENTITY.txt')
 
       - name: Upload candidate
+        if: env.DTT_VERIFICATION_ONLY != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: DetailedTechnologyTooltips-${{ env.DTT_VERSION }}-${{ github.sha }}

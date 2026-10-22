@@ -6,7 +6,7 @@ Detailed Technology Tooltips makes visible Technology-tree unlocks explain what 
 
 ## Status
 
-The current public stable release is **v1.1.6**. This development branch prepares **1.2.11**, a prerelease candidate for the redesigned tooltips described below. The preceding 1.2.10 visual and multilingual presentation was accepted in game; 1.2.11 removes the temporary F2 tuning window and fixes those accepted settings. Final candidate review is pending; no new stable release has been published.
+**[v1.2.11 stable release](https://github.com/NikichMods/DetailedTechnologyTooltips/releases/tag/v1.2.11).** Adds concise blueprint purposes and native icon-based material rows, with consistent mouse/gamepad presentation in all 11 game languages.
 
 ## What it does
 
@@ -52,7 +52,7 @@ Native item/station names continue to come directly from Graveyard Keeper's acti
 
 When updating, replace the existing `DetailedTechnologyTooltips.dll`. Do not keep multiple versioned copies beside it.
 
-The prerelease uses the accepted fixed appearance and has no configuration window or F2 shortcut. No separate translation files are needed.
+The mod uses a fixed appearance and has no configuration window or F2 shortcut. No separate translation files are needed.
 
 ## Compatibility
 

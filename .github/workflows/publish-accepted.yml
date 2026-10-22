@@ -30,7 +30,10 @@ jobs:
         run: |
           set -euo pipefail
           source .github/release/accepted-release.env
+          ASSET_SOURCE="${ASSET_SOURCE:-actions}"
+          [[ "$ASSET_SOURCE" = actions || "$ASSET_SOURCE" = release ]]
           {
+            echo "asset_source=$ASSET_SOURCE"
             echo "version=$VERSION"
             echo "source_sha=$SOURCE_SHA"
             echo "run_id=$RUN_ID"
@@ -39,6 +42,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Download exact accepted artifact
+        if: steps.accepted.outputs.asset_source == 'actions'
         uses: actions/download-artifact@v4
         with:
           name: ${{ steps.accepted.outputs.artifact_name }}
@@ -47,6 +51,7 @@ jobs:
           github-token: ${{ github.token }}
 
       - name: Verify accepted DLL identity
+        if: steps.accepted.outputs.asset_source == 'actions'
         shell: bash
         run: |
           set -euo pipefail
@@ -60,6 +65,7 @@ jobs:
           grep -F "sha256=$expected" accepted/BUILD_IDENTITY.txt
 
       - name: Publish GitHub Release
+        if: steps.accepted.outputs.asset_source == 'actions'
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ steps.accepted.outputs.version }}
@@ -76,3 +82,20 @@ jobs:
             --target "$SOURCE_SHA" \
             --title "Detailed Technology Tooltips v$VERSION" \
             --notes-file "docs/RELEASE_NOTES_${VERSION}.md"
+
+      - name: Verify externally published accepted DLL
+        if: steps.accepted.outputs.asset_source == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ steps.accepted.outputs.version }}
+          SOURCE_SHA: ${{ steps.accepted.outputs.source_sha }}
+          EXPECTED_SHA256: ${{ steps.accepted.outputs.dll_sha256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release view "v$VERSION" --json isDraft,isPrerelease --jq '(.isDraft == false) and (.isPrerelease == false)' | grep -x true
+          test "$(gh api "repos/$GH_REPO/git/ref/tags/v$VERSION" --jq .object.sha)" = "$SOURCE_SHA"
+          mkdir accepted
+          gh release download "v$VERSION" --pattern DetailedTechnologyTooltips.dll --dir accepted
+          test "$(sha256sum accepted/DetailedTechnologyTooltips.dll | awk '{print $1}')" = "$EXPECTED_SHA256"

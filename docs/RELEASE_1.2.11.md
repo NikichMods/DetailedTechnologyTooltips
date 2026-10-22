@@ -1,0 +1,13 @@
+# Accepted stable promotion —1.2.11
+
+## Acceptance and identity —2026-10-22
+
+User explicitly confirms the final1.2.11 check: no F2 window, unchanged appearance, normal language and branch switching, then requests release. This authorizes main integration/tag/GitHub Release under DevRules. Accepted installed and frozen native-reference DLL is193024 bytes, SHA256d64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943, source bb45fa2fb1f3838372a6d4584cec60e770026930, CI39722582036/job119639201028 successful. Do not rebuild or substitute the portable CI DLL. Preserved final session local/runtime-evidence/prerelease-1.2.11/accepted-final-check.log SHA256875caf6e56fb7822a1e1b3d47c4039a33639175466d2b527037aa28a40969aa9 reaches READY1.2.11 on pinned host MVID, with no DTT failed/disabled/fallback marker. User's preceding1.2.10 visual/language acceptance remains applicable; exact final behavior is now accepted too.
+
+Support-log audit: ordinary startup identifies DTT version, tooltip/corpus contract, icon capability and host MVID. Scoped failure markers identify fallback/disabled paths, normal session has one READY and no recurring DTT failures. F2 diagnostics removed. Public source/translation corpus remains MPL-2.0; game binaries/assets/localization payloads are not distributed. No new dependencies or gameplay/save changes.
+
+## Publication path readiness
+
+Existing publish-accepted workflow downloads portable CI artifacts; that is not the accepted local native-reference DLL. Selected narrow path: upload the hash-verified frozen local DLL as canonical DetailedTechnologyTooltips.dll to a draft GitHub Release using available authenticated REST access, verify its downloaded bytes, then publish stable. No connector offers release creation/local DLL upload, so native Git credential-backed API is the necessary fallback; credentials remain memory-only and never enter logs/files. Existing GitHub metadata confirms repository push access and no v1.2.11 release. Keep tag target at the exact accepted source commit, following prior project convention.
+
+Update accepted-release.env to record the current identity with ASSET_SOURCE=release. Extend the existing workflow with a release-asset verification path, preserving its prior actions-artifact publication path for future appropriate candidates. Main/post-acceptance CI rebuilds with the same version are verification only and must not upload a replacement numbered candidate. No production-source mutation is needed. Tests: existing accepted CI reused; validate workflow syntax/diff, public release metadata, one canonical DLL asset and downloaded SHA/size, exact tag target, main/source ancestry. Publication/main consistency is complete only after both are verified.
