@@ -20,3 +20,7 @@ Acceptance: native-reference/CI compile, retained104/105/localization/layout tes
 
 Source0f43a788fdefc608e905925eed9c2a075a036a5b;126464-byte DLL SHA2567b20a12f7f167930f2951d99f76516bd4a59571e64eb6aa5c0abf53e17d5160a. SDK8.0.426, zero build warnings/errors, existing regressions and expanded actual compiled native-body scope/composition fixture pass. CI39715816274/job119617537726 success. Reusable host finding promoted to GraveyardKeeperResearch e943c61; original bounded benchmark tool committed. User confirmed current host closure; no game process found. Installed canonical DLL hash/version matches frozen1.2.9, one DTT payload; prior1.2.8 retained outside plugins. Actual game latency/unchanged appearance acceptance pending.
 
+
+## Runtime result —2026-10-22
+
+User confirms1.2.9 branch switching is fast and the perceived delay disappeared, including the previously reported Technology-page behaviour. Preserved session SHA25689b1c6011a553d095003fa15cf88e54baf4f27f4453055298d8e7c731c05e023 records READY1.2.9 with104 blueprint purposes/nonprayer recipe layout, no DTT failure/disable/fallback marker found. This accepts the reported latency correction; no full game-Mono phase timing or claim that all costs were eliminated. Earlier1.2.8 Russian appearance review remains positive. Final EN/controller/PrayerClarity representative review and release cleanup remain separate; no main/public-release promotion.

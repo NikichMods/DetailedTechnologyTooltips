@@ -2,6 +2,11 @@
 
 Target: Graveyard Keeper1.407. Current production remains accepted1.1.6.
 
+## Current revision status —2026-10-22
+
+Installed candidate1.2.9 covers104 EN/RU blueprint purposes/105 visible references and shared formatting for nonprayer ordinary recipes, preserving native item descriptions and exact recipe stations. User positively reviews Russian appearance and confirms the branch-switch latency correction. Chosen F2 values are defaults; F2 remains ordinary/nonmodal in this test line. Stable/main remains1.1.6.
+
+Next remaining work: follow through on selective native in-purpose metric icons (church/graveyard quality; exact visual placement still unaccepted), focused English/controller/mixed PrayerClarity and grouped-ingredient review, then remove temporary F2 from release build and hand the exact final candidate for acceptance. Other languages keep prior presentation; no new translation corpus or carousel is required by this scope. No release/main promotion yet. Initial research plans below are history, not instructions to repeat completed investigations.
 ## Adopted design basis — 2026-10-21
 
 The user selected the **icons plus material names** preview as the basis for the next revision and explicitly approved purpose explanations and one keyword-accent color. Single-unlock gamepad tooltips were initially approved, but are now **deferred** after the user reviewed the combined live tooltip: current work uses common mouse/gamepad styling, material-based width and adjustable spacing first. PrayerClarity's existing navigation remains unchanged. A blueprint tooltip should answer what the unlocked construction does before listing its requirements and build location:
@@ -155,5 +160,6 @@ Candidate1.2.7 implements the selected104 distinct EN/RU purposes (105 visible b
 ## Ordinary recipe format adoption —2026-10-22
 
 User reports blueprint layout good and observes the ordinary wooden-marker item still uses old ingredient formatting. Assistant interpreted this as a request to extend the new layout, but the user subsequently questions whether recipes belonged to the agreed redesign. The user then confirms the interpretation was correct and they had overlooked the ordinary-recipe part. Recipe formatting remains adopted; the temporary scope question is resolved. No new ordinary-purpose authoring is implied.1.2.8 extends the shared EN/RU layout to nonprayer recipes; preserve native item purpose/effects rather than author another description corpus. Exact recipe craft_in remains the station owner. The accepted no-prayer-details rule now also excludes legacy DTT costs/location for Preach outputs, leaving native/PrayerClarity content untouched. Native groups and growing corrections retain meaning; RECIPE_LAYOUT_GATE.md owns the source/runtime boundary. Blueprint wording/defaults stay adopted. Recipe visual/runtime acceptance remains pending.
+
 
 

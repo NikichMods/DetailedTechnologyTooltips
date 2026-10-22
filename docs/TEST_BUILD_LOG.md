@@ -1232,3 +1232,7 @@ Source `0f43a788fdefc608e905925eed9c2a075a036a5b`, native-reference Release DLL1
 
 1.2.9 installed after current user closure confirmation and clear process check. Canonical DLL matches frozen source/version/hash, one DTT payload. Prior1.2.8 retained outside plugins. User-observed branch latency still to review; stable1.1.6/main unchanged.
 
+
+###1.2.9 runtime latency acceptance —2026-10-22
+
+User confirms the delay is gone and branches switch quickly. Captured session SHA25689b1c6011a553d095003fa15cf88e54baf4f27f4453055298d8e7c731c05e023 reaches READY1.2.9; no DTT failure/disable/fallback marker found. Status: reported branch-latency correction accepted; prior Russian visual review positive. This is not full-locale/mixed-node acceptance or release/main authorization. Remaining: selective purpose-metric icon follow-through/decision, focused English/controller/PrayerClarity regression review, then release-only F2 removal and exact final candidate handoff.
