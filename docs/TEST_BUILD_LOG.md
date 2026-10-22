@@ -1211,3 +1211,13 @@ Runtime request after installation: no crafting. Inspect an empty garden bed (no
 
 1.2.7 installed with host still closed after prior explicit confirmation: no process, unchanged prior log hash. CI39678947286/job119496054946 success. Canonical DLL matches frozen hash/source/version; one DTT copy.1.2.6 rollback retained. No stable publication/main promotion.
 
+
+##1.2.8 — shared formatting for ordinary recipe unlocks,2026-10-22
+
+**INSTALLED TEST CANDIDATE — ordinary-recipe visual acceptance pending.** User reviews1.2.7 blueprints as good but notes the wooden marker ordinary item still has plain Requires resources. Captured1.2.7 session SHA256cd4945ce0f31a07af7a339e6a62ff87a64b4ee1ea9c5929e7267d12271c4d167 reaches READY with no DTT failure/disable/fallback.1.2.8 applies the shared EN/RU material-icon/name/count layout, adopted alignment/gaps/material width and native original-body styling to nonprayer ordinary recipes. Exact own CraftDefinition.craft_in retained, aggregate item location still suppressed only for an exact replacement. Native descriptions/effects and original text style/symbols preserved; no authored ordinary-purpose database.
+
+Grouped needs resolve icons through the native base-name variants as existing name fallback does. Native audit237 visible ordinary refs,15 Preach-bearing prayer refs excluded per adopted division of responsibility;222 other ordinary refs eligible. Prayers now fall through without legacy DTT requirements/location additions, preserving native/PrayerClarity ownership across locales. Growing grapes/hops retain four seeds/vendor info and gain native seed icon in EN/RU. Other ordinary languages retain earlier formatting. Work/Perk/blueprint catalogue/navigation/F2/default values unchanged.
+
+Exact source `c3b9f0f54604b77fd9c38602b21e12020310e2e3`; native-reference Release DLL126464 bytes, SHA256 `9647b7d845ed8a554ce3d2fdb122c3c7c9f0bd356de110447638334f19446737`, SDK8.0.426 zero warnings/errors. Existing regressions and local actual-compiled composition/prayer-boundary/group resolution fixture pass; fixture does not render Unity. CI39713757024 success. User confirmed current game closure; process check clear, one DTT payload, installed canonical version/hash matches frozen artifact.1.2.7 retained outside plugins for rollback. Readiness/native data boundaries: RECIPE_LAYOUT_GATE.md.
+
+Short runtime review: reopen the screenshot's wooden marker/fence; look at native grave-quality description, separate resource icons and exact Carpenter station. If convenient inspect a grouped chapter/book ingredient, existing grapes/hops growing tooltip and a prayer/mixed node with PrayerClarity; compare mouse/controller. No crafting needed. This is a candidate, not stable release or all-game acceptance.

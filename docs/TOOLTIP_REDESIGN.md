@@ -151,3 +151,7 @@ After working1.2.5 calibration the user selected icon size20, Y0, material text 
 ## Full catalogue test integration —2026-10-22
 
 Candidate1.2.7 implements the selected104 distinct EN/RU purposes (105 visible blueprint references), extending the thirteen-entry pilot. Source/runtime-readiness details: FULL_BLUEPRINT_CATALOGUE_GATE.md. Current format/settings are adopted, full native runtime coverage remains to review. Other locales retain earlier behavior. Selective in-purpose metric/category symbols remain a separate visual addition; this candidate preserves the tested material-icon layout. New DTT carousel remains deferred, PrayerClarity navigation unchanged. Release removal of temporary F2 and stable promotion have not been authorized by this integration request.
+
+## Ordinary recipe format adoption —2026-10-22
+
+User reports blueprint layout good and explicitly requests the same icon/name material format for ordinary unlocked items (wooden grave marker screenshot).1.2.8 extends the shared EN/RU layout to nonprayer recipes; preserve native item purpose/effects rather than author another description corpus. Exact recipe craft_in remains the station owner. The accepted no-prayer-details rule now also excludes legacy DTT costs/location for Preach outputs, leaving native/PrayerClarity content untouched. Native groups and growing corrections retain meaning; RECIPE_LAYOUT_GATE.md owns the source/runtime boundary. Blueprint wording/defaults stay adopted. Recipe visual/runtime acceptance remains pending.

@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.7
+# Tooltip layout pilot — current candidate1.2.8
 
-Status:1.2.7 full EN/RU catalogue test candidate installed; CI passed, runtime acceptance pending.104 distinct blueprint purposes/105 visible Technology references now share the adopted layout, replacing the thirteen-entry pilot boundary. F2 remains nonmodal, chosen defaults retained. Stable1.1.6 unchanged; runtime acceptance pending. Read FULL_BLUEPRINT_CATALOGUE_GATE.md for scope, ready gates and evidence limits. Historical pilot/candidate evidence follows.
+Status:1.2.8 installed; blueprint catalogue unchanged and positively reviewed by user. Shared EN/RU icon-resource layout now extends to nonprayer ordinary recipes, with original item descriptions and exact recipe stations preserved. Prayers fall through to native/PrayerClarity per adopted ownership rule. New recipe runtime acceptance pending. See RECIPE_LAYOUT_GATE.md and TEST_BUILD_LOG.md1.2.8; stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
 
 ## Solution selection and READY gates before source changes
 
@@ -130,4 +130,5 @@ Source `a76497e3de47b6da4c0fb707c603536210a634fa`; native-reference DLL103936 by
 ###1.2.7 full catalogue handoff
 
 Exact sourcef24619a864f3febe0a1b86a0db8d385acc8a0a95, DLL124416 bytes, SHA256ae6d69818e7e29c29dc08e37fc07d95413843d71efa6aba55340e782008401e5. Native-reference Release zero warnings/errors;104 compiled/authored/native ID parity and105 visible-ref coverage plus existing regressions pass. CI39678947286/job119496054946 success. Installed canonical DLL matches the frozen hash/source/version; retained1.2.6 rollback outside plugins. All selected EN/RU blueprints now use this format, including virtual/DLC builds; no full runtime acceptance claim. Empty material blocks receive only a purpose→location gap; native resurrection purpose lookup scoped to that blueprint. Adopted settings and all earlier fallback/PrayerClarity boundaries remain. See TEST_BUILD_LOG.md1.2.7 for a short representative runtime review. No public release/main merge.
+
 
