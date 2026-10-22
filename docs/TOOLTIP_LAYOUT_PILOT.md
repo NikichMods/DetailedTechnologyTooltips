@@ -1,6 +1,6 @@
 # Tooltip layout pilot — installed1.2.10
 
-Status:1.2.10 installed after explicit user closure confirmation, matching frozen source/hash and one active payload; startup/visual review pending. It adds purpose symbols and all eleven game languages, with local/hosted checks passing. User accepted restored branch speed, Russian appearance and English/controller presentation on prior1.2.9. MULTILINGUAL_EFFECT_ICONS_GATE.md owns exact identities and requested review. F2/chosen defaults unchanged; stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
+Status:1.2.10 installed with matching frozen source/hash and one active payload; user accepts its tooltips, icons/symbols, wrapping, emphasis and language presentation. Accepted session reaches READY and records all eleven native language loads without DTT failure/disable/fallback. Prior1.2.9 branch-speed acceptance retained. MULTILINGUAL_EFFECT_ICONS_GATE.md owns exact identities/evidence limits. F2/chosen defaults unchanged; release calibration cleanup remains next, stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
 
 ## Solution selection and READY gates before source changes
 
