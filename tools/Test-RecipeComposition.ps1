@@ -13,8 +13,10 @@ public sealed class DttFixtureText {
 public sealed class DttFixtureGap { public DttFixtureGap() {} }
 public sealed class DttFixtureTooltip {
  public List<object> Rows=new List<object>();
+ public DttFixtureContainer Data=new DttFixtureContainer();
  public void AddData(object data) { Rows.Add(data); }
 }
+public sealed class DttFixtureContainer { public List<object> DataList=new List<object>(); }
 public enum DttFixtureItemType { Ordinary=0, Preach=20 }
 public sealed class DttFixtureDefinition { public DttFixtureItemType Type; }
 public sealed class DttFixtureNeed { public string Id; public DttFixtureNeed(string id) { Id=id; } }
@@ -81,5 +83,23 @@ foreach($case in @(@('plank',$false),@('sermon:1',$true),@('sermon',$true),@('un
 }
 $resolved=$api.GetMethod('ResolveMaterialDefinition',$flags).Invoke($null,@($balance,'chapter'))
 if(-not [object]::ReferenceEquals($resolved,$plain)) { throw 'Grouped ingredient must resolve through the native variant list' }
-'Actual compiled composition/prayer-boundary/grouped-ingredient checks PASS; UI rendering not exercised.'
+$layout.GetField('textDataType',$flags).SetValue($null,[DttFixtureText])
+$layout.GetField('tooltipData',$flags).SetValue($null,[DttFixtureTooltip].GetField('Data'))
+$layout.GetField('dataList',$flags).SetValue($null,[DttFixtureContainer].GetField('DataList'))
+$layout.GetField('installed',$flags).SetValue($null,$true)
+$calibration=$assembly.GetType('DetailedTechnologyTooltips.PilotCalibration',$true)
+$calibration.GetField('text',$flags).SetValue($null,[DttFixtureText].GetField('Text'))
+$calibration.GetField('ready',$flags).SetValue($null,$true)
+$preview=[DttFixtureTooltip]::new()
+$earlier=[DttFixtureText]::new('Earlier unlock',$null,$null,-1)
+$title=[DttFixtureText]::new('Current title',$null,$null,-1)
+$body=[DttFixtureText]::new('Native (wskull)1 body',$null,$null,-1)
+$preview.Data.DataList.Add($earlier); $preview.Data.DataList.Add($title)
+$preview.Data.DataList.Add([DttFixtureGap]::new()); $preview.Data.DataList.Add($body)
+for($i=0;$i -lt 2;$i++) {
+ if(-not $layout.GetMethod('MarkNativeBody',$flags).Invoke($null,@($preview,1))) { throw 'Native body not recognized' }
+}
+foreach($row in @($earlier,$title,$body)) { $calibration.GetMethod('BeforeDraw',$flags).Invoke($null,@($row)) | Out-Null }
+if($earlier.Text -ne 'Earlier unlock' -or $title.Text -ne 'Current title' -or $body.Text -ne '[FF]Native (wskull)1 body[FF]') { throw 'Cached-type native-body marking changed an earlier/title row or lost native symbol' }
+'Actual compiled composition/prayer/group/native-body-scope checks PASS; UI rendering not exercised.'
 

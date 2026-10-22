@@ -21,7 +21,7 @@ namespace DetailedTechnologyTooltips
         private static readonly ConditionalWeakTable<object, Tag> Tags = new ConditionalWeakTable<object, Tag>();
         private static readonly ConditionalWeakTable<object, Tag> LiveGaps = new ConditionalWeakTable<object, Tag>();
         private static readonly ConditionalWeakTable<object, State> States = new ConditionalWeakTable<object, State>();
-        private static Type bubbleType, widgetType, labelType, textWidgetType, blankType, rootType;
+        private static Type bubbleType, widgetType, labelType, textWidgetType, textDataType, blankType, rootType;
         private static FieldInfo tooltipData, dataList, widgets, widgetData, bubbleWidget;
         private static PropertyInfo width, height, overflow, overflowWidth, printed, alignment, pivotOffset, worldCorners;
         private static object resizeFreely, resizeHeight, left, center;
@@ -36,6 +36,7 @@ namespace DetailedTechnologyTooltips
             labelType = AccessTools.TypeByName("UILabel");
             rootType = AccessTools.TypeByName("UIRoot");
             textWidgetType = AccessTools.TypeByName("BubbleWidgetText");
+            textDataType = AccessTools.TypeByName("BubbleWidgetTextData");
             blankType = AccessTools.TypeByName("BubbleWidgetBlankSeparatorData");
             tooltipData = AccessTools.Field(AccessTools.TypeByName("Tooltip"), "data");
             dataList = AccessTools.Field(tooltipData.FieldType, "data_list");
@@ -54,7 +55,7 @@ namespace DetailedTechnologyTooltips
             left = Enum.Parse(alignment.PropertyType, "Left"); center = Enum.Parse(alignment.PropertyType, "Center");
             blankCtor = blankType.GetConstructor(Type.EmptyTypes);
             if (widgets == null || widgetData == null || printed == null || blankCtor == null
-                || bubbleWidget == null || pivotOffset == null || worldCorners == null)
+                || bubbleWidget == null || pivotOffset == null || worldCorners == null || textDataType == null)
                 throw new MissingMemberException("Pilot layout native contract");
             harmony.Patch(AccessTools.DeclaredMethod(bubbleType, "UpdateSize", Type.EmptyTypes),
                 prefix: new HarmonyMethod(typeof(PilotLayout), nameof(Prepare)));
@@ -92,13 +93,12 @@ namespace DetailedTechnologyTooltips
         {
             if (!Available) return false;
             var list = (IList)dataList.GetValue(tooltipData.GetValue(tooltip));
-            var dataType = AccessTools.TypeByName("BubbleWidgetTextData");
             bool hasBody = list.Count > start + 2;
             for (int i = start + 2; i < list.Count; i++)
             {
                 var data = list[i];
                 Tag existing;
-                if (!dataType.IsInstanceOfType(data) || Tags.TryGetValue(data, out existing)) continue;
+                if (!textDataType.IsInstanceOfType(data) || Tags.TryGetValue(data, out existing)) continue;
                 Mark(data, PilotRole.Purpose);
                 PilotCalibration.MarkNativeBody(data);
             }

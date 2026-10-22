@@ -1,0 +1,17 @@
+# Branch latency correction —1.2.9
+
+## Evidence and selection checkpoint before source mutation —2026-10-22
+
+User positively reviews1.2.8 Russian appearance but reports noticeable delay opening Technology and switching branches. Captured session SHA2564945048c566934842b416412d9b83db76f4125ae86e3d2ea938746ffd5d6f1d4. No DTT exception/disable establishes a cause. Installed native TechTreeGUIItem.Draw initializes child unlock tooltips and InitGamepadTooltip; TechTreeGUIUnlockItem.Draw calls TechUnlock.GetTooltip while populating a page, not only at hover.
+
+Direct installed Harmony0Harmony.dll IL: AccessTools.TypeByName tries Type.GetType, then AllTypes().FirstOrDefault by full name, then another AllTypes name fallback; it is not a memoized native type dictionary. PilotLayout.MarkNativeBody calls it once for each enriched ordinary unlock. That is invariant metadata repeatedly scanning all loaded assembly types in the page-population path, introduced in1.2.8.
+
+Read-only standalone microbenchmark loads installed managed/Harmony assemblies and executes the actual TypeByName lookup50 times: .NET10.0.11,233 loaded assemblies,813.063ms repeated search versus0.118ms retained Type reference. Same returned BubbleWidgetTextData identity. This reproduces expensive lookup under desktop CLR, not game Mono, excludes native UI and does not measure total real branch time or establish this is the sole cause. It is sufficient evidence for eliminating the known repeated assembly enumeration; actual perceived speed must be checked in game.
+
+Options: (1) retain immutable native Type at existing Install binding; (2) defer entire tooltip generation to hover, which changes native mouse/gamepad lifecycle; (3) cache full tooltip contexts, which needs invalidation for language, perks and other-mod live data changes. Choose1: smallest correction to the proved hot path. No new observer/profiler mod needed now; existing static/native lookup timing identifies a local implementation defect. If branch delay remains materially present, next step is bounded native branch/DTT phase timings, not speculative broad caching.
+
+## READY metadata binding correction
+
+Observable change: reduce page-population CPU/allocation overhead while keeping identical tooltip results. Owner: PilotLayout.MarkNativeBody; its only caller is TechUnlockPostfix for rich ordinary contexts. Bind BubbleWidgetTextData Type once with existing Install types, validate it and use that cached Type for IsInstanceOfType. The same versioned host assembly/type identity is already bound for widget draw/row data. It does not depend on save, language, craft needs/locations, item quality, F2 values or rebalancing. Do not cache player/balance data. Other Install-only TypeByName calls stay outside the hot path; renderer lazy type binding is already once-only. No patch to native navigation, layout timing or tooltip content.
+
+Acceptance: native-reference/CI compile, retained104/105/localization/layout tests and actual compiled composition/prayer/group fixture. Extend the fixture to execute actual MarkNativeBody with cached text-data Type and native-body prefix isolation, confirm earlier unlock/title content unchanged and repeated marking safe. Existing standalone benchmark is read-only and bounded, not a Unity performance guarantee. Freeze1.2.9, preserve1.2.8 rollback, user repeats branch switches after installation. User already confirms current host closure. Runtime latency improvement pending; retain the positive1.2.8 Russian visual feedback without claiming all-locale acceptance.
