@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Original purpose translations; id|text. See docs/MULTILINGUAL_EFFECT_ICONS_GATE.md.
+mf_furnace_0|用于冶炼铁，以及制作玻璃和陶器。
+mf_furnace_1|还可冶炼**钢、银和金**。
+mf_furnace_2|可制作**钢零件**。同量的煤能产出更多石墨。
+mf_anvil_1|可锻造钉子、简单铁件和基础工具。
+mf_anvil_2|还可锻造**复杂铁件**。
+mf_anvil_3|可锻造**钢制装备**。同量的金属能产出更多钉子和简单铁件。
+mf_potter_wheel_1|可在此用黏土制作陶碗。
+mf_jewelry|用于制作珠宝和为剑镶嵌宝石。
+mf_beam_gantry_1|可将原木锯成板材。
+mf_chocks_1|可在此制作柴火和楔子。
+mf_saw_1|可制作**木梁**。
+mf_workbench_1|可在此制作木板和木制墓饰。
+mf_workbench_2|还可制作**透镜和钢制装备**。
+mf_hammer_0|用于加工石料和大理石，制作建材及墓饰。
+mf_hammer_1|可制作**雕刻石料和雕刻大理石**。
+mf_timber_1|用于储存**原木**。
+mf_stones_1|用于储存**石块和大理石块**。
+mf_ore_1_complete|用于储存**铁矿石块**。
+mf_box_stuff|用于储存物品。
+obj_church_scroll_cabinet|用于储存物品。
+obj_church_bookcase|用于储存物品。
+rack_alchemy|用于储存物品。
+rack_organs|用于储存物品。
+mf_alchemy_survey|用于研究物品并获得科技点数。
+table_book_constr|可在此制作纸张、墨水和蜡烛。
+desk|可制作书籍和祷文。
+desk_2|制作书籍和祷文时获得**写作质量加成**。
+mf_paper_press|用于将纸浆制成干净的纸张。
+mf_printing_press|可批量印制传单。
+mf_printing_press_2|可批量印制传单。
+zombie_pulpit|由僵尸编写故事。
+mf_alchemy_craft_02|可用**两种原料**制作药水。
+mf_alchemy_craft_03|可用**三种原料**制作药水。
+mf_alchemy_stirrer_01|可将材料加工成炼金(alc2) **溶液**。
+mf_alchemy_mill|用于将材料磨成炼金(alc1) **粉末**。
+mf_distcube_2_clay|可在此从材料中获取炼金(alc3) **精华**。
+mf_distcube_2_cuprum|可用同量原料获得(alc3) **更多精华**。
+alchemy_table_zombie|由僵尸将材料加工成(alc1) 粉末、(alc2) 溶液和(alc3) 精华。
+alchemy_workbench_zombie|由僵尸按已知配方制作药水。
+garden_empty|可种植蔬菜。
+garden_empty_stick|可在此种植扁豆。
+vineyard_grapes_stick|用于种植葡萄和啤酒花。
+bush_berry_garden|可栽种浆果灌木。
+tree_apple_garden|可栽种苹果树。
+v_obj_compost_heap|用于将作物废料转化为泥炭。
+beehouse|用于采集蜂蜜；掌握对应技能后还可采集蜂蜡。
+zombie_garden_desk|由僵尸种植田间作物。
+zombie_vineyard_desk|由僵尸种植葡萄和啤酒花。
+mf_vine_press|可将收获的作物榨成果汁和油。
+barrel_brew|用于在蒸馏前发酵果汁。
+mf_barrel_mid|用于将葡萄汁酿成葡萄酒。
+mf_distcube_3|可在此将发酵果汁蒸馏成烈酒。
+brewing_stand|用于酿造啤酒和蜂蜜酒。
+mf_zombie_brewing|由僵尸酿造啤酒。
+mf_zombie_winemaking|由僵尸酿造葡萄酒。
+mf_preparation_1|可取出和替换身体部位。
+mf_preparation_2|尸体在这张台子上**不会腐烂**。
+mf_balsamation_1|可在此通过注射改变尸体的属性。
+mf_balsamation_2|尸体在台子上**不会腐烂**。防腐处理耗时减半。
+corpse_bed|尸体在此腐烂得更慢。可放置**一具尸体**。
+corpse_bed_big|尸体在此腐烂得更慢。可放置**两具尸体**。
+corpse_fridge|储存的尸体**不会腐烂**。可容纳两具尸体。
+zombie_crafting_table|可在此用尸体制作僵尸工人。
+mf_pyre_placed|用于焚烧尸体以获得灰烬。
+zombie_mine_bench_left|由僵尸开采铁矿石和煤。
+zombie_mine_fence_front_stone|由僵尸开采石块。
+zombie_mine_fence_front_marble_right|由僵尸开采大理石块。
+porter_station|由僵尸在工作区之间搬运资源。
+lantern_network|在矿井内设置灯笼建造点。
+lantern|用于照亮周围区域。
+well_pump|自动从井中取水。
+candelabrum_1|(cross) **教堂质量+1**。 蜡烛可提高加成。
+candelabrum_2|(cross) **教堂质量+2**。 蜡烛可提高加成。
+candelabrum_3|(cross) **教堂质量+3**。 蜡烛可提高加成。
+church_bench|(cross) **教堂质量+1**。
+church_bench_2|(cross) **教堂质量+3**。
+church_table_1|(cross) **教堂质量+5**。
+church_table_2|(cross) **教堂质量+8**。
+church_window_1|(cross) **教堂质量+5**。
+church_budka_1|(cross) **教堂质量+5**。 教区居民可能留下忏悔。
+church_budka_2|(cross) **教堂质量+7**。 教区居民可能留下忏悔。
+c_obj_incense_1|(cross) **教堂质量+1**。 熏香可暂时提高加成。
+c_obj_incense_2|(cross) **教堂质量+3**。 熏香可暂时提高加成。
+pray_stand_wd|(wskull) **墓地质量+2**。
+pray_stand_stn|(wskull) **墓地质量+4**。
+grass_sward_2x3|(wskull) **墓地质量+2**。
+road_marble|(wskull) **墓地质量+3**。
+lantern_3|(wskull) **墓地质量+4**。
+columbarium_stone|(wskull) **墓地质量+12**。
+columbarium_marble|(wskull) **墓地质量+20**。
+soul_container|可储存**两个灵魂**。
+soul_container_2|可储存**三个灵魂**。
+soul_container_3|可储存**四个灵魂**。
+soul_workbench|可在此为身体部位增加白色和红色骷髅。
+soul_extractor_upgrd_to_2|可在提取灵魂时**减少损伤**。
+soul_extractor_upgrd_to_3|可**无损**提取灵魂。
+mf_crematorium|用于消耗燃料将尸体烧成灰烬。
+soul_totem_souls|可消耗灵魂的感激，远程启动所在区域的工作。
+pride_healing_extension|为灵魂治疗器增加**皮肤**槽位。
+wrath_healing_extension|为灵魂治疗器增加**血液**槽位。
+gluttony_healing_extension|为灵魂治疗器增加**脂肪**槽位。
+sloth_healing_extension|为灵魂治疗器增加**大脑**槽位。
+lust_healing_extension|为灵魂治疗器增加**心脏**槽位。
+envy_healing_extension|为灵魂治疗器增加**肠子**槽位。

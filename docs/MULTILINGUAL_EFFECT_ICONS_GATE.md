@@ -1,0 +1,32 @@
+# Multilingual purpose copy and effect symbols — candidate 1.2.10
+
+## Scope and baseline — 2026-10-22
+
+User reports that English/controller presentation on installed 1.2.9 looks correct: record that surface as checked, not every mixed PrayerClarity node or every recipe. User authorizes selective purpose symbols plus all current game languages in one candidate. Host is running: prepare and freeze only; do not install. Keep F2 and chosen settings for this candidate. No stable/main/release promotion.
+
+## READY: full language coverage before source mutation
+
+Observable outcome: the same purpose/material/location presentation is available in all eleven current 1.407 selector languages (en, de, fr, pt-br, es, ru, it, pl, ja, zh_cn, ko). Existing Localization already owns 38 translated service keys. Add one build-location caption there and original translated blueprint-purpose resources for the nine remaining languages. EN/RU reviewed corpus stays the semantic baseline. Native resurrection description reuse extends through its existing GJL lookup. Native names, costs, icons and own recipe/build station ownership remain native. Unknown languages continue legacy presentation without English substitution.
+
+Owner/consumer: GameApi.TryCreateCraftContext / ConfigureRecipeLayout select rich contexts; BlueprintPurposeCopy.Get selects authored prose; AppendDetails and native BubbleWidgetText.Draw consume those rows. Final geometry remains existing PilotLayout.UpdateSize/Reposition with active native font measurements, unchanged. Existing GJL language/font lifecycle belongs to native BubbleWidgetText.Draw (shared UI_INPUT_TIME_AND_ENVIRONMENT). Enable only the known eleven languages; do not invent a font map or persist native language state. Immutable authored translations can be parsed once from embedded resources, not reloaded/scanned per unlock. No filesystem/network translation dependency at runtime.
+
+Blast radius: blueprint purposes and rich nonprayer recipe presentation for nine languages; already-reviewed EN/RU copy/layout remains except separately gated icons. Work/Perk, native prayer content, PrayerClarity navigation, visibility, progression, saves, material quantities, exact stations and F2 defaults preserved. No new ordinary-item purpose corpus. Shared research's accepted 1.407 selector cycle establishes the eleven-code target; existing project font/format research establishes native font selection and language-specific separators. This is translation/integration readiness, not native-speaker or eleven-language visual acceptance.
+
+Tests: require 104 distinct IDs / 105 visible references in each language; unknown locale and prayer/ordinary scope exclusions; lossless EN/RU catalogue parity; balanced sparse emphasis and matching symbol/numeric-effect intent; embedded-resource identity in both test and production assemblies; native-reference composition/prayer/group fixtures plus hosted clean build. Review representative long German/Polish and CJK text in the real game after installation, separately from icon placement. No new game probe needed.
+
+## Effect symbols
+
+### READY before symbol source mutation
+
+Direct bounded resources/level2 inspection on the pinned 1.407 inputs finds BubbleWidgetText 23189 references UILabel23190, bitmapFont151301, symbol mode3 (NoEffect; installed enum: None=0, Normal=1, Colored=2, NoEffect=3). The ordinary small/tiny UIFonts151301/151302 and alternate fonts151314/155633/159186 contain all six selected sequences with the shared documented sprite meanings. Native BubbleWidgetText.Draw IL applies requested style, calls GJL.EnsureLabelHasCorrectFont, then assigns text; it does not replace symbol mode. Thus insert native text tokens into owned purpose data and retain the native renderer/final font consumer. No symbol-mode patch is needed. Prior font-route findings establish the built-in locale paths; actual baseline/tint/wrap remains human visual review.
+
+Observable change and blast radius: only authored blueprint purposes receive symbols; native ordinary item effects already retain their own symbols. Prefix church-quality rows with (cross), graveyard-quality rows with (wskull); place (alc1)/(alc2)/(alc3) beside the corresponding three alchemy categories, including higher distillation yield and zombie processing. Science is not added to Study, which discusses technology points rather than science. Keep words and all symbols outside red accent spans; preserve native NoEffect symbol mode instead of red-tinting metric glyphs. No custom atlas registration, assets, renderer, global font changes or unrelated prayer edits. Numeric effects, sparse emphasis, native body rows and material icons remain unchanged.
+
+Tests compare per-ID symbol multisets across all eleven languages and ensure no token is inside an accent. EN/RU catalogue parity includes the explicit tokens. Native-reference composition still preserves original item symbols. Runtime review: one church furnishing, one graveyard furnishing, three alchemy stations, with native-colored glyphs and no literal tokens/overlap; repeat a representative CJK locale after live language change. Icons and language copy share only immutable authored strings and the already-proved text consumer, so one candidate remains attributable and reversible.
+
+## Local verification before source freeze
+
+SDK8.0.426 native-reference Release: zero warnings/errors. Localization executable passes104 purposes x11 languages,105 native visible references per language,39 service keys per language, exact EN/RU catalogue parity, aliases/unknown locale handling, symbol multisets, accent balance/placement and numeric church/graveyard effects. A separate comparison against baseline0eb55a9 confirms all104 EN/RU pairs are byte-identical after removing the added symbol tokens.
+
+Actual compiled DLL fixture finds exactly nine embedded translation resources (WithCulture=false prevents satellite-DLL packaging), resolves104 purposes in every language and passes existing recipe composition/native-body/prayer/group tests. No Unity scene rendered by those fixtures.936 original translated strings are embedded, loaded once; no runtime filesystem lookup. Tests establish completeness and technical integration, not native-speaker review or eleven-language visual acceptance. Installed DLL still has1.2.9 SHA2567b20a12f7f167930f2951d99f76516bd4a59571e64eb6aa5c0abf53e17d5160a. No installation attempted.
+

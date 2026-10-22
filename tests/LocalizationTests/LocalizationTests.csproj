@@ -14,6 +14,12 @@
     <Compile Include="..\..\src\LayoutPolicy.cs" Link="LayoutPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\src\Translations\BlueprintPurposes.*.txt">
+      <LogicalName>Dtt.%(Filename)%(Extension)</LogicalName>
+      <WithCulture>false</WithCulture>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Fixtures\VisibleBlueprintUnlocks.tsv" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\docs\BLUEPRINT_PURPOSE_CATALOGUE.md" Link="BlueprintPurposeCatalogue.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Original purpose translations; id|text. See docs/MULTILINGUAL_EFFECT_ICONS_GATE.md.
+mf_furnace_0|철을 제련하고 유리와 도자기를 만드는 데 사용합니다.
+mf_furnace_1|추가로 **강철, 은, 금**을 제련할 수 있습니다.
+mf_furnace_2|**강철 부품**을 만들 수 있습니다. 같은 양의 석탄으로 흑연을 더 많이 얻습니다.
+mf_anvil_1|못, 단순한 철 부품, 기본 도구를 단조할 수 있습니다.
+mf_anvil_2|추가로 **복잡한 철 부품**을 단조할 수 있습니다.
+mf_anvil_3|**강철 장비**를 단조할 수 있습니다. 같은 양의 금속으로 못과 단순한 부품을 더 많이 얻습니다.
+mf_potter_wheel_1|여기서 점토로 도자기 그릇을 빚을 수 있습니다.
+mf_jewelry|장신구를 만들고 검에 보석을 박는 데 사용합니다.
+mf_beam_gantry_1|통나무를 켜서 널빤지를 만들 수 있습니다.
+mf_chocks_1|여기서 장작과 쐐기를 만들 수 있습니다.
+mf_saw_1|**목재 빔**을 만들 수 있습니다.
+mf_workbench_1|여기서 나무 판자와 나무 묘지 장식을 만들 수 있습니다.
+mf_workbench_2|추가로 **렌즈와 강철 장비**를 만들 수 있습니다.
+mf_hammer_0|돌과 대리석을 가공해 건축 자재와 묘지 장식을 만드는 데 사용합니다.
+mf_hammer_1|**조각한 돌과 대리석**을 만들 수 있습니다.
+mf_timber_1|**통나무**를 보관하는 곳입니다.
+mf_stones_1|**돌과 대리석 블록**을 보관하는 곳입니다.
+mf_ore_1_complete|**철광석 블록**을 보관하는 곳입니다.
+mf_box_stuff|아이템을 보관하는 곳입니다.
+obj_church_scroll_cabinet|아이템을 보관하는 곳입니다.
+obj_church_bookcase|아이템을 보관하는 곳입니다.
+rack_alchemy|아이템을 보관하는 곳입니다.
+rack_organs|아이템을 보관하는 곳입니다.
+mf_alchemy_survey|아이템을 연구하고 기술 포인트를 얻는 데 사용합니다.
+table_book_constr|여기서 종이, 잉크, 양초를 만들 수 있습니다.
+desk|책과 기도문을 만들 수 있습니다.
+desk_2|책과 기도문을 만들 때 **집필 품질 보너스**를 받습니다.
+mf_paper_press|종이 반죽으로 깨끗한 종이를 만드는 데 사용합니다.
+mf_printing_press|전단지를 한꺼번에 인쇄할 수 있습니다.
+mf_printing_press_2|전단지를 한꺼번에 인쇄할 수 있습니다.
+zombie_pulpit|좀비가 이야기를 씁니다.
+mf_alchemy_craft_02|**두 가지 재료**로 물약을 만들 수 있습니다.
+mf_alchemy_craft_03|**세 가지 재료**로 물약을 만들 수 있습니다.
+mf_alchemy_stirrer_01|재료에서 연금술 (alc2) **용액**을 얻을 수 있습니다.
+mf_alchemy_mill|재료를 갈아 연금술 (alc1) **가루**를 만드는 데 사용합니다.
+mf_distcube_2_clay|여기서 재료로 연금술 (alc3) **추출물**을 얻을 수 있습니다.
+mf_distcube_2_cuprum|같은 양의 원료로 (alc3) **더 많은 추출물**을 얻을 수 있습니다.
+alchemy_table_zombie|좀비가 재료를 (alc1) 가루, (alc2) 용액, (alc3) 추출물로 가공합니다.
+alchemy_workbench_zombie|좀비가 알려진 제조법으로 물약을 만듭니다.
+garden_empty|채소를 재배할 수 있습니다.
+garden_empty_stick|여기서 렌틸콩을 재배할 수 있습니다.
+vineyard_grapes_stick|포도와 홉을 재배하는 데 사용합니다.
+bush_berry_garden|베리 덤불을 심을 수 있습니다.
+tree_apple_garden|사과나무를 심을 수 있습니다.
+v_obj_compost_heap|작물 찌꺼기를 이탄으로 바꾸는 데 사용합니다.
+beehouse|꿀을 채집하는 데 사용합니다. 해당 능력이 있으면 밀랍도 얻을 수 있습니다.
+zombie_garden_desk|좀비가 밭작물을 재배합니다.
+zombie_vineyard_desk|좀비가 포도와 홉을 재배합니다.
+mf_vine_press|수확물을 짜서 즙과 기름을 얻을 수 있습니다.
+barrel_brew|증류 전에 과즙을 발효하는 데 사용합니다.
+mf_barrel_mid|포도즙으로 포도주를 만드는 데 사용합니다.
+mf_distcube_3|여기서 발효한 과즙을 증류해 증류주를 만들 수 있습니다.
+brewing_stand|맥주와 벌꿀술을 빚는 데 사용합니다.
+mf_zombie_brewing|좀비가 맥주를 빚습니다.
+mf_zombie_winemaking|좀비가 포도주를 만듭니다.
+mf_preparation_1|신체 부위를 추출하고 교체할 수 있습니다.
+mf_preparation_2|이 탁자 위에서는 시신이 **부패하지 않습니다**.
+mf_balsamation_1|여기서 주사로 시신의 특성을 바꿀 수 있습니다.
+mf_balsamation_2|탁자 위에서는 시신이 **부패하지 않습니다**. 방부 처리 시간이 절반으로 줄어듭니다.
+corpse_bed|시신의 부패가 느려집니다. **시신 한 구**를 놓을 수 있습니다.
+corpse_bed_big|시신의 부패가 느려집니다. **시신 두 구**를 놓을 수 있습니다.
+corpse_fridge|보관 중인 시신은 **부패하지 않습니다**. 시신 두 구를 보관할 수 있습니다.
+zombie_crafting_table|여기서 시신으로 좀비 일꾼을 만들 수 있습니다.
+mf_pyre_placed|시신을 태워 재를 얻는 데 사용합니다.
+zombie_mine_bench_left|좀비가 철광석과 석탄을 채굴합니다.
+zombie_mine_fence_front_stone|좀비가 돌 블록을 채석합니다.
+zombie_mine_fence_front_marble_right|좀비가 대리석 블록을 채석합니다.
+porter_station|좀비가 작업 구역 사이에서 자원을 운반합니다.
+lantern_network|광산에 등불을 지을 자리를 만듭니다.
+lantern|주변을 밝히는 데 사용합니다.
+well_pump|우물에서 자동으로 물을 길어 올립니다.
+candelabrum_1|(cross) **교회 품질 +1**. 양초로 보너스를 높일 수 있습니다.
+candelabrum_2|(cross) **교회 품질 +2**. 양초로 보너스를 높일 수 있습니다.
+candelabrum_3|(cross) **교회 품질 +3**. 양초로 보너스를 높일 수 있습니다.
+church_bench|(cross) **교회 품질 +1**.
+church_bench_2|(cross) **교회 품질 +3**.
+church_table_1|(cross) **교회 품질 +5**.
+church_table_2|(cross) **교회 품질 +8**.
+church_window_1|(cross) **교회 품질 +5**.
+church_budka_1|(cross) **교회 품질 +5**. 교구민이 고해를 남길 수 있습니다.
+church_budka_2|(cross) **교회 품질 +7**. 교구민이 고해를 남길 수 있습니다.
+c_obj_incense_1|(cross) **교회 품질 +1**. 향으로 보너스를 일시적으로 높일 수 있습니다.
+c_obj_incense_2|(cross) **교회 품질 +3**. 향으로 보너스를 일시적으로 높일 수 있습니다.
+pray_stand_wd|(wskull) **묘지 품질 +2**.
+pray_stand_stn|(wskull) **묘지 품질 +4**.
+grass_sward_2x3|(wskull) **묘지 품질 +2**.
+road_marble|(wskull) **묘지 품질 +3**.
+lantern_3|(wskull) **묘지 품질 +4**.
+columbarium_stone|(wskull) **묘지 품질 +12**.
+columbarium_marble|(wskull) **묘지 품질 +20**.
+soul_container|**영혼 두 개**를 보관할 수 있습니다.
+soul_container_2|**영혼 세 개**를 보관할 수 있습니다.
+soul_container_3|**영혼 네 개**를 보관할 수 있습니다.
+soul_workbench|여기서 신체 부위에 하얀 해골과 빨간 해골을 추가할 수 있습니다.
+soul_extractor_upgrd_to_2|영혼의 **손상을 줄여서** 추출할 수 있습니다.
+soul_extractor_upgrd_to_3|영혼을 **손상 없이** 추출할 수 있습니다.
+mf_crematorium|연료로 시신을 태워 재를 얻는 데 사용합니다.
+soul_totem_souls|영혼의 감사를 소모해 해당 구역의 작업을 원격으로 시작할 수 있습니다.
+pride_healing_extension|영혼 치유기에 **피부** 칸을 추가합니다.
+wrath_healing_extension|영혼 치유기에 **피** 칸을 추가합니다.
+gluttony_healing_extension|영혼 치유기에 **지방** 칸을 추가합니다.
+sloth_healing_extension|영혼 치유기에 **뇌** 칸을 추가합니다.
+lust_healing_extension|영혼 치유기에 **심장** 칸을 추가합니다.
+envy_healing_extension|영혼 치유기에 **장** 칸을 추가합니다.

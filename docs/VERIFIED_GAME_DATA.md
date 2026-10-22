@@ -2,6 +2,8 @@
 
 Target: **Graveyard Keeper 1.407 (PC)**.
 
+Current purpose-symbol consumer finding (static2026-10-22): native BubbleWidgetText23189 / UILabel23190 uses UIFont151301 and symbolStyle3 (NoEffect). Draw applies style, rejoins GJL's active-language font path, then assigns text. Six semantic sequences are present in the relevant native font records; no global font/atlas edits are required. Shared UI_INPUT_TIME_AND_ENVIRONMENT owns the host evidence and applicability limits. DTT candidate1.2.10 adds selected metric/category tokens outside accents; actual visual acceptance remains pending.
+
 This document is the canonical project ledger for host/runtime facts that production decisions in Detailed Technology Tooltips may rely on. Reusable cross-project facts belong in `NikichMods/GraveyardKeeperResearch`; this file records the subset and product implications needed by this mod.
 
 ## Evidence baseline

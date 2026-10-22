@@ -375,9 +375,8 @@ namespace DetailedTechnologyTooltips
                     context.PilotPurpose = purpose;
                     context.PilotMaterials = materials;
                     context.UseRichLayout = true;
-                    bool ru = IsLanguage(GetCurrentLanguage(), "ru");
                     context.LocationRow = BuildLocationRow(balance, craft, true,
-                        ru ? "[FF]Где строить:[AA] " : "[FF]Built in:[AA] ");
+                        "[FF]" + Localization.Get(Localization.BuiltInPrefix, GetCurrentLanguage()) + "[AA] ");
                 }
             }
             else if (!isBlueprint) ConfigureRecipeLayout(context, balance, craft);
@@ -409,7 +408,7 @@ namespace DetailedTechnologyTooltips
         {
             var language = GetCurrentLanguage();
             if (!PilotMaterialIcons.Available || !PilotLayout.Available
-                || (!IsLanguage(language, "en") && !IsLanguage(language, "ru"))) return;
+                || !BlueprintPurposeCopy.SupportsLanguage(language)) return;
             var materials = context.PilotMaterials ?? BuildPilotMaterials(balance, craft);
             if (materials == null || materials.Any(m => string.IsNullOrEmpty(m.Name) || string.IsNullOrEmpty(m.Icon))) return;
             context.PilotMaterials = materials;

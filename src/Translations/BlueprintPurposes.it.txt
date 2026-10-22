@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Original purpose translations; id|text. See docs/MULTILINGUAL_EFFECT_ICONS_GATE.md.
+mf_furnace_0|Serve a fondere il ferro e a produrre vetro e ceramica.
+mf_furnace_1|Permette anche di fondere **acciaio, argento e oro**.
+mf_furnace_2|Permette di produrre **parti in acciaio**. Più grafite con la stessa quantità di carbone.
+mf_anvil_1|Permette di forgiare chiodi, parti in ferro semplici e attrezzi di base.
+mf_anvil_2|Permette anche di forgiare **parti in ferro complesse**.
+mf_anvil_3|Permette di forgiare **equipaggiamento in acciaio**. Più chiodi e parti semplici con la stessa quantità di metallo.
+mf_potter_wheel_1|Qui si possono modellare ciotole di ceramica con l’argilla.
+mf_jewelry|Serve a creare gioielli e a incastonare gemme nelle spade.
+mf_beam_gantry_1|Permette di segare i tronchi per ricavarne assi.
+mf_chocks_1|Qui si possono preparare legna da ardere e cunei.
+mf_saw_1|Permette di produrre **travi di legno**.
+mf_workbench_1|Qui si possono creare assi di legno e decorazioni funerarie in legno.
+mf_workbench_2|Permette anche di creare **lenti ed equipaggiamento in acciaio**.
+mf_hammer_0|Serve a lavorare pietra e marmo per creare materiali da costruzione e decorazioni funerarie.
+mf_hammer_1|Permette di produrre **pietra e marmo scolpiti**.
+mf_timber_1|Deposito per **tronchi**.
+mf_stones_1|Deposito per **blocchi di pietra e marmo**.
+mf_ore_1_complete|Deposito per **blocchi di minerale di ferro**.
+mf_box_stuff|Spazio per conservare oggetti.
+obj_church_scroll_cabinet|Spazio per conservare oggetti.
+obj_church_bookcase|Spazio per conservare oggetti.
+rack_alchemy|Spazio per conservare oggetti.
+rack_organs|Spazio per conservare oggetti.
+mf_alchemy_survey|Serve a studiare oggetti e a ottenere punti tecnologia.
+table_book_constr|Qui si possono creare carta, inchiostro e candele.
+desk|Permette di creare libri e preghiere.
+desk_2|**Bonus alla qualità di scrittura** nella creazione di libri e preghiere.
+mf_paper_press|Serve a produrre carta pulita dalla pasta di carta.
+mf_printing_press|Permette di stampare volantini in serie.
+mf_printing_press_2|Permette di stampare volantini in serie.
+zombie_pulpit|Uno zombi scrive storie.
+mf_alchemy_craft_02|Permette di preparare pozioni con **due ingredienti**.
+mf_alchemy_craft_03|Permette di preparare pozioni con **tre ingredienti**.
+mf_alchemy_stirrer_01|Permette di ricavare (alc2) **soluzioni** alchemiche dai materiali.
+mf_alchemy_mill|Serve a macinare materiali per ottenere (alc1) **polveri** alchemiche.
+mf_distcube_2_clay|Qui si possono ricavare (alc3) **estratti** alchemici dai materiali.
+mf_distcube_2_cuprum|Permette di ottenere (alc3) **più estratto** dalla stessa quantità di materia prima.
+alchemy_table_zombie|Uno zombi trasforma i materiali in (alc1) polveri, (alc2) soluzioni ed (alc3) estratti.
+alchemy_workbench_zombie|Uno zombi prepara pozioni usando ricette note.
+garden_empty|Permette di coltivare ortaggi.
+garden_empty_stick|Qui si possono coltivare lenticchie.
+vineyard_grapes_stick|Serve a coltivare uva e luppolo.
+bush_berry_garden|Permette di piantare cespugli di bacche.
+tree_apple_garden|Permette di piantare meli.
+v_obj_compost_heap|Serve a trasformare gli scarti del raccolto in torba.
+beehouse|Serve a raccogliere miele e, con l’abilità adatta, cera d’api.
+zombie_garden_desk|Uno zombi coltiva ortaggi.
+zombie_vineyard_desk|Uno zombi coltiva uva e luppolo.
+mf_vine_press|Permette di spremere i prodotti del raccolto per ottenere succo e olio.
+barrel_brew|Serve a far fermentare il succo di frutta prima della distillazione.
+mf_barrel_mid|Serve a produrre vino dal succo d’uva.
+mf_distcube_3|Qui si può distillare il succo fermentato per ottenere alcolici.
+brewing_stand|Serve a produrre birra e idromele.
+mf_zombie_brewing|Uno zombi produce birra.
+mf_zombie_winemaking|Uno zombi produce vino.
+mf_preparation_1|Permette di estrarre e sostituire parti del corpo.
+mf_preparation_2|I corpi **non si decompongono** su questo tavolo.
+mf_balsamation_1|Qui si possono modificare le proprietà dei corpi con le iniezioni.
+mf_balsamation_2|I corpi **non si decompongono** sul tavolo. L’imbalsamazione richiede metà del tempo.
+corpse_bed|Qui i corpi si decompongono più lentamente. Spazio per **un corpo**.
+corpse_bed_big|Qui i corpi si decompongono più lentamente. Spazio per **due corpi**.
+corpse_fridge|I corpi conservati **non si decompongono**. Contiene due corpi.
+zombie_crafting_table|Qui si possono trasformare i corpi in lavoratori zombi.
+mf_pyre_placed|Serve a bruciare i corpi per ottenere cenere.
+zombie_mine_bench_left|Uno zombi estrae minerale di ferro e carbone.
+zombie_mine_fence_front_stone|Uno zombi estrae blocchi di pietra.
+zombie_mine_fence_front_marble_right|Uno zombi estrae blocchi di marmo.
+porter_station|Uno zombi trasporta risorse tra le aree di lavoro.
+lantern_network|Crea punti in cui costruire lanterne nella miniera.
+lantern|Serve a illuminare l’area circostante.
+well_pump|Estrae automaticamente l’acqua dal pozzo.
+candelabrum_1|(cross) **+1 alla qualità della chiesa**. Le candele aumentano il bonus.
+candelabrum_2|(cross) **+2 alla qualità della chiesa**. Le candele aumentano il bonus.
+candelabrum_3|(cross) **+3 alla qualità della chiesa**. Le candele aumentano il bonus.
+church_bench|(cross) **+1 alla qualità della chiesa**.
+church_bench_2|(cross) **+3 alla qualità della chiesa**.
+church_table_1|(cross) **+5 alla qualità della chiesa**.
+church_table_2|(cross) **+8 alla qualità della chiesa**.
+church_window_1|(cross) **+5 alla qualità della chiesa**.
+church_budka_1|(cross) **+5 alla qualità della chiesa**. I parrocchiani possono lasciare confessioni.
+church_budka_2|(cross) **+7 alla qualità della chiesa**. I parrocchiani possono lasciare confessioni.
+c_obj_incense_1|(cross) **+1 alla qualità della chiesa**. L’incenso aumenta temporaneamente il bonus.
+c_obj_incense_2|(cross) **+3 alla qualità della chiesa**. L’incenso aumenta temporaneamente il bonus.
+pray_stand_wd|(wskull) **+2 alla qualità del cimitero**.
+pray_stand_stn|(wskull) **+4 alla qualità del cimitero**.
+grass_sward_2x3|(wskull) **+2 alla qualità del cimitero**.
+road_marble|(wskull) **+3 alla qualità del cimitero**.
+lantern_3|(wskull) **+4 alla qualità del cimitero**.
+columbarium_stone|(wskull) **+12 alla qualità del cimitero**.
+columbarium_marble|(wskull) **+20 alla qualità del cimitero**.
+soul_container|Spazio per **due anime**.
+soul_container_2|Spazio per **tre anime**.
+soul_container_3|Spazio per **quattro anime**.
+soul_workbench|Qui si possono aggiungere teschi bianchi e rossi alle parti del corpo.
+soul_extractor_upgrd_to_2|Permette di estrarre le anime con **meno danni**.
+soul_extractor_upgrd_to_3|Permette di estrarre le anime **senza danni**.
+mf_crematorium|Serve a bruciare i corpi per ottenere cenere usando combustibile.
+soul_totem_souls|Permette di avviare lavori a distanza nella propria area in cambio della gratitudine delle anime.
+pride_healing_extension|Aggiunge uno spazio per la **pelle** al guaritore di anime.
+wrath_healing_extension|Aggiunge uno spazio per il **sangue** al guaritore di anime.
+gluttony_healing_extension|Aggiunge uno spazio per il **grasso** al guaritore di anime.
+sloth_healing_extension|Aggiunge uno spazio per il **cervello** al guaritore di anime.
+lust_healing_extension|Aggiunge uno spazio per il **cuore** al guaritore di anime.
+envy_healing_extension|Aggiunge uno spazio per gli **intestini** al guaritore di anime.

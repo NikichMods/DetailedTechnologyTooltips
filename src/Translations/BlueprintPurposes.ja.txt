@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Original purpose translations; id|text. See docs/MULTILINGUAL_EFFECT_ICONS_GATE.md.
+mf_furnace_0|鉄の精錬や、ガラスと陶器の製作に使えます。
+mf_furnace_1|さらに**鋼鉄・銀・金**を精錬できます。
+mf_furnace_2|**鋼鉄の部品**を製作できます。同じ量の石炭から、より多くの黒鉛を得られます。
+mf_anvil_1|釘や単純な鉄の部品、基本的な道具を鍛造できます。
+mf_anvil_2|さらに**複雑な鉄の部品**を鍛造できます。
+mf_anvil_3|**鋼鉄の装備**を鍛造できます。同じ量の金属から、より多くの釘や単純な部品を得られます。
+mf_potter_wheel_1|ここでは粘土から陶器の鉢を作れます。
+mf_jewelry|宝飾品の製作や、剣への宝石の取り付けに使えます。
+mf_beam_gantry_1|丸太を板材に切り出せます。
+mf_chocks_1|ここでは薪やくさびを作れます。
+mf_saw_1|**木の支柱**を製作できます。
+mf_workbench_1|ここでは木板や木製の墓飾りを作れます。
+mf_workbench_2|さらに**レンズや鋼鉄の装備**を製作できます。
+mf_hammer_0|石や大理石を加工し、建材や墓飾りを作るために使えます。
+mf_hammer_1|**彫刻した石や大理石**を製作できます。
+mf_timber_1|**丸太**の保管場所です。
+mf_stones_1|**石や大理石のブロック**の保管場所です。
+mf_ore_1_complete|**鉄鉱石のブロック**の保管場所です。
+mf_box_stuff|アイテムの保管場所です。
+obj_church_scroll_cabinet|アイテムの保管場所です。
+obj_church_bookcase|アイテムの保管場所です。
+rack_alchemy|アイテムの保管場所です。
+rack_organs|アイテムの保管場所です。
+mf_alchemy_survey|アイテムを研究し、技術ポイントを得るために使えます。
+table_book_constr|ここでは紙やインク、ロウソクを作れます。
+desk|本や祈りを製作できます。
+desk_2|本や祈りの製作時に**執筆品質ボーナス**が付きます。
+mf_paper_press|紙のパルプからきれいな紙を作るために使えます。
+mf_printing_press|チラシをまとめて印刷できます。
+mf_printing_press_2|チラシをまとめて印刷できます。
+zombie_pulpit|ゾンビが物語を執筆します。
+mf_alchemy_craft_02|**2種類の材料**からポーションを調合できます。
+mf_alchemy_craft_03|**3種類の材料**からポーションを調合できます。
+mf_alchemy_stirrer_01|材料から錬金術用の(alc2) **溶液**を作れます。
+mf_alchemy_mill|材料を挽いて錬金術用の(alc1) **粉末**を作るために使えます。
+mf_distcube_2_clay|ここでは材料から錬金術用の(alc3) **エキス**を作れます。
+mf_distcube_2_cuprum|同じ量の材料から(alc3) **より多くのエキス**を得られます。
+alchemy_table_zombie|ゾンビが材料を(alc1) 粉末・(alc2) 溶液・(alc3) エキスに加工します。
+alchemy_workbench_zombie|ゾンビが既知のレシピでポーションを調合します。
+garden_empty|野菜を栽培できます。
+garden_empty_stick|ここではレンズマメを栽培できます。
+vineyard_grapes_stick|ブドウやホップの栽培に使えます。
+bush_berry_garden|ベリーの茂みを植えられます。
+tree_apple_garden|リンゴの木を植えられます。
+v_obj_compost_heap|収穫物の残りを泥炭に変えるために使えます。
+beehouse|ハチミツの採取に使えます。対応する能力があれば蜜蝋も採れます。
+zombie_garden_desk|ゾンビが畑の作物を栽培します。
+zombie_vineyard_desk|ゾンビがブドウやホップを栽培します。
+mf_vine_press|収穫物を搾って果汁や油を作れます。
+barrel_brew|蒸留前に果汁を発酵させるために使えます。
+mf_barrel_mid|ブドウの果汁からワインを作るために使えます。
+mf_distcube_3|ここでは発酵した果汁を蒸留し、蒸留酒を作れます。
+brewing_stand|ビールやハチミツ酒の醸造に使えます。
+mf_zombie_brewing|ゾンビがビールを醸造します。
+mf_zombie_winemaking|ゾンビがワインを醸造します。
+mf_preparation_1|体の部位を取り出したり、入れ替えたりできます。
+mf_preparation_2|この台の上では遺体が**腐敗しません**。
+mf_balsamation_1|ここでは注射で遺体の性質を変えられます。
+mf_balsamation_2|台の上では遺体が**腐敗しません**。防腐処理の所要時間が半分になります。
+corpse_bed|遺体の腐敗を遅らせます。**遺体1体**を置けます。
+corpse_bed_big|遺体の腐敗を遅らせます。**遺体2体**を置けます。
+corpse_fridge|保管中の遺体は**腐敗しません**。遺体2体を収容できます。
+zombie_crafting_table|ここでは遺体から働くゾンビを作れます。
+mf_pyre_placed|遺体を焼いて灰を得るために使えます。
+zombie_mine_bench_left|ゾンビが鉄鉱石や石炭を採掘します。
+zombie_mine_fence_front_stone|ゾンビが石のブロックを切り出します。
+zombie_mine_fence_front_marble_right|ゾンビが大理石のブロックを切り出します。
+porter_station|ゾンビが作業エリア間で資源を運びます。
+lantern_network|鉱山内にランタンの建設場所を設けます。
+lantern|周囲を照らすために使えます。
+well_pump|井戸から自動で水を汲み上げます。
+candelabrum_1|(cross) **教会の質+1**。 ロウソクでボーナスが増えます。
+candelabrum_2|(cross) **教会の質+2**。 ロウソクでボーナスが増えます。
+candelabrum_3|(cross) **教会の質+3**。 ロウソクでボーナスが増えます。
+church_bench|(cross) **教会の質+1**。
+church_bench_2|(cross) **教会の質+3**。
+church_table_1|(cross) **教会の質+5**。
+church_table_2|(cross) **教会の質+8**。
+church_window_1|(cross) **教会の質+5**。
+church_budka_1|(cross) **教会の質+5**。 教区民が懺悔を残すことがあります。
+church_budka_2|(cross) **教会の質+7**。 教区民が懺悔を残すことがあります。
+c_obj_incense_1|(cross) **教会の質+1**。 香で一時的にボーナスが増えます。
+c_obj_incense_2|(cross) **教会の質+3**。 香で一時的にボーナスが増えます。
+pray_stand_wd|(wskull) **墓地の質+2**。
+pray_stand_stn|(wskull) **墓地の質+4**。
+grass_sward_2x3|(wskull) **墓地の質+2**。
+road_marble|(wskull) **墓地の質+3**。
+lantern_3|(wskull) **墓地の質+4**。
+columbarium_stone|(wskull) **墓地の質+12**。
+columbarium_marble|(wskull) **墓地の質+20**。
+soul_container|**魂2個**を保管できます。
+soul_container_2|**魂3個**を保管できます。
+soul_container_3|**魂4個**を保管できます。
+soul_workbench|ここでは体の部位に白や赤のドクロを追加できます。
+soul_extractor_upgrd_to_2|魂への**損傷を減らして**抽出できます。
+soul_extractor_upgrd_to_3|魂を**傷つけずに**抽出できます。
+mf_crematorium|燃料を使って遺体を焼き、灰を得るために使えます。
+soul_totem_souls|魂の感謝を消費して、範囲内の作業を遠隔で開始できます。
+pride_healing_extension|魂治癒器に**皮膚**用のスロットを追加します。
+wrath_healing_extension|魂治癒器に**血液**用のスロットを追加します。
+gluttony_healing_extension|魂治癒器に**脂肪**用のスロットを追加します。
+sloth_healing_extension|魂治癒器に**脳**用のスロットを追加します。
+lust_healing_extension|魂治癒器に**心臓**用のスロットを追加します。
+envy_healing_extension|魂治癒器に**腸**用のスロットを追加します。

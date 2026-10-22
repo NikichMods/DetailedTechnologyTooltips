@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.2.9";
+        public const string PluginVersion = "1.2.10";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -87,7 +87,7 @@ namespace DetailedTechnologyTooltips
                 Log.LogInfo(
                     "DTT_READY version=" + PluginVersion
                     + " contract=technology-tooltip"
-                    + " blueprint_purposes=en-ru-" + BlueprintPurposeCopy.Count + " recipe_layout=en-ru-nonprayer icons=" + PilotMaterialIcons.Available
+                    + " blueprint_purposes=11-locales-" + BlueprintPurposeCopy.Count + " recipe_layout=11-locales-nonprayer icons=" + PilotMaterialIcons.Available
                     + " host_mvid=" + GameApi.HostModuleVersionId + ".");
             }
             catch (Exception ex)

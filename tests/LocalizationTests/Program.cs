@@ -284,17 +284,47 @@ internal static class Program
         foreach (var id in BlueprintPurposeCopy.Ids)
         {
             purposeCount++;
-            foreach (var language in new[] { "en", "ru", "en-US", "ru_RU" })
+            foreach (var language in Localization.SupportedLanguages)
             {
+                if (!BlueprintPurposeCopy.SupportsLanguage(language))
+                    throw new Exception("Missing supported purpose locale: " + language);
                 var purpose = BlueprintPurposeCopy.Get("native_builder:p:" + id + "_place", language);
+                var raw = BlueprintPurposeCopy.GetRaw(id, language);
+                var en = BlueprintPurposeCopy.GetRaw(id, "en");
                 if (string.IsNullOrEmpty(purpose) || purpose.Contains("**")
                     || !purpose.StartsWith("[AA]", StringComparison.Ordinal)
                     || !purpose.EndsWith("[FF]", StringComparison.Ordinal)
                     || CountOccurrences(purpose, "[FF7A70]") != CountOccurrences(purpose, "[-]"))
                     throw new Exception("Invalid blueprint text/markup: " + id + "/" + language);
+                if (raw.Contains("{") || raw.Contains("|") || raw.Contains(@"\n") || raw.Contains('\uFFFD')
+                    || CountOccurrences(raw, "**") != CountOccurrences(en, "**"))
+                    throw new Exception("Unresolved translation/template/emphasis: " + id + "/" + language);
+                var symbolPattern = @"\((?:cross|wskull|sci|alc[123])\)";
+                var expectedSymbols = new List<string>();
+                var actualSymbols = new List<string>();
+                foreach (Match match in Regex.Matches(en, symbolPattern)) expectedSymbols.Add(match.Value);
+                foreach (Match match in Regex.Matches(raw, symbolPattern)) actualSymbols.Add(match.Value);
+                expectedSymbols.Sort(StringComparer.Ordinal); actualSymbols.Sort(StringComparer.Ordinal);
+                if (string.Join(",", expectedSymbols) != string.Join(",", actualSymbols))
+                    throw new Exception("Translated effect-symbol mismatch: " + id + "/" + language);
+                var parts = raw.Split(new[] { "**" }, StringSplitOptions.None);
+                for (int i = 1; i < parts.Length; i += 2)
+                    if (Regex.IsMatch(parts[i], symbolPattern))
+                        throw new Exception("Native metric icon inside red accent: " + id + "/" + language);
+                if ((en.StartsWith("(cross)", StringComparison.Ordinal) || en.StartsWith("(wskull)", StringComparison.Ordinal))
+                    && Regex.Match(raw, @"\d+").Value != Regex.Match(en, @"\d+").Value)
+                    throw new Exception("Translated numeric quality effect changed: " + id + "/" + language);
+                if (language != "en" && language != "ru" && raw == en)
+                    throw new Exception("English fallback in translated purpose: " + id + "/" + language);
             }
-            if (BlueprintPurposeCopy.Get(id, "de") != null || BlueprintPurposeCopy.Get(id, "") != null)
-                throw new Exception("Purpose catalogue must not leak English into other locales");
+            foreach (var unknown in new[] { "", "unknown", "pt", "zh_tw" })
+                if (BlueprintPurposeCopy.Get(id, unknown) != null || BlueprintPurposeCopy.SupportsLanguage(unknown))
+                    throw new Exception("Unknown locale must retain native fallback");
+            if (BlueprintPurposeCopy.Get(id, "en-US") != BlueprintPurposeCopy.Get(id, "en")
+                || BlueprintPurposeCopy.Get(id, "ru_RU") != BlueprintPurposeCopy.Get(id, "ru")
+                || BlueprintPurposeCopy.Get(id, "pt_br") != BlueprintPurposeCopy.Get(id, "pt-br")
+                || BlueprintPurposeCopy.Get(id, "zh-CN") != BlueprintPurposeCopy.Get(id, "zh_cn"))
+                throw new Exception("Purpose language alias regression");
         }
         if (purposeCount != 104 || BlueprintPurposeCopy.Count != 104 || BlueprintPurposeCopy.Get("unknown", "en") != null
             || BlueprintPurposeCopy.Get("pray:prayer_for_faith", "en") != null
@@ -309,7 +339,7 @@ internal static class Program
             if (cells.Length != 2 || cells[0].StartsWith("@", StringComparison.Ordinal))
                 throw new Exception("Invalid visible blueprint fixture");
             references++; seenNative.Add(cells[1]);
-            foreach (var language in new[] { "en", "ru" })
+            foreach (var language in Localization.SupportedLanguages)
                 if (BlueprintPurposeCopy.Get(cells[0], language) != BlueprintPurposeCopy.Get(cells[1], language)
                     || BlueprintPurposeCopy.Get(cells[0], language) == null)
                     throw new Exception("Native unlock does not resolve its catalogue row: " + cells[0]);
@@ -338,7 +368,18 @@ internal static class Program
         bool rejected = false;
         try { BlueprintPurposeCopy.Render("broken **accent"); } catch (ArgumentException) { rejected = true; }
         if (!rejected) throw new Exception("Unbalanced emphasis must be rejected");
-        Console.WriteLine("Catalogue/native/compiled parity OK:104 blueprints,105 visible references, EN/RU; native fallback elsewhere.");
+        foreach (var language in Localization.SupportedLanguages)
+        {
+            if (BlueprintPurposeCopy.Get("unknown", language) != null
+                || BlueprintPurposeCopy.Get("pray:prayer_for_faith", language) != null
+                || BlueprintPurposeCopy.Get("wooden_plank", language) != null
+                || BlueprintPurposeCopy.Get("mf_box_stuff", language).Contains("FF7A70")
+                || BlueprintPurposeCopy.Get("well_pump", language).Contains("FF7A70"))
+                throw new Exception("Translated purpose escaped scope/sparse accent policy: " + language);
+        }
+        if (BlueprintPurposeCopy.Get("mf_alchemy_survey", "en").Contains("(sci)"))
+            throw new Exception("Technology points must not acquire the science icon");
+        Console.WriteLine("Catalogue/native/compiled parity OK:104 blueprints,105 visible references,11 locales; symbol/emphasis/quality checks pass.");
 
         Console.WriteLine(
             "Localization/formatting validation OK: "

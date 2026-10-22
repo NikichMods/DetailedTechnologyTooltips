@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Original purpose translations; id|text. See docs/MULTILINGUAL_EFFECT_ICONS_GATE.md.
+mf_furnace_0|Serve para fundir ferro e fabricar vidro e cerâmica.
+mf_furnace_1|Também permite fundir **aço, prata e ouro**.
+mf_furnace_2|Permite fabricar **peças de aço**. Mais grafite com a mesma quantidade de carvão.
+mf_anvil_1|Permite forjar pregos, peças de ferro simples e ferramentas básicas.
+mf_anvil_2|Também permite forjar **peças de ferro complexas**.
+mf_anvil_3|Permite forjar **equipamentos de aço**. Mais pregos e peças simples com a mesma quantidade de metal.
+mf_potter_wheel_1|Aqui é possível moldar tigelas de cerâmica com argila.
+mf_jewelry|Serve para fabricar joias e incrustar gemas em espadas.
+mf_beam_gantry_1|Permite serrar toras para obter tábuas.
+mf_chocks_1|Aqui é possível preparar lenha e cunhas.
+mf_saw_1|Permite fabricar **vigas de madeira**.
+mf_workbench_1|Aqui é possível fabricar placas de madeira e decorações de madeira para túmulos.
+mf_workbench_2|Também permite fabricar **lentes e equipamentos de aço**.
+mf_hammer_0|Serve para trabalhar pedra e mármore e fabricar materiais de construção e decorações para túmulos.
+mf_hammer_1|Permite fabricar **pedra e mármore esculpidos**.
+mf_timber_1|Armazenamento de **toras**.
+mf_stones_1|Armazenamento de **blocos de pedra e mármore**.
+mf_ore_1_complete|Armazenamento de **blocos de minério de ferro**.
+mf_box_stuff|Espaço para armazenar itens.
+obj_church_scroll_cabinet|Espaço para armazenar itens.
+obj_church_bookcase|Espaço para armazenar itens.
+rack_alchemy|Espaço para armazenar itens.
+rack_organs|Espaço para armazenar itens.
+mf_alchemy_survey|Serve para estudar itens e obter pontos de tecnologia.
+table_book_constr|Aqui é possível fabricar papel, tinta e velas.
+desk|Permite criar livros e orações.
+desk_2|**Bônus de qualidade de escrita** ao criar livros e orações.
+mf_paper_press|Serve para fabricar papel limpo a partir de polpa de papel.
+mf_printing_press|Permite imprimir panfletos em lotes.
+mf_printing_press_2|Permite imprimir panfletos em lotes.
+zombie_pulpit|Um zumbi escreve histórias.
+mf_alchemy_craft_02|Permite preparar poções com **dois ingredientes**.
+mf_alchemy_craft_03|Permite preparar poções com **três ingredientes**.
+mf_alchemy_stirrer_01|Permite obter (alc2) **soluções** alquímicas a partir de materiais.
+mf_alchemy_mill|Serve para moer materiais e obter (alc1) **pós** alquímicos.
+mf_distcube_2_clay|Aqui é possível obter (alc3) **extratos** alquímicos a partir de materiais.
+mf_distcube_2_cuprum|Permite obter (alc3) **mais extrato** com a mesma quantidade de matéria-prima.
+alchemy_table_zombie|Um zumbi transforma materiais em (alc1) pós, (alc2) soluções e (alc3) extratos.
+alchemy_workbench_zombie|Um zumbi prepara poções com receitas conhecidas.
+garden_empty|Permite cultivar vegetais.
+garden_empty_stick|Aqui é possível cultivar lentilhas.
+vineyard_grapes_stick|Serve para cultivar uvas e lúpulo.
+bush_berry_garden|Permite plantar arbustos de frutas silvestres.
+tree_apple_garden|Permite plantar macieiras.
+v_obj_compost_heap|Serve para transformar resíduos da colheita em turfa.
+beehouse|Serve para coletar mel e, com a habilidade adequada, cera de abelha.
+zombie_garden_desk|Um zumbi cultiva vegetais.
+zombie_vineyard_desk|Um zumbi cultiva uvas e lúpulo.
+mf_vine_press|Permite prensar as colheitas para obter suco e óleo.
+barrel_brew|Serve para fermentar suco de frutas antes da destilação.
+mf_barrel_mid|Serve para produzir vinho a partir de suco de uva.
+mf_distcube_3|Aqui é possível destilar suco fermentado para obter bebidas destiladas.
+brewing_stand|Serve para produzir cerveja e hidromel.
+mf_zombie_brewing|Um zumbi produz cerveja.
+mf_zombie_winemaking|Um zumbi produz vinho.
+mf_preparation_1|Permite extrair e substituir partes do corpo.
+mf_preparation_2|Os corpos **não se decompõem** nesta mesa.
+mf_balsamation_1|Aqui é possível alterar as propriedades dos corpos com injeções.
+mf_balsamation_2|Os corpos **não se decompõem** na mesa. O embalsamamento leva metade do tempo.
+corpse_bed|Os corpos se decompõem mais devagar aqui. Espaço para **um corpo**.
+corpse_bed_big|Os corpos se decompõem mais devagar aqui. Espaço para **dois corpos**.
+corpse_fridge|Os corpos armazenados **não se decompõem**. Comporta dois corpos.
+zombie_crafting_table|Aqui é possível transformar corpos em trabalhadores zumbis.
+mf_pyre_placed|Serve para queimar corpos e obter cinzas.
+zombie_mine_bench_left|Um zumbi extrai minério de ferro e carvão.
+zombie_mine_fence_front_stone|Um zumbi extrai blocos de pedra.
+zombie_mine_fence_front_marble_right|Um zumbi extrai blocos de mármore.
+porter_station|Um zumbi transporta recursos entre as áreas de trabalho.
+lantern_network|Cria locais de construção para lanternas na mina.
+lantern|Serve para iluminar os arredores.
+well_pump|Retira água do poço automaticamente.
+candelabrum_1|(cross) **+1 de qualidade da igreja**. As velas aumentam o bônus.
+candelabrum_2|(cross) **+2 de qualidade da igreja**. As velas aumentam o bônus.
+candelabrum_3|(cross) **+3 de qualidade da igreja**. As velas aumentam o bônus.
+church_bench|(cross) **+1 de qualidade da igreja**.
+church_bench_2|(cross) **+3 de qualidade da igreja**.
+church_table_1|(cross) **+5 de qualidade da igreja**.
+church_table_2|(cross) **+8 de qualidade da igreja**.
+church_window_1|(cross) **+5 de qualidade da igreja**.
+church_budka_1|(cross) **+5 de qualidade da igreja**. Os fiéis podem deixar confissões.
+church_budka_2|(cross) **+7 de qualidade da igreja**. Os fiéis podem deixar confissões.
+c_obj_incense_1|(cross) **+1 de qualidade da igreja**. O incenso aumenta temporariamente o bônus.
+c_obj_incense_2|(cross) **+3 de qualidade da igreja**. O incenso aumenta temporariamente o bônus.
+pray_stand_wd|(wskull) **+2 de qualidade do cemitério**.
+pray_stand_stn|(wskull) **+4 de qualidade do cemitério**.
+grass_sward_2x3|(wskull) **+2 de qualidade do cemitério**.
+road_marble|(wskull) **+3 de qualidade do cemitério**.
+lantern_3|(wskull) **+4 de qualidade do cemitério**.
+columbarium_stone|(wskull) **+12 de qualidade do cemitério**.
+columbarium_marble|(wskull) **+20 de qualidade do cemitério**.
+soul_container|Espaço para **duas almas**.
+soul_container_2|Espaço para **três almas**.
+soul_container_3|Espaço para **quatro almas**.
+soul_workbench|Aqui é possível adicionar caveiras brancas e vermelhas às partes do corpo.
+soul_extractor_upgrd_to_2|Permite extrair almas com **menos danos**.
+soul_extractor_upgrd_to_3|Permite extrair almas **sem danos**.
+mf_crematorium|Serve para queimar corpos e obter cinzas usando combustível.
+soul_totem_souls|Permite iniciar trabalhos à distância em sua área em troca de gratidão das almas.
+pride_healing_extension|Adiciona um espaço para **pele** ao purificador de alma.
+wrath_healing_extension|Adiciona um espaço para **sangue** ao purificador de alma.
+gluttony_healing_extension|Adiciona um espaço para **gordura** ao purificador de alma.
+sloth_healing_extension|Adiciona um espaço para **cérebro** ao purificador de alma.
+lust_healing_extension|Adiciona um espaço para **coração** ao purificador de alma.
+envy_healing_extension|Adiciona um espaço para **intestinos** ao purificador de alma.

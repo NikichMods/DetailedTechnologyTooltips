@@ -7,9 +7,9 @@
     <Authors>NikichMods</Authors>
     <Description>Vanilla-friendly Technology tooltip details for Graveyard Keeper.</Description>
     <RepositoryUrl>https://github.com/NikichMods/DetailedTechnologyTooltips</RepositoryUrl>
-    <Version>1.2.9</Version>
-    <AssemblyVersion>1.2.9.0</AssemblyVersion>
-    <FileVersion>1.2.9.0</FileVersion>
+    <Version>1.2.10</Version>
+    <AssemblyVersion>1.2.10.0</AssemblyVersion>
+    <FileVersion>1.2.10.0</FileVersion>
     <DefineConstants>$(DefineConstants);DTT_CALIBRATION</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Optimize>true</Optimize>
@@ -33,6 +33,12 @@
     <Compile Include="src\LayoutPolicy.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="src\Translations\BlueprintPurposes.*.txt">
+      <LogicalName>Dtt.%(Filename)%(Extension)</LogicalName>
+      <WithCulture>false</WithCulture>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.BaseLib" Version="5.4.21" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />

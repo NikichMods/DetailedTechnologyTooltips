@@ -4,6 +4,19 @@ $ErrorActionPreference='Stop'
 $game=(Resolve-Path -LiteralPath $GameRoot).Path
 foreach($p in @("$game\Graveyard Keeper_Data\Managed\UnityEngine.CoreModule.dll", "$game\Graveyard Keeper_Data\Managed\UnityEngine.dll", "$game\BepInEx\core\0Harmony.dll", "$game\BepInEx\core\BepInEx.dll")) { [Reflection.Assembly]::LoadFrom($p) | Out-Null }
 $assembly=[Reflection.Assembly]::LoadFrom((Resolve-Path -LiteralPath $PluginPath).Path)
+$purpose=$assembly.GetType('DetailedTechnologyTooltips.BlueprintPurposeCopy',$true)
+$static=[Reflection.BindingFlags]'Static,NonPublic'
+$languages=$assembly.GetType('DetailedTechnologyTooltips.Localization',$true).GetField('SupportedLanguages',$static).GetValue($null)
+$ids=$purpose.GetProperty('Ids',$static).GetValue($null)
+$resources=@($assembly.GetManifestResourceNames() | Where-Object { $_ -like 'Dtt.BlueprintPurposes.*.txt' })
+if($resources.Count -ne 9) { throw 'Translations must be embedded in the production DLL, not satellite assemblies' }
+foreach($language in $languages) {
+ if(-not $purpose.GetMethod('SupportsLanguage',$static).Invoke($null,@($language))) { throw "Unsupported production locale: $language" }
+ foreach($id in $ids) {
+  if([string]::IsNullOrEmpty($purpose.GetMethod('Get',$static).Invoke($null,@($id,$language)))) { throw "Missing production purpose: $language/$id" }
+ }
+}
+'Actual production DLL: 9 embedded resources, 104 purposes x 11 languages PASS.'
 Add-Type @'
 using System.Collections.Generic;
 public sealed class DttFixtureText {

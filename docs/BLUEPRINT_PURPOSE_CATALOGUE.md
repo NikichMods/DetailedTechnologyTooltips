@@ -94,11 +94,11 @@ Evidence N/S: exact outputs, multiquality writing outputs, native zombie-only st
 | --- | --- | --- |
 | Alchemy workbench / `mf_alchemy_craft_02` | Lets you make potions from **two ingredients**. | Служит для приготовления зелий из **двух ингредиентов**. |
 | Alchemy workbench II / `mf_alchemy_craft_03` | Lets you make potions from **three ingredients**. | Служит для приготовления зелий из **трёх ингредиентов**. |
-| Hand mixer / `mf_alchemy_stirrer_01` | Allows you to obtain alchemical **solutions** from materials. | Позволяет получать алхимические **растворы** из материалов. |
-| Alchemy mill / `mf_alchemy_mill` | Used to grind materials into alchemical **powders**. | Используется для получения алхимических **порошков** из материалов. |
-| Distillation cube / `mf_distcube_2_clay` | You can obtain alchemical **extracts** from materials here. | Здесь можно получать алхимические **экстракты** из материалов. |
-| Distillation cube II / `mf_distcube_2_cuprum` | Allows you to obtain **more extract** from the same raw materials. | Позволяет получать **больше экстракта** из того же сырья. |
-| Zombie alchemy decomposer / `alchemy_table_zombie` | A zombie processes materials into powders, solutions and extracts. | Зомби перерабатывает материалы в порошки, растворы и экстракты. |
+| Hand mixer / `mf_alchemy_stirrer_01` | Allows you to obtain alchemical (alc2) **solutions** from materials. | Позволяет получать алхимические (alc2) **растворы** из материалов. |
+| Alchemy mill / `mf_alchemy_mill` | Used to grind materials into alchemical (alc1) **powders**. | Используется для получения алхимических (alc1) **порошков** из материалов. |
+| Distillation cube / `mf_distcube_2_clay` | You can obtain alchemical (alc3) **extracts** from materials here. | Здесь можно получать алхимические (alc3) **экстракты** из материалов. |
+| Distillation cube II / `mf_distcube_2_cuprum` | Allows you to obtain (alc3) **more extract** from the same raw materials. | Позволяет получать (alc3) **больше экстракта** из того же сырья. |
+| Zombie alchemy decomposer / `alchemy_table_zombie` | A zombie processes materials into (alc1) powders, (alc2) solutions and (alc3) extracts. | Зомби перерабатывает материалы в (alc1) порошки, (alc2) растворы и (alc3) экстракты. |
 | Zombie alchemy workbench / `alchemy_workbench_zombie` | A zombie makes potions from known recipes. | Зомби готовит зелья по известным рецептам. |
 
 Evidence N/S: native station families and [ALCHEMY_SYSTEM](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/ALCHEMY_SYSTEM.md), not a guessed output taxonomy. Corrected distillation comparison evaluates output expressions:18 matched material-processing formulas gain+1 extract at equal inputs/perks;8 goo-recovery formulas keep their output. Speed90->60 is also real, but higher material yield is now the selected main benefit. “Raw materials” describes material decomposition, not goo recovery; final copy must not turn this into an all-recipes guarantee. Neither universal double nor an unqualified+1 for every action is supported. The known-recipe path is now checked:36 ordinary `mix_*` recipes all require unlocks, and the native ordinary list filters locked entries; manual mixing grants the corresponding simplified ID. See the mechanics review. It must not suggest automatic discovery of unknown formulas.
@@ -174,18 +174,18 @@ Evidence N: `place_well_pump` native FlowScript (resources pathID150843) spawns 
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Candelabra I / `candelabrum_1` | **+1 church quality**. Candles increase the bonus. | **+1 к качеству церкви**. Свечи усиливают эффект. |
-| Candelabra II / `candelabrum_2` | **+2 church quality**. Candles increase the bonus. | **+2 к качеству церкви**. Свечи усиливают эффект. |
-| Candelabra III / `candelabrum_3` | **+3 church quality**. Candles increase the bonus. | **+3 к качеству церкви**. Свечи усиливают эффект. |
-| Church bench / `church_bench` | **+1 church quality**. | **+1 к качеству церкви**. |
-| Soft church bench / `church_bench_2` | **+3 church quality**. | **+3 к качеству церкви**. |
-| Wooden church shrine / `church_table_1` | **+5 church quality**. | **+5 к качеству церкви**. |
-| Stone church shrine / `church_table_2` | **+8 church quality**. | **+8 к качеству церкви**. |
-| Stained glass window / `church_window_1` | **+5 church quality**. | **+5 к качеству церкви**. |
-| Confessional / `church_budka_1` | **+5 church quality**. Parishioners may leave confessions. | **+5 к качеству церкви**. Прихожане могут оставлять исповеди. |
-| Confessional II / `church_budka_2` | **+7 church quality**. Parishioners may leave confessions. | **+7 к качеству церкви**. Прихожане могут оставлять исповеди. |
-| Incense burner / `c_obj_incense_1` | **+1 church quality**. Incense temporarily increases the bonus. | **+1 к качеству церкви**. Благовония временно усиливают эффект. |
-| Incense burner II / `c_obj_incense_2` | **+3 church quality**. Incense temporarily increases the bonus. | **+3 к качеству церкви**. Благовония временно усиливают эффект. |
+| Candelabra I / `candelabrum_1` | (cross) **+1 church quality**. Candles increase the bonus. | (cross) **+1 к качеству церкви**. Свечи усиливают эффект. |
+| Candelabra II / `candelabrum_2` | (cross) **+2 church quality**. Candles increase the bonus. | (cross) **+2 к качеству церкви**. Свечи усиливают эффект. |
+| Candelabra III / `candelabrum_3` | (cross) **+3 church quality**. Candles increase the bonus. | (cross) **+3 к качеству церкви**. Свечи усиливают эффект. |
+| Church bench / `church_bench` | (cross) **+1 church quality**. | (cross) **+1 к качеству церкви**. |
+| Soft church bench / `church_bench_2` | (cross) **+3 church quality**. | (cross) **+3 к качеству церкви**. |
+| Wooden church shrine / `church_table_1` | (cross) **+5 church quality**. | (cross) **+5 к качеству церкви**. |
+| Stone church shrine / `church_table_2` | (cross) **+8 church quality**. | (cross) **+8 к качеству церкви**. |
+| Stained glass window / `church_window_1` | (cross) **+5 church quality**. | (cross) **+5 к качеству церкви**. |
+| Confessional / `church_budka_1` | (cross) **+5 church quality**. Parishioners may leave confessions. | (cross) **+5 к качеству церкви**. Прихожане могут оставлять исповеди. |
+| Confessional II / `church_budka_2` | (cross) **+7 church quality**. Parishioners may leave confessions. | (cross) **+7 к качеству церкви**. Прихожане могут оставлять исповеди. |
+| Incense burner / `c_obj_incense_1` | (cross) **+1 church quality**. Incense temporarily increases the bonus. | (cross) **+1 к качеству церкви**. Благовония временно усиливают эффект. |
+| Incense burner II / `c_obj_incense_2` | (cross) **+3 church quality**. Incense temporarily increases the bonus. | (cross) **+3 к качеству церкви**. Благовония временно усиливают эффект. |
 
 Evidence N: native base qualities, builder=church, and candle-bearing variants with higher quality. S: confessional waiting-state owner in [CONFESSION_NOTIFICATION_RESEARCH](https://github.com/NikichMods/GraveyardKeeperResearch/blob/main/docs/CONFESSION_NOTIFICATION_RESEARCH.md); “may” preserves native randomness rather than promising daily guaranteed rewards. Incense crafts now prove the temporary lifecycle: consume incense, insert a quality2/4 pseudo-item on start, remove it on completion/cancellation; object inventory quality contributes to the church sum. The revised sentence explicitly says temporary. See the mechanics review; the finding comes from the incense owners, not analogy with candles.
 
@@ -193,13 +193,13 @@ Evidence N: native base qualities, builder=church, and candle-bearing variants w
 
 | Review label / ID | English | Russian |
 | --- | --- | --- |
-| Wooden prayer station / `pray_stand_wd` | **+2 graveyard quality**. | **+2 к качеству кладбища**. |
-| Stone prayer station / `pray_stand_stn` | **+4 graveyard quality**. | **+4 к качеству кладбища**. |
-| Flowerbed / `grass_sward_2x3` | **+2 graveyard quality**. | **+2 к качеству кладбища**. |
-| Marble paving / `road_marble` | **+3 graveyard quality**. | **+3 к качеству кладбища**. |
-| Stone lantern / `lantern_3` | **+4 graveyard quality**. | **+4 к качеству кладбища**. |
-| Stone columbarium / `columbarium_stone` | **+12 graveyard quality**. | **+12 к качеству кладбища**. |
-| Marble columbarium / `columbarium_marble` | **+20 graveyard quality**. | **+20 к качеству кладбища**. |
+| Wooden prayer station / `pray_stand_wd` | (wskull) **+2 graveyard quality**. | (wskull) **+2 к качеству кладбища**. |
+| Stone prayer station / `pray_stand_stn` | (wskull) **+4 graveyard quality**. | (wskull) **+4 к качеству кладбища**. |
+| Flowerbed / `grass_sward_2x3` | (wskull) **+2 graveyard quality**. | (wskull) **+2 к качеству кладбища**. |
+| Marble paving / `road_marble` | (wskull) **+3 graveyard quality**. | (wskull) **+3 к качеству кладбища**. |
+| Stone lantern / `lantern_3` | (wskull) **+4 graveyard quality**. | (wskull) **+4 к качеству кладбища**. |
+| Stone columbarium / `columbarium_stone` | (wskull) **+12 graveyard quality**. | (wskull) **+12 к качеству кладбища**. |
+| Marble columbarium / `columbarium_marble` | (wskull) **+20 graveyard quality**. | (wskull) **+20 к качеству кладбища**. |
 
 Evidence N: object quality and graveyard builder. Columbarium lines deliberately describe their confirmed quality benefit, without treating construction urns as an accessible reusable storage inventory.
 
@@ -248,7 +248,11 @@ Static font-symbol inspection in the exact input above proves these mappings in 
 
 Proposed candelabra composition: `(cross) **+1 church quality**. Candles increase the bonus.` / `(cross) **+1 к качеству церкви**. Свечи усиливают эффект.` This preserves the accepted wording; the token is illustrative here and is not meant to appear literally in chat or the final game text. Native `world_zones_data` directly assigns church `quality_icon=(cross)` and graveyard `quality_icon=(wskull)`. The bare `(skull)` maps to a different HUD symbol; do not substitute it for the graveyard quality wreath/skull. The native crafting-quality star `(s1)` is also a different metric and must not replace church quality.
 
-Font-symbol existence is static eligibility, not proof of correct tint/baseline/wrapping or every language route. Before implementation acceptance, verify the active Technology UIFont, symbol mode, native meaning at the HUD owner, muted-text contrast and accent span boundaries. Keep icons at native colors if accenting the surrounding text would distort recognition; exact treatment is a visual review choice. No production token replacement has been made.
+Font-symbol existence is static eligibility, not proof of correct tint/baseline/wrapping or every language route. Candidate1.2.10 inserts the recorded tokens into owned purpose strings, outside accent spans. Direct static route check establishes native BubbleWidgetText label23190, UIFont151301, symbol mode3 (NoEffect), and the GJL font consumer. The existing native renderer/mode is preserved. See MULTILINGUAL_EFFECT_ICONS_GATE.md; final contrast/baseline/wrap still needs visual review.
+
+## Eleven-language candidate corpus —2026-10-22
+
+User authorizes extending the revised presentation and purposes to all current1.407 languages. This document remains the reviewed EN/RU semantic catalogue (104 rows); original translations for de/fr/pt-br/es/it/pl/ja/zh_cn/ko are owned by src/Translations/BlueprintPurposes.<language>.txt,104 rows each. Sister-tier differences, sparse accents, numeric quality effects and symbol meanings follow this catalogue. Native material/station names are not duplicated there. Bounded local game-string checks informed terms such as wooden plank/beam, Soul healer and alchemy solution/extract; generic purpose prose is authored, not copied from a proprietary language corpus. Translation completeness and markup checks do not establish native-speaker fluency or every language's rendered layout. No further mechanics revision is introduced.
 
 ## Remaining review and production boundary
 

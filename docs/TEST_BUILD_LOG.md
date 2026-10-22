@@ -1236,3 +1236,7 @@ Source `0f43a788fdefc608e905925eed9c2a075a036a5b`, native-reference Release DLL1
 ###1.2.9 runtime latency acceptance —2026-10-22
 
 User confirms the delay is gone and branches switch quickly. Captured session SHA25689b1c6011a553d095003fa15cf88e54baf4f27f4453055298d8e7c731c05e023 reaches READY1.2.9; no DTT failure/disable/fallback marker found. Status: reported branch-latency correction accepted; prior Russian visual review positive. This is not full-locale/mixed-node acceptance or release/main authorization. Remaining: selective purpose-metric icon follow-through/decision, focused English/controller/PrayerClarity regression review, then release-only F2 removal and exact final candidate handoff.
+
+###1.2.9 English/controller review —2026-10-22
+
+User is currently playing in English with a gamepad and explicitly reports everything looks correct; mark that presentation checked. Live session snapshot accepted-english-controller.log SHA256c0a3aad610f0253215af590442fd97a14b405da42bb540dcca8c944e048b2f1e reaches READY1.2.9 without DTT failure/disable/fallback markers. Snapshot may be incomplete while game runs. This does not identify exact mixed prayer/grouped ingredient nodes or establish nine-language visual coverage. User authorizes next candidate with effect symbols and all game languages but expressly says not to install while the game remains open.

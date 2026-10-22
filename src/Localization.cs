@@ -9,6 +9,7 @@ namespace DetailedTechnologyTooltips
 {
     internal static class Localization
     {
+        internal const string BuiltInPrefix = "built_in_prefix";
         internal const string BuildMenu = "build_menu";
         internal const string AlchemyLab = "alchemy_lab";
         internal const string Diamonds = "diamonds";
@@ -66,6 +67,7 @@ namespace DetailedTechnologyTooltips
 
         internal static readonly string[] Keys =
         {
+            BuiltInPrefix,
             BuildMenu,
             AlchemyLab,
             Diamonds,
@@ -113,6 +115,7 @@ namespace DetailedTechnologyTooltips
                     "en",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Built in:" },
                         { BuildMenu, "Build menu: " },
                         { AlchemyLab, "Alchemy Lab" },
                         { Diamonds, "Diamonds can now be mined." },
@@ -157,6 +160,7 @@ namespace DetailedTechnologyTooltips
                     "de",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Bauort:" },
                         { BuildMenu, "Baumenü: " },
                         { AlchemyLab, "Alchemielabor" },
                         { Diamonds, "Diamanten können jetzt abgebaut werden." },
@@ -201,6 +205,7 @@ namespace DetailedTechnologyTooltips
                     "fr",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Lieu de construction :" },
                         { BuildMenu, "Menu de construction : " },
                         { AlchemyLab, "Laboratoire d’alchimie" },
                         { Diamonds, "Les diamants peuvent désormais être extraits." },
@@ -245,6 +250,7 @@ namespace DetailedTechnologyTooltips
                     "pt-br",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Local de construção:" },
                         { BuildMenu, "Menu de construção: " },
                         { AlchemyLab, "Laboratório de alquimia" },
                         { Diamonds, "Diamantes agora podem ser minerados." },
@@ -289,6 +295,7 @@ namespace DetailedTechnologyTooltips
                     "es",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Lugar de construcción:" },
                         { BuildMenu, "Menú de construcción: " },
                         { AlchemyLab, "Laboratorio de alquimia" },
                         { Diamonds, "Ahora se pueden extraer diamantes." },
@@ -333,6 +340,7 @@ namespace DetailedTechnologyTooltips
                     "ru",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Где строить:" },
                         { BuildMenu, "Строительство: " },
                         { AlchemyLab, "Алхимическая лаборатория" },
                         { Diamonds, "Теперь можно добывать алмазы." },
@@ -377,6 +385,7 @@ namespace DetailedTechnologyTooltips
                     "it",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Luogo di costruzione:" },
                         { BuildMenu, "Menu costruzione: " },
                         { AlchemyLab, "Laboratorio di alchimia" },
                         { Diamonds, "Ora è possibile estrarre diamanti." },
@@ -421,6 +430,7 @@ namespace DetailedTechnologyTooltips
                     "pl",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "Miejsce budowy:" },
                         { BuildMenu, "Menu budowy: " },
                         { AlchemyLab, "Laboratorium alchemiczne" },
                         { Diamonds, "Diamenty można teraz wydobywać." },
@@ -465,6 +475,7 @@ namespace DetailedTechnologyTooltips
                     "ja",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "建設場所：" },
                         { BuildMenu, "建設メニュー：" },
                         { AlchemyLab, "錬金術研究室" },
                         { Diamonds, "ダイヤモンドを採掘できるようになります。" },
@@ -509,6 +520,7 @@ namespace DetailedTechnologyTooltips
                     "zh_cn",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "建造地点：" },
                         { BuildMenu, "建造菜单：" },
                         { AlchemyLab, "炼金实验室" },
                         { Diamonds, "现在可以开采钻石。" },
@@ -553,6 +565,7 @@ namespace DetailedTechnologyTooltips
                     "ko",
                     new Dictionary<string, string>(StringComparer.Ordinal)
                     {
+                        { BuiltInPrefix, "건설 장소:" },
                         { BuildMenu, "건설 메뉴: " },
                         { AlchemyLab, "연금술 연구실" },
                         { Diamonds, "이제 다이아몬드를 채굴할 수 있습니다." },

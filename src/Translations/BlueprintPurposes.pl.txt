@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: MPL-2.0
+# Original purpose translations; id|text. See docs/MULTILINGUAL_EFFECT_ICONS_GATE.md.
+mf_furnace_0|Służy do wytopu żelaza oraz wyrobu szkła i ceramiki.
+mf_furnace_1|Pozwala dodatkowo wytapiać **stal, srebro i złoto**.
+mf_furnace_2|Pozwala wytwarzać **stalowe części**. Więcej grafitu z tej samej ilości węgla.
+mf_anvil_1|Pozwala wykuwać gwoździe, proste części żelazne i podstawowe narzędzia.
+mf_anvil_2|Pozwala dodatkowo wykuwać **złożone części żelazne**.
+mf_anvil_3|Pozwala wykuwać **stalowe wyposażenie**. Więcej gwoździ i prostych części z tej samej ilości metalu.
+mf_potter_wheel_1|Tutaj można lepić ceramiczne miski z gliny.
+mf_jewelry|Służy do wyrobu biżuterii i zdobienia mieczy klejnotami.
+mf_beam_gantry_1|Pozwala ciąć kłody na deski.
+mf_chocks_1|Tutaj można przygotowywać drewno na opał i kliny.
+mf_saw_1|Pozwala wytwarzać **drewniane belki**.
+mf_workbench_1|Tutaj można wytwarzać deski i drewniane ozdoby nagrobne.
+mf_workbench_2|Pozwala dodatkowo wytwarzać **soczewki i stalowe wyposażenie**.
+mf_hammer_0|Służy do obróbki kamienia i marmuru na materiały budowlane i ozdoby nagrobne.
+mf_hammer_1|Pozwala wytwarzać **rzeźbiony kamień i marmur**.
+mf_timber_1|Miejsce do składowania **kłód**.
+mf_stones_1|Miejsce do składowania **bloków kamienia i marmuru**.
+mf_ore_1_complete|Miejsce do składowania **bloków rudy żelaza**.
+mf_box_stuff|Miejsce do przechowywania przedmiotów.
+obj_church_scroll_cabinet|Miejsce do przechowywania przedmiotów.
+obj_church_bookcase|Miejsce do przechowywania przedmiotów.
+rack_alchemy|Miejsce do przechowywania przedmiotów.
+rack_organs|Miejsce do przechowywania przedmiotów.
+mf_alchemy_survey|Służy do badania przedmiotów i zdobywania punktów technologii.
+table_book_constr|Tutaj można wytwarzać papier, atrament i świece.
+desk|Pozwala tworzyć książki i modlitwy.
+desk_2|**Premia do jakości pisania** przy tworzeniu książek i modlitw.
+mf_paper_press|Służy do wytwarzania czystego papieru z masy papierowej.
+mf_printing_press|Pozwala drukować ulotki partiami.
+mf_printing_press_2|Pozwala drukować ulotki partiami.
+zombie_pulpit|Zombie pisze opowieści.
+mf_alchemy_craft_02|Pozwala przygotowywać mikstury z **dwóch składników**.
+mf_alchemy_craft_03|Pozwala przygotowywać mikstury z **trzech składników**.
+mf_alchemy_stirrer_01|Pozwala uzyskiwać alchemiczne (alc2) **roztwory** z materiałów.
+mf_alchemy_mill|Służy do mielenia materiałów na alchemiczne (alc1) **proszki**.
+mf_distcube_2_clay|Tutaj można uzyskiwać alchemiczne (alc3) **ekstrakty** z materiałów.
+mf_distcube_2_cuprum|Pozwala uzyskiwać (alc3) **więcej ekstraktu** z tej samej ilości surowców.
+alchemy_table_zombie|Zombie przetwarza materiały na (alc1) proszki, (alc2) roztwory i (alc3) ekstrakty.
+alchemy_workbench_zombie|Zombie przygotowuje mikstury według znanych receptur.
+garden_empty|Pozwala uprawiać warzywa.
+garden_empty_stick|Tutaj można uprawiać soczewicę.
+vineyard_grapes_stick|Służy do uprawy winogron i chmielu.
+bush_berry_garden|Pozwala sadzić krzewy jagodowe.
+tree_apple_garden|Pozwala sadzić jabłonie.
+v_obj_compost_heap|Służy do przetwarzania resztek plonów w torf.
+beehouse|Służy do zbierania miodu, a z odpowiednią umiejętnością także wosku pszczelego.
+zombie_garden_desk|Zombie uprawia rośliny polowe.
+zombie_vineyard_desk|Zombie uprawia winogrona i chmiel.
+mf_vine_press|Pozwala wyciskać sok i olej z plonów.
+barrel_brew|Służy do fermentacji soku owocowego przed destylacją.
+mf_barrel_mid|Służy do produkcji wina z soku winogronowego.
+mf_distcube_3|Tutaj można destylować przefermentowany sok na mocny alkohol.
+brewing_stand|Służy do warzenia piwa i miodu pitnego.
+mf_zombie_brewing|Zombie warzy piwo.
+mf_zombie_winemaking|Zombie produkuje wino.
+mf_preparation_1|Pozwala wyjmować i zastępować części ciała.
+mf_preparation_2|Ciała **nie rozkładają się** na tym stole.
+mf_balsamation_1|Tutaj można zmieniać właściwości ciał za pomocą zastrzyków.
+mf_balsamation_2|Ciała **nie rozkładają się** na stole. Balsamowanie trwa o połowę krócej.
+corpse_bed|Ciała rozkładają się tu wolniej. Miejsce na **jedno ciało**.
+corpse_bed_big|Ciała rozkładają się tu wolniej. Miejsce na **dwa ciała**.
+corpse_fridge|Przechowywane ciała **nie rozkładają się**. Mieści dwa ciała.
+zombie_crafting_table|Tutaj można tworzyć z ciał robotników zombie.
+mf_pyre_placed|Służy do spalania ciał na popiół.
+zombie_mine_bench_left|Zombie wydobywa rudę żelaza i węgiel.
+zombie_mine_fence_front_stone|Zombie wydobywa bloki kamienia.
+zombie_mine_fence_front_marble_right|Zombie wydobywa bloki marmuru.
+porter_station|Zombie przenosi surowce między obszarami roboczymi.
+lantern_network|Tworzy w kopalni miejsca na latarnie.
+lantern|Służy do oświetlania otoczenia.
+well_pump|Automatycznie czerpie wodę ze studni.
+candelabrum_1|(cross) **+1 do jakości kościoła**. Świece zwiększają premię.
+candelabrum_2|(cross) **+2 do jakości kościoła**. Świece zwiększają premię.
+candelabrum_3|(cross) **+3 do jakości kościoła**. Świece zwiększają premię.
+church_bench|(cross) **+1 do jakości kościoła**.
+church_bench_2|(cross) **+3 do jakości kościoła**.
+church_table_1|(cross) **+5 do jakości kościoła**.
+church_table_2|(cross) **+8 do jakości kościoła**.
+church_window_1|(cross) **+5 do jakości kościoła**.
+church_budka_1|(cross) **+5 do jakości kościoła**. Parafianie mogą zostawiać spowiedzi.
+church_budka_2|(cross) **+7 do jakości kościoła**. Parafianie mogą zostawiać spowiedzi.
+c_obj_incense_1|(cross) **+1 do jakości kościoła**. Kadzidło tymczasowo zwiększa premię.
+c_obj_incense_2|(cross) **+3 do jakości kościoła**. Kadzidło tymczasowo zwiększa premię.
+pray_stand_wd|(wskull) **+2 do jakości cmentarza**.
+pray_stand_stn|(wskull) **+4 do jakości cmentarza**.
+grass_sward_2x3|(wskull) **+2 do jakości cmentarza**.
+road_marble|(wskull) **+3 do jakości cmentarza**.
+lantern_3|(wskull) **+4 do jakości cmentarza**.
+columbarium_stone|(wskull) **+12 do jakości cmentarza**.
+columbarium_marble|(wskull) **+20 do jakości cmentarza**.
+soul_container|Miejsce na **dwie dusze**.
+soul_container_2|Miejsce na **trzy dusze**.
+soul_container_3|Miejsce na **cztery dusze**.
+soul_workbench|Tutaj można dodawać białe i czerwone czaszki do części ciała.
+soul_extractor_upgrd_to_2|Pozwala wyciągać dusze z **mniejszymi uszkodzeniami**.
+soul_extractor_upgrd_to_3|Pozwala wyciągać dusze **bez uszkodzeń**.
+mf_crematorium|Służy do spalania ciał na popiół przy użyciu paliwa.
+soul_totem_souls|Pozwala zdalnie rozpoczynać pracę w swoim obszarze za wdzięczność dusz.
+pride_healing_extension|Dodaje miejsce na **skórę** w uzdrowicielu dusz.
+wrath_healing_extension|Dodaje miejsce na **krew** w uzdrowicielu dusz.
+gluttony_healing_extension|Dodaje miejsce na **tłuszcz** w uzdrowicielu dusz.
+sloth_healing_extension|Dodaje miejsce na **mózg** w uzdrowicielu dusz.
+lust_healing_extension|Dodaje miejsce na **serce** w uzdrowicielu dusz.
+envy_healing_extension|Dodaje miejsce na **jelita** w uzdrowicielu dusz.

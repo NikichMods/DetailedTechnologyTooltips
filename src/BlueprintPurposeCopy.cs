@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DetailedTechnologyTooltips
 {
@@ -42,11 +43,11 @@ namespace DetailedTechnologyTooltips
             { "zombie_pulpit", new[] { "A zombie writes stories.", "Зомби пишет истории." } },
             { "mf_alchemy_craft_02", new[] { "Lets you make potions from **two ingredients**.", "Служит для приготовления зелий из **двух ингредиентов**." } },
             { "mf_alchemy_craft_03", new[] { "Lets you make potions from **three ingredients**.", "Служит для приготовления зелий из **трёх ингредиентов**." } },
-            { "mf_alchemy_stirrer_01", new[] { "Allows you to obtain alchemical **solutions** from materials.", "Позволяет получать алхимические **растворы** из материалов." } },
-            { "mf_alchemy_mill", new[] { "Used to grind materials into alchemical **powders**.", "Используется для получения алхимических **порошков** из материалов." } },
-            { "mf_distcube_2_clay", new[] { "You can obtain alchemical **extracts** from materials here.", "Здесь можно получать алхимические **экстракты** из материалов." } },
-            { "mf_distcube_2_cuprum", new[] { "Allows you to obtain **more extract** from the same raw materials.", "Позволяет получать **больше экстракта** из того же сырья." } },
-            { "alchemy_table_zombie", new[] { "A zombie processes materials into powders, solutions and extracts.", "Зомби перерабатывает материалы в порошки, растворы и экстракты." } },
+            { "mf_alchemy_stirrer_01", new[] { "Allows you to obtain alchemical (alc2) **solutions** from materials.", "Позволяет получать алхимические (alc2) **растворы** из материалов." } },
+            { "mf_alchemy_mill", new[] { "Used to grind materials into alchemical (alc1) **powders**.", "Используется для получения алхимических (alc1) **порошков** из материалов." } },
+            { "mf_distcube_2_clay", new[] { "You can obtain alchemical (alc3) **extracts** from materials here.", "Здесь можно получать алхимические (alc3) **экстракты** из материалов." } },
+            { "mf_distcube_2_cuprum", new[] { "Allows you to obtain (alc3) **more extract** from the same raw materials.", "Позволяет получать (alc3) **больше экстракта** из того же сырья." } },
+            { "alchemy_table_zombie", new[] { "A zombie processes materials into (alc1) powders, (alc2) solutions and (alc3) extracts.", "Зомби перерабатывает материалы в (alc1) порошки, (alc2) растворы и (alc3) экстракты." } },
             { "alchemy_workbench_zombie", new[] { "A zombie makes potions from known recipes.", "Зомби готовит зелья по известным рецептам." } },
             { "garden_empty", new[] { "Allows you to grow vegetables.", "Позволяет выращивать овощи." } },
             { "garden_empty_stick", new[] { "You can grow lentils here.", "Здесь можно выращивать чечевицу." } },
@@ -80,25 +81,25 @@ namespace DetailedTechnologyTooltips
             { "lantern_network", new[] { "Creates lantern building sites in the mine.", "Создаёт места для светильников в шахте." } },
             { "lantern", new[] { "Used to light the surrounding area.", "Служит для освещения пространства вокруг." } },
             { "well_pump", new[] { "Automatically draws water from the well.", "Автоматически набирает воду из колодца." } },
-            { "candelabrum_1", new[] { "**+1 church quality**. Candles increase the bonus.", "**+1 к качеству церкви**. Свечи усиливают эффект." } },
-            { "candelabrum_2", new[] { "**+2 church quality**. Candles increase the bonus.", "**+2 к качеству церкви**. Свечи усиливают эффект." } },
-            { "candelabrum_3", new[] { "**+3 church quality**. Candles increase the bonus.", "**+3 к качеству церкви**. Свечи усиливают эффект." } },
-            { "church_bench", new[] { "**+1 church quality**.", "**+1 к качеству церкви**." } },
-            { "church_bench_2", new[] { "**+3 church quality**.", "**+3 к качеству церкви**." } },
-            { "church_table_1", new[] { "**+5 church quality**.", "**+5 к качеству церкви**." } },
-            { "church_table_2", new[] { "**+8 church quality**.", "**+8 к качеству церкви**." } },
-            { "church_window_1", new[] { "**+5 church quality**.", "**+5 к качеству церкви**." } },
-            { "church_budka_1", new[] { "**+5 church quality**. Parishioners may leave confessions.", "**+5 к качеству церкви**. Прихожане могут оставлять исповеди." } },
-            { "church_budka_2", new[] { "**+7 church quality**. Parishioners may leave confessions.", "**+7 к качеству церкви**. Прихожане могут оставлять исповеди." } },
-            { "c_obj_incense_1", new[] { "**+1 church quality**. Incense temporarily increases the bonus.", "**+1 к качеству церкви**. Благовония временно усиливают эффект." } },
-            { "c_obj_incense_2", new[] { "**+3 church quality**. Incense temporarily increases the bonus.", "**+3 к качеству церкви**. Благовония временно усиливают эффект." } },
-            { "pray_stand_wd", new[] { "**+2 graveyard quality**.", "**+2 к качеству кладбища**." } },
-            { "pray_stand_stn", new[] { "**+4 graveyard quality**.", "**+4 к качеству кладбища**." } },
-            { "grass_sward_2x3", new[] { "**+2 graveyard quality**.", "**+2 к качеству кладбища**." } },
-            { "road_marble", new[] { "**+3 graveyard quality**.", "**+3 к качеству кладбища**." } },
-            { "lantern_3", new[] { "**+4 graveyard quality**.", "**+4 к качеству кладбища**." } },
-            { "columbarium_stone", new[] { "**+12 graveyard quality**.", "**+12 к качеству кладбища**." } },
-            { "columbarium_marble", new[] { "**+20 graveyard quality**.", "**+20 к качеству кладбища**." } },
+            { "candelabrum_1", new[] { "(cross) **+1 church quality**. Candles increase the bonus.", "(cross) **+1 к качеству церкви**. Свечи усиливают эффект." } },
+            { "candelabrum_2", new[] { "(cross) **+2 church quality**. Candles increase the bonus.", "(cross) **+2 к качеству церкви**. Свечи усиливают эффект." } },
+            { "candelabrum_3", new[] { "(cross) **+3 church quality**. Candles increase the bonus.", "(cross) **+3 к качеству церкви**. Свечи усиливают эффект." } },
+            { "church_bench", new[] { "(cross) **+1 church quality**.", "(cross) **+1 к качеству церкви**." } },
+            { "church_bench_2", new[] { "(cross) **+3 church quality**.", "(cross) **+3 к качеству церкви**." } },
+            { "church_table_1", new[] { "(cross) **+5 church quality**.", "(cross) **+5 к качеству церкви**." } },
+            { "church_table_2", new[] { "(cross) **+8 church quality**.", "(cross) **+8 к качеству церкви**." } },
+            { "church_window_1", new[] { "(cross) **+5 church quality**.", "(cross) **+5 к качеству церкви**." } },
+            { "church_budka_1", new[] { "(cross) **+5 church quality**. Parishioners may leave confessions.", "(cross) **+5 к качеству церкви**. Прихожане могут оставлять исповеди." } },
+            { "church_budka_2", new[] { "(cross) **+7 church quality**. Parishioners may leave confessions.", "(cross) **+7 к качеству церкви**. Прихожане могут оставлять исповеди." } },
+            { "c_obj_incense_1", new[] { "(cross) **+1 church quality**. Incense temporarily increases the bonus.", "(cross) **+1 к качеству церкви**. Благовония временно усиливают эффект." } },
+            { "c_obj_incense_2", new[] { "(cross) **+3 church quality**. Incense temporarily increases the bonus.", "(cross) **+3 к качеству церкви**. Благовония временно усиливают эффект." } },
+            { "pray_stand_wd", new[] { "(wskull) **+2 graveyard quality**.", "(wskull) **+2 к качеству кладбища**." } },
+            { "pray_stand_stn", new[] { "(wskull) **+4 graveyard quality**.", "(wskull) **+4 к качеству кладбища**." } },
+            { "grass_sward_2x3", new[] { "(wskull) **+2 graveyard quality**.", "(wskull) **+2 к качеству кладбища**." } },
+            { "road_marble", new[] { "(wskull) **+3 graveyard quality**.", "(wskull) **+3 к качеству кладбища**." } },
+            { "lantern_3", new[] { "(wskull) **+4 graveyard quality**.", "(wskull) **+4 к качеству кладбища**." } },
+            { "columbarium_stone", new[] { "(wskull) **+12 graveyard quality**.", "(wskull) **+12 к качеству кладбища**." } },
+            { "columbarium_marble", new[] { "(wskull) **+20 graveyard quality**.", "(wskull) **+20 к качеству кладбища**." } },
             { "soul_container", new[] { "Space for **two souls**.", "Место для **двух душ**." } },
             { "soul_container_2", new[] { "Space for **three souls**.", "Место для **трёх душ**." } },
             { "soul_container_3", new[] { "Space for **four souls**.", "Место для **четырёх душ**." } },
@@ -116,6 +117,52 @@ namespace DetailedTechnologyTooltips
         };
         internal static IEnumerable<string> Ids { get { return Copy.Keys; } }
         internal static int Count { get { return Copy.Count; } }
+        // Original authored translations are immutable resources, loaded once. Never cache
+        // native localized names, fonts, balance values or save-dependent data here.
+        private static readonly Dictionary<string, Dictionary<string, string>> Translations = LoadTranslations();
+        private static Dictionary<string, Dictionary<string, string>> LoadTranslations()
+        {
+            var result = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+            foreach (var language in Localization.SupportedLanguages)
+            {
+                if (language == "en" || language == "ru") continue;
+                var rows = new Dictionary<string, string>(StringComparer.Ordinal);
+                using (var stream = typeof(BlueprintPurposeCopy).Assembly.GetManifestResourceStream(
+                    "Dtt.BlueprintPurposes." + language + ".txt"))
+                {
+                    if (stream == null) continue;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            if (line.Length == 0 || line.StartsWith("#", StringComparison.Ordinal)) continue;
+                            int separator = line.IndexOf('|');
+                            if (separator <= 0 || separator == line.Length - 1) { rows.Clear(); break; }
+                            string id = line.Substring(0, separator);
+                            if (!Copy.ContainsKey(id) || rows.ContainsKey(id)) { rows.Clear(); break; }
+                            rows.Add(id, line.Substring(separator + 1));
+                        }
+                    }
+                }
+                // A malformed/incomplete resource cannot turn an entire locale into mixed English.
+                if (rows.Count == Copy.Count) result.Add(language, rows);
+            }
+            return result;
+        }
+        private static string NormalizeLanguage(string language)
+        {
+            var normalized = Localization.NormalizeLanguage(language);
+            // Preserve the previously supported EN/RU regional aliases.
+            if (normalized.StartsWith("en-", StringComparison.Ordinal)) return "en";
+            if (normalized.StartsWith("ru-", StringComparison.Ordinal)) return "ru";
+            return normalized;
+        }
+        internal static bool SupportsLanguage(string language)
+        {
+            language = NormalizeLanguage(language);
+            return language == "en" || language == "ru" || Translations.ContainsKey(language);
+        }
         internal static string NativeDescriptionKey(string unlockId)
         {
             return NormalizeId(unlockId) == "zombie_crafting_table" ? "zombie_crafting_table_d" : null;
@@ -128,12 +175,20 @@ namespace DetailedTechnologyTooltips
         }
         internal static string Get(string unlockId, string language)
         {
-            if (string.IsNullOrEmpty(unlockId) || string.IsNullOrEmpty(language)) return null;
-            language = language.Trim().ToLowerInvariant().Replace('-', '_').Split('_')[0];
-            if (language != "en" && language != "ru") return null;
+            var raw = GetRaw(unlockId, language);
+            return raw == null ? null : Render(raw);
+        }
+        internal static string GetRaw(string unlockId, string language)
+        {
+            if (string.IsNullOrEmpty(unlockId)) return null;
+            language = NormalizeLanguage(language);
             var id = NormalizeId(unlockId);
             string[] pair;
-            return Copy.TryGetValue(id, out pair) ? Render(pair[language == "ru" ? 1 : 0]) : null;
+            if (language == "en" || language == "ru")
+                return Copy.TryGetValue(id, out pair) ? pair[language == "ru" ? 1 : 0] : null;
+            Dictionary<string, string> rows;
+            string value;
+            return Translations.TryGetValue(language, out rows) && rows.TryGetValue(id, out value) ? value : null;
         }
         internal static string Render(string text)
         {
