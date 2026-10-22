@@ -1,6 +1,6 @@
-# Tooltip layout pilot — current candidate1.2.9
+# Tooltip layout pilot — installed1.2.9 / prepared1.2.10
 
-Status:1.2.9 installed with one-time native text-data Type binding to remove repeated assembly enumeration during eager branch tooltip preparation. User reviews1.2.8 Russian visuals positively; appearance/content/defaults unchanged. Game branch-latency acceptance pending. See BRANCH_LATENCY_GATE.md and TEST_BUILD_LOG.md1.2.9; stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
+Status:1.2.9 installed; user accepts restored branch speed, Russian appearance and English/controller presentation.1.2.10 adds purpose symbols and all eleven game languages, passes local/hosted checks and is frozen but expressly not installed while the host runs. MULTILINGUAL_EFFECT_ICONS_GATE.md owns its exact identity and pending visual review. F2/chosen defaults unchanged; stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
 
 ## Solution selection and READY gates before source changes
 

@@ -30,3 +30,9 @@ SDK8.0.426 native-reference Release: zero warnings/errors. Localization executab
 
 Actual compiled DLL fixture finds exactly nine embedded translation resources (WithCulture=false prevents satellite-DLL packaging), resolves104 purposes in every language and passes existing recipe composition/native-body/prayer/group tests. No Unity scene rendered by those fixtures.936 original translated strings are embedded, loaded once; no runtime filesystem lookup. Tests establish completeness and technical integration, not native-speaker review or eleven-language visual acceptance. Installed DLL still has1.2.9 SHA2567b20a12f7f167930f2951d99f76516bd4a59571e64eb6aa5c0abf53e17d5160a. No installation attempted.
 
+## Frozen candidate — not installed
+
+Source ed5a925dccc894d80b71a92bdf6ba5f44d3c7073. Native-reference Release DLL1.2.10.0, ProductVersion1.2.10+source SHA,196608 bytes, SHA256e2cc5608cc865a4ea32266894a480f36a538554b2f70950499ff02b3e7c6966f. Frozen as artifacts/layout-pilot/DetailedTechnologyTooltips-1.2.10.dll with BUILD_IDENTITY-1.2.10.json. CI39718781058/job119627149302 completed successfully, including source/version assertion, build, localization suite and artifact upload. Local installed-reference fixtures also pass after exact source commit. No source changes after freezing; subsequent evidence/docs commits do not alter this binary.
+
+Installation explicitly deferred while the user plays1.2.9. Future runtime check needs only inspecting tooltips: church/graveyard furnishing icons, alchemy categories and long material rows; live-switch a long Latin locale such as German/Polish and a CJK locale such as Japanese/Chinese/Korean. Check no literal tokens, glyph overlap, clipped text or detached quantities, and confirm branches still switch promptly. No crafting/save mutation required. Exact new multilingual/icon appearance is pending, not inherited from1.2.9 acceptance. Mixed PrayerClarity/grouped-ingredient specifics remain separately unreported.
+
