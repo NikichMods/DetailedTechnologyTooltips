@@ -1270,3 +1270,7 @@ Installed canonical DLL remains1.2.10 hash e2cc5608cc865a4ea32266894a480f36a5385
 ###1.2.11 installed for final runtime review
 
 User confirms game closed and explicitly authorizes installation, superseding initial prepare-only. Process check clear; frozen file source/version/size/hash verified. Prior accepted1.2.10 preserved/verified outside plugins. Before-install session snapshot SHA256508f63267bd42060552a393c23da4f2e49ca6d939f1f39dcfcce4d0434d0f27f. Installed2026-10-22T04:32:12Z canonical DLL1.2.11.0, source bb45fa2fb1f3838372a6d4584cec60e770026930, SHA256d64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943; one active DTT copy. No unrelated files modified. Request a short check of no DTT F2 window, unchanged combined alchemy/one quality-symbol tooltip, one CJK live switch and fast branches. Startup/final appearance acceptance pending; stable1.1.6 remains public baseline.
+
+###1.2.11 final acceptance and release authorization
+
+User confirms no F2 window, unchanged appearance, normal language/branch switching and explicitly requests release. Accepted final session SHA256875caf6e56fb7822a1e1b3d47c4039a33639175466d2b527037aa28a40969aa9 reaches READY1.2.11 with no DTT failed/disabled/fallback marker; installed DLL hash stilld64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943. Final runtime gate accepted on exact source bb45fa2fb1f3838372a6d4584cec60e770026930; no rebuild. Main integration and GitHub Release authorized. Publication identity/download verification is owned by RELEASE_1.2.11.md.

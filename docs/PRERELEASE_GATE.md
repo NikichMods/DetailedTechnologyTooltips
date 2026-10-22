@@ -27,3 +27,7 @@ Installed DLL remains accepted1.2.10 SHA256e2cc5608cc865a4ea32266894a480f36a5385
 ## Installed for final check —2026-10-22
 
 User subsequently confirms game closed and explicitly requests installation/final review, superseding prepare-only. Process check clear. Candidate source/version/size/hash verified, prior accepted1.2.10 preserved and verified in artifacts/installed-backups outside plugins. Prior session snapshot local/runtime-evidence/prerelease-1.2.11/before-install.log SHA256508f63267bd42060552a393c23da4f2e49ca6d939f1f39dcfcce4d0434d0f27f. Canonical installed DLL at2026-10-22T04:32:12Z matches1.2.11.0/ProductVersion1.2.11+bb45fa2fb1f3838372a6d4584cec60e770026930 and SHA256d64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943; one active DTT payload. No other plugin/config/save changed. Startup/F2 absence/short final visual acceptance pending. No stable/main/release promotion.
+
+## Final acceptance —2026-10-22
+
+User explicitly confirms F2 no longer opens the window, appearance is unchanged, languages and branches switch normally, and requests release. Final session snapshot SHA256875caf6e56fb7822a1e1b3d47c4039a33639175466d2b527037aa28a40969aa9 reaches READY1.2.11 on the verified host, without DTT failure/disabled/fallback markers. Installed hash still matches exact frozen candidate. Final runtime gate accepted; earlier pending statements are history. Stable promotion/publication now authorized, tracked in RELEASE_1.2.11.md.

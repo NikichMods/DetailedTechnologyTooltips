@@ -1,6 +1,6 @@
-# Tooltip layout pilot — installed prerelease1.2.11
+# Tooltip layout history — accepted1.2.11
 
-Status:prerelease1.2.11 installed after explicit user closure confirmation, matching frozen source/hash and one active payload. It removes F2, preserves immutable accepted appearance and passes local/hosted checks; short final startup/input/visual review pending. PRERELEASE_GATE.md owns exact installation/candidate evidence. Prior1.2.10 full visual/language and1.2.9 branch-speed acceptance retained;1.2.10 rollback verified outside plugins. Stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
+Status:1.2.11 final runtime check accepted: no F2 window, same appearance, normal languages and branches. Exact installed/frozen identity and one active payload verified. User authorizes stable promotion/publication; RELEASE_1.2.11.md owns the release result. PRERELEASE_GATE.md retains exact final-candidate evidence. Prior1.2.10 full visual/language and1.2.9 branch-speed acceptance retained;1.2.10 rollback verified outside plugins. Historical pilot/candidate evidence follows.
 
 ## Solution selection and READY gates before source changes
 
