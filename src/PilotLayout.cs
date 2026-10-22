@@ -88,6 +88,22 @@ namespace DetailedTechnologyTooltips
             if (blankType.IsInstanceOfType(list[start + 1])) Mark(list[start + 1], PilotRole.TitleGap);
             if (start > 0) list.Insert(start, Gap(PilotRole.EntryGap));
         }
+        internal static bool MarkNativeBody(object tooltip, int start)
+        {
+            if (!Available) return false;
+            var list = (IList)dataList.GetValue(tooltipData.GetValue(tooltip));
+            var dataType = AccessTools.TypeByName("BubbleWidgetTextData");
+            bool hasBody = list.Count > start + 2;
+            for (int i = start + 2; i < list.Count; i++)
+            {
+                var data = list[i];
+                Tag existing;
+                if (!dataType.IsInstanceOfType(data) || Tags.TryGetValue(data, out existing)) continue;
+                Mark(data, PilotRole.Purpose);
+                PilotCalibration.MarkNativeBody(data);
+            }
+            return hasBody;
+        }
         internal static void Drawn(object widget, object data)
         {
             if (!installed || failed || widget == null || data == null) return;

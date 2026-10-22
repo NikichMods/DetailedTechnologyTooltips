@@ -18,7 +18,7 @@ namespace DetailedTechnologyTooltips
     {
         public const string PluginGuid = "nikich.gyk.detailedtechnologytooltips";
         public const string PluginName = "Detailed Technology Tooltips";
-        public const string PluginVersion = "1.2.7";
+        public const string PluginVersion = "1.2.8";
 
         internal static ManualLogSource Log;
         internal static bool RuntimeDisabled;
@@ -87,7 +87,7 @@ namespace DetailedTechnologyTooltips
                 Log.LogInfo(
                     "DTT_READY version=" + PluginVersion
                     + " contract=technology-tooltip"
-                    + " blueprint_purposes=en-ru-" + BlueprintPurposeCopy.Count + " icons=" + PilotMaterialIcons.Available
+                    + " blueprint_purposes=en-ru-" + BlueprintPurposeCopy.Count + " recipe_layout=en-ru-nonprayer icons=" + PilotMaterialIcons.Available
                     + " host_mvid=" + GameApi.HostModuleVersionId + ".");
             }
             catch (Exception ex)
@@ -227,8 +227,10 @@ namespace DetailedTechnologyTooltips
 
             try
             {
+                if (__state.Current.UseRichLayout && !__state.Current.IsBlueprint)
+                    __state.Current.HasNativeBody = PilotLayout.MarkNativeBody(tooltip, __state.StartRow);
                 GameApi.AppendDetails(tooltip, __state.Current);
-                if (__state.Current.PilotPurpose != null) PilotLayout.Header(tooltip, __state.StartRow);
+                if (__state.Current.UseRichLayout) PilotLayout.Header(tooltip, __state.StartRow);
             }
             catch (Exception ex)
             {

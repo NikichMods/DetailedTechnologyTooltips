@@ -24,6 +24,8 @@ namespace DetailedTechnologyTooltips
         public bool SeparateDescriptionRow;
         public string PilotPurpose;
         public PilotMaterial[] PilotMaterials;
+        public bool UseRichLayout;
+        public bool HasNativeBody;
     }
 
     internal sealed class PilotMaterial
@@ -71,6 +73,8 @@ namespace DetailedTechnologyTooltips
         private static MethodInfo _getItemsOfBaseName;
 
         private static FieldInfo _needsField;
+        private static FieldInfo _outputField, _itemDefinitionTypeField;
+        private static object _preachEnumValue;
         private static FieldInfo _craftInField;
         private static FieldInfo _builderIdsField;
         private static FieldInfo _outObjField;
@@ -190,6 +194,9 @@ namespace DetailedTechnologyTooltips
                 AllInstance,
                 new[] { typeof(string) });
             _needsField = RequireField(craftDefinitionType, "needs");
+            _outputField = RequireField(craftDefinitionType, "output");
+            _itemDefinitionTypeField = RequireField(itemDefinitionType, "type");
+            _preachEnumValue = Enum.Parse(_itemDefinitionTypeField.FieldType, "Preach");
             _craftInField = RequireField(craftDefinitionType, "craft_in");
             _builderIdsField =
                 RequireField(objectCraftDefinitionType, "builder_ids");
@@ -332,9 +339,14 @@ namespace DetailedTechnologyTooltips
             if (craft == null)
                 return null;
 
+            if (!isBlueprint && HasPrayerOutput(balance, craft)) return null;
+
             var growthContext = BuildGrowthCraftContext(id, craft);
             if (growthContext != null)
+            {
+                ConfigureRecipeLayout(growthContext, balance, craft);
                 return growthContext;
+            }
 
             var context = new TechTooltipContext
             {
@@ -362,12 +374,62 @@ namespace DetailedTechnologyTooltips
                 {
                     context.PilotPurpose = purpose;
                     context.PilotMaterials = materials;
+                    context.UseRichLayout = true;
                     bool ru = IsLanguage(GetCurrentLanguage(), "ru");
                     context.LocationRow = BuildLocationRow(balance, craft, true,
                         ru ? "[FF]Где строить:[AA] " : "[FF]Built in:[AA] ");
                 }
             }
+            else if (!isBlueprint) ConfigureRecipeLayout(context, balance, craft);
             return context;
+        }
+
+        private static bool HasPrayerOutput(object balance, object craft)
+        {
+            var output = _outputField.GetValue(craft) as IList;
+            if (output == null) return false;
+            foreach (var item in output)
+            {
+                var id = _itemIdField.GetValue(item) as string;
+                if (string.IsNullOrEmpty(id)) continue;
+                var direct = _getItemDefinitionById.Invoke(balance, new object[] { id });
+                if (direct != null && Equals(_itemDefinitionTypeField.GetValue(direct), _preachEnumValue)) return true;
+                var variants = _getItemsOfBaseName.Invoke(balance, new object[] { id }) as IList;
+                if (variants == null) continue;
+                foreach (var variant in variants)
+                {
+                    var definition = _getItemDefinitionById.Invoke(balance, new[] { variant });
+                    if (definition != null && Equals(_itemDefinitionTypeField.GetValue(definition), _preachEnumValue)) return true;
+                }
+            }
+            return false;
+        }
+
+        private static void ConfigureRecipeLayout(TechTooltipContext context, object balance, object craft)
+        {
+            var language = GetCurrentLanguage();
+            if (!PilotMaterialIcons.Available || !PilotLayout.Available
+                || (!IsLanguage(language, "en") && !IsLanguage(language, "ru"))) return;
+            var materials = context.PilotMaterials ?? BuildPilotMaterials(balance, craft);
+            if (materials == null || materials.Any(m => string.IsNullOrEmpty(m.Name) || string.IsNullOrEmpty(m.Icon))) return;
+            context.PilotMaterials = materials;
+            context.UseRichLayout = true;
+            if (context.OverrideName == null)
+                context.LocationRow = BuildLocationRow(balance, craft, false, "[FF]" + GetCraftedAtPrefix() + "[AA]");
+        }
+
+        private static object ResolveMaterialDefinition(object balance, string id)
+        {
+            var definition = _getItemDefinitionById.Invoke(balance, new object[] { id });
+            if (definition != null) return definition;
+            var variants = _getItemsOfBaseName.Invoke(balance, new object[] { id }) as IList;
+            if (variants != null)
+                foreach (var variant in variants)
+                {
+                    definition = _getItemDefinitionById.Invoke(balance, new[] { variant });
+                    if (definition != null) return definition;
+                }
+            return null;
         }
 
         private static PilotMaterial[] BuildPilotMaterials(object balance, object craft)
@@ -378,7 +440,7 @@ namespace DetailedTechnologyTooltips
             for (int i = 0; i < needs.Count; i++)
             {
                 var item = needs[i];
-                var definition = _getItemDefinitionById.Invoke(balance, new object[] { _itemIdField.GetValue(item) });
+                var definition = ResolveMaterialDefinition(balance, _itemIdField.GetValue(item) as string);
                 if (definition == null) return null;
                 string name = ResolveNeedDisplayName(item);
                 string icon = _itemDefinitionGetIcon.Invoke(definition, null) as string;
@@ -420,11 +482,21 @@ namespace DetailedTechnologyTooltips
             if (context.Craft == null)
                 return;
 
-            if (!string.IsNullOrEmpty(context.PilotPurpose))
+            if (context.UseRichLayout)
             {
-                AddTinyText(tooltip, context.PilotPurpose, _leftAlignment, false, true);
+                bool hasBody = context.HasNativeBody;
+                if (!string.IsNullOrEmpty(context.PilotPurpose))
+                {
+                    AddTinyText(tooltip, context.PilotPurpose, _leftAlignment, false, true);
+                    hasBody = true;
+                }
+                if (!string.IsNullOrEmpty(context.CraftDescriptionRow))
+                {
+                    AddTinyText(tooltip, "[AA]" + context.CraftDescriptionRow + "[FF]", _leftAlignment, false, true);
+                    hasBody = true;
+                }
                 bool hasMaterials = context.PilotMaterials.Length > 0;
-                if (hasMaterials) _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.PurposeGap) });
+                if (hasMaterials && hasBody) _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(PilotRole.PurposeGap) });
                 foreach (var material in context.PilotMaterials)
                 {
                     var data = _textDataCtor.Invoke(new object[] {
@@ -436,9 +508,13 @@ namespace DetailedTechnologyTooltips
                 }
                 if (!string.IsNullOrEmpty(context.LocationRow))
                 {
-                    _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(hasMaterials ? PilotRole.MaterialGap : PilotRole.PurposeGap) });
-                    AddTinyText(tooltip, context.LocationRow + "[FF]", _leftAlignment, false, true, PilotRole.Location);
+                    if (hasMaterials || hasBody)
+                        _tooltipAddData.Invoke(tooltip, new[] { PilotLayout.Gap(hasMaterials ? PilotRole.MaterialGap : PilotRole.PurposeGap) });
+                    AddTinyText(tooltip, "[AA]" + context.LocationRow + "[FF]", _leftAlignment, false, true, PilotRole.Location);
                 }
+                if (context.ExtraCraftRows != null)
+                    foreach (var row in context.ExtraCraftRows)
+                        if (!string.IsNullOrEmpty(row)) AddTinyText(tooltip, "[AA]" + row + "[FF]", _leftAlignment, false, true, PilotRole.Location);
                 return;
             }
 
@@ -856,7 +932,9 @@ namespace DetailedTechnologyTooltips
                 ExtraCraftRows = new[]
                 {
                     seedsPrefix + vendor
-                }
+                },
+                PilotMaterials = new[] { new PilotMaterial { Name = seedName + " (x4)",
+                    Icon = _itemDefinitionGetIcon.Invoke(ResolveMaterialDefinition(_gameBalanceMeProperty.GetValue(null, null), seedId), null) as string } }
             };
         }
 

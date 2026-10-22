@@ -39,6 +39,11 @@ namespace DetailedTechnologyTooltips
             if (!ready) return;
             Rows.Add(data, new Row { Raw = (string)text.GetValue(data), Material = material });
         }
+        internal static void MarkNativeBody(object data)
+        {
+            if (!ready) return;
+            Rows.Add(data, new Row { Raw = "[AA]" + (string)text.GetValue(data) + "[FF]" });
+        }
         public static void BeforeDraw(object __0)
         {
             try
