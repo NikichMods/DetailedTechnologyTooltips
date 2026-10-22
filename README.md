@@ -6,7 +6,7 @@ Detailed Technology Tooltips makes visible Technology-tree unlocks explain what 
 
 ## Status
 
-The current public stable release is **v1.1.6**. This development branch prepares **1.2.11**, a prerelease candidate for the redesigned tooltips described below. The preceding1.2.10 visual and multilingual presentation was accepted in game;1.2.11 removes the temporary F2 tuning window and fixes those accepted settings. Final candidate review is pending; no new stable release has been published.
+The current public stable release is **v1.1.6**. This development branch prepares **1.2.11**, a prerelease candidate for the redesigned tooltips described below. The preceding 1.2.10 visual and multilingual presentation was accepted in game; 1.2.11 removes the temporary F2 tuning window and fixes those accepted settings. Final candidate review is pending; no new stable release has been published.
 
 ## What it does
 
@@ -16,7 +16,7 @@ For visible Technology unlocks:
 - **ordinary recipes** preserve useful native item descriptions and show native requirements plus the exact crafting station(s) owned by that unlocked recipe;
 - material rows combine native icons, names and quantities; tooltip width follows the current language's material rows, subject to the viewport limit;
 - sparse warm-red accents emphasize useful differences and effects; native symbols identify church/graveyard quality and alchemy categories alongside explanatory text;
-- blueprint locations list every native build menu / build desk that owns the same construction variant in the current1.407 balance;
+- blueprint locations list every native build menu / build desk that owns the same construction variant in the current 1.407 balance;
 - mouse and gamepad share alignment and spacing; gamepad keeps the combined native tooltip;
 - useful existing vanilla descriptions are preserved;
 - sparse Work/Perk unlocks receive a short explanation only where the current 1.407 data path has been specifically verified;

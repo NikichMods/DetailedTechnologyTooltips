@@ -1,16 +1,16 @@
 # Changelog
 
-## 1.2.11 — prerelease candidate,2026-10-22
+## 1.2.11 — prerelease candidate, 2026-10-22
 
-This development candidate is not a published stable release. It preserves the1.2.10 presentation accepted in game and removes the temporary calibration UI for final review.
+This development candidate is not a published stable release. It preserves the 1.2.10 presentation accepted in game and removes the temporary calibration UI for final review.
 
-- Adds concise purpose descriptions for104 distinct visible blueprints (105 Technology references), translated into all11 current game languages.
+- Adds concise purpose descriptions for 104 distinct visible blueprints (105 Technology references), translated into all 11 current game languages.
 - Uses native material icons with names/quantities, active-language material-based width, and common mouse/gamepad alignment and spacing for blueprint and nonprayer recipe unlocks.
 - Adds selective native church/graveyard-quality and alchemy-category symbols, preserving words and sparse warm-red emphasis.
 - Preserves native item descriptions, native quantities and exact recipe stations; blueprint locations retain complete native builder coverage.
 - Leaves prayer unlocks to vanilla/PrayerClarity, while continuing to enrich other unlocks in mixed technologies. No DTT carousel is introduced.
-- Avoids repeated native type discovery during branch preparation; the reported branch-switch delay was corrected and accepted in1.2.9.
-- Removes the F2 window, input/UI callbacks, sliders and session settings export. Keeps accepted icon size20, Y0, indent5 spaces, opacity100%, centered title/purpose/location, left materials and gaps2/6/6/10 as fixed defaults.
+- Avoids repeated native type discovery during branch preparation; the reported branch-switch delay was corrected and accepted in 1.2.9.
+- Removes the F2 window, input/UI callbacks, sliders and session settings export. Keeps accepted icon size 20, Y 0, indent 5 spaces, opacity 100%, centered title/purpose/location, left materials and gaps 2/6/6/10 as fixed defaults.
 - Progression, recipes, construction mechanics, hidden content and saves remain unchanged.
 
 ## 1.1.6 — 2026-10-01

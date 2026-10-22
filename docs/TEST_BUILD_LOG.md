@@ -1256,3 +1256,13 @@ User explicitly confirms game closed and authorizes installation; process check 
 ###1.2.10 visual and language acceptance
 
 User explicitly approves observed tooltips, icons/symbols, wrapping, emphasis and languages as all working correctly. Preserved accepted-visuals-and-languages.log SHA25650254b75aa524cfdd74a3a383ef36f5231d42dfabe6dff8dbf281c756abe50f4 reaches READY1.2.10 and records native loading of en/de/fr/pt-br/es/ru/it/pl/ja/zh_cn/ko, with no DTT failure/disabled/fallback marker. Canonical installed hash still matches frozen1.2.10. Status: exact candidate's new visual/multilingual presentation accepted by user. This is not a native-speaker review of every sentence or a per-mod-edition compatibility matrix. Temporary F2 still present; release preparation/final exact candidate remain next. No binary replacement/source edit/main/release promotion performed in this acceptance recording.
+
+##1.2.11 — fixed-appearance prerelease,2026-10-22
+
+**PREPARED/FROZEN — NOT INSTALLED, per explicit user prepare-only response.** Source bb45fa2fb1f3838372a6d4584cec60e770026930. SDK8.0.426 native-reference Release zero warnings/errors, DLL193024 bytes, file version1.2.11.0/ProductVersion1.2.11+sourceSHA, SHA256d64f928818ea8959942f3108fcfe87fe6166e165ad616ba80da27cfcc6d36943. Frozen artifact and manifest in artifacts/layout-pilot. CI39722582036/job119639201028 all steps successful.
+
+Removes temporary F2 window, sliders, settings export and Plugin.Update/OnGUI, plus the calibration compilation flag. Retains marked-row rendering as TooltipAppearance with immutable accepted20/0/5/100, centered title/purpose/location, left materials, gaps2/6/6/10. No copy/translation changes versus accepted1.2.10; native symbols/material/station ownership and PrayerClarity boundary unchanged. README/changelog document current redesign and prerelease status, public stable remains1.1.6.
+
+Existing104/105 catalogue/native-ID x11 locales and39 service keys pass. Actual compiled fixture verifies nine embedded resources, all purposes, fixed literal defaults, absence of calibration class/UI/settings callbacks/InputLegacyModule/IMGUIModule references, repeated material draw indent/full alpha/nonbreaking quantity, plus existing recipe/prayer/group/native-body tests. No Unity scene exercised. Full evidence gate: PRERELEASE_GATE.md.
+
+Installed canonical DLL remains1.2.10 hash e2cc5608cc865a4ea32266894a480f36a538554b2f70950499ff02b3e7c6966f; no installation attempted. Short later final check: no F2 window; same combined alchemy and church/graveyard appearance; one CJK language switch and fast branch changes. No crafting or repeated full catalogue sweep. Main/release promotion requires later acceptance/authorization.
