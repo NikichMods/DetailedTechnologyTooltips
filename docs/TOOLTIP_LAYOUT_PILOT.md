@@ -1,6 +1,6 @@
-# Tooltip layout pilot — accepted/installed1.2.10, prepared prerelease1.2.11
+# Tooltip layout pilot — installed prerelease1.2.11
 
-Status:1.2.10 installed with matching frozen source/hash and one active payload; user accepts its tooltips, icons/symbols, wrapping, emphasis and language presentation. Accepted session reaches READY and records all eleven native language loads without DTT failure/disable/fallback. Prior1.2.9 branch-speed acceptance retained. MULTILINGUAL_EFFECT_ICONS_GATE.md owns exact identities/evidence limits. Prerelease1.2.11 removes F2, preserves immutable chosen defaults and passes local/hosted checks; frozen but not installed per user instruction. PRERELEASE_GATE.md owns that final candidate and short pending runtime review. Stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
+Status:prerelease1.2.11 installed after explicit user closure confirmation, matching frozen source/hash and one active payload. It removes F2, preserves immutable accepted appearance and passes local/hosted checks; short final startup/input/visual review pending. PRERELEASE_GATE.md owns exact installation/candidate evidence. Prior1.2.10 full visual/language and1.2.9 branch-speed acceptance retained;1.2.10 rollback verified outside plugins. Stable1.1.6 unchanged. Historical pilot/candidate evidence follows.
 
 ## Solution selection and READY gates before source changes
 
